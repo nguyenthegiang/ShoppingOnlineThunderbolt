@@ -44,9 +44,6 @@
                     <div class="col-sm-9">
                         <div class="row" id="content">
                             <!--List Product-->
-                        <c:out value="dấdsd"></c:out>
-                        <c:out value="dấdsd"></c:out>
-                        <c:out value="dấdsd"></c:out>
                         <c:forEach items="${listP}" var="o">
                             <div class="col-12 col-md-6 col-lg-4">
                                 <div class="card">
