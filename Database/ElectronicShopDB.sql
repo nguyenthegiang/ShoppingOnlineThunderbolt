@@ -42,7 +42,9 @@ CREATE TABLE Product (
 	ProductID int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	ProductName nvarchar(1000),
 	Description nvarchar(2000),
-	Price int,
+	OriginalPrice int, --giá gốc
+	SellPrice int,	--giá bán
+	SalePercent int,	--phần trăm giảm giá
 	imageLink nvarchar(1000),
 	CategoryID int,
 	SellerID int,
