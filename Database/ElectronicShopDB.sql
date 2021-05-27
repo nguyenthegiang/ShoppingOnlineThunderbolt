@@ -47,8 +47,10 @@ CREATE TABLE Product (
 	CategoryID int,
 	SellerID int,
 	Amount int,
+	StatusID int,
 	constraint product_in_category FOREIGN KEY(CategoryID) REFERENCES Category(CategoryID),
-	constraint SellerID_in_Users FOREIGN KEY(SellerID) REFERENCES Users(UserID)
+	constraint SellerID_in_Users FOREIGN KEY(SellerID) REFERENCES Users(UserID),
+	constraint StatusID_in_Status FOREIGN KEY(StatusID) REFERENCES ProductStatus(StatusID)
 ) ON [PRIMARY]
 GO
 
@@ -78,5 +80,13 @@ GO
 CREATE TABLE Ship (
 	CityName nvarchar(1000) PRIMARY KEY,
 	ShipPrice int
+) ON [PRIMARY]
+GO
+
+-------------------------------------------------------------------
+--Kì 5: SWP Project
+CREATE TABLE ProductStatus (
+	StatusID int,
+	StatusName nvarchar(1000)
 ) ON [PRIMARY]
 GO
