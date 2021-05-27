@@ -1,5 +1,6 @@
 ﻿CREATE DATABASE ElectronicShop;
 --DROP DATABASE ElectronicShop
+--Thứ tự chạy DB sau khi Drop: File này -> ListCategory -> ListProduct -> ListCart -> ListShip -> ListStatus
 GO
 USE [ElectronicShop]
 GO
@@ -10,23 +11,24 @@ CREATE TABLE Users (
 	UserID int PRIMARY KEY identity(1,1),
 	Username nvarchar(500),
 	Password nvarchar(1000),
+	email nvarchar(1000),
 	isSeller int,
 	isAdmin int
 );
 GO
 
-INSERT INTO Users VALUES (N'nguyenthegiang', N'nguyenthegiang', 1, 1);
-INSERT INTO Users VALUES (N'buingochuyen', N'buingochuyen', 1, 1);
-INSERT INTO Users VALUES (N'lehoangchi', N'lehoangchi', 1, 0);
-INSERT INTO Users VALUES (N'nguyenthuan', N'nguyenthuan', 1, 0);
-INSERT INTO Users VALUES (N'nguyenminhhanh', N'nguyenminhhanh', 1, 0);
-INSERT INTO Users VALUES (N'nguyenthithanhmai', N'nguyenthithanhmai', 1, 0);
-INSERT INTO Users VALUES (N'nguyentranhoang', N'nguyentranhoang', 0, 0);
-INSERT INTO Users VALUES (N'trantatdat', N'trantatdat', 0, 0);
-INSERT INTO Users VALUES (N'phungquangthong', N'phungquangthong', 0, 0);
-INSERT INTO Users VALUES (N'dinhthethuan', N'dinhthethuan', 0, 0);
-INSERT INTO Users VALUES (N'canhoangduc', N'canhoangduc', 0, 0);
-INSERT INTO Users VALUES (N'dinhthanhhoang', N'dinhthanhhoang', 0, 0);
+INSERT INTO Users VALUES (N'nguyenthegiang', N'nguyenthegiang', N'nguyenthe.giang.775@gmail.com', 1, 1);
+INSERT INTO Users VALUES (N'buingochuyen', N'buingochuyen', N'nguyenthe.giang.775@gmail.com', 1, 1);
+INSERT INTO Users VALUES (N'lehoangchi', N'lehoangchi', N'nguyenthe.giang.775@gmail.com', 1, 0);
+INSERT INTO Users VALUES (N'nguyenthuan', N'nguyenthuan', N'nguyenthe.giang.775@gmail.com', 1, 0);
+INSERT INTO Users VALUES (N'nguyenminhhanh', N'nguyenminhhanh', N'nguyenthe.giang.775@gmail.com', 1, 0);
+INSERT INTO Users VALUES (N'nguyenthithanhmai', N'nguyenthithanhmai', N'nguyenthe.giang.775@gmail.com', 1, 0);
+INSERT INTO Users VALUES (N'nguyentranhoang', N'nguyentranhoang', N'nguyenthe.giang.775@gmail.com', 0, 0);
+INSERT INTO Users VALUES (N'trantatdat', N'trantatdat', N'nguyenthe.giang.775@gmail.com', 0, 0);
+INSERT INTO Users VALUES (N'phungquangthong', N'phungquangthong', N'nguyenthe.giang.775@gmail.com', 0, 0);
+INSERT INTO Users VALUES (N'dinhthethuan', N'dinhthethuan', N'nguyenthe.giang.775@gmail.com', 0, 0);
+INSERT INTO Users VALUES (N'canhoangduc', N'canhoangduc', N'nguyenthe.giang.775@gmail.com', 0, 0);
+INSERT INTO Users VALUES (N'dinhthanhhoang', N'dinhthanhhoang', N'nguyenthe.giang.775@gmail.com', 0, 0);
 GO
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
