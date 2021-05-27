@@ -110,6 +110,20 @@ public class UserDAO extends BaseDAO<Account> {
         }
         return null;
     }
+    public Account getAccountByEmail(String userEmail) {
+        String query = "select * from Users where UserID = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, userEmail);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5));
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    
     
     public int countAllAccount() {
         String query = "select count(*) from Users";
