@@ -39,6 +39,7 @@
                 <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign up</h1>
                 <input name="user" type="text" id="user-name" class="form-control" placeholder="User name" required="" autofocus="">
                 <input name="pass" type="password" id="user-pass" class="form-control" placeholder="Password" required autofocus="">
+                <input name="email" type="email" id="email" class="form-control" placeholder="email" required autofocus="">
                 <input name="repass" type="password" id="user-repeatpass" class="form-control" placeholder="Repeat Password" required autofocus="">
                 <div class="form-group">
                     <label class="form-check-label"><input type="checkbox" required="required"> I accept the <a href="https://policies.google.com/terms?gl=VN&hl=vi" style="display: inline">Terms &amp; Conditions</a></label>

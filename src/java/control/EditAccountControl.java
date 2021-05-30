@@ -59,6 +59,7 @@ public class EditAccountControl extends HttpServlet {
         request.setAttribute("id", x.getId());
         request.setAttribute("user", x.getUser());
         request.setAttribute("pass", x.getPass());
+        request.setAttribute("email", x.getEmail());
         request.setAttribute("Seller", x.getIsSell());
         request.setAttribute("Admin", x.getIsAdmin());
         
@@ -82,6 +83,7 @@ public class EditAccountControl extends HttpServlet {
         String id = request.getParameter("id");
         String user = request.getParameter("user"); //Get by name
         String password = request.getParameter("pass");
+        String email = request.getParameter("email");
         String isSell = request.getParameter("Seller");
         String isAdmin = request.getParameter("Admin");
         
@@ -94,7 +96,7 @@ public class EditAccountControl extends HttpServlet {
 
         //Bước 2: set data to ProductDAO
         UserDAO dao = new UserDAO();
-        dao.editAccount(id, user, password, isSell, isAdmin);
+        //dao.editAccount(id, user, password, isSell, isAdmin);
         response.sendRedirect("accountManager");
     }
 
