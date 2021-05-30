@@ -12,23 +12,25 @@ CREATE TABLE Users (
 	Username nvarchar(500),
 	Password nvarchar(1000),
 	email nvarchar(1000),
+	ActiveCode nvarchar(11),
 	isSeller int,
-	isAdmin int
+	isAdmin int, 
+	user_status int
 );
 GO
 
 INSERT INTO Users VALUES (N'nguyenthegiang', N'nguyenthegiang', N'nguyenthe.giang.775@gmail.com', 1, 1);
-INSERT INTO Users VALUES (N'buingochuyen', N'buingochuyen', N'nguyenthe.giang.775@gmail.com', 1, 1);
-INSERT INTO Users VALUES (N'lehoangchi', N'lehoangchi', N'nguyenthe.giang.775@gmail.com', 1, 0);
-INSERT INTO Users VALUES (N'nguyenthuan', N'nguyenthuan', N'nguyenthe.giang.775@gmail.com', 1, 0);
-INSERT INTO Users VALUES (N'nguyenminhhanh', N'nguyenminhhanh', N'nguyenthe.giang.775@gmail.com', 1, 0);
-INSERT INTO Users VALUES (N'nguyenthithanhmai', N'nguyenthithanhmai', N'nguyenthe.giang.775@gmail.com', 1, 0);
-INSERT INTO Users VALUES (N'nguyentranhoang', N'nguyentranhoang', N'nguyenthe.giang.775@gmail.com', 0, 0);
-INSERT INTO Users VALUES (N'trantatdat', N'trantatdat', N'nguyenthe.giang.775@gmail.com', 0, 0);
-INSERT INTO Users VALUES (N'phungquangthong', N'phungquangthong', N'nguyenthe.giang.775@gmail.com', 0, 0);
-INSERT INTO Users VALUES (N'dinhthethuan', N'dinhthethuan', N'nguyenthe.giang.775@gmail.com', 0, 0);
-INSERT INTO Users VALUES (N'canhoangduc', N'canhoangduc', N'nguyenthe.giang.775@gmail.com', 0, 0);
-INSERT INTO Users VALUES (N'dinhthanhhoang', N'dinhthanhhoang', N'nguyenthe.giang.775@gmail.com', 0, 0);
+INSERT INTO Users VALUES (N'buingochuyen', N'buingochuyen', N'a', 1, 1);
+INSERT INTO Users VALUES (N'lehoangchi', N'lehoangchi', N'b', 1, 0);
+INSERT INTO Users VALUES (N'nguyenthuan', N'nguyenthuan', N'c', 1, 0);
+INSERT INTO Users VALUES (N'nguyenminhhanh', N'nguyenminhhanh', N'd', 1, 0);
+INSERT INTO Users VALUES (N'nguyenthithanhmai', N'nguyenthithanhmai', N'e', 1, 0);
+INSERT INTO Users VALUES (N'nguyentranhoang', N'nguyentranhoang', N'f', 0, 0);
+INSERT INTO Users VALUES (N'trantatdat', N'trantatdat', N'g', 0, 0);
+INSERT INTO Users VALUES (N'phungquangthong', N'phungquangthong', N'h', 0, 0);
+INSERT INTO Users VALUES (N'dinhthethuan', N'dinhthethuan', N'i', 0, 0);
+INSERT INTO Users VALUES (N'canhoangduc', N'canhoangduc', N'j', 0, 0);
+INSERT INTO Users VALUES (N'dinhthanhhoang', N'dinhthanhhoang', N'k', 0, 0);
 GO
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -39,6 +41,23 @@ CREATE TABLE Category (
 	icon nvarchar(1000)
 ) ON [PRIMARY]
 GO
+
+-------------------------------------------------------------------
+--Kì 5: SWP Project
+CREATE TABLE ProductStatus (
+	StatusID int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
+	StatusName nvarchar(1000)
+) ON [PRIMARY]
+GO
+
+CREATE TABLE UserStatus (
+	ID int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
+	StatusName nvarchar(1000)
+) ON [PRIMARY]
+GO
+
+INSERT INTO UserStatus VALUES (N'Active');
+INSERT INTO UserStatus VALUES (N'Locked');
 
 CREATE TABLE Product (
 	ProductID int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
@@ -82,15 +101,11 @@ CREATE TABLE Cart (
 GO
 
 CREATE TABLE Ship (
-	CityName nvarchar(1000) PRIMARY KEY,
+	id int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
+	CityName nvarchar(1000) ,
 	ShipPrice int
 ) ON [PRIMARY]
 GO
 
--------------------------------------------------------------------
---Kì 5: SWP Project
-CREATE TABLE ProductStatus (
-	StatusID int,
-	StatusName nvarchar(1000)
-) ON [PRIMARY]
-GO
+
+
