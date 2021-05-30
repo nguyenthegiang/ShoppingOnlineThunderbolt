@@ -117,3 +117,15 @@ CREATE TABLE ShipInfo (
 	constraint userID_in_user_2 FOREIGN KEY(UserID) REFERENCES Users(UserID),
 ) ON [PRIMARY]
 GO
+
+--FeedBack
+CREATE TABLE Feedback (
+	UserID int,
+	ProductID int,
+	Star int, --1-5
+	FeedbackDetail nvarchar(2000),
+	constraint userID_in_user_3 FOREIGN KEY(UserID) REFERENCES Users(UserID),
+	constraint productID_in_product_2 FOREIGN KEY(ProductID) REFERENCES Product(ProductID),
+	constraint valid_star CHECK (Star < 6 AND Star > 0)
+) ON [PRIMARY]
+GO
