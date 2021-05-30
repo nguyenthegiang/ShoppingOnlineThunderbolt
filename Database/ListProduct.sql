@@ -1,20 +1,13 @@
 ﻿USE [ElectronicShop]
 GO
-
+--Voi moi Value, nhap them 1 so int vao cuoi (ManufacturerID) (tu 1 den 15 thoi)
 INSERT INTO Product VALUES (N'Webcam Logitech BRIO Ultra HD Pro', N'Phát video rõ ràng với độ phân giải, tốc độ khung hình, màu sắc và chi tiết siêu việt. Webcam Logitech BRIO mang đến chất lượng Ultra HD 4K ở tốc độ 30 khung hình/giây hoặc 1080p ở tốc độ 30 hoặc 60 khung hình/giây cho độ rõ ràng, mượt mà và chi tiết vượt trội. Nhìn cận cảnh hơn với tính năng thu phóng 5 lần', '6499000','7000000','15', N'Webcam Logitech BRIO Ultra HD Pro.png', 4, 1, 10, 1);
-
 INSERT INTO Product VALUES (N'Laptop Asus Gaming ROG Strix G512-IHN281T (i7 10870H/8GB RAM/512GB SSD/15.6 FHD 144hz/GTX 1650Ti 4GB/Win10/Đen)', N'Laptop Asus ROG Strix G512-IAL013T nổi bật với thiết kế độc đáo và cá tính, thiết kế này được lấy cảm hứng từ BMW Designworks', '27499000',29000000,10, N'Laptop Asus Gaming ROG Strix G512-IHN281T.jpg', 1, 1, 99, 1);
-
 INSERT INTO Product VALUES (N'PC GAMING FALCON 054 (R5 3600/B450/16GB RAM/256GB SSD/GTX 1660 SUPER/550W/RGB)', N'Các hệ thống HNC ENTHUSIAST WATERCOOLING đều sử dụng Card màn hình Nvidia Geforce RTX để có hiệu năng chơi game mạnh mẽ nhất.', '20699000',23000000,10, N'PC GAMING FALCON 054.jpg', 2, 1, 30, 1);
-
 INSERT INTO Product VALUES (N'Card màn hình MSI GTX 1650 Super GAMING X (4GB GDDR6, 128-bit, HDMI+DP, 1x6-pin)', N'Card màn hình ASUS PH-GT1030-O2G là một trong những card đồ họa Entry-Level tốt nhất cho hệ thống máy tính nhỏ gọn và giải trí tại nhà.', '5499000',5800000,10, N'Card màn hình MSI GTX 1650 Super GAMING X.jpg', 3, 1, 50, 1);
-
 INSERT INTO Product VALUES (N'PC GAMING SHARK 024 (R3 4350G/B550/8GB RAM/120GB SSD/RX 570/450W/RGB', N'Các hệ thống HNC ENTHUSIAST WATERCOOLING đều sử dụng Card màn hình Nvidia Geforce RTX để có hiệu năng chơi game mạnh mẽ nhất.', '13699000', 17000000, 10, N'PC GAMING SHARK 024.jpg', 2, 3, 70, 1);
-
 INSERT INTO Product VALUES (N'Camera EZVIZ Outdoor CS-C3N-A0-3H2WFRL ( C3N )', N'Phát video rõ ràng với độ phân giải, tốc độ khung hình, màu sắc và chi tiết siêu việt. Webcam Logitech BRIO mang đến chất lượng Ultra HD 4K ở tốc độ 30 khung hình/giây hoặc 1080p ở tốc độ 30 hoặc 60 khung hình/giây cho độ rõ ràng, mượt mà và chi tiết vượt trội. Nhìn cận cảnh hơn với tính năng thu phóng 5 lần', '1190000','1300000','20', N'Camera EZVIZ Outdoor CS-C3N-A0-3H2WFRL.jfif', 4, 3, 20, 1);
-
 INSERT INTO Product VALUES (N'Laptop Asus X409JA-EK283T (i3 1005G1/4GB RAM/256GB SSD/14 FHD/Win 10/Bạc)', N'Laptop Asus ROG Strix G512-IAL013T nổi bật với thiết kế độc đáo và cá tính, thiết kế này được lấy cảm hứng từ BMW Designworks', '10499000', 1200000, 10, N'Laptop Asus X409JA-EK283T.jpg', 1, 3, 20, 1);
-
 INSERT INTO Product VALUES (N'PC Dựng CAD C006 (i5-10600/B460/16GB RAM/Quadro P620/240GB SSD/450w)11', N'Các hệ thống HNC ENTHUSIAST WATERCOOLING đều sử dụng Card màn hình Nvidia Geforce RTX để có hiệu năng chơi game mạnh mẽ nhất.', '17099000', 2000000, 10,  N'PC Dựng CAD C006.png', 2, 3, 80, 1);
 
 --Laptop

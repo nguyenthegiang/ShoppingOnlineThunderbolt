@@ -1,6 +1,7 @@
 ﻿CREATE DATABASE ElectronicShop;
 --DROP DATABASE ElectronicShop
---Thứ tự chạy DB sau khi Drop: File này -> ListCategory -> ListProduct -> ListCart -> ListShip -> ListStatus
+--Thứ tự chạy DB sau khi Drop: File này -> ListCategory -> ListStatus -> ListManufacturer -> ListProduct -> ListCart -> ListShip 
+--							   -> ListCustomerAddress -> ListShipInfo
 GO
 USE [ElectronicShop]
 GO
@@ -40,6 +41,19 @@ CREATE TABLE Category (
 ) ON [PRIMARY]
 GO
 
+CREATE TABLE ProductStatus (
+	StatusID int PRIMARY KEY,
+	StatusName nvarchar(1000)
+) ON [PRIMARY]
+GO
+
+--Manufacturer
+CREATE TABLE Manufacturer (
+	ManufacturerID int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
+	ManufacturerName nvarchar(1000)
+) ON [PRIMARY]
+GO
+
 CREATE TABLE Product (
 	ProductID int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	ProductName nvarchar(1000),
@@ -52,9 +66,11 @@ CREATE TABLE Product (
 	SellerID int,
 	Amount int,
 	StatusID int,
+	ManufacturerID int,
 	constraint product_in_category FOREIGN KEY(CategoryID) REFERENCES Category(CategoryID),
 	constraint SellerID_in_Users FOREIGN KEY(SellerID) REFERENCES Users(UserID),
-	constraint StatusID_in_Status FOREIGN KEY(StatusID) REFERENCES ProductStatus(StatusID)
+	constraint StatusID_in_Status FOREIGN KEY(StatusID) REFERENCES ProductStatus(StatusID),
+	constraint ManufacturerID_in_Manufacturer FOREIGN KEY(ManufacturerID) REFERENCES Manufacturer(ManufacturerID)
 ) ON [PRIMARY]
 GO
 
@@ -69,8 +85,6 @@ GO
 
 INSERT [dbo].[Information] ([description], [address], [email], [phone], [fax]) 
 VALUES (N'© 2020 Công Ty Cổ Phần Máy Tính Computer ERA', N'Số 129 + 131, phố Lê Thanh Nghị, Phường Đồng Tâm, Quận Hai Bà Trưng, Hà Nội', N'hnc@computerera.com', N'1900 1903', N'1900 1904')
-
-------------------------------------------------------------------
 
 CREATE TABLE Cart (
 	UserID int,
@@ -87,10 +101,19 @@ CREATE TABLE Ship (
 ) ON [PRIMARY]
 GO
 
--------------------------------------------------------------------
---Kì 5: SWP Project
-CREATE TABLE ProductStatus (
-	StatusID int,
-	StatusName nvarchar(1000)
+--Ship Information
+CREATE TABLE CustomerAddress (
+	AddressID int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
+	AddressDetail nvarchar(1000)
+) ON [PRIMARY]
+GO
+
+CREATE TABLE ShipInfo (
+	UserID int,
+	CustomerName nvarchar(1000), --Real name of the Customer
+	AddressID int,
+	PhoneNum varchar(20),
+	constraint addressID_in_CustomerAddress FOREIGN KEY(AddressID) REFERENCES CustomerAddress(AddressID),
+	constraint userID_in_user_2 FOREIGN KEY(UserID) REFERENCES Users(UserID),
 ) ON [PRIMARY]
 GO
