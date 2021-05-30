@@ -23,5 +23,3 @@ INSERT INTO Manufacturer VALUES ('Huawei');
 INSERT INTO Manufacturer VALUES ('Razer');--20
 INSERT INTO Manufacturer VALUES ('SteelSeries');
 INSERT INTO Manufacturer VALUES ('Corsair');
-
---Nhap them 15 Manufacturer nua
