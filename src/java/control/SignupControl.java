@@ -40,32 +40,45 @@ public class SignupControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession();
+        try {
+            HttpSession session = request.getSession();
 
-        String username = request.getParameter("user");
-        String password = request.getParameter("pass");
-        String email = request.getParameter("email");
-        String repass = request.getParameter("repass");
-        String activeCode = GenerateRandomString.generateString(10);
+            // Get new user information
+            String username = request.getParameter("user");
+            String password = request.getParameter("pass");
+            String email = request.getParameter("email");
+            String repass = request.getParameter("repass");
+            String activeCode = GenerateRandomString.generateString(10);
+            
+            UserDAO dao = new UserDAO();
 
-        UserDAO dao = new UserDAO();
+            // Check if password is confirmed
+            if (password.equals(repass)) {
 
-        if (password.equals(repass)) {
-            if (dao.getAccountByEmail(email) == null) {
+                // Check if email is existed
+                if (dao.getAccountByEmail(email) == null) {
 
-                String subject = "Active code for account at Computer ERA";
-                String message = "Your active code at Computer ERA is: " + activeCode;
-
-                new SendEmail(email, subject, message);
-                dao.signUp(username, password, email, activeCode);
-                Account newAccount = dao.getAccountByEmail(email);
-                session.setAttribute("newAccount", newAccount);
-               response.sendRedirect("ConfirmEmail.jsp");
-            }           
-        } else {
-            response.sendRedirect("Login.jsp");
+                    // Send email with active code
+                    String subject = "Active code for account at Computer ERA";
+                    String message = "Your active code at Computer ERA is: " + activeCode;
+                    new SendEmail(email, subject, message);
+                    // Sign up the account
+                    dao.signUp(username, password, email, activeCode);
+                    Account newAccount = dao.getAccountByEmail(email);
+                    // Get the signed up account, put into session
+                    session.setAttribute("newAccount", newAccount);
+                    // Redirect to confirm email page
+                    response.sendRedirect("ConfirmEmail.jsp");
+                }                
+            } else {
+                // Redirect to login page if password is not confirmed or email existed
+                response.sendRedirect("Login.jsp");
+            }
+        } catch (Exception e) {
+            // Redirect to error page if exception happend
+            response.sendRedirect("Error.jsp");
         }
-
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

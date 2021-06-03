@@ -33,34 +33,44 @@ public class ConfirmEmailControl extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
+        response.setContentType("text/html;charset=UTF-8");
+        try {
+            // Get the account need active
+            HttpSession session = request.getSession();
             Account accountNeedActive = (Account) session.getAttribute("newAccount");
+            // Get the active code
             String activeCode = request.getParameter("active-code");
 
+            // Redirect if session timeout or can't find account to active
             if (accountNeedActive == null) {
                 request.setAttribute("message", "Active Failed!");
                 request.getRequestDispatcher("Login.jsp").forward(request, response);
             }
 
             if (accountNeedActive != null) {
+                // Get the account with the newly registerd email from the database
                 Account accountWithActiveCode = new UserDAO().getAccountByEmail(accountNeedActive.getEmail());
+                // Compare the code from account need active with code from account got from database
                 if (accountWithActiveCode.getActiveCode().equals(activeCode)) {
+                    // Active the account
                     boolean active = new UserDAO().updateStatus(accountNeedActive.getId(), 1);
                     if (active) {
+                        // Active success, redirect to login
                         Account accountActived = new UserDAO().getAccountByEmail(accountNeedActive.getEmail());
                         session.removeAttribute("newAccount");
                         response.sendRedirect("Login.jsp");
                     }
                 }
                 if (!accountWithActiveCode.getActiveCode().equals(activeCode)) {
+                    // Active failed, redirect to login
                     request.setAttribute("message", "Active Failed!");
                     request.getRequestDispatcher("Login.jsp").forward(request, response);
                 }
             }
-
-        
-        
+        } catch (Exception e) {
+            // Redirect to error page if exception happend
+            response.sendRedirect("Error.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
