@@ -49,14 +49,15 @@ public class SignupControl extends HttpServlet {
             String email = request.getParameter("email");
             String repass = request.getParameter("repass");
             String activeCode = GenerateRandomString.generateString(10);
-            
+
             UserDAO dao = new UserDAO();
 
             // Check if password is confirmed
             if (password.equals(repass)) {
 
-                // Check if email is existed
-                if (dao.getAccountByEmail(email) == null) {
+                // Check if email and username is not existed
+                if (dao.getAccountByEmail(email) == null &&
+                        dao.getAccountByUsername(username) == null) {
 
                     // Send email with active code
                     String subject = "Active code for account at Computer ERA";
@@ -69,7 +70,7 @@ public class SignupControl extends HttpServlet {
                     session.setAttribute("newAccount", newAccount);
                     // Redirect to confirm email page
                     response.sendRedirect("ConfirmEmail.jsp");
-                }                
+                }
             } else {
                 // Redirect to login page if password is not confirmed or email existed
                 response.sendRedirect("Login.jsp");
@@ -78,7 +79,7 @@ public class SignupControl extends HttpServlet {
             // Redirect to error page if exception happend
             response.sendRedirect("Error.jsp");
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
