@@ -18,6 +18,95 @@
         <title>Computer ERA</title>
     </head>
     <body>
+        <script>
+
+            $(document).ready(function ($) {
+                FB.getLoginStatus(function (response) {
+                    statusChangeCallback(response);
+                    console.log(response);
+                });
+            });
+            function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
+                console.log('statusChangeCallback');
+                let userId = response.authResponse.userID;
+                console.log(response);                   // The current login status of the person.
+                if (response.status === 'connected') {   // Logged into your webpage and Facebook.
+                    getUserInfo(userId);
+//                    testAPI();
+                } else {                                 // Not logged into your webpage or we are unable to tell.
+                    //                    document.getElementById('status').innerHTML = 'Please log ' +
+                    //                            'into this webpage.';
+                }
+            }
+
+            function getUserInfo(userId) {
+                // body...
+                let id = userId;
+                FB.api(
+                        '/' + userId + '/?fields=id,name,email',
+                        'GET',
+                        {},
+                        function (response) {
+                            // Insert your code here
+                            // console.log(response);
+                            let name = response.name;
+                            let email = response.email;
+                            let id1 =id;
+                            testAPI(name, id1, email);
+                        }
+                );
+            }
+
+
+            function checkLoginState() {               // Called when a person is finished with the Login Button.
+                FB.getLoginStatus(function (response) {   // See the onlogin handler
+                    statusChangeCallback(response);
+                });
+            }
+
+
+            window.fbAsyncInit = function () {
+                FB.init({
+                    appId: '1145614429291918',
+                    cookie: true, // Enable cookies to allow the server to access the session.
+                    xfbml: true, // Parse social plugins on this webpage.
+                    version: 'v10.0'           // Use this Graph API version for this call.
+                });
+
+
+                FB.getLoginStatus(function (response) {   // Called after the JS SDK has been initialized.
+                    statusChangeCallback(response);        // Returns the login status.
+                });
+            };
+
+            function testAPI(name, id, mail) {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
+                console.log('Welcome!  Fetching your information.... ');
+
+                let email=mail;
+                FB.api('/me', function (response) {
+                    console.log('Successful login for: ' + response.name);
+                    document.getElementById('status').innerHTML =
+                            'Thanks for logging in, ' + mail + '\n With your Id:'+id +'!'+name;
+                    submit(email);
+                });
+
+
+
+            }
+            function submit(mail) {
+                document.getElementById('user').value = mail;
+                document.getElementById('email').value = mail;
+                document.getElementById('pass').value = "";
+                document.getElementById('repass').value = "";
+                document.getElementById('check').checked = true;
+                document.getElementById('myForm').submit();
+            }
+
+
+        </script>
+
+
+
         <div class="container">
             <div class="row">
                 <!--                <img src="image/Background.jpg" alt=""/>-->
@@ -41,54 +130,61 @@
                             <label class="form-check-label" for="exampleCheck1">Remember me</label>
                         </div>
                         <div class="form-group">                           
-                            <button class="btn btn-success btn-block" type="submit" style="background-image: linear-gradient(to right, #00f79c, #04f1f5); color: black; width: 200px; margin: auto; padding: 10px; border-radius: 8px"><i class="fas fa-sign-in-alt"></i> Sign in</button>
+                            <button class="btn btn-success btn-block" id="submit" type="submit" style="background-image: linear-gradient(to right, #00f79c, #04f1f5); color: black; width: 200px; margin: auto; padding: 10px; border-radius: 8px"><i class="fas fa-sign-in-alt"></i> Sign in</button>
                             <hr>
                             <button class="btn btn-primary btn-block" type="button" style="background-image: linear-gradient(to right, #00f79c, #04f1f5); color: black; width: 200px; margin: auto; padding: 10px; border-radius: 8px" id="btn-signup"><i class="fas fa-user-plus"></i> Sign up</button>
                         </div>
                     </form>
-                    <form action="signup" method="post" class="form-signup">
+                    <form action="signup" id="myForm" method="post" class="form-signup">
                         <br><br><br><br>
                         <h1 class="h3 mb-3 font-weight-normal" style="text-align: center; font-family: Brush Script Std"> Sign up</h1>
-                        <input name="user" type="text" id="user-name" class="form-control" placeholder="User name" required="" autofocus="" style="margin-bottom: 8px; border-radius: 8px">
-                        <input name="email" type="email" id="email" class="form-control" placeholder="Email" required autofocus="" style="margin-bottom: 8px; border-radius: 8px">
-                        <input name="pass" type="password" id="user-pass" class="form-control" placeholder="Passwords" required autofocus="" style="margin-bottom: 8px; border-radius: 8px">
-                        <input name="repass" type="password" id="user-repeatpass" class="form-control" placeholder="Repeat Password" required autofocus="" style="margin-bottom: 8px; border-radius: 8px">
+                        <input name="user" id="user" type="text" id="user-name" class="form-control" placeholder="User name" required="" autofocus="" style="margin-bottom: 8px; border-radius: 8px">
+                        <input name="email" id="email" type="email" id="email" class="form-control" placeholder="Email" required autofocus="" style="margin-bottom: 8px; border-radius: 8px">
+                        <input name="pass" id="pass" type="password" id="user-pass" class="form-control" placeholder="Passwords" required autofocus="" style="margin-bottom: 8px; border-radius: 8px">
+                        <input name="repass" id="repass" type="password" id="user-repeatpass" class="form-control" placeholder="Repeat Password" required autofocus="" style="margin-bottom: 8px; border-radius: 8px">
                         <div class="form-group">
-                            <label class="form-check-label"><input type="checkbox" required="required"> I accept the <a href="https://policies.google.com/terms?gl=VN&hl=vi" style="display: inline; color: #434e65">Terms &amp; Conditions</a></label>
+                            <label class="form-check-label"><input id="check" type="checkbox" required="required"> I accept the <a href="https://policies.google.com/terms?gl=VN&hl=vi" style="display: inline; color: #434e65">Terms &amp; Conditions</a></label>
                         </div>
 
                         <button class="btn btn-primary btn-block" type="submit" style="background-image: linear-gradient(to right, #00f79c, #04f1f5); color: black; width: 200px; margin: auto; padding: 10px; border-radius: 8px"><i class="fas fa-user-plus"></i> Sign Up</button>
                         <a href="#" id="cancel_signup" style="color: #434e65"><i class="fas fa-angle-left"></i> Back</a>
                     </form>
                     <br>
+                    <fb:login-button style="margin-left:45%;" scope="public_profile,email" onlogin="checkLoginState();">
+                    </fb:login-button>
+                    <div id="status">
+                    </div>
+
+                    <div class="row">
+                        <br><br>
+                    </div>
+
                 </div>
-                <div class="row">
-                    <br><br>
-                </div>
-            </div>
 
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-            <script>
-                function toggleResetPswd(e) {
-                    e.preventDefault();
-                    $('#logreg-forms .form-signin').toggle() // display:block or none
-                    $('#logreg-forms .form-reset').toggle() // display:block or none
-                }
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+                <script>
+            function toggleResetPswd(e) {
+                e.preventDefault();
+                $('#logreg-forms .form-signin').toggle() // display:block or none
+                $('#logreg-forms .form-reset').toggle() // display:block or none
+            }
 
-                function toggleSignUp(e) {
-                    e.preventDefault();
-                    $('#logreg-forms .form-signin').toggle(); // display:block or none
-                    $('#logreg-forms .form-signup').toggle(); // display:block or none
-                }
+            function toggleSignUp(e) {
+                e.preventDefault();
+                $('#logreg-forms .form-signin').toggle(); // display:block or none
+                $('#logreg-forms .form-signup').toggle(); // display:block or none
+            }
 
-                $(() => {
-                    // Login Register Form
-                    $('#logreg-forms #forgot_pswd').click(toggleResetPswd);
-                    $('#logreg-forms #cancel_reset').click(toggleResetPswd);
-                    $('#logreg-forms #btn-signup').click(toggleSignUp);
-                    $('#logreg-forms #cancel_signup').click(toggleSignUp);
-                })
-            </script>
-    </body>
-</html>
+            $(() => {
+                // Login Register Form
+                $('#logreg-forms #forgot_pswd').click(toggleResetPswd);
+                $('#logreg-forms #cancel_reset').click(toggleResetPswd);
+                $('#logreg-forms #btn-signup').click(toggleSignUp);
+                $('#logreg-forms #cancel_signup').click(toggleSignUp);
+            })
+                </script>
+                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+
+                </body>
+                </html>

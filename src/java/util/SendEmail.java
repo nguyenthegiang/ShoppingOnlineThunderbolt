@@ -36,8 +36,8 @@ public class SendEmail {
     }
   
     // Email and password of the sender
-    private final String MAIL = "trantatdatdz2001@gmail.com";
-    private final String PASSWORD = "Mirotic1898";
+    private final String MAIL = "computererashop@gmail.com";
+    private final String PASSWORD = "Thunderbolt123";
 
     // Send the email
     public void sentEmail(String toEmail, String subject, String text) {
