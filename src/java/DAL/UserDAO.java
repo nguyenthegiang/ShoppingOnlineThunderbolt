@@ -242,7 +242,7 @@ public class UserDAO extends BaseDAO<Account> {
      * @return true if update successful
      */
     public boolean updateStatus(int id, int status) {
-        String query = "Update Users set status = ? where UserID = ?";
+        String query = "Update Users set user_status = ? where UserID = ?";
         int check = 0;
 
         try {
