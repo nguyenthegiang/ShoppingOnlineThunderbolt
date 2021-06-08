@@ -69,3 +69,52 @@ footer a {
 a .active{
     color: white;
 }
+
+@keyframes example{
+    0% {background-color:crimson; left:0px; top:0px;}
+    25% {background-color:lightsalmon; left:200px; top:0px;}
+    50% {background-color:seagreen; left:200px; top:200px;}
+    75% {background-color:midnightblue; left:0px; top:200px;}
+    100% {background-color:indigo; left:0px; top:0px;}
+}
+
+.container :nth-child(2) img{
+    animation-name: example;
+    animation-duration: 4s;
+}
+
+.container{
+    background-color: #ffffff;
+}
+
+#product{
+    border-radius: 15px;
+    margin: 13px auto;
+    padding: 40px 20px;box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+}
+
+#product:hover {
+    transform:scale(1.1);
+}
+
+#price{
+    background-color: white;
+    /*background-image: linear-gradient(to right, #90f7ec, #32ccbc);*/
+    color: #d64b3c;
+    border: none;
+    font-family: Nirmala UI;
+    font-weight: 1000;
+    font-size: x-large;
+}
+
+#cart{
+    background-color: #fccf31;
+    color: black;
+    border: none;
+    font-weight: bold;
+}
+#category{
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+}
