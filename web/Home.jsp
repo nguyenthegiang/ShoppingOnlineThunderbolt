@@ -23,6 +23,7 @@
         <!--Split Home page to many JSP pages for easier managing-->
 
         <!--Thanh menu phía trên cùng-->
+        <!--hello-->
         <jsp:include page="Menu.jsp"></jsp:include>
 
             <!--Slideshow-->
