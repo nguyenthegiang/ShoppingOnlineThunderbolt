@@ -33,8 +33,8 @@
                     <!--Nếu acc khác null -> login rồi -> hiển thị cả 3 menu dưới-->
                     <c:if test = "${sessionScope.acc != null}">
                         <li class="nav-item">
-                            <!--Sửa ở đây: Sửa phần Hello MrA → Hello [user]-->
-                            <a class="nav-link text-info" href="login">Hello ${sessionScope.acc.user}</a>
+                            <!--Link to user profile-->
+                            <a class="nav-link text-info" href="profile">Hello ${sessionScope.acc.user}</a>
                         </li>
                         <!--Kiểm tra xem có phải người bán ko: isSell = 1-->
                         <c:if test="${sessionScope.acc.isSell == 1}">

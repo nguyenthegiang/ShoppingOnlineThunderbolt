@@ -1,7 +1,7 @@
 <%-- 
-    Document   : newjsp
-    Created on : May 18, 2021, 5:29:59 PM
-    Author     : ADMIN
+    Document   : error
+    Created on : Jun 3, 2021, 10:27:04 PM
+    Author     : TRANTATDAT
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,9 +9,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Error</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Page not found!</h1>
+        <a href="home">Back to home page</a>
     </body>
 </html>

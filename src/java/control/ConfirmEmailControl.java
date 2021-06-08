@@ -5,26 +5,22 @@
  */
 package control;
 
-import entity.*;
-import DAL.*;
+import DAL.UserDAO;
+import entity.Account;
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import util.GenerateRandomString;
-import util.SendEmail;
 
 /**
  *
- * @author ADMIN
+ * @author TRANTATDAT
  */
-@WebServlet(name = "SignupControl", urlPatterns = {"/signup"})
-public class SignupControl extends HttpServlet {
+@WebServlet(name = "ConfirmEmailControl", urlPatterns = {"/confirm"})
+public class ConfirmEmailControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,48 +34,43 @@ public class SignupControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        request.setCharacterEncoding("UTF-8");
         try {
+            // Get the account need active
             HttpSession session = request.getSession();
+            Account accountNeedActive = (Account) session.getAttribute("newAccount");
+            // Get the active code
+            String activeCode = request.getParameter("active-code");
 
-            // Get new user information
-            String username = request.getParameter("user");
-            String password = request.getParameter("pass");
-            String email = request.getParameter("email");
-            String repass = request.getParameter("repass");
-            String activeCode = GenerateRandomString.generateString(10);
+            // Redirect if session timeout or can't find account to active
+            if (accountNeedActive == null) {
+                request.setAttribute("message", "Active Failed!");
+                request.getRequestDispatcher("Login.jsp").forward(request, response);
+            }
 
-            UserDAO dao = new UserDAO();
-
-            // Check if password is confirmed
-            if (password.equals(repass)) {
-
-                // Check if email and username is not existed
-                if (dao.getAccountByEmail(email) == null &&
-                        dao.getAccountByUsername(username) == null) {
-
-                    // Send email with active code
-                    String subject = "Active code for account at Computer ERA";
-                    String message = "Your active code at Computer ERA is: " + activeCode;
-                    new SendEmail(email, subject, message);
-                    // Sign up the account
-                    dao.signUp(username, password, email, activeCode);
-                    Account newAccount = dao.getAccountByEmail(email);
-                    // Get the signed up account, put into session
-                    session.setAttribute("newAccount", newAccount);
-                    // Redirect to confirm email page
-                    response.sendRedirect("ConfirmEmail.jsp");
+            if (accountNeedActive != null) {
+                // Get the account with the newly registerd email from the database
+                Account accountWithActiveCode = new UserDAO().getAccountByEmail(accountNeedActive.getEmail());
+                // Compare the code from account need active with code from account got from database
+                if (accountWithActiveCode.getActiveCode().equals(activeCode)) {
+                    // Active the account
+                    boolean active = new UserDAO().updateStatus(accountNeedActive.getId(), 1);
+                    if (active) {
+                        // Active success, redirect to login
+                        Account accountActived = new UserDAO().getAccountByEmail(accountNeedActive.getEmail());
+                        session.removeAttribute("newAccount");
+                        response.sendRedirect("Login.jsp");
+                    }
                 }
-            } else {
-                // Redirect to login page if password is not confirmed or email existed
-                response.sendRedirect("Login.jsp");
+                if (!accountWithActiveCode.getActiveCode().equals(activeCode)) {
+                    // Active failed, redirect to login
+                    request.setAttribute("message", "Active Failed!");
+                    request.getRequestDispatcher("Login.jsp").forward(request, response);
+                }
             }
         } catch (Exception e) {
             // Redirect to error page if exception happend
             response.sendRedirect("Error.jsp");
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

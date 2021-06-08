@@ -5,11 +5,10 @@
  */
 package control;
 
-import entity.*;
-import DAL.*;
+import DAL.UserDAO;
+import entity.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,10 +20,10 @@ import util.SendEmail;
 
 /**
  *
- * @author ADMIN
+ * @author TRANTATDAT
  */
-@WebServlet(name = "SignupControl", urlPatterns = {"/signup"})
-public class SignupControl extends HttpServlet {
+@WebServlet(name = "ChangedPasswordControl", urlPatterns = {"/change-password"})
+public class ChangedPasswordControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,48 +37,43 @@ public class SignupControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        request.setCharacterEncoding("UTF-8");
         try {
+            // Get the account from session
             HttpSession session = request.getSession();
+            Account accountChangePass = (Account) session.getAttribute("acc");
 
-            // Get new user information
-            String username = request.getParameter("user");
-            String password = request.getParameter("pass");
-            String email = request.getParameter("email");
-            String repass = request.getParameter("repass");
-            String activeCode = GenerateRandomString.generateString(10);
-
+            // Get old password, new password and repeat of new password           
+            String oldPassword = request.getParameter("pass");
+            String newPassword = request.getParameter("new-pass");
+            String repeatNewPassword = request.getParameter("repeat-new-pass");
             UserDAO dao = new UserDAO();
-
-            // Check if password is confirmed
-            if (password.equals(repass)) {
-
-                // Check if email and username is not existed
-                if (dao.getAccountByEmail(email) == null &&
-                        dao.getAccountByUsername(username) == null) {
-
-                    // Send email with active code
-                    String subject = "Active code for account at Computer ERA";
-                    String message = "Your active code at Computer ERA is: " + activeCode;
-                    new SendEmail(email, subject, message);
-                    // Sign up the account
-                    dao.signUp(username, password, email, activeCode);
-                    Account newAccount = dao.getAccountByEmail(email);
-                    // Get the signed up account, put into session
-                    session.setAttribute("newAccount", newAccount);
-                    // Redirect to confirm email page
-                    response.sendRedirect("ConfirmEmail.jsp");
-                }
+            
+            // Get the account from database
+            Account a = dao.getAccountByID(String.valueOf(accountChangePass.getId()));
+            
+            
+            if (a.getPass().equals(oldPassword) &&
+                    newPassword.equals(repeatNewPassword)) {
+                // User enter old password, new password and re-enter new pasword correctly
+                // => Do update
+                dao.updatePassword(String.valueOf(accountChangePass.getId()), newPassword);
+                // Redirect to profile, notify successful 
+                request.setAttribute("message", "Changed password successfully!");
+                request.getRequestDispatcher("profile").forward(request, response);
+                
             } else {
-                // Redirect to login page if password is not confirmed or email existed
-                response.sendRedirect("Login.jsp");
-            }
+                // User enter old password, new password and re-enter new pasword incorrect
+                // => No update
+                request.setAttribute("message", "Fail to change password");
+                request.setAttribute("compare","CorrectCode.");
+                // Redirect to form to do again
+                request.getRequestDispatcher("ChangePassword.jsp").forward(request, response);
+            }            
+            
         } catch (Exception e) {
-            // Redirect to error page if exception happend
             response.sendRedirect("Error.jsp");
         }
-
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

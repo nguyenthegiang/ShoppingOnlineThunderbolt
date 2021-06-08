@@ -13,23 +13,25 @@ CREATE TABLE Users (
 	Username nvarchar(500),
 	Password nvarchar(1000),
 	email nvarchar(1000),
+	ActiveCode nvarchar(11),
 	isSeller int,
-	isAdmin int
+	isAdmin int, 
+	user_status int
 );
 GO
 
-INSERT INTO Users VALUES (N'nguyenthegiang', N'nguyenthegiang', N'nguyenthe.giang.775@gmail.com', 1, 1);
-INSERT INTO Users VALUES (N'buingochuyen', N'buingochuyen', N'nguyenthe.giang.775@gmail.com', 1, 1);
-INSERT INTO Users VALUES (N'lehoangchi', N'lehoangchi', N'nguyenthe.giang.775@gmail.com', 1, 0);
-INSERT INTO Users VALUES (N'nguyenthuan', N'nguyenthuan', N'nguyenthe.giang.775@gmail.com', 1, 0);
-INSERT INTO Users VALUES (N'nguyenminhhanh', N'nguyenminhhanh', N'nguyenthe.giang.775@gmail.com', 1, 0);
-INSERT INTO Users VALUES (N'nguyenthithanhmai', N'nguyenthithanhmai', N'nguyenthe.giang.775@gmail.com', 1, 0);
-INSERT INTO Users VALUES (N'nguyentranhoang', N'nguyentranhoang', N'nguyenthe.giang.775@gmail.com', 0, 0);
-INSERT INTO Users VALUES (N'trantatdat', N'trantatdat', N'nguyenthe.giang.775@gmail.com', 0, 0);
-INSERT INTO Users VALUES (N'phungquangthong', N'phungquangthong', N'nguyenthe.giang.775@gmail.com', 0, 0);
-INSERT INTO Users VALUES (N'dinhthethuan', N'dinhthethuan', N'nguyenthe.giang.775@gmail.com', 0, 0);
-INSERT INTO Users VALUES (N'canhoangduc', N'canhoangduc', N'nguyenthe.giang.775@gmail.com', 0, 0);
-INSERT INTO Users VALUES (N'dinhthanhhoang', N'dinhthanhhoang', N'nguyenthe.giang.775@gmail.com', 0, 0);
+INSERT INTO Users VALUES (N'nguyenthegiang', N'nguyenthegiang', N'nguyenthe.giang.775@gmail.com',N'aaaaa', 1, 1, 1);
+INSERT INTO Users VALUES (N'buingochuyen', N'buingochuyen', N'a',N'bbbbb', 1, 1,1);
+INSERT INTO Users VALUES (N'lehoangchi', N'lehoangchi', N'b', N'bbbbb', 1, 0, 1);
+INSERT INTO Users VALUES (N'nguyenthuan', N'nguyenthuan', N'c', N'bbbbb', 1, 0, 1);
+INSERT INTO Users VALUES (N'nguyenminhhanh', N'nguyenminhhanh', N'd', N'bbbbb', 1, 0, 1);
+INSERT INTO Users VALUES (N'nguyenthithanhmai', N'nguyenthithanhmai', N'e', N'bbbbb', 1, 0, 1);
+INSERT INTO Users VALUES (N'nguyentranhoang', N'nguyentranhoang', N'f', N'bbbbb', 0, 0, 1);
+INSERT INTO Users VALUES (N'trantatdat', N'trantatdat', N'g', N'bbbbb', 0, 0, 1);
+INSERT INTO Users VALUES (N'phungquangthong', N'phungquangthong', N'h', N'bbbbb', 0, 0, 1);
+INSERT INTO Users VALUES (N'dinhthethuan', N'dinhthethuan', N'i', N'bbbbb', 0, 0, 1);
+INSERT INTO Users VALUES (N'canhoangduc', N'canhoangduc', N'j', N'bbbbb', 0, 0, 1);
+INSERT INTO Users VALUES (N'dinhthanhhoang', N'dinhthanhhoang', N'k', N'bbbbb', 0, 0, 1);
 GO
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -41,11 +43,23 @@ CREATE TABLE Category (
 ) ON [PRIMARY]
 GO
 
+-------------------------------------------------------------------
+--Kì 5: SWP Project
 CREATE TABLE ProductStatus (
-	StatusID int PRIMARY KEY,
+	StatusID int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	StatusName nvarchar(1000)
 ) ON [PRIMARY]
 GO
+
+CREATE TABLE UserStatus (
+	ID int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
+	StatusName nvarchar(1000)
+) ON [PRIMARY]
+GO
+
+INSERT INTO UserStatus VALUES (N'Active');
+INSERT INTO UserStatus VALUES (N'Locked');
+
 
 --Manufacturer
 CREATE TABLE Manufacturer (
@@ -96,7 +110,8 @@ CREATE TABLE Cart (
 GO
 
 CREATE TABLE Ship (
-	CityName nvarchar(1000) PRIMARY KEY,
+	id int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
+	CityName nvarchar(1000) ,
 	ShipPrice int
 ) ON [PRIMARY]
 GO
@@ -115,5 +130,17 @@ CREATE TABLE ShipInfo (
 	PhoneNum varchar(20),
 	constraint addressID_in_CustomerAddress FOREIGN KEY(AddressID) REFERENCES CustomerAddress(AddressID),
 	constraint userID_in_user_2 FOREIGN KEY(UserID) REFERENCES Users(UserID),
+) ON [PRIMARY]
+GO
+
+--FeedBack
+CREATE TABLE Feedback (
+	UserID int,
+	ProductID int,
+	Star int, --1-5
+	FeedbackDetail nvarchar(2000),
+	constraint userID_in_user_3 FOREIGN KEY(UserID) REFERENCES Users(UserID),
+	constraint productID_in_product_2 FOREIGN KEY(ProductID) REFERENCES Product(ProductID),
+	constraint valid_star CHECK (Star < 6 AND Star > 0)
 ) ON [PRIMARY]
 GO
