@@ -131,7 +131,9 @@
                                         <div class="row">
                                             <div class="col">
                                                 <!--Product's Price-->
-                                                <p class="btn btn-warning btn-block" id="price">${o.priceWithDot} VND</p>
+                                                <a onclick="addCart(${o.id})" class="btn btn-info btn-block" id="cart"><p class="btn btn-warning btn-block" id="price">${o.priceWithDot} VND</p></a>
+
+                                                <!--<p class="btn btn-warning btn-block" id="price">${o.priceWithDot} VND</p>-->
                                             </div>
                                             <div class="col">
                                                 <a onclick="addCart(${o.id})" class="btn btn-info btn-block" id="cart">Add to cart</a>
@@ -142,7 +144,7 @@
                             </div>
                         </c:forEach>
                     </div>
-                        
+
                     <div class="clearfix">
                         <div class="hint-text">Showing <b>6</b> out of <b>${count}</b> entries</div>
                         <ul class="pagination pagination-circle">
