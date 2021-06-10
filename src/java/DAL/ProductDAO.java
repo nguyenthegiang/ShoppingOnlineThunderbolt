@@ -32,7 +32,7 @@ public class ProductDAO extends BaseDAO<Product> {
 
             //Giờ đây, câu lệnh đã đc chạy, rs là bảng Result -> Giờ phải lấy dữ liệu từ bảng rs và cho vào List
             while (rs.next()) {
-                list.add(new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5)));
+                list.add(new Product(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink")));
             }
         } catch (Exception e) {
         }
@@ -48,7 +48,7 @@ public class ProductDAO extends BaseDAO<Product> {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
-                return new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5));
+                return new Product(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink"));
             }
         } catch (Exception e) {
         }
@@ -64,7 +64,7 @@ public class ProductDAO extends BaseDAO<Product> {
             rs = ps.executeQuery();
             while (rs.next()) {
                 rs.next();
-                return new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5));
+                return new Product(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink"));
             }
         } catch (Exception e) {
         }
@@ -79,7 +79,7 @@ public class ProductDAO extends BaseDAO<Product> {
             ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5)));
+                list.add(new Product(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink")));
             }
         } catch (Exception e) {
         }
@@ -90,7 +90,7 @@ public class ProductDAO extends BaseDAO<Product> {
         String query = "UPDATE Product\n"
                 + "SET ProductName = ?,\n"
                 + "Description = ?,\n"
-                + "Price = ?,\n"
+                + "SellPrice = ?,\n"
                 + "imageLink = ?,\n"
                 + "CategoryID = ?,\n"
                 + "SellerID = ?,\n"
@@ -127,7 +127,7 @@ public class ProductDAO extends BaseDAO<Product> {
     }
 
     public void add(String name, String description, String price, String imageLink, String CategoryID, String SellerID, String amount) {
-        String query = "INSERT INTO Product VALUES (?, ?, ?, ?, ?, ?, ?);";
+        String query = "INSERT INTO Product VALUES (?, ?, 0, ?, 0, ?, ?, ?, ?, 1, 1);";
         try {
             ps = connection.prepareStatement(query);
             //Set dữ liệu vào dấu ?
@@ -165,7 +165,7 @@ public class ProductDAO extends BaseDAO<Product> {
             ps.setInt(1, (index - 1) * 6);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5)));
+                list.add(new Product(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink")));
             }
         } catch (Exception e) {
         }
@@ -184,7 +184,7 @@ public class ProductDAO extends BaseDAO<Product> {
                 ps.setInt(2, (index - 1) * 6);
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    list.add(new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5)));
+                    list.add(new Product(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink")));
                 }
             } catch (Exception e) {
             }
@@ -204,7 +204,7 @@ public class ProductDAO extends BaseDAO<Product> {
                 ps.setInt(2, (index - 1) * 6);
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    list.add(new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5)));
+                    list.add(new Product(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink")));
                 }
             } catch (Exception e) {
             }
@@ -274,7 +274,7 @@ public class ProductDAO extends BaseDAO<Product> {
             ps.setString(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                return (new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5)));
+                return (new Product(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink")));
             }
         } catch (Exception e) {
         }
@@ -288,7 +288,7 @@ public class ProductDAO extends BaseDAO<Product> {
             ps.setString(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                return (new ProductInManager(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getInt(8)));
+                return (new ProductInManager(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink"), rs.getInt("CategoryID"), rs.getInt("SellerID"), rs.getInt("Amount")));
             }
         } catch (Exception e) {
         }
@@ -303,7 +303,7 @@ public class ProductDAO extends BaseDAO<Product> {
             ps.setString(1, "%" + name + "%");
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5)));
+                list.add(new Product(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink")));
             }
         } catch (Exception e) {
         }
@@ -319,7 +319,7 @@ public class ProductDAO extends BaseDAO<Product> {
             ps.setInt(2, SellerID);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5)));
+                list.add(new Product(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink")));
             }
         } catch (Exception e) {
         }
@@ -333,7 +333,7 @@ public class ProductDAO extends BaseDAO<Product> {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new ProductInManager(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getInt(8)));
+                list.add(new ProductInManager(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink"), rs.getInt("CategoryID"), rs.getInt("SellerID"), rs.getInt("Amount")));
             }
         } catch (Exception e) {
         }
@@ -347,7 +347,7 @@ public class ProductDAO extends BaseDAO<Product> {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new ProductInManager(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getInt(8)));
+                list.add(new ProductInManager(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink"), rs.getInt("CategoryID"), rs.getInt("SellerID"), rs.getInt("Amount")));
             }
         } catch (Exception e) {
         }
@@ -411,9 +411,19 @@ public class ProductDAO extends BaseDAO<Product> {
 //            System.out.println(productInManager);
 //        }
 
-        List<Product> list = dao.searchProductInManager("asus", 1);
-        for (Product product : list) {
-            System.out.println(product);
-        }
+//        List<Product> list = dao.searchProductInManager("asus", 1);
+//        for (Product product : list) {
+//            System.out.println(product);
+//        }
+        
+//        List<Product> list = dao.pagingByCategory(1, 1);
+//        for (Product product : list) {
+//            System.out.println(product);
+//        }
+        
+//        ProductInManager p = dao.getProductForManager("1");
+//        System.out.println(p);
+        
+        dao.add("a", "a", "1", "a", "1", "1", "1");
     }
 }

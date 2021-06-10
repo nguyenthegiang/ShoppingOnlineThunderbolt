@@ -27,7 +27,7 @@ public class ShipDAO extends BaseDAO<Account> {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Ship(rs.getString(1), rs.getInt(2)));
+                list.add(new Ship(rs.getString("CityName"), rs.getInt("ShipPrice")));
             }
         } catch (Exception e) {
         }
