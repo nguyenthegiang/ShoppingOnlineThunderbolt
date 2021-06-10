@@ -138,9 +138,9 @@ public class LoginControl extends HttpServlet {
                 request.getRequestDispatcher("signup").forward(request, response);
             }
         } else {
-//Code phần remember me
+            //Code phần remember me
             String remember = request.getParameter("remember");
-//        Lấy về username và password, nếu tồn tại thì đẩy về home
+            //        Lấy về username và password, nếu tồn tại thì đẩy về home
            
             Account a = dao.login(username, password);
             if (a == null) {
