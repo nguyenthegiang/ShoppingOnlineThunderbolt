@@ -19,6 +19,6 @@
             <input type="text" name ="active-code" id="code" placeholder="Your Code"/>
             <button type="submit" value="Submit">Submit</button>
         </form>       
-        <p><a href="/login">Return to login page</a></p>
+        <p><a href="login">Return to login page</a></p>
     </body>
 </html>
