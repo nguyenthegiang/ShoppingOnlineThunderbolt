@@ -42,52 +42,39 @@ public class SignupControl extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         try {
             HttpSession session = request.getSession();
+
+            // Get new user information
+            String username = request.getParameter("user");
+            String password = request.getParameter("pass");
+            String email = request.getParameter("email");
+            String repass = request.getParameter("repass");
+            String activeCode = GenerateRandomString.generateString(10);
+
             UserDAO dao = new UserDAO();
 
-            //sign up for account login with facebook
-            String loginFb = request.getParameter("loginFB");
-            if (loginFb != null || !loginFb.trim().equals("")) {
-                String username = request.getParameter("user");
-                String email = request.getParameter("email");
-                dao.signUpFB(username, email);
-                Account a = dao.getAccountByEmail(email);
-                session.setAttribute("acc", a);
-                response.sendRedirect("home");
-                
-            } else {
-                // Normal account signup
-                // Get new user information
-                String username = request.getParameter("user");
-                String password = request.getParameter("pass");
-                String email = request.getParameter("email");
-                String repass = request.getParameter("repass");
-                String activeCode = GenerateRandomString.generateString(10);
+            // Check if password is confirmed
+            if (password.equals(repass)) {
 
-                // Check if password is confirmed
-                if (password.equals(repass)) {
+                // Check if email and username is not existed
+                if (dao.getAccountByEmail(email) == null &&
+                        dao.getAccountByUsername(username) == null) {
 
-                    // Check if email and username is not existed
-                    if (dao.getAccountByEmail(email) == null
-                            && dao.getAccountByUsername(username) == null) {
-
-                        // Send email with active code
-                        String subject = "Active code for account at Computer ERA";
-                        String message = "Your active code at Computer ERA is: " + activeCode;
-                        new SendEmail(email, subject, message);
-                        // Sign up the account
-                        dao.signUp(username, password, email, activeCode);
-                        Account newAccount = dao.getAccountByEmail(email);
-                        // Get the signed up account, put into session
-                        session.setAttribute("newAccount", newAccount);
-                        // Redirect to confirm email page
-                        response.sendRedirect("ConfirmEmail.jsp");
-                    }
-                } else {
-                    // Redirect to login page if password is not confirmed or email existed
-                    response.sendRedirect("Login.jsp");
+                    // Send email with active code
+                    String subject = "Active code for account at Computer ERA";
+                    String message = "Your active code at Computer ERA is: " + activeCode;
+                    new SendEmail(email, subject, message);
+                    // Sign up the account
+                    dao.signUp(username, password, email, activeCode);
+                    Account newAccount = dao.getAccountByEmail(email);
+                    // Get the signed up account, put into session
+                    session.setAttribute("newAccount", newAccount);
+                    // Redirect to confirm email page
+                    response.sendRedirect("ConfirmEmail.jsp");
                 }
+            } else {
+                // Redirect to login page if password is not confirmed or email existed
+                response.sendRedirect("Login.jsp");
             }
-
         } catch (Exception e) {
             // Redirect to error page if exception happend
             response.sendRedirect("Error.jsp");
