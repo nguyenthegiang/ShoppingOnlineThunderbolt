@@ -119,7 +119,7 @@ public class LoginControl extends HttpServlet {
         String password = request.getParameter("pass");
         String loginFb = request.getParameter("loginFB");
 
-        if (loginFb != null || !loginFb.trim().equals("")) {
+        if (loginFb.trim().equals("true")) {
             String email = request.getParameter("email");
             System.out.println(username);
             System.out.println(email);
@@ -157,21 +157,21 @@ public class LoginControl extends HttpServlet {
 
 //            Bắt đầu code ở đây
                 //Lưu Account lên trên Cookie
-                Cookie u = new Cookie("userC", username);
-                Cookie p = new Cookie("passC", password);
-
-                //Code Remember Me
-                u.setMaxAge(60 * 60);
-                if (remember != null) {
-                    p.setMaxAge(60 * 60); //Nếu ng dùng Click Remember Me -> Lưu Password
-                } else {
-                    p.setMaxAge(0); //Ko -> Lưu Username thôi
-                }
-                //Xét thời gian tồn tại cho Cookie
-
-                //Lưu cookie lên trên trình duyệt: trg hợp này là Chrome
-                response.addCookie(u);
-                response.addCookie(p);
+//                Cookie u = new Cookie("userC", username);
+//                Cookie p = new Cookie("passC", password);
+//
+//                //Code Remember Me
+//                u.setMaxAge(60 * 60);
+//                if (remember != null) {
+//                    p.setMaxAge(60 * 60); //Nếu ng dùng Click Remember Me -> Lưu Password
+//                } else {
+//                    p.setMaxAge(0); //Ko -> Lưu Username thôi
+//                }
+//                //Xét thời gian tồn tại cho Cookie
+//
+//                //Lưu cookie lên trên trình duyệt: trg hợp này là Chrome
+//                response.addCookie(u);
+//                response.addCookie(p);
 
                 if (a.getIsAdmin() == 1 || a.getIsSell() == 1) {
                     //Nếu là Admin thì chuyển về trang DashBoard

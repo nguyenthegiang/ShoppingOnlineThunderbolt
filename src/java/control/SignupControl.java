@@ -47,7 +47,8 @@ public class SignupControl extends HttpServlet {
 
             //sign up for account login with facebook
             String loginFb = request.getParameter("loginFB");
-            if (loginFb != null || !loginFb.trim().equals("")) {
+//            if (loginFb != null || !loginFb.trim().equals("")) {
+            if (loginFb.trim().equals("true")) {
                 String username = request.getParameter("user");
                 String email = request.getParameter("email");
                 dao.signUpFB(username, email);
