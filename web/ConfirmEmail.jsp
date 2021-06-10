@@ -20,7 +20,7 @@
             <div class="row" style="margin: auto; height: 600px">
                 <div class="col-md-1"></div>
                 <div class="col-md-5"  style="background-image: linear-gradient(to bottom right, #c165dd, #268bff);margin: 0px; -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3)">
-                    <br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br>
                     <h1 style="text-align: center; font-family: Brush Script MT">Confirm Your Email</h1>
                     <br>
                     <p style="text-align: center; color: black">Check your email for activation code</p>
