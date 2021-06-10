@@ -38,7 +38,7 @@ public class ConfirmEmailControl extends HttpServlet {
             // Get the account need active
             HttpSession session = request.getSession();
             Account accountNeedActive = (Account) session.getAttribute("newAccount");
-            // Get the active code
+            // Get the active code input by user
             String activeCode = request.getParameter("active-code");
 
             // Redirect if session timeout or can't find account to active
@@ -55,8 +55,7 @@ public class ConfirmEmailControl extends HttpServlet {
                     // Active the account
                     boolean active = new UserDAO().updateStatus(accountNeedActive.getId(), 1);
                     if (active) {
-                        // Active success, redirect to login
-                        Account accountActived = new UserDAO().getAccountByEmail(accountNeedActive.getEmail());
+                        // Active success, redirect to login                       
                         session.removeAttribute("newAccount");
                         response.sendRedirect("Login.jsp");
                     }
