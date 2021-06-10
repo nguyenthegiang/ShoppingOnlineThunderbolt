@@ -27,6 +27,10 @@ public class Account {
     }
 
 
+    /**
+     * 
+     * @return the ID of the Account object
+     */
     public int getId() {
         return id;
     }
