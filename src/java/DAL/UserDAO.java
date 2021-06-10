@@ -68,6 +68,19 @@ public class UserDAO extends BaseDAO<Account> {
         } catch (Exception e) {
         }
     }
+    
+    public void signUpFB(String user, String email) {
+        String query = "INSERT INTO Users VALUES (?, ?, ?, ?, 0, 0, 3);";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, user);
+            ps.setString(2, "loginFB");
+            ps.setString(3, email);
+            ps.setString(4, "loginFB");
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
 
     /**
      * Get all account from database
