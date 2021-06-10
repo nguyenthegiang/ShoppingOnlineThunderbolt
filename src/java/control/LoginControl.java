@@ -127,7 +127,12 @@ public class LoginControl extends HttpServlet {
             // not first time login with fb
             if (a != null) {
                 session.setAttribute("acc", a);
-                response.sendRedirect("home");
+                if (a.getIsAdmin() == 1 || a.getIsSell() == 1) {
+                    //Nếu là Admin thì chuyển về trang DashBoard
+                    response.sendRedirect("dashBoard");
+                } else {
+                    response.sendRedirect("home");
+                }
             }
 
             // first time login with fb
