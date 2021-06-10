@@ -81,25 +81,20 @@
 
             function testAPI(name, id, mail) {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
                 console.log('Welcome!  Fetching your information.... ');
-
-                let email=mail;
-                FB.api('/me', function (response) {
-                    console.log('Successful login for: ' + response.name);
-                    document.getElementById('status').innerHTML =
-                            'Thanks for logging in, ' + mail + '\n With your Id:'+id +'!'+name;
-                    submit(email);
+                
+                let email=mail;               
+                FB.api('/me', function (response) {                                      
+                    submitInfo(email, name);
                 });
 
 
 
             }
-            function submit(mail) {
-                document.getElementById('user').value = mail;
+            function submitInfo(mail, name) {                    
+                document.getElementById('user').value = name;
                 document.getElementById('email').value = mail;
-                document.getElementById('pass').value = "";
-                document.getElementById('repass').value = "";
-                document.getElementById('check').checked = true;
-                document.getElementById('myForm').submit();
+                document.getElementById('loginFB').value = "true";                
+                document.getElementById('login-form').submit();
             }
 
 
@@ -118,24 +113,28 @@
                     <img style="height: 585px; width: 375px; opacity: 100%" src="image/Login.gif" alt=""/>
                 </div>
                 <div class="col-md-5" id="logreg-forms" style="background-image: linear-gradient(to bottom right, #c165dd, #268bff); margin: 0px; -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3); opacity: 100%">
-                    <form  class="form-signin" action="login" method="post">
+                    <form class="form-signin" id="login-form" action="login" method="post">
                         <br><br><br><br>
                         <h1 class="h3 mb-3 font-weight-normal" style="text-align: center; font-family: Brush Script Std"> Sign in</h1>
                         <p class="text-danger">${mess}</p>
-                        <input style="margin-bottom: 8px; border-radius: 8px" name="user" value="${username}" type="text" id="inputEmail" class="form-control" placeholder="Username" required="" autofocus="">
-                        <input style="margin-bottom: 8px; border-radius: 8px" name="pass" value="${password}" type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+                        <input style="margin-bottom: 8px; border-radius: 8px" name="user" value="${username}" type="text" id="user" class="form-control" placeholder="Username" required="" autofocus="">
+                        <input style="margin-bottom: 8px; border-radius: 8px" name="pass" value="${password}" type="password" id="password" class="form-control" placeholder="Password" required="">
 
                         <div class="form-group form-check">
                             <input name="remember" value="1" type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Remember me</label>
                         </div>
+                        <!-- For fb login -->
+                        <input type="text" id="email" name="email" style="display: none;">
+                        <input type="text" id="loginFB" name="loginFB" value="true" style="display: none;">
+                        
                         <div class="form-group">                           
-                            <button class="btn btn-success btn-block" id="submit" type="submit" style="background-image: linear-gradient(to right, #00f79c, #04f1f5); color: black; width: 200px; margin: auto; padding: 10px; border-radius: 8px"><i class="fas fa-sign-in-alt"></i> Sign in</button>
+                            <button class="btn btn-success btn-block" id="btnSubmit" type="submit" style="background-image: linear-gradient(to right, #00f79c, #04f1f5); color: black; width: 200px; margin: auto; padding: 10px; border-radius: 8px"><i class="fas fa-sign-in-alt"></i> Sign in</button>
                             <hr>
                             <button class="btn btn-primary btn-block" type="button" style="background-image: linear-gradient(to right, #00f79c, #04f1f5); color: black; width: 200px; margin: auto; padding: 10px; border-radius: 8px" id="btn-signup"><i class="fas fa-user-plus"></i> Sign up</button>
                         </div>
                     </form>
-                    <form action="signup" id="myForm" method="post" class="form-signup">
+                    <form action="signup" id="sign-up-form" method="post" class="form-signup">
                         <br><br><br><br>
                         <h1 class="h3 mb-3 font-weight-normal" style="text-align: center; font-family: Brush Script Std"> Sign up</h1>
                         <input name="user" id="user" type="text" id="user-name" class="form-control" placeholder="User name" required="" autofocus="" style="margin-bottom: 8px; border-radius: 8px">
