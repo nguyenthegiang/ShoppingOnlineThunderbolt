@@ -22,7 +22,7 @@ public class CartDAO extends BaseDAO<Account> {
 
     public List<Cart> getCart(int id) {
         List<Cart> list = new ArrayList<>();
-        String query = "select Product.ProductID, Product.ProductName, Product.Description, Product.Price, Product.imageLink, Cart.Amount\n"
+        String query = "select Product.ProductID, Product.ProductName, Product.Description, Product.SellPrice, Product.imageLink, Cart.Amount\n"
                 + "from Cart inner join Product\n"
                 + "on Cart.ProductID = Product.ProductID\n"
                 + "where Cart.UserID = ?";
@@ -31,8 +31,8 @@ public class CartDAO extends BaseDAO<Account> {
             ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Product p = new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5));
-                int amount = rs.getInt(6);
+                Product p = new Product(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink"));
+                int amount = rs.getInt("Amount");
                 list.add(new Cart(p, amount));
             }
         } catch (Exception e) {
@@ -87,7 +87,7 @@ public class CartDAO extends BaseDAO<Account> {
             for (Cart cart : list) {
                 if (cart.getP().getId() == productID) {
                     String query = "update Cart\n"
-                            + "set amount = ?\n"
+                            + "set Amount = ?\n"
                             + "where UserID = ? and ProductID = ?";
                     try {
                         ps = connection.prepareStatement(query);

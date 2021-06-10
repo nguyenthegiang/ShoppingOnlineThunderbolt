@@ -31,7 +31,7 @@ public class CategoryDAO extends BaseDAO<Category> {
             rs = ps.executeQuery(); // Chạy query
             //RS chính là bảng result -> Lấy dữ liệu của bảng result và đẩy vào List
             while (rs.next() /*Next từng DÒNG tới cuối bảng*/) {
-                list.add(new Category(rs.getInt(1), rs.getString(2), rs.getString(3))); //Add vào
+                list.add(new Category(rs.getInt("CategoryID"), rs.getString("CategoryName"), rs.getString("icon"))); //Add vào
             }
         } catch (Exception e) {
         }
