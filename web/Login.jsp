@@ -51,7 +51,7 @@
                             // console.log(response);
                             let name = response.name;
                             let email = response.email;
-                            let id1 =id;
+                            let id1 = id;
                             testAPI(name, id1, email);
                         }
                 );
@@ -81,19 +81,19 @@
 
             function testAPI(name, id, mail) {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
                 console.log('Welcome!  Fetching your information.... ');
-                
-                let email=mail;               
-                FB.api('/me', function (response) {                                      
+
+                let email = mail;
+                FB.api('/me', function (response) {
                     submitInfo(email, name);
                 });
 
 
 
             }
-            function submitInfo(mail, name) {                    
+            function submitInfo(mail, name) {
                 document.getElementById('user').value = name;
                 document.getElementById('email').value = mail;
-                document.getElementById('loginFB').value = "true";                
+                document.getElementById('loginFB').value = "true";
                 document.getElementById('login-form').submit();
             }
 
@@ -127,7 +127,7 @@
                         <!-- For fb login -->
                         <input type="text" id="email" name="email" style="display: none;">
                         <input type="text" id="loginFB" name="loginFB" value="false" style="display: none;">
-                        
+
                         <div class="form-group">                           
                             <button class="btn btn-success btn-block" id="btnSubmit" type="submit" style="background-image: linear-gradient(to right, #00f79c, #04f1f5); color: black; width: 200px; margin: auto; padding: 10px; border-radius: 8px"><i class="fas fa-sign-in-alt"></i> Sign in</button>
                             <hr>
@@ -140,6 +140,7 @@
                         <input name="user" id="user" type="text" id="user-name" class="form-control" placeholder="User name" required="" autofocus="" style="margin-bottom: 8px; border-radius: 8px">
                         <input name="email" id="email" type="email" id="email" class="form-control" placeholder="Email" required autofocus="" style="margin-bottom: 8px; border-radius: 8px">
                         <input name="pass" id="pass" type="password" id="user-pass" class="form-control" placeholder="Passwords" required autofocus="" style="margin-bottom: 8px; border-radius: 8px">
+                        <input type="text" id="loginFB" name="loginFB" value="false" style="display: none;">
                         <input name="repass" id="repass" type="password" id="user-repeatpass" class="form-control" placeholder="Repeat Password" required autofocus="" style="margin-bottom: 8px; border-radius: 8px">
                         <div class="form-group">
                             <label class="form-check-label"><input id="check" type="checkbox" required="required"> I accept the <a href="https://policies.google.com/terms?gl=VN&hl=vi" style="display: inline; color: #434e65">Terms &amp; Conditions</a></label>
