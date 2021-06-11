@@ -131,7 +131,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <!--Product's Price-->
-                                                <a onclick="addCart(${o.id})" class="btn btn-info btn-block" id="cart"><p class="btn btn-warning btn-block" id="price">${o.priceWithDot} VND</p></a>
+                                                <a onclick="addCart(${o.id})"><p class="btn btn-warning btn-block" id="price">${o.priceWithDot} VND</p></a>
 
                                                 <!--<p class="btn btn-warning btn-block" id="price">${o.priceWithDot} VND</p>-->
                                             </div>

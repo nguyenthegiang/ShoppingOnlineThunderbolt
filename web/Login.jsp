@@ -126,7 +126,7 @@
                         </div>
                         <!-- For fb login -->
                         <input type="text" id="email" name="email" style="display: none;">
-                        <input type="text" id="loginFB" name="loginFB" value="true" style="display: none;">
+                        <input type="text" id="loginFB" name="loginFB" value="false" style="display: none;">
                         
                         <div class="form-group">                           
                             <button class="btn btn-success btn-block" id="btnSubmit" type="submit" style="background-image: linear-gradient(to right, #00f79c, #04f1f5); color: black; width: 200px; margin: auto; padding: 10px; border-radius: 8px"><i class="fas fa-sign-in-alt"></i> Sign in</button>

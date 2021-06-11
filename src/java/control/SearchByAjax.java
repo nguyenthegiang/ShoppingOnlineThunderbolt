@@ -51,7 +51,7 @@ public class SearchByAjax extends HttpServlet {
 "                                        <h4 class=\"card-title show_txt\"><a href=\"detail?ProductID=" + o.getId() + "\" title=\"View Product\">" + o.getName() + "</a></h4>\n" +
 "                                        <div class=\"row\">\n" +
 "                                            <div class=\"col\">\n" +
-"                                                <a onclick=\"addCart(" + o.getId() + ")\" ><p class=\"btn btn-warning btn-block\" id=\"price\">"+o.getPriceWithDot()+ " VND</p></a>\n" + 
+"                                                <a onclick=\"detail(" + o.getId() + ")\" ><p class=\"btn btn-warning btn-block\" id=\"price\">"+o.getPriceWithDot()+ " VND</p></a>\n" + 
 "                                            </div>\n" +
 "                                            <div class=\"col\">\n" +
 "                                                <a onclick=\"addCart(" + o.getId() + ")\" class=\"btn btn-info btn-block\" style=\"color: white\">Add to cart</a>\n" + 

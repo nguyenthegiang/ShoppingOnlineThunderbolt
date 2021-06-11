@@ -40,6 +40,10 @@ public class ProductDAO extends BaseDAO<Product> {
         return list;
     }
 
+    /**
+     *
+     * @return Product with the highest sold amount
+     */
     public Product getHotProduct() {
         //Product with most amount
         String query = "select top 1 * from Product\n"
@@ -55,6 +59,10 @@ public class ProductDAO extends BaseDAO<Product> {
         return null;
     }
 
+    /**
+     *
+     * @return get the first and the second product with most sold amount
+     */
     public Product getFavoriteProduct() {
         //Product with second most amount
         String query = "select top 2 * from Product\n"
@@ -71,6 +79,13 @@ public class ProductDAO extends BaseDAO<Product> {
         return null;
     }
 
+    /**
+     * each seller will have a different ID, so they will have different
+     * products
+     *
+     * @param id
+     * @return the list of products of a particular seller
+     */
     public List<Product> getProductBySellID(int id) { //Phải để kiểu int vì khi lưu lên Session thì nó vẫn là kiểu int
         List<Product> list = new ArrayList<>();
         String query = "SELECT * FROM Product WHERE SellerID = ?";
@@ -86,6 +101,18 @@ public class ProductDAO extends BaseDAO<Product> {
         return list;
     }
 
+    /**
+     * Edit the information of a particular product, select by product ID
+     *
+     * @param id
+     * @param name
+     * @param description
+     * @param price
+     * @param imageLink
+     * @param CategoryID
+     * @param SellerID
+     * @param amount
+     */
     public void edit(String id, String name, String description, String price, String imageLink, String CategoryID, String SellerID, String amount) {
         String query = "UPDATE Product\n"
                 + "SET ProductName = ?,\n"
@@ -112,6 +139,11 @@ public class ProductDAO extends BaseDAO<Product> {
         }
     }
 
+    /**
+     * Delete a product, select by its ID
+     *
+     * @param id
+     */
     public void delete(String id) { //Để kiểu String vì khi get về nó là kiểu String -> Đỡ phải ép kiểu
         String query = "DELETE FROM Cart WHERE ProductID = ?\n"
                 + "DELETE FROM Product WHERE ProductID = ?";
@@ -126,6 +158,18 @@ public class ProductDAO extends BaseDAO<Product> {
         }
     }
 
+    /**
+     * Adding a new product to the database, the ID is no need to be added
+     * because it is automatically added
+     *
+     * @param name
+     * @param description
+     * @param price
+     * @param imageLink
+     * @param CategoryID
+     * @param SellerID
+     * @param amount
+     */
     public void add(String name, String description, String price, String imageLink, String CategoryID, String SellerID, String amount) {
         String query = "INSERT INTO Product VALUES (?, ?, 0, ?, 0, ?, ?, ?, ?, 1, 1);";
         try {
@@ -143,7 +187,10 @@ public class ProductDAO extends BaseDAO<Product> {
         }
     }
 
-    //count total product
+    /**
+     *
+     * @return the total number of products
+     */
     public int countProduct() {
         String query = "SELECT COUNT(*) FROM Product";
         try {
@@ -157,6 +204,11 @@ public class ProductDAO extends BaseDAO<Product> {
         return 0;
     }
 
+    /**
+     * Every 6 products will be displayed in a single page
+     * @param index
+     * @return list of 6 products
+     */
     public List<Product> pagingProduct(int index) {
         List<Product> list = new ArrayList<>();
         String query = "SELECT * FROM Product ORDER BY ProductID OFFSET ? ROWS FETCH NEXT 6 ROWS ONLY";
@@ -172,6 +224,12 @@ public class ProductDAO extends BaseDAO<Product> {
         return list;
     }
 
+    /**
+     * categorizing products
+     * @param index
+     * @param CategoryID
+     * @return list of products with same category
+     */
     public List<Product> pagingByCategory(int index, int CategoryID) {
         List<Product> list = new ArrayList<>();
         if (CategoryID == 0) {
@@ -192,6 +250,12 @@ public class ProductDAO extends BaseDAO<Product> {
         return list;
     }
 
+    /**
+     * 
+     * @param index
+     * @param SellerID
+     * @return 
+     */
     public List<Product> pagingManagerProduct(int index, int SellerID) {
         List<Product> list = new ArrayList<>();
         if (SellerID == 0) {
@@ -228,7 +292,6 @@ public class ProductDAO extends BaseDAO<Product> {
 //        }
 //        return list;
 //    }
-
     //count total product
     public int countProductByCategory(int CategoryID) {
         if (CategoryID == 0) {
@@ -248,6 +311,11 @@ public class ProductDAO extends BaseDAO<Product> {
         return 0;
     }
 
+    /**
+     * count the products of a particular seller
+     * @param SellerID
+     * @return the number of product
+     */
     public int countProductBySeller(int SellerID) {
         if (SellerID == 0) {
             return countProduct();
@@ -281,6 +349,11 @@ public class ProductDAO extends BaseDAO<Product> {
         return null;
     }
 
+    /**
+     * Get a particular product
+     * @param id
+     * @return a product
+     */
     public ProductInManager getProductForManager(String id) { //Phải để kiểu int vì khi lưu lên Session thì nó vẫn là kiểu int
         String query = "SELECT * FROM Product WHERE ProductID = ?";
         try {
@@ -295,6 +368,11 @@ public class ProductDAO extends BaseDAO<Product> {
         return null;
     }
 
+    /**
+     * Search for a particular product by filling its name
+     * @param name
+     * @return a product
+     */
     public List<Product> searchProductByName(String name) { //Phải để kiểu int vì khi lưu lên Session thì nó vẫn là kiểu int
         List<Product> list = new ArrayList<>();
         String query = "select * from Product where ProductName like ?";
@@ -309,7 +387,13 @@ public class ProductDAO extends BaseDAO<Product> {
         }
         return list;
     }
-    
+
+    /**
+     * Search for a product in admin/moderator mode by filling its name
+     * @param name
+     * @param SellerID
+     * @return a product
+     */
     public List<Product> searchProductInManager(String name, int SellerID) {
         List<Product> list = new ArrayList<>();
         String query = "select * from Product where ProductName like ? and SellerID = ?";
@@ -325,7 +409,11 @@ public class ProductDAO extends BaseDAO<Product> {
         }
         return list;
     }
-    
+
+    /**
+     * Select top 3 most sold products
+     * @return products
+     */
     public List<ProductInManager> top3MostSell() {
         List<ProductInManager> list = new ArrayList<>();
         String query = "select top 3 * from Product order by Amount asc";
@@ -338,8 +426,12 @@ public class ProductDAO extends BaseDAO<Product> {
         } catch (Exception e) {
         }
         return list;
-    } 
-    
+    }
+
+    /**
+     * select top 3 least sold products
+     * @return products
+     */
     public List<ProductInManager> top3LeastSell() {
         List<ProductInManager> list = new ArrayList<>();
         String query = "select top 3 * from Product order by Amount desc";
@@ -352,7 +444,7 @@ public class ProductDAO extends BaseDAO<Product> {
         } catch (Exception e) {
         }
         return list;
-    } 
+    }
 
     public static void main(String[] args) {
         //Kiểm tra xem List đã có dữ liệu chưa
@@ -405,25 +497,20 @@ public class ProductDAO extends BaseDAO<Product> {
 //            System.out.println(o);
 //        }
 //        System.out.println(dao.countProductBySeller(1));
-
 //        List<ProductInManager> list = dao.top3MostSell();
 //        for (ProductInManager productInManager : list) {
 //            System.out.println(productInManager);
 //        }
-
 //        List<Product> list = dao.searchProductInManager("asus", 1);
 //        for (Product product : list) {
 //            System.out.println(product);
 //        }
-        
 //        List<Product> list = dao.pagingByCategory(1, 1);
 //        for (Product product : list) {
 //            System.out.println(product);
 //        }
-        
 //        ProductInManager p = dao.getProductForManager("1");
 //        System.out.println(p);
-        
         dao.add("a", "a", "1", "a", "1", "1", "1");
     }
 }

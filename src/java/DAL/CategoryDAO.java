@@ -39,6 +39,11 @@ public class CategoryDAO extends BaseDAO<Category> {
         return list;
     }
 
+    /**
+     * Select a specified category by its ID, used for categorizing products in homepage
+     * @param id
+     * @return 
+     */
     public String getCateNameByID(int id) {
         String query = "select CategoryName from Category\n"
                 + "where CategoryID = ?"; 

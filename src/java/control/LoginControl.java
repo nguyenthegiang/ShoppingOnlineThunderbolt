@@ -119,8 +119,10 @@ public class LoginControl extends HttpServlet {
         String password = request.getParameter("pass");
         String loginFb = request.getParameter("loginFB");
 
-        if (loginFb != null || !loginFb.trim().equals("")) {
-            String email = request.getParameter("email");                        
+        if (loginFb.trim().equals("true")) {
+            String email = request.getParameter("email");
+            System.out.println(username);
+            System.out.println(email);
             Account a = dao.getAccountByEmail(email);
             // not first time login with fb
             if (a != null) {

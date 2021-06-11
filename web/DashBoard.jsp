@@ -78,13 +78,13 @@
                     <div class="card mb-3" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="image/AccountIcon.png" alt="..." width="70%;">
+                                <a href="accountManager" style="text-decoration: none;"><img src="image/AccountIcon.png" alt="..." width="70%;"></a>
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title">Total Accounts</h5>
-                                    <h5 class="card-title">${totalAccount}</h5>
-                                    <p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p>
+                                    <a href="accountManager" style="text-decoration: none;"><h5 class="card-title">Total Accounts</h5></a>
+                                    <a href="accountManager" style="text-decoration: none;"><h5 class="card-title">${totalAccount}</h5></a>
+                                    <a href="accountManager" style="text-decoration: none;"><p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p></a>
                                 </div>
                             </div>
                         </div>
@@ -94,13 +94,13 @@
                     <div class="card mb-3" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="image/ProductIcon.png" alt="..." width="70%;">
+                                <a href="manager" style="text-decoration: none;"><img src="image/ProductIcon.png" alt="..." width="70%;"></a>
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title">Total Products</h5>
-                                    <h5 class="card-title">${totalProduct}</h5>
-                                    <p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p>
+                                    <a href="manager" style="text-decoration: none;"><h5 class="card-title">Total Products</h5></a>
+                                    <a href="manager" style="text-decoration: none;"><h5 class="card-title">${totalProduct}</h5></a>
+                                    <a href="manager" style="text-decoration: none;"><p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p></a>
                                 </div>
                             </div>
                         </div>
@@ -110,13 +110,13 @@
                     <div class="card mb-3" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="image/InvoiceIcon.png" alt="..." width="70%;" style="margin-top: 10px;">
+                                <a href=""><img src="image/InvoiceIcon.png" alt="..." width="70%;" style="margin-top: 10px;"></a>
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title">Total Invoices</h5>
-                                    <h5 class="card-title">${totalCart}</h5>
-                                    <p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p>
+                                    <a style="text-decoration: none;" href =""><h5 class="card-title">Total Invoices</h5></a>
+                                    <a style="text-decoration: none;" href =""><h5 class="card-title">${totalCart}</h5></a>
+                                    <a style="text-decoration: none;" href =""><p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p></a>
                                 </div>
                             </div>
                         </div>

@@ -39,7 +39,7 @@ public class LogoutControl extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         //Xóa acc khỏi Session khi logout 
         HttpSession session = request.getSession();
-        session.removeAttribute("acc");
+        session.invalidate();
         //Redirect về home
         response.sendRedirect("home");
     }

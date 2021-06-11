@@ -47,7 +47,8 @@ public class SignupControl extends HttpServlet {
 
             //sign up for account login with facebook
             String loginFb = request.getParameter("loginFB");
-            if (loginFb != null || !loginFb.trim().equals("")) {
+//            if (loginFb != null || !loginFb.trim().equals("")) {
+            if (loginFb.trim().equals("true")) {
                 String username = request.getParameter("user");
                 String email = request.getParameter("email");
                 dao.signUpFB(username, email);
@@ -55,7 +56,8 @@ public class SignupControl extends HttpServlet {
                 session.setAttribute("acc", a);
                 response.sendRedirect("home");
 
-            } else { // Get new user information
+            } else { 
+// Get new user information
                 String username = request.getParameter("user");
                 String password = request.getParameter("pass");
                 String email = request.getParameter("email");
