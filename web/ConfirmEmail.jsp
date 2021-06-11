@@ -34,7 +34,7 @@
                 </div>
                 
                 <div class="col-md-5" style="margin: 0px; -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3); float: right; background-color: white; opacity: 100%">
-                    <img src="image/Other/ConfirmEmail.jpg" alt="" id="img" style="width: 447px"/>
+                    <img src="image/ConfirmEmail.gif" style="width: 447px" alt=""/>
                 </div>
                 <div class="col-md-1"></div>
             </div>
