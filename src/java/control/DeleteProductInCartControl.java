@@ -39,8 +39,9 @@ public class DeleteProductInCartControl extends HttpServlet {
         //Lay ID Product ve
         String PID = request.getParameter("ProductID");
         int ProductID = Integer.parseInt(PID);
-        //Lay session da luu
+        //Dùng session để gọi đến id
         HttpSession session = request.getSession(); 
+        //Gọi đến account -> Phải ép kiểu để thành Object
         Account a = (Account) session.getAttribute("acc"); 
         int UserID = a.getId();
         //Call DAO
