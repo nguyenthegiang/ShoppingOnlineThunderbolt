@@ -35,8 +35,11 @@ public class DeleteAccountControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        //Lay ID tu JSP
         String id = request.getParameter("UserID");
+        //Goi toi DAO
         UserDAO dao = new UserDAO();
+        //Dung Ham Delete de xoa theo ID
         dao.deleteAccount(id);
 
         response.sendRedirect("accountManager"); 
