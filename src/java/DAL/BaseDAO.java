@@ -16,6 +16,7 @@ import java.util.logging.Logger;
  *
  * @author fsoft
  */
+//Ket Noi Database
 public abstract class BaseDAO<T> {
     protected Connection connection;
     public BaseDAO()
