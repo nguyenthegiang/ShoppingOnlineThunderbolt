@@ -51,11 +51,11 @@ public class EditAccountControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        
+        //Get ID tu jsp
         String id = request.getParameter("UserID");
         UserDAO dao = new UserDAO();
         Account x = dao.getAccountByID(id);
-        
+        //Push
         request.setAttribute("id", x.getId());
         request.setAttribute("user", x.getUser());
         request.setAttribute("pass", x.getPass());
