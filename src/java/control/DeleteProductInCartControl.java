@@ -36,14 +36,16 @@ public class DeleteProductInCartControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        //Lay ID Product ve
         String PID = request.getParameter("ProductID");
         int ProductID = Integer.parseInt(PID);
-        
+        //Lay session da luu
         HttpSession session = request.getSession(); 
         Account a = (Account) session.getAttribute("acc"); 
         int UserID = a.getId();
-        
+        //Call DAO
         CartDAO dao = new CartDAO();
+        //Su dung ham DeleProductCart 
         dao.deleteProductCart(UserID, ProductID);
         
         response.sendRedirect("show");
