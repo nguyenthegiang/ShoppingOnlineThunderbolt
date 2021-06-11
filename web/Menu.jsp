@@ -63,7 +63,7 @@
 
                     <a class="btn btn-info btn-sm ml-3" href="show" style="height: 36px; padding-top: 6px">
                         <i class="fa fa-shopping-cart"></i> Cart
-                        <span class="badge badge-light">${c.countNumCart(sessionScope.acc.id)}</span>
+                        <span class="badge badge-light" id="CartNum">${c.countNumCart(sessionScope.acc.id)}</span>
                     </a>
                 </form>
             </div>

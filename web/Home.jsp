@@ -199,7 +199,10 @@
                                                 ProductID: ProductID
                                             },
                                             success: function (message) {
-                                                alert(message);
+                                               var res = message.split("|");
+                                               //Change number of Product in cart
+                                               document.getElementById("CartNum").innerHTML = res[0];
+                                               alert(res[1]);
                                             },
                                             error: function () {
                                             }
