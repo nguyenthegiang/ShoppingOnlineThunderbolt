@@ -120,7 +120,7 @@ public class LoginControl extends HttpServlet {
         String loginFb = request.getParameter("loginFB");
 
         if (loginFb != null || !loginFb.trim().equals("")) {
-            String email = request.getParameter("email");            
+            String email = request.getParameter("email");                        
             Account a = dao.getAccountByEmail(email);
             // not first time login with fb
             if (a != null) {
@@ -143,8 +143,8 @@ public class LoginControl extends HttpServlet {
         } else {
             //Code phần remember me
             String remember = request.getParameter("remember");
-            //        Lấy về username và password, nếu tồn tại thì đẩy về home
-           
+            //        Lấy về username và password, nếu tồn tại thì đẩy về home 
+            
             Account a = dao.login(username, password);
             if (a == null) {
                 request.setAttribute("mess", "Wrong username or password");
