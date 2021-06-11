@@ -52,14 +52,15 @@ public class EditControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        //Get ID cua Product tu JSP
         String id = request.getParameter("ProductID");
         ProductDAO ProductDAO = new ProductDAO();
         ProductInManager p = ProductDAO.getProductForManager(id);
-        
+        //Call DAO
         CategoryDAO CategoryDAO = new CategoryDAO();
         List<Category> listC = CategoryDAO.getAllCategory();
         request.setAttribute("listC", listC);
-        
+        //Call DAO
         UserDAO UserDAO = new UserDAO();
         List<Account> listS = UserDAO.getAllAccounts();
         request.setAttribute("listS", listS);
