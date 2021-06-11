@@ -42,9 +42,13 @@ public class AddToCartControl extends HttpServlet {
         CartDAO CartDAO = new CartDAO();
         boolean notOutOfStock = CartDAO.addToCart(UserID, ProductID, 1);
         
+        //Increase the number of product in Cart icon
+        int CartNum = CartDAO.countNumCart(UserID);
+        
         PrintWriter out = response.getWriter();
         if (notOutOfStock) {
-            out.println("Product is added to cart");
+            //return the Number of Product in Cart and Message
+            out.println(CartNum + "|Product is added to cart");
         } else {
             out.println("Sorry, Product is out of stock");
         }
