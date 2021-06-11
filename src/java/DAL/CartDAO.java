@@ -19,7 +19,11 @@ public class CartDAO extends BaseDAO<Account> {
 
     PreparedStatement ps = null; //...
     ResultSet rs = null; //Nhận kết quả trả về
-
+/**
+ * 
+ * @param id
+ * @return list of products in cart of a particular customer
+ */
     public List<Cart> getCart(int id) {
         List<Cart> list = new ArrayList<>();
         String query = "select Product.ProductID, Product.ProductName, Product.Description, Product.SellPrice, Product.imageLink, Cart.Amount\n"
@@ -40,6 +44,11 @@ public class CartDAO extends BaseDAO<Account> {
         return list;
     }
 
+    /**
+     * 
+     * @param id: id of user
+     * @return number of different items in cart 
+     */
     public int countCart(int id) {
         int count = 0;
         String query = "select count(*)\n"
@@ -58,6 +67,10 @@ public class CartDAO extends BaseDAO<Account> {
         return count;
     }
 
+    /**
+     * 
+     * @return the number of all products in cart 
+     */
     public int countAllCart() {
         int count = 0;
         String query = "select count(*)\n"
@@ -147,6 +160,11 @@ public class CartDAO extends BaseDAO<Account> {
         return 0;
     }
 
+    /**
+     * 
+     * @param userID
+     * @return number of products in cart of a particular user
+     */
     public int countNumCart(int userID) {
         String query = "select count(*) from Cart where UserID = ?";
         try {
@@ -161,6 +179,10 @@ public class CartDAO extends BaseDAO<Account> {
         return 0;
     }
 
+    /**
+     * delete all products in cart of a particular user 
+     * @param UserID 
+     */
     public void deleteCart(int UserID) {
         String query = "delete from Cart where UserID = ?";
         try {
@@ -171,6 +193,11 @@ public class CartDAO extends BaseDAO<Account> {
         }
     }
 
+    /**
+     * Delete a particular product in cart of a particular user
+     * @param UserID
+     * @param ProductID 
+     */
     public void deleteProductCart(int UserID, int ProductID) {
         String query = "delete from cart where UserID = ? and ProductID = ?";
         try {

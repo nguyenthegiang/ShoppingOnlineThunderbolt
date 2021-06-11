@@ -69,6 +69,12 @@ public class UserDAO extends BaseDAO<Account> {
         }
     }
     
+    /**
+     * Used when user try to login via FB, the password will be set automatically
+     * and the user will be added to database
+     * @param user: name of the facebook account
+     * @param email: email of the facebook account
+     */
     public void signUpFB(String user, String email) {
         String query = "INSERT INTO Users VALUES (?, ?, ?, ?, 0, 0, 3);";
         try {

@@ -18,7 +18,11 @@ public class InforDAO extends BaseDAO<Information>{
         
     PreparedStatement ps = null; //...
     ResultSet rs = null; //Nhận kết quả trả về
-    
+   
+    /**
+     * 
+     * @return information of the administrator's place (There's only one)
+     */
     public Information getInfor() {
         String query = "SELECT * FROM Information";
         try {

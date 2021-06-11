@@ -20,6 +20,10 @@ public class ShipDAO extends BaseDAO<Account> {
     PreparedStatement ps = null; //...
     ResultSet rs = null; //Nhận kết quả trả về
 
+    /**
+     * get every shipping orders
+     * @return list of ship
+     */
     public List<Ship> getAllShip() {
         List<Ship> list = new ArrayList<>();
         String query = "select * from Ship";
@@ -34,6 +38,11 @@ public class ShipDAO extends BaseDAO<Account> {
         return list;
     }
     
+    /**
+     * generate a shipping price 
+     * @param cityName
+     * @return an int number 
+     */
     public int getShipPriceByCityName(String cityName) {
         String query = "select ShipPrice from Ship where CityName = ?";
         try {
