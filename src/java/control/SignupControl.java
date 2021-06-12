@@ -42,21 +42,21 @@ public class SignupControl extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         try {
             HttpSession session = request.getSession();
-
             UserDAO dao = new UserDAO();
-
-            //sign up for account login with facebook
+            
             String loginFb = request.getParameter("loginFB");
-//            if (loginFb != null || !loginFb.trim().equals("")) {
+
             if (loginFb.equals("true")) {
+                // Sign up for account login with facebook
                 String username = request.getParameter("user");
                 String email = request.getParameter("email");
                 dao.signUpFB(username, email);
                 Account a = dao.getAccountByEmail(email);
                 session.setAttribute("acc", a);
                 response.sendRedirect("home");
-
-            } else { // Get new user information
+            } else {
+                // Normal account signup
+                // Get new user information
                 String username = request.getParameter("user");
                 String password = request.getParameter("pass");
                 String email = request.getParameter("email");
@@ -81,13 +81,17 @@ public class SignupControl extends HttpServlet {
                         session.setAttribute("newAccount", newAccount);
                         // Redirect to confirm email page
                         response.sendRedirect("ConfirmEmail.jsp");
+                    } else {
+                        // Redirect to login page if email or user name exist
+                        request.setAttribute("mess", "Your email or username is already exist");
+                        request.getRequestDispatcher("Login.jsp").forward(request, response);
                     }
                 } else {
-                    // Redirect to login page if password is not confirmed or email existed
-                    response.sendRedirect("Login.jsp");
+                    // Redirect to login page if password is not confirmed 
+                    request.setAttribute("mess", "Password confirmation does not match your password");
+                    request.getRequestDispatcher("Login.jsp").forward(request, response);
                 }
             }
-            // Normal account signup
 
         } catch (Exception e) {
             // Redirect to error page if exception happend

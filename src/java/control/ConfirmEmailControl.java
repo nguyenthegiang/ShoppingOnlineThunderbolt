@@ -43,7 +43,7 @@ public class ConfirmEmailControl extends HttpServlet {
 
             // Redirect if session timeout or can't find account to active
             if (accountNeedActive == null) {
-                request.setAttribute("message", "Active Failed!");
+                request.setAttribute("mess", "Active Failed!");
                 request.getRequestDispatcher("Login.jsp").forward(request, response);
             }
 
@@ -62,7 +62,7 @@ public class ConfirmEmailControl extends HttpServlet {
                 }
                 if (!accountWithActiveCode.getActiveCode().equals(activeCode)) {
                     // Active failed, redirect to login
-                    request.setAttribute("message", "Active Failed!");
+                    request.setAttribute("mess", "Active Failed!");
                     request.getRequestDispatcher("Login.jsp").forward(request, response);
                 }
             }
