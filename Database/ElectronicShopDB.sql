@@ -111,9 +111,9 @@ CREATE TABLE Product (
 	ProductID int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	ProductName nvarchar(1000),
 	Description nvarchar(2000),
-	OriginalPrice int, --giá gốc
-	SellPrice int,	--giá bán
-	SalePercent int,	--phần trăm giảm giá
+	OriginalPrice int, 
+	SellPrice int,	
+	SalePercent int CHECK (SalePercent>=1 AND SalePercent<=100),
 	imageLink nvarchar(1000),
 	CategoryID int,
 	SellerID int,
@@ -240,7 +240,7 @@ CREATE TABLE Cart (
 	constraint productID_in_product FOREIGN KEY(ProductID) REFERENCES Product(ProductID),
 ) ON [PRIMARY]
 GO
-
+select * from Product
 INSERT INTO Cart VALUES (8, 1, 1);
 INSERT INTO Cart VALUES (8, 2, 1);
 INSERT INTO Cart VALUES (8, 3, 1);
@@ -320,7 +320,6 @@ INSERT INTO ShipInfo VALUES (12, N'Dinh Thanh Hoang', 6, '0933441221');
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
---FeedBack
 CREATE TABLE Feedback (
 	UserID int,
 	ProductID int,
