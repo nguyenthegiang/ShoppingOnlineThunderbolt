@@ -5,8 +5,10 @@
  */
 package control;
 
+import DAL.CategoryDAO;
 import DAL.InforDAO;
 import DAL.ProductDAO;
+import entity.Category;
 import entity.Information;
 import entity.Product;
 import java.io.IOException;
@@ -40,7 +42,10 @@ public class CompareFinal extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         String id1 = request.getParameter("id");
+        CategoryDAO CategoryDAO = new CategoryDAO();
+
         String id2 = String.valueOf(session.getAttribute("productSession"));
+        List<Category> listC = CategoryDAO.getAllCategory(); //Get List Category
 
         ProductDAO ProductDAO = new ProductDAO();
         InforDAO InforDAO = new InforDAO();
@@ -57,6 +62,7 @@ public class CompareFinal extends HttpServlet {
         request.setAttribute("hot", hot);
         request.setAttribute("favor", favor);
         request.setAttribute("infor", infor);
+        request.setAttribute("allCategory", listC);
 
         request.getRequestDispatcher("CompareFinal.jsp").forward(request, response);
     }
