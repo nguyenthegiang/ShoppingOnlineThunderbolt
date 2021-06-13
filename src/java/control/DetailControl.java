@@ -48,7 +48,7 @@ public class DetailControl extends HttpServlet {
         
         //Goi toi DAO
         ProductDAO dao = new ProductDAO();
-        Product p = dao.getProductByID(id);
+        ProductDetail p = dao.getProductDetailByID(id);
         
         CategoryDAO CategoryDAO = new CategoryDAO();
         List<Category> listC = CategoryDAO.getAllCategory();
