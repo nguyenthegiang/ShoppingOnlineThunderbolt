@@ -127,16 +127,13 @@
                                 border: 1px solid black;
                                 border-collapse: collapse;
                             }
-                            .productLink :hover{
-                                color:red;
-                                cursor:pointer;
-                            }
                         </style>
-                        <table id="" class="" style="width:50%; float:left;">
+                        <table id="" class="" style="">
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th> ${product.name} </th>
+                                    <th> ${product1.name} </th>
+                                    <th> ${product2.name} </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -144,12 +141,28 @@
                                 <td>&nbsp;</td>
                                 <td>
                                     <p class="">
-                                        ${product.description}
+                                        ${product1.description}
                                     </p>
-                                    <img style="height: 25em; width: 20em; padding:0;margin:0;" src="image/${product.imageLink}" alt="Product picture"/>
+                                    <img style="height: 25em; width: 20em; padding:0;margin:0;" src="image/${product1.imageLink}" alt="Product picture"/>
                                     <p><strong>
                                             <fmt:formatNumber type = "number" 
-                                                              maxFractionDigits = "3" value = "${product.price}"/> VND
+                                                              maxFractionDigits = "3" value = "${product1.price}"/> VND
+                                        </strong></p>
+                                    <br/>
+                                    <div class="">
+                                        <a href="product_details.html" class=""><span class=" "></span> Add to cart</a> &emsp;&emsp;&emsp;&emsp;&emsp;
+
+                                        <a href="product_details.html" class="">VIEW</a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="">
+                                        ${product2.description}
+                                    </p>
+                                    <img style="height: 25em; width: 20em; padding:0;margin:0;" src="image/${product2.imageLink}" alt="Product picture"/>
+                                    <p><strong>
+                                            <fmt:formatNumber type = "number" 
+                                                              maxFractionDigits = "3" value = "${product2.price}"/> VND
                                         </strong></p>
                                     <br/>
                                     <div class="">
@@ -162,27 +175,27 @@
                             <tr>
                                 <td>Height</td>
                                 <td>5"</td>
-                                <!--                                <td>15"</td>-->
+                                                                <td>15"</td>
                             </tr>
                             <tr>
                                 <td>Deepth</td>
                                 <td>5"</td>
-                                <!--                                <td>5"</td>-->
+                                                                <td>5"</td>
                             </tr>
                             <tr>
                                 <td>Size</td>
                                 <td>XXL</td>
-                                <!--                                <td>XL</td>-->
+                                                                <td>XL</td>
                             </tr>
                             <tr>
                                 <td>Width</td>
                                 <td>6.5"</td>
-                                <!--                                <td>6"</td>-->
+                                                                <td>6"</td>
                             </tr>
                             <tr>
                                 <td>Weight</td>
                                 <td>0.5kg</td>
-                                <!--                                <td>0.8kg</td>-->
+                                                                <td>0.8kg</td>
                             </tr>
                             <tr>
 
@@ -190,61 +203,13 @@
                         </tbody>
                     </table>
 
-                    <form style="float:right; display:inline;" class="form-inline my-2 my-lg-0" action="" method="post">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search..." oninput="searchByName(this)" value="${txtS}" name="txt">
-                    </form>
-
-                    <!--                    <div id="content" style="">
-                                            <div class="my-2 my-lg-0" style="width:100%;">
-                                                <div style="padding:20px; padding-top:10px; padding-left:50px;margin-left:10px;" class="" id=""> class="card"
-                                                    Product's image
-                                                    <img style="float:left;" width="20%;" style="padding-top:10px;" src="image/${product.imageLink}"/>
-                    
-                                                    <p style="  display: -webkit-box;
-                                                       -webkit-box-orient: vertical;
-                                                       -webkit-line-clamp: 5;  /* Number of lines displayed before it truncate */
-                                                       overflow: hidden;
-                                                       padding-top:10px;
-                                                       ">${product.name}
-                                                    </p>
-                    
-                                                </div>
-                                            </div>
-                                                                    <div style="" class=""><a href="products.html" class="">Back to Products Page</a></div>
-                                        </div>-->
-                    <br><br>
-                    <c:set var="product1" value="${product.id}" scope="session" />
-                    <div id="content" style="">
-                        <a class="productLink" href="compareFinal?id=${product.id}">
-                            <div class="my-2 my-lg-0" style="width:100%;">
-                                <div style="padding:20px; padding-top:10px; padding-left:50px;margin-left:10px;" class="" id=""> 
-                                    <img style="float:left;margin-left:10px;" width="20%;" style="padding-top:10px;" src="image/${product.imageLink}"/>
-
-                                    <p style="  display: -webkit-box;
-                                       -webkit-box-orient: vertical;
-                                       -webkit-line-clamp: 5;  /* Number of lines displayed before it truncate */
-                                       overflow: hidden;
-                                       padding-top:10px;
-                                       ">${product.name}
-                                    </p>
-
-                                </div>
-                            </div>
-                        </a> <br><br><br>
-
-                        <!--                        <div style="" class=""><a href="products.html" class="">Back to Products Page</a></div>-->
-                    </div>
-
-
 
                 </div>
 
             </div>
 
         </div>
-        <form action="compareFinal" method="GET" id="formFinal" name="formFinal">
-            <input style="display:none;" type="text" name="id" value="${product.id}"/>
-        </form>
+    
 
         <jsp:include page="Footer.jsp"></jsp:include>
 
@@ -315,12 +280,10 @@
                                 //Do Something to handle error
                             }
                         });
-                    }
-                    ;
-                    function submitForm() {
+                    };
+                    function submitForm () {
                         document.forms['formFinal'].submit();
-                    }
-                    ;
+                    };
         </script>  
 
     </body>

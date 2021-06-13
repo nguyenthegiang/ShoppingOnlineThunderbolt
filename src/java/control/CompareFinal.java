@@ -5,7 +5,9 @@
  */
 package control;
 
+import DAL.InforDAO;
 import DAL.ProductDAO;
+import entity.Information;
 import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,13 +17,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Thuan
  */
-@WebServlet(name = "CompareByAjax", urlPatterns = {"/compareByAjax"})
-public class CompareByAjax extends HttpServlet {
+@WebServlet(name = "CompareFinal", urlPatterns = {"/compareFinal"})
+public class CompareFinal extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,31 +38,27 @@ public class CompareByAjax extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
+        HttpSession session = request.getSession();
+        String id1 = request.getParameter("id");
+        String id2 = String.valueOf(session.getAttribute("product1"));
 
-        String txtSearch = request.getParameter("txt");
-        ProductDAO dao = new ProductDAO();
-        List<Product> list = dao.searchProductByName(txtSearch);
-        PrintWriter out = response.getWriter();
-        for (int i = 0; i < 4; i++) {
-            Product o = list.get(i);
-            out.println("<a href=\"compareFinal?id="+o.getId()+"\">\n"
-                    + "                            <div class=\"my-2 my-lg-0\" style=\"width:100%;\">\n"
-                    + "                                <div style=\"padding:20px; padding-top:10px; padding-left:50px;margin-left:10px;\" class=\"\" id=\"\"> \n"
-                    + "                                    <img style=\"float:left;margin-left:10px;\" width=\"20%;\" style=\"padding-top:10px;\" src=\"image/"+o.getImageLink()+"\"/>\n"
-                    + "\n"
-                    + "                                    <p style=\"  display: -webkit-box;\n"
-                    + "                                       -webkit-box-orient: vertical;\n"
-                    + "                                       -webkit-line-clamp: 5;  /* Number of lines displayed before it truncate */\n"
-                    + "                                       overflow: hidden;\n"
-                    + "                                       padding-top:10px;\n"
-                    + "                                       \">"+o.getName()+"\n"
-                    + "                                    </p>\n"
-                    + "\n"
-                    + "                                </div>\n"
-                    + "                            </div><br><br><br>\n"
-                    + "                        </a> ");
-        }
+        ProductDAO ProductDAO = new ProductDAO();
+        InforDAO InforDAO = new InforDAO();
+
+        Product hot = ProductDAO.getHotProduct(); //Get First Product
+        Product favor = ProductDAO.getFavoriteProduct(); //Get Last Product
+        Information infor = InforDAO.getInfor(); //Get Information
+        Product product1 = ProductDAO.getProductByID(id1); //Get the selected Product infor
+        Product product2 = ProductDAO.getProductByID(id2); //Get the selected Product infor
+
+        //Seding data to jsp page
+        request.setAttribute("product1", product1);
+        request.setAttribute("product2", product2);
+        request.setAttribute("hot", hot);
+        request.setAttribute("favor", favor);
+        request.setAttribute("infor", infor);
+
+        request.getRequestDispatcher("CompareFinal.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
