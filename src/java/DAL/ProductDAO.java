@@ -333,8 +333,7 @@ public class ProductDAO extends BaseDAO<Product> {
         }
         return 0;
     }
-
-    //Get Product for Detail
+    
     public Product getProductByID(String id) { //Phải để kiểu int vì khi lưu lên Session thì nó vẫn là kiểu int
         String query = "SELECT * FROM Product WHERE ProductID = ?";
         try {
@@ -343,6 +342,24 @@ public class ProductDAO extends BaseDAO<Product> {
             rs = ps.executeQuery();
             while (rs.next()) {
                 return (new Product(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink")));
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    
+    //Get Product for Detail
+    public ProductDetail getProductDetailByID(String id) { //Phải để kiểu int vì khi lưu lên Session thì nó vẫn là kiểu int
+        String query = "SELECT * \n" +
+                        "FROM Product INNER JOIN Manufacturer\n" +
+                        "ON Product.ManufacturerID = Manufacturer.ManufacturerID\n" +
+                        "WHERE ProductID = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return (new ProductDetail(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink"), rs.getString("ManufacturerName")));
             }
         } catch (Exception e) {
         }
@@ -511,6 +528,8 @@ public class ProductDAO extends BaseDAO<Product> {
 //        }
 //        ProductInManager p = dao.getProductForManager("1");
 //        System.out.println(p);
-        dao.add("a", "a", "1", "a", "1", "1", "1");
+//        dao.add("a", "a", "1", "a", "1", "1", "1");
+        
+        System.out.println(dao.getProductDetailByID("1"));
     }
 }
