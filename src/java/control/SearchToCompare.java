@@ -5,8 +5,16 @@
  */
 package control;
 
+import DAL.CategoryDAO;
+import DAL.InforDAO;
+import DAL.ProductDAO;
+import DAL.UserDAO;
+import entity.Category;
+import entity.Information;
+import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,20 +37,69 @@ public class SearchToCompare extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet SearchToCompare</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet SearchToCompare at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        request.setCharacterEncoding("UTF-8");
+
+        String txtSearch = request.getParameter("txt");
+        if (txtSearch.equals("")) {
+            response.sendRedirect("home");
+        } else {
+            //Call to DAOs
+            ProductDAO ProductDAO = new ProductDAO();
+            InforDAO InforDAO = new InforDAO();
+            CategoryDAO CategoryDAO = new CategoryDAO();
+            UserDAO UserDAO = new UserDAO();
+
+            List<Category> listC = CategoryDAO.getAllCategory(); //Get List Category
+            Product first = ProductDAO.getHotProduct(); //Get First Product
+            Product last = ProductDAO.getFavoriteProduct(); //Get Last Product
+            Information infor = InforDAO.getInfor(); //Get Information
+
+            //Paging By CategoryID
+            String CategoryID = request.getParameter("CategoryID");
+            if (CategoryID == null) { //On Load: User hasn't choosen Category
+                CategoryID = "0";
+            }
+            //Set Category ID back on JSP
+            request.setAttribute("CategoryID", CategoryID);
+
+            int CID = Integer.parseInt(CategoryID);
+
+            //Get Page number from JSP
+            String indexPage = request.getParameter("index");
+            if (indexPage == null) {
+                //On load: Page 1
+                indexPage = "1";
+            }
+
+            int index = Integer.parseInt(indexPage);
+
+            //Count number of Product According to the Category -> Number of Pages
+            int count = ProductDAO.countProductByCategory(CID);
+            int endPage = count / 6;
+            if (count % 6 != 0) {
+                //If the number of Product isn't divided by 3 -> Need 1 more Page
+                endPage++;
+            }
+
+            //List of Product to Display after Paging by Category ID
+            List<Product> listP = ProductDAO.searchProductByName(txtSearch);
+
+            //Set Data to JSP
+            request.setAttribute("allCategory", listC);
+            request.setAttribute("first", first);
+            request.setAttribute("last", last);
+            request.setAttribute("infor", infor);
+
+            request.setAttribute("listP", listP); //List Product
+            request.setAttribute("end", endPage);
+            request.setAttribute("tag", index); //Page number
+            request.setAttribute("count", count);
+            request.setAttribute("CateID", CID);
+
+            request.getRequestDispatcher("Home.jsp").forward(request, response);
         }
     }
 
