@@ -119,13 +119,26 @@
                     <div class="col-md-9 col-sm-9" style="display:inline;">
                         <h3> Products Compairsition <small class=""> 2 products are compaired </small></h3>	
                         <hr class=""/>
-
-                        <table id="" class="">
+ <style>
+      table,
+      th,
+      td {
+        padding: 5px;
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+    </style>
+                        <table id="" class="" style="">
                             <thead>
                                 <tr>
                                     <th>Features</th>
                                     <th>Product1 name here </th>
-                                    <th>Product2 name here</th>
+                                    <th>
+                                    <form class="form-inline my-2 my-lg-0" action="searchToCompare" method="post">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search a product" aria-label="Search..." oninput="searchByName(this)" value="${txtS}" name="txt">
+                    <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+                                    </form> 
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
