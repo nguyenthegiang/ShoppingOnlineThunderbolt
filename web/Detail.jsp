@@ -80,6 +80,14 @@
                                                     ${detail.description}
                                                 </p></dd>
                                         </dl>
+                                                
+                                        <hr>
+                                        <dl class="item-property">
+                                            <dt>Manufacturer</dt>
+                                            <dd><p>
+                                                    ${detail.manufacturer}
+                                                </p></dd>
+                                        </dl>
 
                                         <hr>
                                         <div class="row">
