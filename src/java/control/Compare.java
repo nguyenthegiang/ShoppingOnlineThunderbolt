@@ -56,9 +56,11 @@ public class Compare extends HttpServlet {
         Product favor = ProductDAO.getFavoriteProduct(); //Get Last Product
         Information infor = InforDAO.getInfor(); //Get Information
         Product product = ProductDAO.getProductByID(id); //Get the selected Product infor
-
+        List products = ProductDAO.getAllProduct();
+        
         //Seding data to jsp page
         request.setAttribute("product", product);
+        request.setAttribute("products", products);
         request.setAttribute("hot", hot);
         request.setAttribute("favor", favor);
         request.setAttribute("infor", infor);

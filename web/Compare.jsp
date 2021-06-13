@@ -128,18 +128,11 @@
                                 border-collapse: collapse;
                             }
                         </style>
-                        <table id="" class="" style="">
+                        <table id="" class="" style="width:50%; float:left;">
                             <thead>
                                 <tr>
                                     <th></th>
                                     <th> ${product.name} </th>
-                                <th>
-                                    <form class="form-inline my-2 my-lg-0" action="" method="post">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search..." oninput="searchByName(this)" value="${txtS}" name="txt">
-                    <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
-
-                </form>
-                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -161,54 +154,61 @@
                                         <a href="product_details.html" class="">VIEW</a>
                                     </div>
                                 </td>
-                                <td>
-                                    <p class="">
-                                        with the latest fashion tendencies - that is why our 
-                                        goods are so popular and we have a great number of faithful customers all over the country.
-                                    </p>
-                                    <img src="assets/img/e.jpg" alt=""/>
-
-                                    <form class="">
-                                        <h3> $140.00</h3>
-                                        <br/>
-                                        <div class="">
-                                            <a href="product_details.html" class=""><span class=""></span> Add to cart</a>
-                                            <a href="product_details.html" class="">VIEW</a>
-                                        </div>
-                                    </form>
-                                </td>
                             </tr>
                             <tr>
                                 <td>Height</td>
                                 <td>5"</td>
-                                <td>15"</td>
+                                <!--                                <td>15"</td>-->
                             </tr>
                             <tr>
                                 <td>Deepth</td>
                                 <td>5"</td>
-                                <td>5"</td>
+                                <!--                                <td>5"</td>-->
                             </tr>
                             <tr>
                                 <td>Size</td>
                                 <td>XXL</td>
-                                <td>XL</td>
+                                <!--                                <td>XL</td>-->
                             </tr>
                             <tr>
                                 <td>Width</td>
                                 <td>6.5"</td>
-                                <td>6"</td>
+                                <!--                                <td>6"</td>-->
                             </tr>
                             <tr>
                                 <td>Weight</td>
                                 <td>0.5kg</td>
-                                <td>0.8kg</td>
+                                <!--                                <td>0.8kg</td>-->
                             </tr>
                         </tbody>
-                    </table>		
-                    <div class=""><a href="products.html" class="">Back to Products Page</a></div>
+                    </table>
+
+                                        <form style="float:right; display:inline;" class="form-inline my-2 my-lg-0" action="" method="post">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search..." oninput="searchByName(this)" value="${txtS}" name="txt">
+                        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+
+                    <div id="content" style="">
+                        <div class="my-2 my-lg-0" style="width:100%;">
+                            <div style="padding:20px; padding-top:50px; padding-left:50px;margin-left:10px;" class="" id=""> <!--class="card"-->
+                                <!--Product's image-->
+                                <img style="float:left;" width="20%;" style="padding-top:10px;" src="image/${product.imageLink}"/>
+
+                                <p style="  white-space: nowrap;
+                                   overflow: hidden;
+                                   text-overflow: ellipsis;
+                                   max-width: 600px;">${product.name}
+                                </p>
+
+                            </div>
+                        </div>
+<!--                        <div style="" class=""><a href="products.html" class="">Back to Products Page</a></div>-->
+                    </div>
                 </div>
+
             </div>
-        </div>
+
+        </div
 
         <jsp:include page="Footer.jsp"></jsp:include>
 
@@ -266,7 +266,7 @@
                     function searchByName(param) {
                         var txtSearch = param.value;
                         $.ajax({
-                            url: "/Assignment_ElectronicShop_Pro/searchAjax",
+                            url: "/Assignment_ElectronicShop_Pro/compareByAjax",
                             type: "get", //send it through get method
                             data: {
                                 txt: txtSearch
@@ -281,6 +281,6 @@
                         });
                     }
         </script>  
-        
+
     </body>
 </html>
