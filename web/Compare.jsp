@@ -1,4 +1,4 @@
-
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -117,95 +117,97 @@
             <div class="row">
                 <jsp:include page="Left.jsp"></jsp:include>
                     <div class="col-md-9 col-sm-9" style="display:inline;">
-                        <h3> Products Compairsition <small class=""> 2 products are compaired </small></h3>	
+                        <h3> Products Comparison <small class="">&nbsp;&nbsp;&nbsp;&nbsp;Search for another product to compare </small></h3>	
                         <hr class=""/>
- <style>
-      table,
-      th,
-      td {
-        padding: 5px;
-        border: 1px solid black;
-        border-collapse: collapse;
-      }
-    </style>
+                        <style>
+                            table,
+                            th,
+                            td {
+                                padding: 5px;
+                                border: 1px solid black;
+                                border-collapse: collapse;
+                            }
+                        </style>
                         <table id="" class="" style="">
                             <thead>
                                 <tr>
                                     <th>Features</th>
-                                    <th>Product1 name here </th>
-                                    <th>
+                                    <th> ${product.name} </th>
+                                <th>
                                     <form class="form-inline my-2 my-lg-0" action="searchToCompare" method="post">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search a product" aria-label="Search..." oninput="searchByName(this)" value="${txtS}" name="txt">
-                    <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+                                        <input class="form-control mr-sm-2" type="search" placeholder="Search a product" aria-label="Search..." oninput="searchByName(this)" value="${txtS}" name="txt">
+                                        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
                                     </form> 
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td>
-                                        <p class="">
-                                            with the latest fashion tendencies - that is why our 
-                                            goods are so popular and we have a great number of faithful customers all over the country.
-                                        </p>
-                                        <img src="assets/img/d.jpg" alt=""/>
-                                        <form class="">
-                                            <h3> $140.00</h3><br/>
-                                            <div class="">
-                                                <a href="product_details.html" class=""><span class=" "></span> Add to cart</a>
-                                                <a href="product_details.html" class="">VIEW</a>
-                                            </div>
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <p class="">
-                                            with the latest fashion tendencies - that is why our 
-                                            goods are so popular and we have a great number of faithful customers all over the country.
-                                        </p>
-                                        <img src="assets/img/e.jpg" alt=""/>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>
+                                    <p class="">
+                                        ${product.description}
+                                    </p>
+                                    <img style="height: 25em; width: 20em; padding:0;margin:0;" src="image/${product.imageLink}" alt="Product picture"/>
+                                    <p><strong>
+                                            <fmt:formatNumber type = "number" 
+                                                              maxFractionDigits = "3" value = "${product.price}"/> VND
+                                        </strong></p>
+                                    <br/>
+                                    <div class="">
+                                        <a href="product_details.html" class=""><span class=" "></span> Add to cart</a> &emsp;&emsp;&emsp;&emsp;&emsp;
 
-                                        <form class="">
-                                            <h3> $140.00</h3>
-                                            <br/>
-                                            <div class="">
-                                                <a href="product_details.html" class=""><span class=""></span> Add to cart</a>
-                                                <a href="product_details.html" class="">VIEW</a>
-                                            </div>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Height</td>
-                                    <td>5"</td>
-                                    <td>15"</td>
-                                </tr>
-                                <tr>
-                                    <td>Deepth</td>
-                                    <td>5"</td>
-                                    <td>5"</td>
-                                </tr>
-                                <tr>
-                                    <td>Size</td>
-                                    <td>XXL</td>
-                                    <td>XL</td>
-                                </tr>
-                                <tr>
-                                    <td>Width</td>
-                                    <td>6.5"</td>
-                                    <td>6"</td>
-                                </tr>
-                                <tr>
-                                    <td>Weight</td>
-                                    <td>0.5kg</td>
-                                    <td>0.8kg</td>
-                                </tr>
-                            </tbody>
-                        </table>		
-                        <div class=""><a href="products.html" class="">Back to Products Page</a></div>
-                    </div>
+                                        <a href="product_details.html" class="">VIEW</a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="">
+                                        with the latest fashion tendencies - that is why our 
+                                        goods are so popular and we have a great number of faithful customers all over the country.
+                                    </p>
+                                    <img src="assets/img/e.jpg" alt=""/>
+
+                                    <form class="">
+                                        <h3> $140.00</h3>
+                                        <br/>
+                                        <div class="">
+                                            <a href="product_details.html" class=""><span class=""></span> Add to cart</a>
+                                            <a href="product_details.html" class="">VIEW</a>
+                                        </div>
+                                    </form>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Height</td>
+                                <td>5"</td>
+                                <td>15"</td>
+                            </tr>
+                            <tr>
+                                <td>Deepth</td>
+                                <td>5"</td>
+                                <td>5"</td>
+                            </tr>
+                            <tr>
+                                <td>Size</td>
+                                <td>XXL</td>
+                                <td>XL</td>
+                            </tr>
+                            <tr>
+                                <td>Width</td>
+                                <td>6.5"</td>
+                                <td>6"</td>
+                            </tr>
+                            <tr>
+                                <td>Weight</td>
+                                <td>0.5kg</td>
+                                <td>0.8kg</td>
+                            </tr>
+                        </tbody>
+                    </table>		
+                    <div class=""><a href="products.html" class="">Back to Products Page</a></div>
                 </div>
             </div>
+        </div>
 
         <jsp:include page="Footer.jsp"></jsp:include>
 
