@@ -59,7 +59,7 @@ public class DetailControl extends HttpServlet {
         
         //Day len JSP
         request.setAttribute("allCategory", listC);
-        
+
         request.setAttribute("hot", hot);
         request.setAttribute("favor", favor);
         

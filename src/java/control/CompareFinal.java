@@ -40,7 +40,7 @@ public class CompareFinal extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         String id1 = request.getParameter("id");
-        String id2 = String.valueOf(session.getAttribute("product1"));
+        String id2 = String.valueOf(session.getAttribute("productSession"));
 
         ProductDAO ProductDAO = new ProductDAO();
         InforDAO InforDAO = new InforDAO();

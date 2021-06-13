@@ -191,11 +191,11 @@
                     </table>
 
                     <form style="float:right; display:inline;" class="form-inline my-2 my-lg-0" action="" method="post">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search..." oninput="searchByName(this)" value="${txtS}" name="txt">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search a product" aria-label="Search..." oninput="searchByName(this)" value="${txtS}" name="txt">
                     </form>
 
-                    <!--                    <div id="content" style="">
-                                            <div class="my-2 my-lg-0" style="width:100%;">
+                                        <div id="content" style="">
+<!--                                            <div class="my-2 my-lg-0" style="width:100%;">
                                                 <div style="padding:20px; padding-top:10px; padding-left:50px;margin-left:10px;" class="" id=""> class="card"
                                                     Product's image
                                                     <img style="float:left;" width="20%;" style="padding-top:10px;" src="image/${product.imageLink}"/>
@@ -210,11 +210,11 @@
                     
                                                 </div>
                                             </div>
-                                                                    <div style="" class=""><a href="products.html" class="">Back to Products Page</a></div>
-                                        </div>-->
+                                                                    <div style="" class=""><a href="products.html" class="">Back to Products Page</a></div>-->
+                                        </div>
                     <br><br>
-                    <c:set var="product1" value="${product.id}" scope="session" />
-                    <div id="content" style="">
+                    <c:set var="productSession" value="${product.id}" scope="session" />
+<!--                    <div id="content" style="">
                         <a class="productLink" href="compareFinal?id=${product.id}">
                             <div class="my-2 my-lg-0" style="width:100%;">
                                 <div style="padding:20px; padding-top:10px; padding-left:50px;margin-left:10px;" class="" id=""> 
@@ -232,8 +232,8 @@
                             </div>
                         </a> <br><br><br>
 
-                        <!--                        <div style="" class=""><a href="products.html" class="">Back to Products Page</a></div>-->
-                    </div>
+                                                <div style="" class=""><a href="products.html" class="">Back to Products Page</a></div>
+                    </div>-->
 
 
 

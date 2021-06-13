@@ -117,7 +117,7 @@
             <div class="row">
                 <jsp:include page="Left.jsp"></jsp:include>
                     <div class="col-md-9 col-sm-9" style="display:inline;">
-                        <h3> Products Comparison <small class="">&nbsp;&nbsp;&nbsp;&nbsp;Search for another product to compare </small></h3>	
+                        <h3> Products Comparison <small class="">&nbsp;&nbsp;&nbsp;&nbsp; </small></h3>	
                         <hr class=""/>
                         <style>
                             table,
