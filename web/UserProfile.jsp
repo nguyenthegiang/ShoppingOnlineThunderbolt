@@ -15,15 +15,15 @@
     <body>
         <%-- Display username --%>
         <h2>Username: ${sessionScope.acc.user}</h2>
-        
+
         <!-- Message for notification -->
         <c:if test="${requestScope.message ne null}">
             <h3>${requestScope.message}</h3>
         </c:if>       
-        
+
         <%-- Display user email --%>
         <h2>Email: ${sessionScope.acc.email}</h2>
-        
+
         <%-- Display user role --%>
         <c:choose>
             <c:when test="${sessionScope.acc.isSell==1}">
@@ -33,27 +33,32 @@
                 <h2>Role: Customer</h2>
             </c:otherwise>
         </c:choose>
-                
+
         <%-- Display user status --%>
         Status:
-        <c:if test="${sessionScope.acc.status == 1}">
-            <span class="active">Active</span>
-        </c:if>
-        <c:if test="${sessionScope.acc.status != 1}">
-            <span class="deactive">Locked</span>
-        </c:if>
+        <c:choose>
+            <c:when test="${sessionScope.acc.status == 1}">
+                <span class="active">Active</span>
+            </c:when> 
+            <c:when test="${sessionScope.acc.status == 3}">
+                <span class="login-facebook">Login with Facebook</span>
+            </c:when>
+            <c:when test="${sessionScope.acc.status == 4}">
+                <span class="unverified">Unverified</span>
+            </c:when>
+        </c:choose>      
         <br><br>
-        
+
         <%-- Link to change user password --%>
         <div class="change-password">
             <a href="confirm-change-password">Change password</a>
         </div>
         <br><br>
-        
+
         <%-- Link to return to home page --%>
         <a href="home">Back to home page</a>
         <br><br>
-        
+
         <%-- Link to view order history --%>
         <a href="#">Your orders</a>
         <br><br>
