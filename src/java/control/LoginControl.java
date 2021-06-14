@@ -146,42 +146,49 @@ public class LoginControl extends HttpServlet {
             //Code phần remember me
             String remember = request.getParameter("remember");
             //        Lấy về username và password, nếu tồn tại thì đẩy về home 
-            
+
             Account a = dao.login(username, password);
             if (a == null) {
                 request.setAttribute("mess", "Wrong username or password");
                 request.getRequestDispatcher("Login.jsp").forward(request, response);
             } else {
-                
-                session.setAttribute("acc", a);
 
-//            Bắt đầu code ở đây
-                //Lưu Account lên trên Cookie
-                Cookie u = new Cookie("userC", username);
-                Cookie p = new Cookie("passC", password);
-
-                //Code Remember Me
-                u.setMaxAge(60 * 60);
-                if (remember != null) {
-                    p.setMaxAge(60 * 60); //Nếu ng dùng Click Remember Me -> Lưu Password
-                } else {
-                    p.setMaxAge(0); //Ko -> Lưu Username thôi
+                // not allow locked account to login
+                if (a.getStatus() == 2) {
+                    request.setAttribute("mess", "Your Account is locked!");
+                    request.getRequestDispatcher("Login.jsp").forward(request, response);
                 }
-                //Xét thời gian tồn tại cho Cookie
+                
+                // login active account, unverified account
+                if (a.getStatus() != 2) {
+                    session.setAttribute("acc", a);
+                    
+                    //Lưu Account lên trên Cookie
+                    Cookie u = new Cookie("userC", username);
+                    Cookie p = new Cookie("passC", password);
 
-                //Lưu cookie lên trên trình duyệt: trg hợp này là Chrome
-                response.addCookie(u);
-                response.addCookie(p);
+                    //Code Remember Me
+                    u.setMaxAge(60 * 60);
+                    if (remember != null) {
+                        p.setMaxAge(60 * 60); //Nếu ng dùng Click Remember Me -> Lưu Password
+                    } else {
+                        p.setMaxAge(0); //Ko -> Lưu Username thôi
+                    }
+                    //Xét thời gian tồn tại cho Cookie
 
-                if (a.getIsAdmin() == 1 || a.getIsSell() == 1) {
-                    //Nếu là Admin thì chuyển về trang DashBoard
-                    response.sendRedirect("dashBoard");
-                } else {
-                    response.sendRedirect("home");
+                    //Lưu cookie lên trên trình duyệt: trg hợp này là Chrome
+                    response.addCookie(u);
+                    response.addCookie(p);
+
+                    if (a.getIsAdmin() == 1 || a.getIsSell() == 1) {
+                        //Nếu là Admin thì chuyển về trang DashBoard
+                        response.sendRedirect("dashBoard");
+                    } else {
+                        response.sendRedirect("home");
+                    }
                 }
             }
         }
-
     }
 
     /**
