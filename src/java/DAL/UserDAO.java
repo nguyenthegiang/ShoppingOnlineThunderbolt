@@ -57,7 +57,7 @@ public class UserDAO extends BaseDAO<Account> {
      * @param activeCode: active code of the new account
      */
     public void signUp(String user, String pass, String email, String activeCode) {
-        String query = "INSERT INTO Users VALUES (?, ?, ?, ?, 0, 0, 2);";
+        String query = "INSERT INTO Users VALUES (?, ?, ?, ?, 0, 0, 4);";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, user);
