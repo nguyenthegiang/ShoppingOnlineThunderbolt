@@ -16,6 +16,7 @@ GO
 INSERT INTO UserStatus VALUES (N'Active');
 INSERT INTO UserStatus VALUES (N'Locked');
 INSERT INTO UserStatus VALUES (N'FB Login');
+INSERT INTO UserStatus VALUES (N'Unverified');
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
