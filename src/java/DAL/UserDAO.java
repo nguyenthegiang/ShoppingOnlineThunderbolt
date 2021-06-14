@@ -22,7 +22,7 @@ public class UserDAO extends BaseDAO<Account> {
 
     
     PreparedStatement ps = null; //...
-    ResultSet rs = null; //Nhận kết quả trả về
+    ResultSet rs = null; //Get the results returned
 
     /**
      * For login an account to the website
