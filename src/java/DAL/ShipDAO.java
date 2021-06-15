@@ -17,8 +17,8 @@ import java.util.List;
  */
 public class ShipDAO extends BaseDAO<Account> {
 
-    PreparedStatement ps = null; //...
-    ResultSet rs = null; //Nhận kết quả trả về
+    PreparedStatement ps = null; 
+    ResultSet rs = null; 
 
     /**
      * get every shipping orders
@@ -26,7 +26,7 @@ public class ShipDAO extends BaseDAO<Account> {
      */
     public List<Ship> getAllShip() {
         List<Ship> list = new ArrayList<>();
-        String query = "select * from Ship";
+        String query = "SELECT * FROM Ship";
         try {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
@@ -44,7 +44,7 @@ public class ShipDAO extends BaseDAO<Account> {
      * @return an int number 
      */
     public int getShipPriceByCityName(String cityName) {
-        String query = "select ShipPrice from Ship where CityName = ?";
+        String query = "SELECT ShipPrice FROM Ship WHERE CityName = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, cityName);
@@ -59,10 +59,14 @@ public class ShipDAO extends BaseDAO<Account> {
 
     public static void main(String[] args) {
         ShipDAO ShipDAO = new ShipDAO();
+        
+        /*---------Test Case for getAllShip() method---------*/
 //        List<Ship> list = ShipDAO.getAllShip();
 //        for (Ship ship : list) {
 //            System.out.println(ship);
 //        }
+        
+        /*---------Test Case for getShipPriceByCityName() method---------*/
         System.out.println(ShipDAO.getShipPriceByCityName("Hà Nội"));
     }
 }
