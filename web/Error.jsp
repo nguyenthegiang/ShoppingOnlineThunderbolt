@@ -10,15 +10,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Error</title>
+        <!--Inserting style sheet to this html file-->
+        <link href="css/Error.css" rel="stylesheet" type="text/css"/>
+        <!--Inserting Bootstrap link-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     </head>
     <body>
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <img src="image/Other/Error.jpg" alt="" style="height: 50em"/>
-                    <a href="home">Back to home page</a>
-                </div>
-            </div>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <button class="btn btn-success btn-block" id="btnBack" type="button" ><a href="home">Back to home page</a></button>
         </div>
     </body>
 </html>
