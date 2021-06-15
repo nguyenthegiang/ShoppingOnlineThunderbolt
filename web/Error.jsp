@@ -12,7 +12,13 @@
         <title>Error</title>
     </head>
     <body>
-        <h1>Page not found!</h1>
-        <a href="home">Back to home page</a>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="image/Other/Error.jpg" alt="" style="height: 50em"/>
+                    <a href="home">Back to home page</a>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

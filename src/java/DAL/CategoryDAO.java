@@ -18,20 +18,17 @@ import java.util.List;
  */
 public class CategoryDAO extends BaseDAO<Category> {
 
-    PreparedStatement ps = null; //...
-    ResultSet rs = null; //Nhận kết quả trả về
+    PreparedStatement ps = null; 
+    ResultSet rs = null; 
 
-    //Tạo 1 Hàm để Load tất cả các Category lên
     public List<Category> getAllCategory() {
-        List<Category> list = new ArrayList<>(); //Tạo 1 List để truyền dữ liệu
-        String query = "SELECT * FROM Category"; //Viết query từ DB rồi copy sang 
+        List<Category> list = new ArrayList<>(); 
+        String query = "SELECT * FROM Category"; 
         try {
-            //Mở kết nối vs SQL Server
-            ps = connection.prepareStatement(query); //Ném query vào
-            rs = ps.executeQuery(); // Chạy query
-            //RS chính là bảng result -> Lấy dữ liệu của bảng result và đẩy vào List
-            while (rs.next() /*Next từng DÒNG tới cuối bảng*/) {
-                list.add(new Category(rs.getInt("CategoryID"), rs.getString("CategoryName"), rs.getString("icon"))); //Add vào
+            ps = connection.prepareStatement(query); 
+            rs = ps.executeQuery(); 
+            while (rs.next()) {
+                list.add(new Category(rs.getInt("CategoryID"), rs.getString("CategoryName"), rs.getString("icon")));
             }
         } catch (Exception e) {
         }
@@ -45,8 +42,8 @@ public class CategoryDAO extends BaseDAO<Category> {
      * @return 
      */
     public String getCateNameByID(int id) {
-        String query = "select CategoryName from Category\n"
-                + "where CategoryID = ?"; 
+        String query = "SELECT CategoryName FROM Category\n"
+                + "WHERE CategoryID = ?"; 
         try {
             ps = connection.prepareStatement(query); 
             ps.setInt(1, id);
@@ -61,10 +58,14 @@ public class CategoryDAO extends BaseDAO<Category> {
     
     public static void main(String[] args) {
         CategoryDAO dao = new CategoryDAO();
-//        System.out.println(dao.getCateNameByID(1));
-        List<Category> list = dao.getAllCategory();
-        for (Category category : list) {
-            System.out.println(category);
-        }
+        
+        /*---------Test Case for getAllCategory() method---------*/
+//        List<Category> list = dao.getAllCategory();
+//        for (Category category : list) {
+//            System.out.println(category);
+//        }
+        
+        /*---------Test Case for getAllCategory() method---------*/
+        System.out.println(dao.getCateNameByID(1));        
     }
 }
