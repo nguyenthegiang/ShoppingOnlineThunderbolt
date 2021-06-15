@@ -1,0 +1,23 @@
+body{
+    background-image:url(../image/Other/Error.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+a{
+    z-index: 2;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: initial;
+}
+
+#btnBack{
+    background-image: linear-gradient(to right, #00f79c, #04f1f5);
+    width: 200px; 
+    margin: 0 0 0 23em; 
+    padding: 15px; 
+    border-radius: 8px;
+    border-style: hidden;
+}
