@@ -59,7 +59,7 @@ public class CategoryDAO extends BaseDAO<Category> {
     public static void main(String[] args) {
         CategoryDAO dao = new CategoryDAO();
         
-//        /*---------Test Case for getAllCategory() method---------*/
+        /*---------Test Case for getAllCategory() method---------*/
 //        List<Category> list = dao.getAllCategory();
 //        for (Category category : list) {
 //            System.out.println(category);
