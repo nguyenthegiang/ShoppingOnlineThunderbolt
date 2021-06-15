@@ -26,10 +26,10 @@ public class CartDAO extends BaseDAO<Account> {
  */
     public List<Cart> getCart(int id) {
         List<Cart> list = new ArrayList<>();
-        String query = "select Product.ProductID, Product.ProductName, Product.Description, Product.SellPrice, Product.imageLink, Cart.Amount\n"
-                + "from Cart inner join Product\n"
-                + "on Cart.ProductID = Product.ProductID\n"
-                + "where Cart.UserID = ?";
+        String query = "SELECT Product.ProductID, Product.ProductName, Product.Description, Product.SellPrice, Product.imageLink, Cart.Amount\n"
+                + "FROM Cart INNER JOIN Product\n"
+                + "ON Cart.ProductID = Product.ProductID\n"
+                + "WHERE Cart.UserID = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, id);
@@ -51,10 +51,10 @@ public class CartDAO extends BaseDAO<Account> {
      */
     public int countCart(int id) {
         int count = 0;
-        String query = "select count(*)\n"
-                + "from Cart inner join Product \n"
-                + "on Cart.ProductID = Product.ProductID\n"
-                + "where Cart.UserID = ?";
+        String query = "SELECT COUNT(*)\n"
+                + "FROM Cart INNER JOIN Product \n"
+                + "ON Cart.ProductID = Product.ProductID\n"
+                + "WHERE Cart.UserID = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, id);
@@ -73,8 +73,8 @@ public class CartDAO extends BaseDAO<Account> {
      */
     public int countAllCart() {
         int count = 0;
-        String query = "select count(*)\n"
-                + "from Cart group by UserID";
+        String query = "SELECT COUNT(*)\n"
+                + "FROM Cart GROUP BY UserID";
         try {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
@@ -99,9 +99,9 @@ public class CartDAO extends BaseDAO<Account> {
             List<Cart> list = dao.getCart(userID);
             for (Cart cart : list) {
                 if (cart.getP().getId() == productID) {
-                    String query = "update Cart\n"
-                            + "set Amount = ?\n"
-                            + "where UserID = ? and ProductID = ?";
+                    String query = "UPDATE Cart\n"
+                            + "SET Amount = ?\n"
+                            + "WHERE UserID = ? AND ProductID = ?";
                     try {
                         ps = connection.prepareStatement(query);
                         ps.setInt(1, cart.getAmount() + amount);
@@ -132,9 +132,9 @@ public class CartDAO extends BaseDAO<Account> {
 
     //Minus 1 amount from Product after 1 Customer Add to cart
     public void delete1Amount(int ProductID) {
-        String query = "update Product\n"
-                + "set Amount = Amount - 1\n"
-                + "where ProductID = ?";
+        String query = "UPDATE Product\n"
+                + "SET Amount = Amount - 1\n"
+                + "WHERE ProductID = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, ProductID);
@@ -145,9 +145,9 @@ public class CartDAO extends BaseDAO<Account> {
 
     //Count the amount of a product to see if it is out of stock
     public int countAmountProduct(int ProductID) {
-        String query = "select amount\n"
-                + "from Product\n"
-                + "where ProductID = ?";
+        String query = "SELECT Amount\n"
+                + "FROM Product\n"
+                + "WHERE ProductID = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, ProductID);
@@ -166,7 +166,7 @@ public class CartDAO extends BaseDAO<Account> {
      * @return number of products in cart of a particular user
      */
     public int countNumCart(int userID) {
-        String query = "select count(*) from Cart where UserID = ?";
+        String query = "SELECT COUNT(*) FROM Cart WHERE UserID = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, userID);
@@ -184,7 +184,7 @@ public class CartDAO extends BaseDAO<Account> {
      * @param UserID 
      */
     public void deleteCart(int UserID) {
-        String query = "delete from Cart where UserID = ?";
+        String query = "DELETE FROM Cart WHERE UserID = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, UserID);
@@ -199,7 +199,7 @@ public class CartDAO extends BaseDAO<Account> {
      * @param ProductID 
      */
     public void deleteProductCart(int UserID, int ProductID) {
-        String query = "delete from cart where UserID = ? and ProductID = ?";
+        String query = "DELETE FROM Cart WHERE UserID = ? AND ProductID = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, UserID);
@@ -211,20 +211,47 @@ public class CartDAO extends BaseDAO<Account> {
 
     public static void main(String[] args) {
         CartDAO CartDAO = new CartDAO();
-        //int count = CartDAO.countCart(1);
-        //System.out.println(count);
-        //CartDAO.addToCart(2, 1);
-//        System.out.println(CartDAO.countNumCart(1));
-
-        //CartDAO.addToCart(1, 5);
-        //CartDAO.deleteCart(1);
+        
+        /*---------Test Case for getCart() method---------*/
 //        List<Cart> list = CartDAO.getCart(9);
 //        for (Cart cart : list) {
 //            System.out.println(cart);
 //        }
-//        CartDAO.deleteProductCart(8, 2);
-//        CartDAO.addToCart(1, 20, 1);
+        
+        /*---------Test Case for countCart() method---------*/
+//        int count = CartDAO.countCart(8);
+//        System.out.println(count);
 
-        System.out.println(CartDAO.countAllCart());
+        /*---------Test Case for countAllCart() method---------*/
+//        System.out.println(CartDAO.countAllCart());
+
+        /*---------Test Case for addToCart() method---------*/
+//        CartDAO.addToCart(2, 1, 1);
+//        int count = CartDAO.countCart(2);
+//        System.out.println(count);
+
+        /*---------Test Case for delete1Amount() method---------*/
+//        System.out.println("Before: " + CartDAO.countAmountProduct(1));
+//        CartDAO.delete1Amount(1);
+//        System.out.println("After: " + CartDAO.countAmountProduct(1));
+
+        /*---------Test Case for countAmountProduct() method---------*/
+//        System.out.println(CartDAO.countAmountProduct(1));
+
+        /*---------Test Case for countNumCart() method---------*/
+//        System.out.println(CartDAO.countNumCart(7));
+
+        /*---------Test Case for deleteCart() method---------*/
+//        CartDAO.addToCart(1, 5, 1);
+//        System.out.println("Before: " + CartDAO.countNumCart(1));
+//        CartDAO.deleteCart(1);
+//        System.out.println("After: " + CartDAO.countNumCart(1));
+        
+        /*---------Test Case for deleteProductCart() method---------*/
+        CartDAO.addToCart(7, 12, 1);
+        System.out.println("Before: " + CartDAO.countNumCart(7));
+        CartDAO.deleteProductCart(7, 12);
+        System.out.println("After: " + CartDAO.countNumCart(7));
+
     }
 }
