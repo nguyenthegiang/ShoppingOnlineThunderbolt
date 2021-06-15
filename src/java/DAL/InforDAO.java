@@ -16,8 +16,8 @@ import java.sql.ResultSet;
  */
 public class InforDAO extends BaseDAO<Information>{
         
-    PreparedStatement ps = null; //...
-    ResultSet rs = null; //Nhận kết quả trả về
+    PreparedStatement ps = null; 
+    ResultSet rs = null; 
    
     /**
      * 
@@ -28,7 +28,7 @@ public class InforDAO extends BaseDAO<Information>{
         try {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
-            while (rs.next()) { //Chỉ next 1 lần thôi -> chỉ cần return về object là xong
+            while (rs.next()) {
                 return new Information(rs.getString(1),
                         rs.getString(2),
                         rs.getString(3),
@@ -38,5 +38,12 @@ public class InforDAO extends BaseDAO<Information>{
         } catch (Exception e) {
         }
         return null;
+    }
+    
+    public static void main(String[] args) {
+        InforDAO dao = new InforDAO();
+        
+        /*---------Test Case for getInfor() method---------*/
+        System.out.println(dao.getInfor());
     }
 }

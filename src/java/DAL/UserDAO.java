@@ -296,6 +296,11 @@ public class UserDAO extends BaseDAO<Account> {
 
     public static void main(String[] args) {
         UserDAO UserDAO = new UserDAO();
+        
+        /*---------Test Case for getAllCategory() method---------*/
+        Account acc = UserDAO.login("nguyenthegiang", "nguyenthegiang");
+        System.out.println(acc);
+        
         //UserDAO.signUp("dinhthanhhoang", "dinhthanhhoang");
 
 //        List<Account> list = UserDAO.getAllAccounts();
@@ -308,8 +313,9 @@ public class UserDAO extends BaseDAO<Account> {
 //        Account x = UserDAO.getAccountByID("1");
 //        System.out.println(x);
 //        UserDAO.editAccount("9", "alo", "loa", "1", "1")
-        Account a = UserDAO.getAccountByEmail("a");
-        System.out.println(a);
-        System.out.println(UserDAO.countAllAccount());
+
+//        Account a = UserDAO.getAccountByEmail("a");
+//        System.out.println(a);
+//        System.out.println(UserDAO.countAllAccount());
     }
 }
