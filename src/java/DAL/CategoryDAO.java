@@ -42,8 +42,8 @@ public class CategoryDAO extends BaseDAO<Category> {
      * @return 
      */
     public String getCateNameByID(int id) {
-        String query = "select CategoryName from Category\n"
-                + "where CategoryID = ?"; 
+        String query = "SELECT CategoryName FROM Category\n"
+                + "WHERE CategoryID = ?"; 
         try {
             ps = connection.prepareStatement(query); 
             ps.setInt(1, id);
@@ -59,13 +59,13 @@ public class CategoryDAO extends BaseDAO<Category> {
     public static void main(String[] args) {
         CategoryDAO dao = new CategoryDAO();
         
+//        /*---------Test Case for getAllCategory() method---------*/
+//        List<Category> list = dao.getAllCategory();
+//        for (Category category : list) {
+//            System.out.println(category);
+//        }
+        
         /*---------Test Case for getAllCategory() method---------*/
-        List<Category> list = dao.getAllCategory();
-        for (Category category : list) {
-            System.out.println(category);
-        }
-        
-//        System.out.println(dao.getCateNameByID(1));
-        
+        System.out.println(dao.getCateNameByID(1));        
     }
 }
