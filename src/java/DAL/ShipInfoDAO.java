@@ -94,7 +94,7 @@ public class ShipInfoDAO extends BaseDAO<ShipInfo>{
         String query = "INSERT INTO ShipInfo VALUES (?, ?, ?, ?, ?, ?);";
         try {
             ps = connection.prepareStatement(query);
-            //Set dữ liệu vào dấu ?
+            //Set data to the "?"
             ps.setInt(1, shipInfo.getOrderId());
             ps.setString(2, shipInfo.getCustomerName());
             ps.setString(3, shipInfo.getShippingAddress());

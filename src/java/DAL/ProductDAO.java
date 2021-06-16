@@ -20,17 +20,17 @@ import java.util.List;
 public class ProductDAO extends BaseDAO<Product> {
 
     PreparedStatement ps = null; //...
-    ResultSet rs = null; //Nhận kết quả trả về
+    ResultSet rs = null; //Get the results returned
 
-    //1 hàm để Load Tất cả các Animal lên -> Hàm này sẽ phải trả về 1 List các Animal
+    //1 function to Load All Animals -> This function will have to return 1 List of Animals
     public List<Product> getAllProduct() {
         List<Product> list = new ArrayList<>();
         String query = "SELECT * FROM Product";
         try {
-            ps = connection.prepareStatement(query);//ném query sang bên SQL server
-            rs = ps.executeQuery();//Chạy câu lệnh query, nhận kết quả trả về
+            ps = connection.prepareStatement(query);//Throw the query to the SQL server 
+            rs = ps.executeQuery();//Run the query, get the results returned
 
-            //Giờ đây, câu lệnh đã đc chạy, rs là bảng Result -> Giờ phải lấy dữ liệu từ bảng rs và cho vào List
+            //Now the command has been run, rs is the Result table -> Now have to get the data from the rs table and put it in the List
             while (rs.next()) {
                 list.add(new Product(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink")));
             }
@@ -86,7 +86,7 @@ public class ProductDAO extends BaseDAO<Product> {
      * @param id
      * @return the list of products of a particular seller
      */
-    public List<Product> getProductBySellID(int id) { //Phải để kiểu int vì khi lưu lên Session thì nó vẫn là kiểu int
+    public List<Product> getProductBySellID(int id) { //Must be int type because when saving to Session, it is still int
         List<Product> list = new ArrayList<>();
         String query = "SELECT * FROM Product WHERE SellerID = ?";
         try {
@@ -125,7 +125,7 @@ public class ProductDAO extends BaseDAO<Product> {
                 + "WHERE ProductID = ?";
         try {
             ps = connection.prepareStatement(query);
-            //Set dữ liệu vào dấu ?
+            //Set data to the "?"
             ps.setString(1, name);
             ps.setString(2, description);
             ps.setString(3, price);
@@ -144,15 +144,15 @@ public class ProductDAO extends BaseDAO<Product> {
      *
      * @param id
      */
-    public void delete(String id) { //Để kiểu String vì khi get về nó là kiểu String -> Đỡ phải ép kiểu
+    public void delete(String id) { //Leave the String type because when you get it, it's of type String -> Saves having to cast it
         String query = "DELETE FROM Cart WHERE ProductID = ?\n"
                 + "DELETE FROM Product WHERE ProductID = ?";
         try {
             ps = connection.prepareStatement(query);
-            //Đẩy id vào trong dấu ? thứ nhất
+            //Put the id inside the first "?"
             ps.setString(1, id);
             ps.setString(2, id);
-            //Execute: Ko có bảng Result -> Ko dùng RS, chỉ dùng executeUpdate
+            //Execute: No Result table -> No RS, only executeUpdate execute
             ps.executeUpdate();
         } catch (Exception e) {
         }
@@ -174,7 +174,7 @@ public class ProductDAO extends BaseDAO<Product> {
         String query = "INSERT INTO Product VALUES (?, ?, 0, ?, 0, ?, ?, ?, ?, 1, 1);";
         try {
             ps = connection.prepareStatement(query);
-            //Set dữ liệu vào dấu ?
+            //Set data to the "?"
             ps.setString(1, name);
             ps.setString(2, description);
             ps.setString(3, price);
@@ -334,7 +334,7 @@ public class ProductDAO extends BaseDAO<Product> {
         return 0;
     }
     
-    public Product getProductByID(String id) { //Phải để kiểu int vì khi lưu lên Session thì nó vẫn là kiểu int
+    public Product getProductByID(String id) { //Must be int type because when saving to Session, it is still int
         String query = "SELECT * FROM Product WHERE ProductID = ?";
         try {
             ps = connection.prepareStatement(query);
@@ -349,7 +349,7 @@ public class ProductDAO extends BaseDAO<Product> {
     }
     
     //Get Product for Detail
-    public ProductDetail getProductDetailByID(String id) { //Phải để kiểu int vì khi lưu lên Session thì nó vẫn là kiểu int
+    public ProductDetail getProductDetailByID(String id) { //Must be int type because when saving to Session, it is still int
         String query = "SELECT * \n" +
                         "FROM Product INNER JOIN Manufacturer\n" +
                         "ON Product.ManufacturerID = Manufacturer.ManufacturerID\n" +
@@ -371,7 +371,7 @@ public class ProductDAO extends BaseDAO<Product> {
      * @param id
      * @return a product
      */
-    public ProductInManager getProductForManager(String id) { //Phải để kiểu int vì khi lưu lên Session thì nó vẫn là kiểu int
+    public ProductInManager getProductForManager(String id) { //Must be int type because when saving to Session, it is still int
         String query = "SELECT * FROM Product WHERE ProductID = ?";
         try {
             ps = connection.prepareStatement(query);
@@ -390,7 +390,7 @@ public class ProductDAO extends BaseDAO<Product> {
      * @param name
      * @return a product
      */
-    public List<Product> searchProductByName(String name) { //Phải để kiểu int vì khi lưu lên Session thì nó vẫn là kiểu int
+    public List<Product> searchProductByName(String name) { //Must be int type because when saving to Session, it is still int
         List<Product> list = new ArrayList<>();
         String query = "select * from Product where ProductName like ?";
         try {
