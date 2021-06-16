@@ -35,12 +35,12 @@ public class ConfirmChangePasswordControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try  {
+        try {
             // Get the account need to change password
             HttpSession session = request.getSession();
             Account accountChangePass = (Account) session.getAttribute("acc");
 
-             //Send email with confirmation code to change password
+            //Send email with confirmation code to change password
             String confirmCode = util.GenerateRandomString.generateString(10);
             String subject = "Confirmation code for account at Computer ERA";
             String message = "Your confirmation code at Computer ERA is: "
@@ -50,7 +50,7 @@ public class ConfirmChangePasswordControl extends HttpServlet {
             session.setAttribute("code", confirmCode);
             request.getRequestDispatcher("ChangePassword.jsp")
                     .forward(request, response);
-        } catch(Exception e) {
+        } catch (Exception e) {
             response.sendRedirect("Error.jsp");
         }
     }
@@ -84,21 +84,21 @@ public class ConfirmChangePasswordControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             // Get the confirm code from session
-            HttpSession session = request.getSession();           
-            String accountConfirmCode = (String) session.getAttribute("code");            
-            
+            HttpSession session = request.getSession();
+            String accountConfirmCode = (String) session.getAttribute("code");
+
             // Get the confirm code from user
             String userEnteredCode = request.getParameter("code");
-            
+
             // Compare the 2 code
             boolean compare = accountConfirmCode.equals(userEnteredCode);
-                       
-            if(compare) {
+
+            if (compare) {
                 // The 2 codes are identical, forward to change password
-                request.setAttribute("compare", compare);                                     
+                request.setAttribute("compare", compare);
             } else {
                 // The 2 codes are not identical, notify wrong code, user re-enter
-                request.setAttribute("message", "Wrong Code!");                                      
+                request.setAttribute("message", "Wrong Code!");
             }
             request.getRequestDispatcher("ChangePassword.jsp").forward(request, response);
         } catch (Exception e) {

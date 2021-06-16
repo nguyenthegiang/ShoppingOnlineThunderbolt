@@ -33,44 +33,43 @@ public class DashBoardControl extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     int max = 0;
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         try {
             ProductDAO ProductDAO = new ProductDAO();
-        UserDAO UserDAO = new UserDAO();
-        CartDAO CartDAO = new CartDAO();
-        
-        int totalAccount = UserDAO.countAllAccount();
-        int totalProduct = ProductDAO.countProduct();
-        int totalCart = CartDAO.countAllCart();
-        
-        List<ProductInManager> top3LeastSell = ProductDAO.top3LeastSell();
-        List<DashBoardProduct> top3LeastSellD = amountToProportionLeast3(top3LeastSell);
-        List<ProductInManager> top3MostSell = ProductDAO.top3MostSell();
-        List<DashBoardProduct> top3MostSellD = amountToProportionMost3(top3MostSell);
-        
-        request.setAttribute("totalProduct", totalProduct);
-        request.setAttribute("totalAccount", totalAccount);
-        request.setAttribute("totalCart", totalCart);
-        
-        request.setAttribute("top3MostSellD", top3MostSellD);
-        request.setAttribute("top3LeastSellD", top3LeastSellD);
-        
-        request.getRequestDispatcher("DashBoard.jsp").forward(request, response);
+            UserDAO UserDAO = new UserDAO();
+            CartDAO CartDAO = new CartDAO();
+
+            int totalAccount = UserDAO.countAllAccount();
+            int totalProduct = ProductDAO.countProduct();
+            int totalCart = CartDAO.countAllCart();
+
+            List<ProductInManager> top3LeastSell = ProductDAO.top3LeastSell();
+            List<DashBoardProduct> top3LeastSellD = amountToProportionLeast3(top3LeastSell);
+            List<ProductInManager> top3MostSell = ProductDAO.top3MostSell();
+            List<DashBoardProduct> top3MostSellD = amountToProportionMost3(top3MostSell);
+
+            request.setAttribute("totalProduct", totalProduct);
+            request.setAttribute("totalAccount", totalAccount);
+            request.setAttribute("totalCart", totalCart);
+
+            request.setAttribute("top3MostSellD", top3MostSellD);
+            request.setAttribute("top3LeastSellD", top3LeastSellD);
+
+            request.getRequestDispatcher("DashBoard.jsp").forward(request, response);
         } catch (Exception e) {
             response.sendRedirect("Error.jsp");
         }
-        
+
     }
-    
+
     public List<DashBoardProduct> amountToProportionLeast3(List<ProductInManager> listP) {
         List<DashBoardProduct> listD = new ArrayList<>();
-        
+
         //get max amount
         for (ProductInManager o : listP) {
             int amount = o.getAmount();
@@ -78,25 +77,25 @@ public class DashBoardControl extends HttpServlet {
                 max = amount;
             }
         }
-        
+
         //calculate Proportion of each Product
         for (ProductInManager o : listP) {
             double proportion = 100 - ((double) o.getAmount() / max) * 100;
             listD.add(new DashBoardProduct(o.getName(), max - o.getAmount(), (int) proportion));
         }
-        
+
         return listD;
     }
-    
+
     public List<DashBoardProduct> amountToProportionMost3(List<ProductInManager> listP) {
         List<DashBoardProduct> listD = new ArrayList<>();
-        
+
         //calculate Proportion of each Product
         for (ProductInManager o : listP) {
             double proportion = 100 - ((double) o.getAmount() / max) * 100;
             listD.add(new DashBoardProduct(o.getName(), max - o.getAmount(), (int) proportion));
         }
-        
+
         return listD;
     }
 

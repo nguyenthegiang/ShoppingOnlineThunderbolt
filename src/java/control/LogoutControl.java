@@ -39,14 +39,14 @@ public class LogoutControl extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         try {
             HttpSession session = request.getSession();
-        session.invalidate();
-        //Redirect về home
-        response.sendRedirect("home");
+            session.invalidate();
+            //Redirect back home
+            response.sendRedirect("home");
         } catch (Exception e) {
             response.sendRedirect("Error.jsp");
         }
-        //Xóa acc khỏi Session khi logout 
-        
+        //Remove acc from Session when logout
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

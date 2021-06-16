@@ -1,4 +1,3 @@
-
 package control;
 
 import entity.*;
@@ -30,33 +29,32 @@ public class AddToCartControl extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         try {
             //Get data from JSP
-        String id = request.getParameter("ProductID");
-        int ProductID = Integer.parseInt(id);
-        
-        //Using session to get Account ID
-        HttpSession session = request.getSession(); 
-        Account a = (Account) session.getAttribute("acc"); 
-        int UserID = a.getId();
-        
-        //Add data to Database
-        CartDAO CartDAO = new CartDAO();
-        boolean notOutOfStock = CartDAO.addToCart(UserID, ProductID, 1);
-        
-        //Increase the number of product in Cart icon
-        int CartNum = CartDAO.countNumCart(UserID);
-        
-        PrintWriter out = response.getWriter();
-        if (notOutOfStock) {
-            //return the Number of Product in Cart and Message
-            out.println(CartNum + "|Product is added to cart");
-        } else {
-            out.println("Sorry, Product is out of stock");
-        }
+            String id = request.getParameter("ProductID");
+            int ProductID = Integer.parseInt(id);
+
+            //Using session to get Account ID
+            HttpSession session = request.getSession();
+            Account a = (Account) session.getAttribute("acc");
+            int UserID = a.getId();
+
+            //Add data to Database
+            CartDAO CartDAO = new CartDAO();
+            boolean notOutOfStock = CartDAO.addToCart(UserID, ProductID, 1);
+
+            //Increase the number of product in Cart icon
+            int CartNum = CartDAO.countNumCart(UserID);
+
+            PrintWriter out = response.getWriter();
+            if (notOutOfStock) {
+                //return the Number of Product in Cart and Message
+                out.println(CartNum + "|Product is added to cart");
+            } else {
+                out.println("Sorry, Product is out of stock");
+            }
         } catch (Exception e) {
             response.sendRedirect("Error.jsp");
         }
-        
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

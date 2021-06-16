@@ -47,33 +47,32 @@ public class ChangedPasswordControl extends HttpServlet {
             String newPassword = request.getParameter("new-pass");
             String repeatNewPassword = request.getParameter("repeat-new-pass");
             UserDAO dao = new UserDAO();
-            
+
             // Get the account from database
             Account a = dao.getAccountByID(String.valueOf(accountChangePass.getId()));
-            
-            
-            if (a.getPass().equals(oldPassword) &&
-                    newPassword.equals(repeatNewPassword)) {
+
+            if (a.getPass().equals(oldPassword)
+                    && newPassword.equals(repeatNewPassword)) {
                 // User enter old password, new password and re-enter new pasword correctly
                 // => Do update
                 dao.updatePassword(String.valueOf(accountChangePass.getId()), newPassword);
                 // Redirect to profile, notify successful 
                 request.setAttribute("message", "Changed password successfully!");
                 request.getRequestDispatcher("profile").forward(request, response);
-                
+
             } else {
                 // User enter old password, new password and re-enter new pasword incorrect
                 // => No update
                 request.setAttribute("message", "Fail to change password");
-                request.setAttribute("compare","CorrectCode.");
+                request.setAttribute("compare", "CorrectCode.");
                 // Redirect to form to do again
                 request.getRequestDispatcher("ChangePassword.jsp").forward(request, response);
-            }            
-            
+            }
+
         } catch (Exception e) {
             response.sendRedirect("Error.jsp");
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

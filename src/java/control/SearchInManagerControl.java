@@ -42,28 +42,28 @@ public class SearchInManagerControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             String searchText = request.getParameter("text");
-        
-        HttpSession session = request.getSession(); //Dùng session để gọi đến id
-        Account a = (Account) session.getAttribute("acc"); //Gọi đến account -> Phải ép kiểu để thành Object
 
-        ProductDAO dao = new ProductDAO();
-        
-        List<Product> listP = dao.searchProductInManager(searchText, a.getId()); //Truyền vào id của account
-        
-        CategoryDAO CategoryDAO = new CategoryDAO();
-        List<Category> listC = CategoryDAO.getAllCategory();
-        request.setAttribute("listC", listC);
-        
-        UserDAO UserDAO = new UserDAO();
-        List<Account> listS = UserDAO.getAllAccounts();
-        request.setAttribute("listS", listS);
-        
-        request.setAttribute("list", listP);
-        request.getRequestDispatcher("Manager.jsp").forward(request, response);
+            HttpSession session = request.getSession(); //Use session to call id
+            Account a = (Account) session.getAttribute("acc"); //Call to account -> Must cast to Object
+
+            ProductDAO dao = new ProductDAO();
+
+            List<Product> listP = dao.searchProductInManager(searchText, a.getId()); //Pass in the account id
+
+            CategoryDAO CategoryDAO = new CategoryDAO();
+            List<Category> listC = CategoryDAO.getAllCategory();
+            request.setAttribute("listC", listC);
+
+            UserDAO UserDAO = new UserDAO();
+            List<Account> listS = UserDAO.getAllAccounts();
+            request.setAttribute("listS", listS);
+
+            request.setAttribute("list", listP);
+            request.getRequestDispatcher("Manager.jsp").forward(request, response);
         } catch (Exception e) {
             response.sendRedirect("Error.jsp");
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

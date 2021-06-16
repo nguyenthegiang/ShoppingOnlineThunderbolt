@@ -36,18 +36,18 @@ public class DeleteAccountControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         try {
-            //Lay ID tu JSP
-        String id = request.getParameter("UserID");
-        //Goi toi DAO
-        UserDAO dao = new UserDAO();
-        //Dung Ham Delete de xoa theo ID
-        dao.deleteAccount(id);
+            //Get ID from JSP
+            String id = request.getParameter("UserID");
+            //Call DAO
+            UserDAO dao = new UserDAO();
+            //Use function Delete to delete by ID
+            dao.deleteAccount(id);
 
-        response.sendRedirect("accountManager"); 
+            response.sendRedirect("accountManager");
         } catch (Exception e) {
             response.sendRedirect("Error.jsp");
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -38,26 +38,26 @@ public class ShowCartControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         try {
-            HttpSession session = request.getSession(); //Dùng session để gọi đến id
-        Account a = (Account) session.getAttribute("acc"); //Gọi đến account -> Phải ép kiểu để thành Object
+            HttpSession session = request.getSession(); //Use session to call id
+            Account a = (Account) session.getAttribute("acc"); //Call to account -> Must cast to Object
 
-        CartDAO dao = new CartDAO();
-        List<Cart> list = dao.getCart(a.getId()); //Truyền vào id của account
-        
-        int total = 0;
-        for (Cart cart : list) {
-            total += cart.getP().getPrice() * cart.getAmount();
-        }
+            CartDAO dao = new CartDAO();
+            List<Cart> list = dao.getCart(a.getId()); //Pass in the account id
 
-        request.setAttribute("total", getPriceWithDot(total));
-        request.setAttribute("list", list);
-        request.getRequestDispatcher("ShowCart.jsp").forward(request, response);
+            int total = 0;
+            for (Cart cart : list) {
+                total += cart.getP().getPrice() * cart.getAmount();
+            }
+
+            request.setAttribute("total", getPriceWithDot(total));
+            request.setAttribute("list", list);
+            request.getRequestDispatcher("ShowCart.jsp").forward(request, response);
         } catch (Exception e) {
             response.sendRedirect("Error.jsp");
         }
-        
+
     }
-    
+
     public String getPriceWithDot(int price) {
         String priceDot = "" + price;
         int i = priceDot.length() - 3;

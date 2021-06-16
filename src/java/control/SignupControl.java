@@ -40,11 +40,11 @@ public class SignupControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
-        
+
         try {
             HttpSession session = request.getSession();
             UserDAO dao = new UserDAO();
-            
+
             String loginFb = request.getParameter("loginFB");
 
             if (loginFb.equals("true")) {

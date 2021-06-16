@@ -40,43 +40,42 @@ public class CompareFinal extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         try {
             HttpSession session = request.getSession();
-        
-        //Getting id of the second product to be compared
-        String id1 = request.getParameter("id");
-        CategoryDAO CategoryDAO = new CategoryDAO();
-        //Getting id of the first product (which has already been stored in session)
-        String id2 = String.valueOf(session.getAttribute("productSession"));
-        List<Category> listC = CategoryDAO.getAllCategory(); //Get List Category
 
-        ProductDAO ProductDAO = new ProductDAO();
-        InforDAO InforDAO = new InforDAO();
+            //Getting id of the second product to be compared
+            String id1 = request.getParameter("id");
+            CategoryDAO CategoryDAO = new CategoryDAO();
+            //Getting id of the first product (which has already been stored in session)
+            String id2 = String.valueOf(session.getAttribute("productSession"));
+            List<Category> listC = CategoryDAO.getAllCategory(); //Get List Category
 
-        Product hot = ProductDAO.getHotProduct(); //Get First Product
-        Product favor = ProductDAO.getFavoriteProduct(); //Get Last Product
-        Information infor = InforDAO.getInfor(); //Get Information
-        Product product1 = ProductDAO.getProductByID(id1); //Get the selected Product infor
-        Product product2 = ProductDAO.getProductByID(id2); //Get the selected Product infor
+            ProductDAO ProductDAO = new ProductDAO();
+            InforDAO InforDAO = new InforDAO();
 
-        //Seding data to jsp page
-        request.setAttribute("product1", product1);
-        request.setAttribute("product2", product2);
-        request.setAttribute("hot", hot);
-        request.setAttribute("favor", favor);
-        request.setAttribute("infor", infor);
-        request.setAttribute("allCategory", listC);
+            Product hot = ProductDAO.getHotProduct(); //Get First Product
+            Product favor = ProductDAO.getFavoriteProduct(); //Get Last Product
+            Information infor = InforDAO.getInfor(); //Get Information
+            Product product1 = ProductDAO.getProductByID(id1); //Get the selected Product infor
+            Product product2 = ProductDAO.getProductByID(id2); //Get the selected Product infor
 
-        
-        /*
+            //Seding data to jsp page
+            request.setAttribute("product1", product1);
+            request.setAttribute("product2", product2);
+            request.setAttribute("hot", hot);
+            request.setAttribute("favor", favor);
+            request.setAttribute("infor", infor);
+            request.setAttribute("allCategory", listC);
+
+            /*
         Sending data to final comparing page with 2 chosen product's details
-        */
-        request.getRequestDispatcher("CompareFinal.jsp").forward(request, response);
+             */
+            request.getRequestDispatcher("CompareFinal.jsp").forward(request, response);
         } catch (Exception e) {
             response.sendRedirect("Error.jsp");
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

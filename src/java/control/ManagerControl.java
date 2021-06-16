@@ -38,43 +38,42 @@ public class ManagerControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         try {
-            HttpSession session = request.getSession(); //Dùng session để gọi đến id
-        Account a = (Account) session.getAttribute("acc"); //Gọi đến account -> Phải ép kiểu để thành Object
+            HttpSession session = request.getSession(); //Use session to call id
+            Account a = (Account) session.getAttribute("acc"); //Call to account -> Must cast to Object
 
-        ProductDAO dao = new ProductDAO();
-        
-        String indexPage = request.getParameter("index");
-        if (indexPage == null) {
-            indexPage = "1"; //Lúc đầu: Load dữ liệu cho trang 1
-        }
-        int index = Integer.parseInt(indexPage);
-        
-        List<Product> list = dao.pagingManagerProduct(index, a.getId()); //Truyền vào id của account
+            ProductDAO dao = new ProductDAO();
 
-        int count = dao.countProductBySeller(a.getId());
-        int endPage = count / 6;
-        if (count % 6 != 0) {
-            //If the number of Product isn't divided by 3 -> Need 1 more Page
-            endPage++;
-        }
-        
-        CategoryDAO CategoryDAO = new CategoryDAO();
-        List<Category> listC = CategoryDAO.getAllCategory();
-        request.setAttribute("listC", listC);
-        
-        UserDAO UserDAO = new UserDAO();
-        List<Account> listS = UserDAO.getAllAccounts();
-        request.setAttribute("listS", listS);
-        
-        request.setAttribute("end", endPage);
-        request.setAttribute("count", count);
-        request.setAttribute("tag", index);
-        request.setAttribute("list", list);
-        request.getRequestDispatcher("Manager.jsp").forward(request, response);
+            String indexPage = request.getParameter("index");
+            if (indexPage == null) {
+                indexPage = "1"; //At first: Load data for page 1
+            }
+            int index = Integer.parseInt(indexPage);
+
+            List<Product> list = dao.pagingManagerProduct(index, a.getId()); //Pass in the account id
+
+            int count = dao.countProductBySeller(a.getId());
+            int endPage = count / 6;
+            if (count % 6 != 0) {
+                //If the number of Product isn't divided by 3 -> Need 1 more Page
+                endPage++;
+            }
+
+            CategoryDAO CategoryDAO = new CategoryDAO();
+            List<Category> listC = CategoryDAO.getAllCategory();
+            request.setAttribute("listC", listC);
+
+            UserDAO UserDAO = new UserDAO();
+            List<Account> listS = UserDAO.getAllAccounts();
+            request.setAttribute("listS", listS);
+
+            request.setAttribute("end", endPage);
+            request.setAttribute("count", count);
+            request.setAttribute("tag", index);
+            request.setAttribute("list", list);
+            request.getRequestDispatcher("Manager.jsp").forward(request, response);
         } catch (Exception e) {
             response.sendRedirect("Error.jsp");
         }
-        
 
     }
 
