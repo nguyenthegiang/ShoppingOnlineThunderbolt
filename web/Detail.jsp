@@ -74,13 +74,13 @@
                                                 <span class="currency">VND </span><span class="num">${detail.priceWithDot}</span>
                                             </span> 
                                         </p> <!-- price-detail-wrap .// -->
-                                        <dl class="item-property">
+<!--                                        <dl class="item-property">
                                             <dt>Description</dt>
                                             <dd><p>
                                                     ${detail.description}
                                                 </p></dd>
                                         </dl>
-                                                
+                                                -->
                                         <hr>
                                         <dl class="item-property">
                                             <dt>Manufacturer</dt>
