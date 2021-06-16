@@ -14,13 +14,13 @@ public class Order {
     private int userId;
     private float totalPrice;
     private String note;
-    private int status;
+    private String status;
 
     public Order(){
         
     }
     
-    public Order(int id, int userId, float totalPrice, String note, int status) {
+    public Order(int id, int userId, float totalPrice, String note, String status) {
         this.id = id;
         this.userId = userId;
         this.totalPrice = totalPrice;
@@ -62,11 +62,11 @@ public class Order {
         this.note = note;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
     
