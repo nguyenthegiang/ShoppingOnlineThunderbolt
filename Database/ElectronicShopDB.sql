@@ -330,7 +330,7 @@ CREATE TABLE UserAddress (
 	ID int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	UserID int,
 	ShipName nvarchar(500),
-	AddressDetail nvarchar(1000),
+	ShipAddress nvarchar(1000),
 	ShipCityID int,
 	PhoneNum varchar(20),
 	constraint userID_in_user_address FOREIGN KEY(UserID) REFERENCES Users(UserID),
