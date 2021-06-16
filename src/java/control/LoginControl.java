@@ -77,8 +77,8 @@ public class LoginControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         //Phần doGet của Servlet Login sẽ có nhiệm vụ lấy thông tin của User và Pass từ Cookie và đẩy lên trang Login.jsp để hiển thị
-
-        //Bước 1: get user, pass from cookie
+        try {
+            //Bước 1: get user, pass from cookie
         //Cookie là 1 Mảng, gồm nhiều thành phần, bao gồm cả thông tin của Browser để cho mình biết là đang Login ở đâu
         Cookie arr[] = request.getCookies();
         if (arr != null) {
@@ -97,6 +97,10 @@ public class LoginControl extends HttpServlet {
         //Bước 2: set user, pass to Login form
         request.getRequestDispatcher("Login.jsp").forward(request, response);
         //Chuyển dữ liệu lên trang Login.jsp để mở giao diện
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
+        
     }
 
     /**
@@ -112,7 +116,8 @@ public class LoginControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession();
+        try {
+            HttpSession session = request.getSession();
         UserDAO dao = new UserDAO();
 
         String username = request.getParameter("user");
@@ -189,6 +194,10 @@ public class LoginControl extends HttpServlet {
                 }
             }
         }
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
+        
     }
 
     /**
