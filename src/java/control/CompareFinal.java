@@ -41,9 +41,11 @@ public class CompareFinal extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
+        
+        //Getting id of the second product to be compared
         String id1 = request.getParameter("id");
         CategoryDAO CategoryDAO = new CategoryDAO();
-
+        //Getting id of the first product (which has already been stored in session)
         String id2 = String.valueOf(session.getAttribute("productSession"));
         List<Category> listC = CategoryDAO.getAllCategory(); //Get List Category
 
@@ -64,6 +66,10 @@ public class CompareFinal extends HttpServlet {
         request.setAttribute("infor", infor);
         request.setAttribute("allCategory", listC);
 
+        
+        /*
+        Sending data to final comparing page with 2 chosen product's details
+        */
         request.getRequestDispatcher("CompareFinal.jsp").forward(request, response);
     }
 

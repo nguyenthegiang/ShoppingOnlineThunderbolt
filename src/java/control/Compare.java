@@ -67,6 +67,10 @@ public class Compare extends HttpServlet {
         request.setAttribute("infor", infor);
         request.setAttribute("allCategory", listC);
 
+        
+        /*Sending first product's detail and ask user to 
+        choose the other product to compare with
+        */
         request.getRequestDispatcher("Compare.jsp").forward(request, response);
 
     }
