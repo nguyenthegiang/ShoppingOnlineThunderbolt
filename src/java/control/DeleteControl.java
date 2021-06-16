@@ -35,7 +35,8 @@ public class DeleteControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        //Lấy id của sản phẩm cần xóa về
+        try {
+           //Lấy id của sản phẩm cần xóa về
         String id = request.getParameter("ProductID");
         //Gọi hàm delete() trong ProductDAO
         ProductDAO dao = new ProductDAO();
@@ -44,7 +45,11 @@ public class DeleteControl extends HttpServlet {
         //Mình ko cần câu lệnh này: request.getRequestDispatcher("home").forward(request,response); => Vì mình chỉ cần chuyển trang thôi, ko cần mang theo dữ liệu
 
         response.sendRedirect("manager"); //Chỉ chuyển trang
-        //request.getRequestDispatcher("home").forward(request,response); //Mang theo dữ liệu
+        //request.getRequestDispatcher("home").forward(request,response); //Mang theo dữ liệu 
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

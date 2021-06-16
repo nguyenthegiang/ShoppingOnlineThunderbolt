@@ -36,7 +36,8 @@ public class DetailControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        //Lay ID ve
+        try {
+            //Lay ID ve
         String id = request.getParameter("ProductID");
         
         //Lay Message Out of Stock (neu co)
@@ -65,6 +66,10 @@ public class DetailControl extends HttpServlet {
         
         request.setAttribute("detail", p);
         request.getRequestDispatcher("Detail.jsp").forward(request, response);
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

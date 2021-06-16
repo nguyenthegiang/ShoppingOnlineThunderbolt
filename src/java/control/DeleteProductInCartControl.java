@@ -36,7 +36,8 @@ public class DeleteProductInCartControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        //Lay ID Product ve
+        try {
+            //Lay ID Product ve
         String PID = request.getParameter("ProductID");
         int ProductID = Integer.parseInt(PID);
         //Dùng session để gọi đến id
@@ -50,6 +51,10 @@ public class DeleteProductInCartControl extends HttpServlet {
         dao.deleteProductCart(UserID, ProductID);
         
         response.sendRedirect("show");
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

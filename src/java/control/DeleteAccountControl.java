@@ -35,7 +35,8 @@ public class DeleteAccountControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        //Lay ID tu JSP
+        try {
+            //Lay ID tu JSP
         String id = request.getParameter("UserID");
         //Goi toi DAO
         UserDAO dao = new UserDAO();
@@ -43,6 +44,10 @@ public class DeleteAccountControl extends HttpServlet {
         dao.deleteAccount(id);
 
         response.sendRedirect("accountManager"); 
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
