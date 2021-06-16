@@ -55,10 +55,9 @@ public class OrderDAO extends BaseDAO<Order> {
         }
     }
 
-    
     public void updateStatus(int id, int status) {
         String query = "UPDATE Orders\n"
-                + "SET Status = ?,\n"               
+                + "SET Status = ?,\n"
                 + "WHERE ID = ?";
         try {
             ps = connection.prepareStatement(query);
@@ -69,9 +68,7 @@ public class OrderDAO extends BaseDAO<Order> {
         } catch (Exception e) {
         }
     }
-    
-    
-    
+
     public int countOrders() {
         String query = "SELECT COUNT(*) FROM Orders";
         try {
@@ -102,9 +99,8 @@ public class OrderDAO extends BaseDAO<Order> {
         }
         return null;
     }
-    
-    
-     public List<Order> getOrderByUserID(int userId) {
+
+    public List<Order> getOrderByUserID(int userId) {
         List<Order> list = new ArrayList<>();
         String query = "SELECT o.ID,o.USERID,o.TotalPrice, o.Note, os.Name \n"
                 + "FROM Orders o INNER JOIN Order_Status os\n"
@@ -154,4 +150,19 @@ public class OrderDAO extends BaseDAO<Order> {
         }
     }
 
+    public Order getOrderDetailByOrderID(int id) { //Phải để kiểu int vì khi lưu lên Session thì nó vẫn là kiểu int
+        String query = "SELECT * FROM Order_Detail"
+                + " WHERE Order_ID = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return (new Order(rs.getInt("ID"), rs.getInt("Order_ID"), rs.getFloat("ProductID"),
+                        rs.getString("ProductName"), rs.getString("ProductPrice")));
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
 }
