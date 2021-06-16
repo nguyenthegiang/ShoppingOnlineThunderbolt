@@ -165,4 +165,18 @@ public class OrderDAO extends BaseDAO<Order> {
         }
         return null;
     }
+    
+    public void delete(int id) {
+        String query = "DELETE FROM Order_detail WHERE Order_ID = ?\n"
+                + "DELETE FROM Orders WHERE ID = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            //Đẩy id vào trong dấu ? thứ nhất
+            ps.setInt(1, id);
+            ps.setInt(2, id);
+            //Execute: Ko có bảng Result -> Ko dùng RS, chỉ dùng executeUpdate
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
 }
