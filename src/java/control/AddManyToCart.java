@@ -36,7 +36,8 @@ public class AddManyToCart extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        //Get data from JSP
+        try {
+            //Get data from JSP
         String id = request.getParameter("ProductID");
         String quantity = request.getParameter("Quantity");
         int ProductID = Integer.parseInt(id);
@@ -57,6 +58,10 @@ public class AddManyToCart extends HttpServlet {
         } else {
             out.println("Sorry, Product is out of stock");
         }
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
