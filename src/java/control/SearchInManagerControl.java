@@ -40,7 +40,8 @@ public class SearchInManagerControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String searchText = request.getParameter("text");
+        try {
+            String searchText = request.getParameter("text");
         
         HttpSession session = request.getSession(); //Dùng session để gọi đến id
         Account a = (Account) session.getAttribute("acc"); //Gọi đến account -> Phải ép kiểu để thành Object
@@ -59,6 +60,10 @@ public class SearchInManagerControl extends HttpServlet {
         
         request.setAttribute("list", listP);
         request.getRequestDispatcher("Manager.jsp").forward(request, response);
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

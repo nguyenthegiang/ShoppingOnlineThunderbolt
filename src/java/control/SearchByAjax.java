@@ -36,8 +36,8 @@ public class SearchByAjax extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        
-        request.setCharacterEncoding("UTF-8");
+        try {
+            request.setCharacterEncoding("UTF-8");
         String txtSearch = request.getParameter("txt");
         ProductDAO dao = new ProductDAO();
         List<Product> list = dao.searchProductByName(txtSearch);
@@ -61,7 +61,11 @@ public class SearchByAjax extends HttpServlet {
 "                                </div>\n" +
 "                            </div>");
         }
-    }
+
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
+            }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
