@@ -37,10 +37,15 @@ public class CompareByAjax extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
 
+        
+        //Getting data from jsp page (from the search bar)
         String txtSearch = request.getParameter("txt");
         ProductDAO dao = new ProductDAO();
         List<Product> list = dao.searchProductByName(txtSearch);
         PrintWriter out = response.getWriter();
+        
+        /*Showing out 4 products with same name 
+          as the user typed in the search bar*/
         for (int i = 0; i < 4; i++) {
             Product o = list.get(i);
             out.println("<a href=\"compareFinal?id="+o.getId()+"\">\n"

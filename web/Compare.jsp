@@ -153,12 +153,16 @@
                                         </strong></p>
                                     <br/>
                                     <div class="">
-                                        <a href="product_details.html" class=""><span class=" "></span> Add to cart</a> &emsp;&emsp;&emsp;&emsp;&emsp;
+                                        <a onclick="addCart(${product.id})" class=""><span class=" "></span> Add to cart</a> &emsp;&emsp;&emsp;&emsp;&emsp;
 
-                                        <a href="product_details.html" class="">VIEW</a>
+                                        <a href="detail?ProductID=${product.id}" class="">VIEW</a>
                                     </div>
                                 </td>
                             </tr>
+                            
+                            <!--
+                            These are fake attributes added for testing purpose
+                            -->                           
                             <tr>
                                 <td>Height</td>
                                 <td>5"</td>
