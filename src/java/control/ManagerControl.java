@@ -37,7 +37,8 @@ public class ManagerControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession(); //Dùng session để gọi đến id
+        try {
+            HttpSession session = request.getSession(); //Dùng session để gọi đến id
         Account a = (Account) session.getAttribute("acc"); //Gọi đến account -> Phải ép kiểu để thành Object
 
         ProductDAO dao = new ProductDAO();
@@ -70,6 +71,10 @@ public class ManagerControl extends HttpServlet {
         request.setAttribute("tag", index);
         request.setAttribute("list", list);
         request.getRequestDispatcher("Manager.jsp").forward(request, response);
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
+        
 
     }
 
