@@ -56,6 +56,22 @@ public class OrderDAO extends BaseDAO<Order> {
     }
 
     
+    public void updateStatus(int id, int status) {
+        String query = "UPDATE Orders\n"
+                + "SET Status = ?,\n"               
+                + "WHERE ID = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            //Set dữ liệu vào dấu ?
+            ps.setInt(1, status);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+    
+    
+    
     public int countOrders() {
         String query = "SELECT COUNT(*) FROM Orders";
         try {
@@ -69,14 +85,14 @@ public class OrderDAO extends BaseDAO<Order> {
         return 0;
     }
 
-    public Order getOrderByID(String id) { //Phải để kiểu int vì khi lưu lên Session thì nó vẫn là kiểu int
+    public Order getOrderByOrderID(int id) { //Phải để kiểu int vì khi lưu lên Session thì nó vẫn là kiểu int
         String query = "SELECT o.id,o.userId,o.totalPrice, o.note, os.name \n"
                 + "FROM Orders o INNER JOIN Order_Status os\n"
                 + "ON o.Status = os.ID\n"
-                + "WHERE o.ID = 1";
+                + "WHERE o.ID = ?";
         try {
             ps = connection.prepareStatement(query);
-            ps.setString(1, id);
+            ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
                 return (new Order(rs.getInt("ID"), rs.getInt("UserId"), rs.getFloat("TotalPrice"),
@@ -86,24 +102,28 @@ public class OrderDAO extends BaseDAO<Order> {
         }
         return null;
     }
-
-    public OrderDetail getOrderDetailByID(String id) { //Phải để kiểu int vì khi lưu lên Session thì nó vẫn là kiểu int
-        String query = "SELECT * FROM Order_Detail \n"
-                + "WHERE id = ?";
+    
+    
+     public List<Order> getOrderByUserID(int userId) {
+        List<Order> list = new ArrayList<>();
+        String query = "SELECT o.ID,o.USERID,o.TotalPrice, o.Note, os.Name \n"
+                + "FROM Orders o INNER JOIN Order_Status os\n"
+                + "ON o.Status = os.ID"
+                + "WHERE o.UserId = ?";
         try {
-            ps = connection.prepareStatement(query);
-            ps.setString(1, id);
-            rs = ps.executeQuery();
+            ps = connection.prepareStatement(query);//ném query sang bên SQL server
+            ps.setInt(1, userId);
+            rs = ps.executeQuery();//Chạy câu lệnh query, nhận kết quả trả về
+
+            //Giờ đây, câu lệnh đã đc chạy, rs là bảng Result -> Giờ phải lấy dữ liệu từ bảng rs và cho vào List
             while (rs.next()) {
-                return (new OrderDetail(rs.getInt("id"),
-                        rs.getInt("Order_Id"),
-                        rs.getInt("productID"),
-                        rs.getString("productName"),
-                        rs.getInt("productPrice")));
+                list.add(new Order(rs.getInt("ID"), rs.getInt("UserId"), rs.getFloat("TotalPrice"),
+                        rs.getString("Note"), rs.getString("Name")));
             }
         } catch (Exception e) {
         }
-        return null;
+
+        return list;
     }
 
     public void addOrderList(List<Order> orders)
