@@ -109,7 +109,7 @@ public class OrderDAO extends BaseDAO<Order> {
      * @param id: the id of the order
      * @return Order
      */
-    public Order getOrderByOrderID(int id) { //Phải để kiểu int vì khi lưu lên Session thì nó vẫn là kiểu int
+    public Order getOrderByOrderID(int id) { 
         String query = "SELECT o.id,o.userId,o.totalPrice, o.note, os.name \n"
                 + "FROM Orders o INNER JOIN Order_Status os\n"
                 + "ON o.Status = os.ID\n"
@@ -119,8 +119,13 @@ public class OrderDAO extends BaseDAO<Order> {
             ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                return (new Order(rs.getInt("ID"), rs.getInt("UserId"), rs.getFloat("TotalPrice"),
-                        rs.getString("Note"), rs.getString("name")));
+                return (new Order(
+                        rs.getInt("ID"),
+                        rs.getInt("UserId"),
+                        rs.getFloat("TotalPrice"),
+                        rs.getString("Note"),
+                        rs.getString("name")
+                ));
             }
         } catch (Exception e) {
         }
@@ -139,14 +144,19 @@ public class OrderDAO extends BaseDAO<Order> {
                 + "ON o.Status = os.ID"
                 + "WHERE o.UserId = ?";
         try {
-            ps = connection.prepareStatement(query);//ném query sang bên SQL server
+            ps = connection.prepareStatement(query);
             ps.setInt(1, userId);
-            rs = ps.executeQuery();//Chạy câu lệnh query, nhận kết quả trả về
+            rs = ps.executeQuery();
 
-            //Giờ đây, câu lệnh đã đc chạy, rs là bảng Result -> Giờ phải lấy dữ liệu từ bảng rs và cho vào List
+            
             while (rs.next()) {
-                list.add(new Order(rs.getInt("ID"), rs.getInt("UserId"), rs.getFloat("TotalPrice"),
-                        rs.getString("Note"), rs.getString("Name")));
+                list.add(new Order(
+                        rs.getInt("ID"),
+                        rs.getInt("UserId"),
+                        rs.getFloat("TotalPrice"),
+                        rs.getString("Note"),
+                        rs.getString("Name")
+                ));
             }
         } catch (Exception e) {
         }
@@ -192,7 +202,7 @@ public class OrderDAO extends BaseDAO<Order> {
      * @param id: ID of the order
      * @return OrderDetail 
      */
-    public OrderDetail getOrderDetailByOrderID(int id) { //Phải để kiểu int vì khi lưu lên Session thì nó vẫn là kiểu int
+    public OrderDetail getOrderDetailByOrderID(int id) {
         String query = "SELECT * FROM Order_Detail"
                 + " WHERE Order_ID = ?";
         try {
