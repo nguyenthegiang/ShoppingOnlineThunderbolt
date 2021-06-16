@@ -38,4 +38,48 @@ public class OrderDAO extends BaseDAO<Order> {
         return list;
     }
     
+    public void add(int userID, float totalPrice, String note, int status) {
+        String query = "INSERT INTO Orders VALUES (?, ?, ?, ?);";
+        try {
+            ps = connection.prepareStatement(query);
+            //Set dữ liệu vào dấu ?
+            ps.setInt(1, userID);
+            ps.setFloat(2, totalPrice);
+            ps.setString(3, note);
+            ps.setInt(4, status);            
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+    
+    
+    public int countOrders() {
+        String query = "SELECT COUNT(*) FROM Orders";
+        try {
+            ps = connection.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+        }
+        return 0;
+    }
+    
+    public Order getOrderByID(String id) { //Phải để kiểu int vì khi lưu lên Session thì nó vẫn là kiểu int
+        String query = "SELECT * FROM Orders WHERE ID = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return (new Order(rs.getInt("ID"), rs.getInt("UserId"), rs.getFloat("TotalPrice"), 
+                        rs.getString("Note"), rs.getInt("Status")));
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    
+    
 }
