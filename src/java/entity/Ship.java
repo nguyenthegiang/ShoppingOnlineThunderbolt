@@ -10,15 +10,25 @@ package entity;
  * @author ADMIN
  */
 public class Ship {
+    private int id;
     private String cityName;
     private int shipPrice;
 
     public Ship() {
     }
 
-    public Ship(String cityName, int shipPrice) {
+    public Ship(int id, String cityName, int shipPrice) {
+        this.id = id;
         this.cityName = cityName;
         this.shipPrice = shipPrice;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCityName() {
@@ -39,8 +49,8 @@ public class Ship {
 
     @Override
     public String toString() {
-        return "Ship{" + "cityName=" + cityName + ", shipPrice=" + shipPrice + '}';
-    }
+        return "Ship{" + "id=" + id + ", cityName=" + cityName + ", shipPrice=" + shipPrice + '}';
+    }  
     
     public String getShipPriceWithDot() {
         String priceDot = "" + shipPrice;
