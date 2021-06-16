@@ -37,7 +37,8 @@ public class BuyNowControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         //Get data from JSP
-        String id = request.getParameter("ProductID");
+        try {
+            String id = request.getParameter("ProductID");
         String quantity = request.getParameter("Quantity");
         int ProductID = Integer.parseInt(id);
         int amount = Integer.parseInt(quantity);
@@ -57,6 +58,10 @@ public class BuyNowControl extends HttpServlet {
             String message = "Sorry, Product is out of stock";
             response.sendRedirect("detail?ProductID=" + ProductID + "&message=" + message);
         }
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
+        
         
     }
 

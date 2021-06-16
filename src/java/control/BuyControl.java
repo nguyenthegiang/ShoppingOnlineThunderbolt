@@ -64,7 +64,8 @@ public class BuyControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession(); //Dùng session để gọi đến id
+        try {
+            HttpSession session = request.getSession(); //Dùng session để gọi đến id
         Account a = (Account) session.getAttribute("acc"); //Gọi đến account -> Phải ép kiểu để thành Object
 
         CartDAO CartDAO = new CartDAO();
@@ -87,6 +88,10 @@ public class BuyControl extends HttpServlet {
         request.setAttribute("total", getPriceWithDot(total));
         request.setAttribute("listShip", listShip);
         request.getRequestDispatcher("Buy.jsp").forward(request, response);
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
+        
     }
 
     /**
