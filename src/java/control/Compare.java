@@ -44,8 +44,8 @@ public class Compare extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-
-        //Get data from JSP
+        try {
+            //Get data from JSP
         String id = request.getParameter("id");
 
         ProductDAO ProductDAO = new ProductDAO();
@@ -72,6 +72,11 @@ public class Compare extends HttpServlet {
         choose the other product to compare with
         */
         request.getRequestDispatcher("Compare.jsp").forward(request, response);
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
+
+        
 
     }
 

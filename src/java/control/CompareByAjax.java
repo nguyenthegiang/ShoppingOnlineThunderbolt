@@ -37,8 +37,8 @@ public class CompareByAjax extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
 
-        
-        //Getting data from jsp page (from the search bar)
+        try {
+            //Getting data from jsp page (from the search bar)
         String txtSearch = request.getParameter("txt");
         ProductDAO dao = new ProductDAO();
         List<Product> list = dao.searchProductByName(txtSearch);
@@ -65,6 +65,10 @@ public class CompareByAjax extends HttpServlet {
                     + "                            </div><br><br><br>\n"
                     + "                        </a> ");
         }
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

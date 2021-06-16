@@ -40,7 +40,9 @@ public class CompareFinal extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
+        
+        try {
+            HttpSession session = request.getSession();
         
         //Getting id of the second product to be compared
         String id1 = request.getParameter("id");
@@ -71,6 +73,10 @@ public class CompareFinal extends HttpServlet {
         Sending data to final comparing page with 2 chosen product's details
         */
         request.getRequestDispatcher("CompareFinal.jsp").forward(request, response);
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
