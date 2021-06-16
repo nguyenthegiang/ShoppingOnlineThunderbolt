@@ -52,7 +52,8 @@ public class EditControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        //Get ID cua Product tu JSP
+        try {
+            //Get ID cua Product tu JSP
         String id = request.getParameter("ProductID");
         ProductDAO ProductDAO = new ProductDAO();
         ProductInManager p = ProductDAO.getProductForManager(id);
@@ -75,6 +76,10 @@ public class EditControl extends HttpServlet {
         request.setAttribute("amount", p.getAmount());
         
         request.getRequestDispatcher("Edit.jsp").forward(request, response);
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
+        
     }
 
     /**
@@ -90,7 +95,8 @@ public class EditControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        //Bước 1: get data from jsp
+        try {
+             //Bước 1: get data from jsp
         String id = request.getParameter("id");
         String name = request.getParameter("name"); //Get by name
         String description = request.getParameter("description");
@@ -104,6 +110,10 @@ public class EditControl extends HttpServlet {
         ProductDAO dao = new ProductDAO();
         dao.edit(id, name, description, price, imageLink, CategoryID, SellerID, amount);
         response.sendRedirect("manager");
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
+       
     }
 
     /**

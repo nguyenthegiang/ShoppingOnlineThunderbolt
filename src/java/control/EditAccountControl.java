@@ -51,6 +51,11 @@ public class EditAccountControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        try {
+            
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
         //Get ID tu jsp
         String id = request.getParameter("UserID");
         UserDAO dao = new UserDAO();
@@ -79,7 +84,8 @@ public class EditAccountControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        //Bước 1: get data from jsp
+        try {
+            //Bước 1: get data from jsp
         String id = request.getParameter("id");
         String user = request.getParameter("user"); //Get by name
         String password = request.getParameter("pass");
@@ -98,6 +104,10 @@ public class EditAccountControl extends HttpServlet {
         UserDAO dao = new UserDAO();
         //dao.editAccount(id, user, password, isSell, isAdmin);
         response.sendRedirect("accountManager");
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
+        
     }
 
     /**
