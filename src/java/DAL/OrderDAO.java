@@ -150,7 +150,7 @@ public class OrderDAO extends BaseDAO<Order> {
         }
     }
 
-    public Order getOrderDetailByOrderID(int id) { //Phải để kiểu int vì khi lưu lên Session thì nó vẫn là kiểu int
+    public OrderDetail getOrderDetailByOrderID(int id) { //Phải để kiểu int vì khi lưu lên Session thì nó vẫn là kiểu int
         String query = "SELECT * FROM Order_Detail"
                 + " WHERE Order_ID = ?";
         try {
@@ -158,8 +158,8 @@ public class OrderDAO extends BaseDAO<Order> {
             ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                return (new Order(rs.getInt("ID"), rs.getInt("Order_ID"), rs.getFloat("ProductID"),
-                        rs.getString("ProductName"), rs.getString("ProductPrice")));
+                return (new OrderDetail(rs.getInt("ID"), rs.getInt("Order_ID"), rs.getInt("ProductID"),
+                        rs.getString("ProductName"), rs.getInt("ProductPrice")));
             }
         } catch (Exception e) {
         }
