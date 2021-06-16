@@ -19,7 +19,7 @@ public class OrderDAO extends BaseDAO<Order> {
     
     PreparedStatement ps = null; //...
     ResultSet rs = null; //Nhận kết quả trả về
-    
+     
     public List<Order> getAllOrder() {
         List<Order> list = new ArrayList<>();
         String query = "SELECT * FROM Orders";
