@@ -28,7 +28,8 @@ public class HomeControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        //Call to DAOs
+        try {
+            //Call to DAOs
         ProductDAO ProductDAO = new ProductDAO();
         InforDAO InforDAO = new InforDAO();
         CategoryDAO CategoryDAO = new CategoryDAO();
@@ -83,6 +84,10 @@ public class HomeControl extends HttpServlet {
         request.setAttribute("CateName", CategoryDAO.getCateNameByID(CID));
         
         request.getRequestDispatcher("Home.jsp").forward(request, response);
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
