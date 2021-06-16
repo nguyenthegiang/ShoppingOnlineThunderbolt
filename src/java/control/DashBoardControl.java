@@ -39,7 +39,9 @@ public class DashBoardControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        ProductDAO ProductDAO = new ProductDAO();
+        
+        try {
+            ProductDAO ProductDAO = new ProductDAO();
         UserDAO UserDAO = new UserDAO();
         CartDAO CartDAO = new CartDAO();
         
@@ -60,6 +62,10 @@ public class DashBoardControl extends HttpServlet {
         request.setAttribute("top3LeastSellD", top3LeastSellD);
         
         request.getRequestDispatcher("DashBoard.jsp").forward(request, response);
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
+        
     }
     
     public List<DashBoardProduct> amountToProportionLeast3(List<ProductInManager> listP) {
