@@ -28,8 +28,8 @@ public class AddToCartControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        
-        //Get data from JSP
+        try {
+            //Get data from JSP
         String id = request.getParameter("ProductID");
         int ProductID = Integer.parseInt(id);
         
@@ -52,6 +52,10 @@ public class AddToCartControl extends HttpServlet {
         } else {
             out.println("Sorry, Product is out of stock");
         }
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
+        
         
     }
 
