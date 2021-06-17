@@ -27,10 +27,7 @@ public class OrderDetail {
         this.productID = productID;
         this.productName = productName;
         this.productPrice = productPrice;
-    }
-
-    
-    
+    }  
     
     public int getId() {
         return id;
@@ -71,7 +68,5 @@ public class OrderDetail {
     public void setProductPrice(int productPrice) {
         this.productPrice = productPrice;
     }
-    
-    
     
 }

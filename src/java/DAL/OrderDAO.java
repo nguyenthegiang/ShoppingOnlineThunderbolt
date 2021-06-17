@@ -53,13 +53,13 @@ public class OrderDAO extends BaseDAO<Order> {
      * @param note
      * @param status 
      */
-    public void add(int userID, float totalPrice, String note, int status) {
+    public void add(int userID, double totalPrice, String note, int status) {
         String query = "INSERT INTO Orders VALUES (?, ?, ?, ?);";
         try {
             ps = connection.prepareStatement(query);
             //Set data to the ?
             ps.setInt(1, userID);
-            ps.setFloat(2, totalPrice);
+            ps.setDouble(2, totalPrice);
             ps.setString(3, note);
             ps.setInt(4, status);
             ps.executeUpdate();
@@ -130,6 +130,30 @@ public class OrderDAO extends BaseDAO<Order> {
         } catch (Exception e) {
         }
         return null;
+    }
+    
+    public int getNewestOrderID() { 
+        String query = "SELECT TOP(1) o.id,o.userId,o.totalPrice, o.note, os.name \n"
+                + "FROM Orders o INNER JOIN Order_Status os\n"
+                + "ON o.Status = os.ID\n"
+                + "ORDER BY o.id DESC";
+        try {
+            ps = connection.prepareStatement(query);
+            
+            rs = ps.executeQuery();           
+            while (rs.next()) {
+                 Order a = new Order(
+                        rs.getInt("ID"),
+                        rs.getInt("UserId"),
+                        rs.getFloat("TotalPrice"),
+                        rs.getString("Note"),
+                        rs.getString("name")
+                );
+                return a.getId();
+            }           
+        } catch (Exception e) {
+        }
+        return 0;
     }
 
     /**

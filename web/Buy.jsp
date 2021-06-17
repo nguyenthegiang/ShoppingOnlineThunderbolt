@@ -12,11 +12,11 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+
         <!--Favicon-->
         <link rel="icon" type="image/png" href="image/faviconLogo.png" />
         <title>Computer ERA</title>
-        
+
         <jsp:useBean id="c" class="DAL.CartDAO"></jsp:useBean>
 
             <!-- Bootstrap CSS -->
@@ -60,11 +60,40 @@
 
                     <!--Grid row-->
                     <div class="row">
-
-                        <!--Grid column-->
                         <div class="col-md-8 mb-4">
-
-                            <!--Card-->
+                            <p>
+                            <div class="m-info">
+                                <table>
+                                    <tr>
+                                        <td>Full name:</td>
+                                        <td><b>${requestScope.currentUserDefaultAddress.shipName}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Phone number:</td>
+                                        <td>${requestScope.currentUserDefaultAddress.phoneNum}</td>
+                                    </tr>                               
+                                    <tr>
+                                        <td>Address:</td>
+                                        <td>${requestScope.currentUserDefaultAddress.shipAddress}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>City:</td>
+                                        <td>${requestScope.currentUserDefaultCity.cityName}</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><span class="text-success">${requestScope.message}</span></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <button class="btn btn-primary me-5" type="button" >
+                            Confirm shipping to this address
+                        </button>
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            Ship to another address
+                        </button>
+                        </p>
+                        <div class="collapse" id="collapseExample">
                             <div class="card">
 
                                 <!--Card content-->
@@ -110,74 +139,69 @@
                                     <div class="md-form mb-5">
                                         <label for="city">City</label>
                                         <select class="form-select" aria-label="Default select example" name="city" onchange="cityChange(this.options[this.selectedIndex].text)" id="city">
-                                        <c:forEach items="${listShip}" var="o">
-                                            <option value="${o.shipPriceWithDot}">${o.cityName}</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
+                                            <c:forEach items="${listShip}" var="o">
+                                                <option value="${o.shipPriceWithDot}">${o.cityName}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
 
-                                <!--address-->
-                                <div class="md-form mb-5">
-                                    <input type="text" id="address" class="form-control" placeholder="1234 Main St" required>
-                                    <label for="address" class="">Address</label>
-                                </div>
+                                    <!--address-->
+                                    <div class="md-form mb-5">
+                                        <input type="text" id="address" class="form-control" placeholder="1234 Main St" required>
+                                        <label for="address" class="">Address</label>
+                                    </div>
 
-                                <hr>
-                                <h4>Payment Method:</h4>
-                                <div class="d-block my-3">
-                                    <div class="custom-control custom-radio">
-                                        <input id="ship" name="paymentMethod" type="radio" class="custom-control-input"
-                                               checked required>
-                                        <label class="custom-control-label" for="ship">Pay on Ship</label>
-                                    </div>
-                                    <br>
-                                    <div class="custom-control custom-radio">
-                                        <input id="credit" name="paymentMethod" type="radio" class="custom-control-input"
-                                               required>
-                                        <label class="custom-control-label" for="credit">Credit card</label>
-                                    </div>
-                                    <div class="custom-control custom-radio">
-                                        <input id="debit" name="paymentMethod" type="radio" class="custom-control-input"
-                                               required>
-                                        <label class="custom-control-label" for="debit">Debit card</label>
-                                    </div>
-                                    <div class="custom-control custom-radio">
-                                        <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input"
-                                               required>
-                                        <label class="custom-control-label" for="paypal">Paypal</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="cc-name">Name on card</label>
-                                        <input type="text" class="form-control" id="cc-name" placeholder="">
-                                        <small class="text-muted">Full name as displayed on card</small>
-                                        <div class="invalid-feedback">
-                                            Name on card is required
+                                    <hr>
+                                    <h4>Payment Method:</h4>
+                                    <div class="d-block my-3">
+                                        <div class="custom-control custom-radio">
+                                            <input id="ship" name="paymentMethod" type="radio" class="custom-control-input"
+                                                   checked required>
+                                            <label class="custom-control-label" for="ship">Pay on Ship</label>
+                                        </div>
+                                        <br>
+                                        <div class="custom-control custom-radio">
+                                            <input id="credit" name="paymentMethod" type="radio" class="custom-control-input"
+                                                   required>
+                                            <label class="custom-control-label" for="credit">Credit card</label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input id="debit" name="paymentMethod" type="radio" class="custom-control-input"
+                                                   required>
+                                            <label class="custom-control-label" for="debit">Debit card</label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input"
+                                                   required>
+                                            <label class="custom-control-label" for="paypal">Paypal</label>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="cc-number">Credit card number</label>
-                                        <input type="text" class="form-control" id="cc-number" placeholder="">
-                                        <div class="invalid-feedback">
-                                            Credit card number is required
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="cc-name">Name on card</label>
+                                            <input type="text" class="form-control" id="cc-name" placeholder="">
+                                            <small class="text-muted">Full name as displayed on card</small>
+                                            <div class="invalid-feedback">
+                                                Name on card is required
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="cc-number">Credit card number</label>
+                                            <input type="text" class="form-control" id="cc-number" placeholder="">
+                                            <div class="invalid-feedback">
+                                                Credit card number is required
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <hr class="mb-4">
-                                <button class="btn btn-info btn-lg btn-block" type="submit">Checkout</button>
+                                    <hr class="mb-4">
+                                    <button class="btn btn-info btn-lg btn-block" type="submit">Checkout</button>
 
-                            </form>
-
+                                </form>
+                            </div>
                         </div>
-                        <!--/.Card-->
-
                     </div>
-                    <!--Grid column-->
 
-                    <!--Grid column-->
                     <div class="col-md-4 mb-4">
-
                         <!-- Heading -->
                         <h4 class="d-flex justify-content-between align-items-center mb-3">
                             <span class="text-muted">Your cart</span>
@@ -205,15 +229,9 @@
                                 <strong>Total</strong>
                                 <strong id="total">${total} VND</strong>
                             </li>
-                        </ul>
-                        <!-- Cart -->
-
+                        </ul>                       
                     </div>
-                    <!--Grid column-->
-
-                </div>
-                <!--Grid row-->
-
+                </div>               
             </div>
         </main>
         <!--Main layout-->

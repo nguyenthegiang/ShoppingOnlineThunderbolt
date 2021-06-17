@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -69,25 +71,32 @@ public class BuyControl extends HttpServlet {
             HttpSession session = request.getSession(); //Dùng session để gọi đến id
             Account a = (Account) session.getAttribute("acc"); //Gọi đến account -> Phải ép kiểu để thành Object
 
-            CartDAO CartDAO = new CartDAO();
-            ShipDAO ShipDAO = new ShipDAO();
-            List<Cart> listCart = CartDAO.getCart(a.getId()); //Truyền vào id của account
-
+            CartDAO cartDAO = new CartDAO();
+            ShipDAO shipDAO = new ShipDAO();
+            UserAddressDAO userAddressDAO = new UserAddressDAO();
+            List<Cart> listCart = cartDAO.getCart(a.getId()); //Truyền vào id của account
+            // get address of user
+            UserAddress currentUserDefaultAddress = userAddressDAO.getAddressByUserId(a.getId());
             if (listCart.size() == 0) {
                 response.sendRedirect("show");
             }
 
             //Get All Ships information
-            List<Ship> listShip = ShipDAO.getAllShip();
+            List<Ship> listShip = shipDAO.getAllShip();
+            Ship currentUserDefaultCity = shipDAO.getCityByCId(currentUserDefaultAddress.getShipCityId());
 
             int total = 0;
             for (Cart cart : listCart) {
                 total += cart.getP().getPrice() * cart.getAmount();
-            }
+            }  
+            
+            
 
             request.setAttribute("listCart", listCart);
             request.setAttribute("total", getPriceWithDot(total));
             request.setAttribute("listShip", listShip);
+            request.setAttribute("currentUserDefaultAddress", currentUserDefaultAddress);
+            request.setAttribute("currentUserDefaultCity", currentUserDefaultCity);
             request.getRequestDispatcher("Buy.jsp").forward(request, response);
         } catch (Exception e) {
             response.sendRedirect("Error.jsp");
@@ -106,27 +115,31 @@ public class BuyControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession(); //Dùng session để gọi đến id
-        Account a = (Account) session.getAttribute("acc"); //Gọi đến account -> Phải ép kiểu để thành Object
+        try {
+            request.setCharacterEncoding("UTF-8");
+            HttpSession session = request.getSession(); //Dùng session để gọi đến id
+            Account a = (Account) session.getAttribute("acc"); //Gọi đến account -> Phải ép kiểu để thành Object
 
-        CartDAO CartDAO = new CartDAO();
-        List<Cart> listCart = CartDAO.getCart(a.getId()); //Truyền vào id của account
+            CartDAO CartDAO = new CartDAO();
+            List<Cart> listCart = CartDAO.getCart(a.getId()); //Truyền vào id của account
 
-        double total = 0;
-        for (Cart cart : listCart) {
-            total += cart.getP().getPrice() * cart.getAmount();
+            int total = 0;
+            for (Cart cart : listCart) {
+                total += cart.getP().getPrice() * cart.getAmount();
+            }
+
+            String cityName = request.getParameter("cityName");
+            ShipDAO ShipDAO = new ShipDAO();
+            int shipValue = ShipDAO.getShipPriceByCityName(cityName);
+
+            PrintWriter out = response.getWriter();
+            out.println(getPriceWithDot(total + shipValue) + " VND");
+
+            request.setAttribute("total", getPriceWithDot(total + shipValue));
+        } catch (Exception ex) {
+            response.sendRedirect("Error.jsp");
         }
-        
-        ShipDAO ShipDAO = new ShipDAO();
-        String cityName = request.getParameter("cityName");
-        int shipValue = ShipDAO.getShipPriceByCityName(cityName);
-        total += total + Double.valueOf(shipValue);
-        
-        Order userOrder = new Order(0, a.getId(), total, "", "Waiting for Confirmation"); 
-        List<OrderDetail> lsProductInOrder = new ArrayList<>();
-        
+
     }
 
     /**

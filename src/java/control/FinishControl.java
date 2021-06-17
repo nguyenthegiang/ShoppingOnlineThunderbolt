@@ -7,9 +7,10 @@ package control;
 
 import DAL.*;
 import entity.Account;
-import entity.Product;
+import entity.Cart;
+import entity.OrderDetail;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,11 +40,50 @@ public class FinishControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         try {
-            CartDAO dao = new CartDAO();
+            
             HttpSession session = request.getSession(); //Use session to call id
             Account a = (Account) session.getAttribute("acc"); //Call to account -> Must cast to Object
 
-            dao.deleteCart(a.getId());
+            // get all necessary dao
+            CartDAO cartDAO = new CartDAO();
+            OrderDAO orderDao = new OrderDAO();
+            OrderDetailDAO odDao = new OrderDetailDAO();
+            
+            // get list of product in cart
+            List<Cart> listCart = cartDAO.getCart(a.getId()); //Truyền vào id của account
+
+            // calculate total price of the order
+            double total = 0;
+            List<OrderDetail> lsProductInOrder = new ArrayList<>();
+            for (Cart cart : listCart) {
+                total += cart.getP().getPrice() * cart.getAmount();
+            }
+            ShipDAO ShipDAO = new ShipDAO();
+            String cityName = request.getParameter("cityName");
+            int shipValue = ShipDAO.getShipPriceByCityName(cityName);
+            total += total + Double.valueOf(shipValue);
+
+            // add order to database
+            orderDao.add(a.getId(), total, "", 1);
+            // get the order id
+            int newOrderId = orderDao.getNewestOrderID();
+
+            // add list of product of the order to the database
+            for (Cart cart : listCart) {
+                OrderDetail od = new OrderDetail();
+                od.setOrderID(newOrderId);
+                od.setProductID(cart.getP().getId());
+                od.setProductName(cart.getP().getName());
+                od.setProductPrice(cart.getP().getPrice());
+                lsProductInOrder.add(od);
+            }
+            odDao.addManyOrderDetails(newOrderId, lsProductInOrder);
+            
+            // get shipping info of the order
+            
+            
+            // remove the cart of the order
+            cartDAO.deleteCart(a.getId());
 
             response.sendRedirect("Finish.jsp");
         } catch (Exception e) {
