@@ -42,7 +42,7 @@ INSERT INTO Users VALUES (N'nguyenthithanhmai', N'nguyenthithanhmai', N'e', N'bb
 INSERT INTO Users VALUES (N'nguyentranhoang', N'nguyentranhoang', N'f', N'bbbbb', 0, 0, 1);
 INSERT INTO Users VALUES (N'trantatdat', N'trantatdat', N'DatTTHE150411@fpt.edu.vn', N'bbbbb', 0, 0, 1);
 INSERT INTO Users VALUES (N'phungquangthong', N'phungquangthong', N'ThongPQHE150340@fpt.edu.vn', N'bbbbb', 0, 0, 1);
-INSERT INTO Users VALUES (N'dinhthethuan', N'ThuanDTHE153590@fpt.edu.vn', N'i', N'bbbbb', 0, 0, 1);
+INSERT INTO Users VALUES (N'dinhthethuan', N'dinhthethuan', N'ThuanDTHE153590@fpt.edu.vn', N'bbbbb', 0, 0, 1);
 INSERT INTO Users VALUES (N'canhoangduc', N'canhoangduc', N'j', N'bbbbb', 0, 0, 1);
 INSERT INTO Users VALUES (N'dinhthanhhoang', N'dinhthanhhoang', N'k', N'bbbbb', 0, 0, 1);
 GO
