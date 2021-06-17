@@ -34,15 +34,15 @@ CREATE TABLE Users (
 GO
 
 INSERT INTO Users VALUES (N'nguyenthegiang', N'nguyenthegiang', N'nguyenthe.giang.775@gmail.com', N'aaaaa', 1, 1, 1);
-INSERT INTO Users VALUES (N'buingochuyen', N'buingochuyen', N'a',N'bbbbb', 1, 1,1);
+INSERT INTO Users VALUES (N'buingochuyen', N'buingochuyen', N'HuyenBNHE150346@fpt.edu.vn',N'bbbbb', 1, 1,1);
 INSERT INTO Users VALUES (N'lehoangchi', N'lehoangchi', N'b', N'bbbbb', 1, 0, 1);
 INSERT INTO Users VALUES (N'nguyenthuan', N'nguyenthuan', N'c', N'bbbbb', 1, 0, 1);
 INSERT INTO Users VALUES (N'nguyenminhhanh', N'nguyenminhhanh', N'd', N'bbbbb', 1, 0, 1);
 INSERT INTO Users VALUES (N'nguyenthithanhmai', N'nguyenthithanhmai', N'e', N'bbbbb', 1, 0, 1);
 INSERT INTO Users VALUES (N'nguyentranhoang', N'nguyentranhoang', N'f', N'bbbbb', 0, 0, 1);
-INSERT INTO Users VALUES (N'trantatdat', N'trantatdat', N'g', N'bbbbb', 0, 0, 1);
-INSERT INTO Users VALUES (N'phungquangthong', N'phungquangthong', N'h', N'bbbbb', 0, 0, 1);
-INSERT INTO Users VALUES (N'dinhthethuan', N'dinhthethuan', N'i', N'bbbbb', 0, 0, 1);
+INSERT INTO Users VALUES (N'trantatdat', N'trantatdat', N'DatTTHE150411@fpt.edu.vn', N'bbbbb', 0, 0, 1);
+INSERT INTO Users VALUES (N'phungquangthong', N'phungquangthong', N'ThongPQHE150340@fpt.edu.vn', N'bbbbb', 0, 0, 1);
+INSERT INTO Users VALUES (N'dinhthethuan', N'dinhthethuan', N'ThuanDTHE153590@fpt.edu.vn', N'bbbbb', 0, 0, 1);
 INSERT INTO Users VALUES (N'canhoangduc', N'canhoangduc', N'j', N'bbbbb', 0, 0, 1);
 INSERT INTO Users VALUES (N'dinhthanhhoang', N'dinhthanhhoang', N'k', N'bbbbb', 0, 0, 1);
 GO
