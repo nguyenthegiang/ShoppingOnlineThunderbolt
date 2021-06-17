@@ -293,13 +293,29 @@ public class UserDAO extends BaseDAO<Account> {
         }
         return 0;
     }
+    
+    public int checkForgetPassword(String username, String email) {
+        String query = "select UserID from Users where Username = ? AND email = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, username);
+            ps.setString(2, email);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 
     public static void main(String[] args) {
         UserDAO UserDAO = new UserDAO();
         
         /*---------Test Case for getAllCategory() method---------*/
-        Account acc = UserDAO.login("nguyenthegiang", "nguyenthegiang");
-        System.out.println(acc);
+//        Account acc = UserDAO.login("nguyenthegiang", "nguyenthegiang");
+//        System.out.println(acc);
         
         //UserDAO.signUp("dinhthanhhoang", "dinhthanhhoang");
 
@@ -317,5 +333,7 @@ public class UserDAO extends BaseDAO<Account> {
 //        Account a = UserDAO.getAccountByEmail("a");
 //        System.out.println(a);
 //        System.out.println(UserDAO.countAllAccount());
+
+        System.out.println(UserDAO.checkForgetPassword("nguyenthegiang", "nguyenthe.giang.775@gmail.com"));
     }
 }
