@@ -165,12 +165,9 @@ public class OrderDAO extends BaseDAO<Order> {
     }
 
     
-
-    
-    
-    
     /**
      * delete a specific order by the order id
+     *
      * @param id: id of the order
      */
     public void delete(int id) {

@@ -24,7 +24,8 @@ public class OrderDetailDAO extends BaseDAO<OrderDetail> {
     /**
      * Adding many oder_detail to a specific order by the order ID
      *
-     * @param oderDetail
+     * @param oderDetail: list of order details need to be inserted
+     * @param Order_ID: the id of the order which would be inserted in
      * @throws Exception
      */
     public void addManyOrderDetails(int Order_ID, List<OrderDetail> oderDetail)
