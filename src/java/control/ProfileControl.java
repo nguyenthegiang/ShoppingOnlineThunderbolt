@@ -36,14 +36,14 @@ public class ProfileControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             // Get current account from session
-        HttpSession session = request.getSession();
-        Account a = (Account) session.getAttribute("acc");
-        
-        request.getRequestDispatcher("UserProfile.jsp").forward(request, response);
-        } catch(Exception e) {
+            HttpSession session = request.getSession();
+            Account a = (Account) session.getAttribute("acc");
+
+            request.getRequestDispatcher("UserProfile.jsp").forward(request, response);
+        } catch (Exception e) {
             response.sendRedirect("Error.jsp");
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -110,19 +110,19 @@ public class LoginFilter implements Filter {
 
         Throwable problem = null;
 
-        //Copy từ bên kia sang
+        //Copy from the other side to
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
         HttpSession session = httpRequest.getSession();
         Account a = (Account) session.getAttribute("acc");
 
-        if (a != null) { //Nếu a khác null -> login rồi -> Redirect về home
+        if (a != null) { //If a is not null -> login then -> Redirect to home
             httpResponse.sendRedirect("home");
         }
 
         try {
-            /*-----------------------Tìm đến đây để sửa-----------------------*/
+            /*-----------------------Go here to fix-----------------------*/
             chain.doFilter(request, response);
         } catch (Throwable t) {
             // If an exception is thrown somewhere down the filter chain,

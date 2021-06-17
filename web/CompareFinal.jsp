@@ -150,9 +150,9 @@
                                         </strong></p>
                                     <br/>
                                     <div class="">
-                                        <a href="product_details.html" class=""><span class=" "></span> Add to cart</a> &emsp;&emsp;&emsp;&emsp;&emsp;
+                                        <a onclick="addCart(${product1.id})" class=""><span class=" "></span> Add to cart</a> &emsp;&emsp;&emsp;&emsp;&emsp;
 
-                                        <a href="product_details.html" class="">VIEW</a>
+                                        <a href="detail?ProductID=${product1.id}" class="">VIEW</a>
                                     </div>
                                 </td>
                                 <td>
@@ -166,9 +166,9 @@
                                         </strong></p>
                                     <br/>
                                     <div class="">
-                                        <a href="product_details.html" class=""><span class=" "></span> Add to cart</a> &emsp;&emsp;&emsp;&emsp;&emsp;
+                                        <a onclick="addCart(${product2.id})" class=""><span class=" "></span> Add to cart</a> &emsp;&emsp;&emsp;&emsp;&emsp;
 
-                                        <a href="product_details.html" class="">VIEW</a>
+                                        <a href="detail?ProductID=${product2.id}" class="">VIEW</a>
                                     </div>
                                 </td>
                             </tr>

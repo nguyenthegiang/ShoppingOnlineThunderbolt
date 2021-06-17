@@ -36,20 +36,25 @@ public class DeleteProductInCartControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        //Lay ID Product ve
-        String PID = request.getParameter("ProductID");
-        int ProductID = Integer.parseInt(PID);
-        //Dùng session để gọi đến id
-        HttpSession session = request.getSession(); 
-        //Gọi đến account -> Phải ép kiểu để thành Object
-        Account a = (Account) session.getAttribute("acc"); 
-        int UserID = a.getId();
-        //Call DAO
-        CartDAO dao = new CartDAO();
-        //Su dung ham DeleProductCart 
-        dao.deleteProductCart(UserID, ProductID);
-        
-        response.sendRedirect("show");
+        try {
+            //Lay ID Product ve
+            String PID = request.getParameter("ProductID");
+            int ProductID = Integer.parseInt(PID);
+            //Dùng session để gọi đến id
+            HttpSession session = request.getSession();
+            //Gọi đến account -> Phải ép kiểu để thành Object
+            Account a = (Account) session.getAttribute("acc");
+            int UserID = a.getId();
+            //Call DAO
+            CartDAO dao = new CartDAO();
+            //Su dung ham DeleProductCart 
+            dao.deleteProductCart(UserID, ProductID);
+
+            response.sendRedirect("show");
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

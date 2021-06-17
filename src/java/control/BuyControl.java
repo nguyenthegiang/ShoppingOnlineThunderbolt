@@ -37,9 +37,9 @@ public class BuyControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        
+
     }
-    
+
     public String getPriceWithDot(int price) {
         String priceDot = "" + price;
         int i = priceDot.length() - 3;
@@ -64,29 +64,34 @@ public class BuyControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession(); //Dùng session để gọi đến id
-        Account a = (Account) session.getAttribute("acc"); //Gọi đến account -> Phải ép kiểu để thành Object
+        try {
+            HttpSession session = request.getSession(); //Dùng session để gọi đến id
+            Account a = (Account) session.getAttribute("acc"); //Gọi đến account -> Phải ép kiểu để thành Object
 
-        CartDAO CartDAO = new CartDAO();
-        ShipDAO ShipDAO = new ShipDAO();
-        List<Cart> listCart = CartDAO.getCart(a.getId()); //Truyền vào id của account
-        
-        if (listCart.size() == 0) {
-            response.sendRedirect("show");
-        }
-        
-        //Get All Ships information
-        List<Ship> listShip = ShipDAO.getAllShip();
-        
-        int total = 0;
-        for (Cart cart : listCart) {
-            total += cart.getP().getPrice() * cart.getAmount();
+            CartDAO CartDAO = new CartDAO();
+            ShipDAO ShipDAO = new ShipDAO();
+            List<Cart> listCart = CartDAO.getCart(a.getId()); //Truyền vào id của account
+
+            if (listCart.size() == 0) {
+                response.sendRedirect("show");
+            }
+
+            //Get All Ships information
+            List<Ship> listShip = ShipDAO.getAllShip();
+
+            int total = 0;
+            for (Cart cart : listCart) {
+                total += cart.getP().getPrice() * cart.getAmount();
+            }
+
+            request.setAttribute("listCart", listCart);
+            request.setAttribute("total", getPriceWithDot(total));
+            request.setAttribute("listShip", listShip);
+            request.getRequestDispatcher("Buy.jsp").forward(request, response);
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
         }
 
-        request.setAttribute("listCart", listCart);
-        request.setAttribute("total", getPriceWithDot(total));
-        request.setAttribute("listShip", listShip);
-        request.getRequestDispatcher("Buy.jsp").forward(request, response);
     }
 
     /**
@@ -107,19 +112,19 @@ public class BuyControl extends HttpServlet {
 
         CartDAO CartDAO = new CartDAO();
         List<Cart> listCart = CartDAO.getCart(a.getId()); //Truyền vào id của account
-        
+
         int total = 0;
         for (Cart cart : listCart) {
             total += cart.getP().getPrice() * cart.getAmount();
         }
-        
+
         String cityName = request.getParameter("cityName");
         ShipDAO ShipDAO = new ShipDAO();
         int shipValue = ShipDAO.getShipPriceByCityName(cityName);
 
         PrintWriter out = response.getWriter();
         out.println(getPriceWithDot(total + shipValue) + " VND");
-        
+
         request.setAttribute("total", getPriceWithDot(total + shipValue));
     }
 

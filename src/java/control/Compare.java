@@ -44,30 +44,36 @@ public class Compare extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        try {
+            //Get data from JSP
+            String id = request.getParameter("id");
 
-        //Get data from JSP
-        String id = request.getParameter("id");
+            ProductDAO ProductDAO = new ProductDAO();
+            InforDAO InforDAO = new InforDAO();
 
-        ProductDAO ProductDAO = new ProductDAO();
-        InforDAO InforDAO = new InforDAO();
+            Product hot = ProductDAO.getHotProduct(); //Get First Product
+            Product favor = ProductDAO.getFavoriteProduct(); //Get Last Product
+            Information infor = InforDAO.getInfor(); //Get Information
+            Product product = ProductDAO.getProductByID(id); //Get the selected Product infor
+            List products = ProductDAO.getAllProduct();
+            CategoryDAO CategoryDAO = new CategoryDAO();
+            List<Category> listC = CategoryDAO.getAllCategory(); //Get List Category
 
-        Product hot = ProductDAO.getHotProduct(); //Get First Product
-        Product favor = ProductDAO.getFavoriteProduct(); //Get Last Product
-        Information infor = InforDAO.getInfor(); //Get Information
-        Product product = ProductDAO.getProductByID(id); //Get the selected Product infor
-        List products = ProductDAO.getAllProduct();
-        CategoryDAO CategoryDAO = new CategoryDAO();
-        List<Category> listC = CategoryDAO.getAllCategory(); //Get List Category
+            //Seding data to jsp page
+            request.setAttribute("product", product);
+            request.setAttribute("products", products);
+            request.setAttribute("hot", hot);
+            request.setAttribute("favor", favor);
+            request.setAttribute("infor", infor);
+            request.setAttribute("allCategory", listC);
 
-        //Seding data to jsp page
-        request.setAttribute("product", product);
-        request.setAttribute("products", products);
-        request.setAttribute("hot", hot);
-        request.setAttribute("favor", favor);
-        request.setAttribute("infor", infor);
-        request.setAttribute("allCategory", listC);
-
-        request.getRequestDispatcher("Compare.jsp").forward(request, response);
+            /*Sending first product's detail and ask user to 
+        choose the other product to compare with
+             */
+            request.getRequestDispatcher("Compare.jsp").forward(request, response);
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
 
     }
 

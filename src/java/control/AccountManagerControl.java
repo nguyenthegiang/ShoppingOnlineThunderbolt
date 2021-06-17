@@ -9,6 +9,7 @@ package control;
 //Aloha2
 //Aloha3
 //Aloha5
+
 import entity.*;
 import DAL.*;
 import java.io.IOException;
@@ -41,14 +42,18 @@ public class AccountManagerControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        
-        //Get data from DAO
-        UserDAO userDAO = new UserDAO();
-        List<Account> listAccount = userDAO.getAllAccounts();
+        try {
+            UserDAO userDAO = new UserDAO();
+            List<Account> listAccount = userDAO.getAllAccounts();
 
-        //Set data to JSP
-        request.setAttribute("list", listAccount);
-        request.getRequestDispatcher("AccountManager.jsp").forward(request, response);
+            //Set data to JSP
+            request.setAttribute("list", listAccount);
+            request.getRequestDispatcher("AccountManager.jsp").forward(request, response);
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
+        //Get data from DAO
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

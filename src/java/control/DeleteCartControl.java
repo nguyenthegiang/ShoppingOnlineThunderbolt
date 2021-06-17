@@ -36,16 +36,21 @@ public class DeleteCartControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        //Khoi tao 1 session 
-        HttpSession session = request.getSession(); 
-        Account a = (Account) session.getAttribute("acc"); 
-        int UserID = a.getId();
-        //Call DAO
-        CartDAO dao = new CartDAO();
-        //Su dung ham deleteById
-        dao.deleteCart(UserID);
-        
-        response.sendRedirect("show");
+        try {
+            //Initialize a session
+            HttpSession session = request.getSession();
+            Account a = (Account) session.getAttribute("acc");
+            int UserID = a.getId();
+            //Call DAO
+            CartDAO dao = new CartDAO();
+            //Use function delete ById
+            dao.deleteCart(UserID);
+
+            response.sendRedirect("show");
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

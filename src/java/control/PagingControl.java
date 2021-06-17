@@ -36,48 +36,53 @@ public class PagingControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        ProductDAO dao = new ProductDAO();
-        
-        String CategoryID = request.getParameter("CategoryID");
-        if (CategoryID == null) {
-            CategoryID = "0"; //Lúc đầu Load dữ liệu -> Home
-        }
+        try {
+            ProductDAO dao = new ProductDAO();
+
+            String CategoryID = request.getParameter("CategoryID");
+            if (CategoryID == null) {
+                CategoryID = "0"; //At first Load data -> Home
+            }
 //        request.setAttribute("CategoryID", CategoryID);
-        int CID = Integer.parseInt(CategoryID); //Ép kiểu
+            int CID = Integer.parseInt(CategoryID); //Extract style
 
-        //Get biến tên là index về
-        //Chỉ khi nhấn số 1, 2, 3... mới get đc index về. Chứ ban đầu chưa get đc index về -> Phải xử lý xem lúc đầu như nào
-        String indexPage = request.getParameter("index");
-        if (indexPage == null) {
-            indexPage = "1"; //Lúc đầu: Load dữ liệu cho trang 1
-        }
-        //Ép
-        int index = Integer.parseInt(indexPage);
-        
-        List<Product> list = dao.pagingByCategory(index, CID);
+            //Get a variable named index about
+            //Only when pressing the number 1, 2, 3... will get indexed. But initially did not get the index back -> Had to deal with it at first
+            String indexPage = request.getParameter("index");
+            if (indexPage == null) {
+                indexPage = "1"; //At first: Load data for page 1
+            }
+            //Extract
+            int index = Integer.parseInt(indexPage);
 
-        PrintWriter out = response.getWriter();
-        for (Product o : list) {
-            //Trả về những khối div -> Ko in ra từng cái o, mà in ra cả 1 khối div
-            //Copy bên home.jsp rồi sửa: sửa những cái ${} thành " + o.get... + "
-            out.println("<div class=\"col-12 col-md-6 col-lg-4\">\n" +
-"                                <div class=\"card\">\n" +
-"                                    <a href=\"detail?ProductID=" + o.getId() + "\" title=\"View Product\"><img class=\"card-img-top\" src=\"image/" + o.getImageLink() + "\" alt=\"Card image cap\"></a>\n" +
-"                                    <div class=\"card-body\">\n" +
-"                                        <!--Xem chi tiet san pham-->\n" +
-"                                        <h4 class=\"card-title show_txt\"><a href=\"detail?ProductID=" + o.getId() + "\" title=\"View Product\">" + o.getName() + "</a></h4>\n" +
-"                                        <div class=\"row\">\n" +
-"                                            <div class=\"col\">\n" +
-"                                                <p class=\"btn btn-warning btn-block\">" + o.getPriceWithDot() + " VND</p>\n" +
-"                                            </div>\n" +
-"                                            <div class=\"col\">\n" +
-"                                                <a onclick=\"addCart(" + o.getId() + ")\" class=\"btn btn-info btn-block\" style=\"color: white\">Add to cart</a>\n" + 
-"                                            </div>\n" +
-"                                        </div>\n" +
-"                                    </div>\n" +
-"                                </div>\n" +
-"                            </div>");
+            List<Product> list = dao.pagingByCategory(index, CID);
+
+            PrintWriter out = response.getWriter();
+            for (Product o : list) {
+                //Return blocks of divs -> Do not print each o, but print a whole block of divs
+                //Copy the home.jsp and edit: fix the ${} to " + o.get... + "
+                out.println("<div class=\"col-12 col-md-6 col-lg-4\">\n"
+                        + "                                <div class=\"card\">\n"
+                        + "                                    <a href=\"detail?ProductID=" + o.getId() + "\" title=\"View Product\"><img class=\"card-img-top\" src=\"image/" + o.getImageLink() + "\" alt=\"Card image cap\"></a>\n"
+                        + "                                    <div class=\"card-body\">\n"
+                        + "                                        <!--Xem chi tiet san pham-->\n"
+                        + "                                        <h4 class=\"card-title show_txt\"><a href=\"detail?ProductID=" + o.getId() + "\" title=\"View Product\">" + o.getName() + "</a></h4>\n"
+                        + "                                        <div class=\"row\">\n"
+                        + "                                            <div class=\"col\">\n"
+                        + "                                                <p class=\"btn btn-warning btn-block\">" + o.getPriceWithDot() + " VND</p>\n"
+                        + "                                            </div>\n"
+                        + "                                            <div class=\"col\">\n"
+                        + "                                                <a onclick=\"addCart(" + o.getId() + ")\" class=\"btn btn-info btn-block\" style=\"color: white\">Add to cart</a>\n"
+                        + "                                            </div>\n"
+                        + "                                        </div>\n"
+                        + "                                    </div>\n"
+                        + "                                </div>\n"
+                        + "                            </div>");
+            }
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

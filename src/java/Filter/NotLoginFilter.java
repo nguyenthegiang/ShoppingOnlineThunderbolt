@@ -112,14 +112,14 @@ public class NotLoginFilter implements Filter {
 
         Throwable problem = null;
 
-        //Copy từ bên kia sang
+        //Copy from the other side to
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
         HttpSession session = httpRequest.getSession();
         Account a = (Account) session.getAttribute("acc");
 
-        if (a == null) { //Nếu a = null -> chưa login -> Redirect về login
+        if (a == null) { //If a = null -> not logged in -> Redirect to login
             httpResponse.sendRedirect("login");
         }
 

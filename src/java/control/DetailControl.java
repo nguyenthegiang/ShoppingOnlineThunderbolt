@@ -36,35 +36,40 @@ public class DetailControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        //Lay ID ve
-        String id = request.getParameter("ProductID");
-        
-        //Lay Message Out of Stock (neu co)
         try {
-            String message = request.getParameter("message");
-            request.setAttribute("message", message);
-        } catch (Exception e) {
-        }
-        
-        //Goi toi DAO
-        ProductDAO dao = new ProductDAO();
-        ProductDetail p = dao.getProductDetailByID(id);
-        
-        CategoryDAO CategoryDAO = new CategoryDAO();
-        List<Category> listC = CategoryDAO.getAllCategory();
-        
-        ProductDAO ProductDAO = new ProductDAO();
-        Product hot = ProductDAO.getHotProduct();
-        Product favor = ProductDAO.getFavoriteProduct();
-        
-        //Day len JSP
-        request.setAttribute("allCategory", listC);
+            //Get ID back
+            String id = request.getParameter("ProductID");
 
-        request.setAttribute("hot", hot);
-        request.setAttribute("favor", favor);
-        
-        request.setAttribute("detail", p);
-        request.getRequestDispatcher("Detail.jsp").forward(request, response);
+            //Get Message Out of Stock (IF that have)
+            try {
+                String message = request.getParameter("message");
+                request.setAttribute("message", message);
+            } catch (Exception e) {
+            }
+
+            //CAll DAO
+            ProductDAO dao = new ProductDAO();
+            ProductDetail p = dao.getProductDetailByID(id);
+
+            CategoryDAO CategoryDAO = new CategoryDAO();
+            List<Category> listC = CategoryDAO.getAllCategory();
+
+            ProductDAO ProductDAO = new ProductDAO();
+            Product hot = ProductDAO.getHotProduct();
+            Product favor = ProductDAO.getFavoriteProduct();
+
+            //PUSH to JSP
+            request.setAttribute("allCategory", listC);
+
+            request.setAttribute("hot", hot);
+            request.setAttribute("favor", favor);
+
+            request.setAttribute("detail", p);
+            request.getRequestDispatcher("Detail.jsp").forward(request, response);
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

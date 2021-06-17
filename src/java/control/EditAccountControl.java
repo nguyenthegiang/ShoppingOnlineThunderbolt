@@ -51,7 +51,12 @@ public class EditAccountControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        //Get ID tu jsp
+        try {
+
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
+        //Get ID from jsp
         String id = request.getParameter("UserID");
         UserDAO dao = new UserDAO();
         Account x = dao.getAccountByID(id);
@@ -62,7 +67,7 @@ public class EditAccountControl extends HttpServlet {
         request.setAttribute("email", x.getEmail());
         request.setAttribute("Seller", x.getIsSell());
         request.setAttribute("Admin", x.getIsAdmin());
-        
+
         request.getRequestDispatcher("EditAccount.jsp").forward(request, response);
     }
 
@@ -79,25 +84,30 @@ public class EditAccountControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        //Bước 1: get data from jsp
-        String id = request.getParameter("id");
-        String user = request.getParameter("user"); //Get by name
-        String password = request.getParameter("pass");
-        String email = request.getParameter("email");
-        String isSell = request.getParameter("Seller");
-        String isAdmin = request.getParameter("Admin");
-        
-        if (!"1".equals(isSell)) {
-            isSell = "0";
-        }
-        if (!"1".equals(isAdmin)) {
-            isAdmin = "0";
+        try {
+            //Step 1: get data from jsp
+            String id = request.getParameter("id");
+            String user = request.getParameter("user"); //Get by name
+            String password = request.getParameter("pass");
+            String email = request.getParameter("email");
+            String isSell = request.getParameter("Seller");
+            String isAdmin = request.getParameter("Admin");
+
+            if (!"1".equals(isSell)) {
+                isSell = "0";
+            }
+            if (!"1".equals(isAdmin)) {
+                isAdmin = "0";
+            }
+
+            //Step 2: set data to ProductDAO
+            UserDAO dao = new UserDAO();
+            //dao.editAccount(id, user, password, isSell, isAdmin);
+            response.sendRedirect("accountManager");
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
         }
 
-        //Bước 2: set data to ProductDAO
-        UserDAO dao = new UserDAO();
-        //dao.editAccount(id, user, password, isSell, isAdmin);
-        response.sendRedirect("accountManager");
     }
 
     /**

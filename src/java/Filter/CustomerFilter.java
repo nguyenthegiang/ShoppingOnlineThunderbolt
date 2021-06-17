@@ -112,20 +112,20 @@ public class CustomerFilter implements Filter {
         
         Throwable problem = null;
         
-        //Copy cái này từ 1 con Servlet
+        //Copy this from a Servlet
         HttpServletRequest httpRequest = (HttpServletRequest) request;
-        /*mình ko dùng request.getSession đc vì request ở trên là ServletRequest, mà mình cần dùng HttpSerrvletRequest => Phải dùng thằng này mới 
-        gọi đc đến Session => Phải khai báo thêm 1 cái nữa */
+        /*can't use request.getSession because the request above is ServletRequest, 
+        but I need to use HttpServletRequest => Must use this to call Session => Must declare one more */
 
-        //Response cx làm tương tự
+        //Response does the same thing
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-        //Dùng thằng này để gọi đến Session
+        //Use this to call Session
         HttpSession session = httpRequest.getSession();
         Account a = (Account) session.getAttribute("acc");
 
         if (a == null || a.getIsSell() == 0) {
-            //Nếu nó ko phải ng bán -> Redirect lại trang home => ko đi qua doFilter đc
+            ////If it's not the seller -> Redirect to the home page => can't go through doFilter
             httpResponse.sendRedirect("home");
         }
         

@@ -37,27 +37,31 @@ public class BuyNowControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         //Get data from JSP
-        String id = request.getParameter("ProductID");
-        String quantity = request.getParameter("Quantity");
-        int ProductID = Integer.parseInt(id);
-        int amount = Integer.parseInt(quantity);
-        
-        //Using session to get Account ID
-        HttpSession session = request.getSession(); 
-        Account a = (Account) session.getAttribute("acc"); 
-        int UserID = a.getId();
-        
-        //Add data to Database
-        CartDAO CartDAO = new CartDAO();
-        boolean notOutOfStock = CartDAO.addToCart(UserID, ProductID, amount);
-        
-        if (notOutOfStock) {
-            response.sendRedirect("show");
-        } else {
-            String message = "Sorry, Product is out of stock";
-            response.sendRedirect("detail?ProductID=" + ProductID + "&message=" + message);
+        try {
+            String id = request.getParameter("ProductID");
+            String quantity = request.getParameter("Quantity");
+            int ProductID = Integer.parseInt(id);
+            int amount = Integer.parseInt(quantity);
+
+            //Using session to get Account ID
+            HttpSession session = request.getSession();
+            Account a = (Account) session.getAttribute("acc");
+            int UserID = a.getId();
+
+            //Add data to Database
+            CartDAO CartDAO = new CartDAO();
+            boolean notOutOfStock = CartDAO.addToCart(UserID, ProductID, amount);
+
+            if (notOutOfStock) {
+                response.sendRedirect("show");
+            } else {
+                String message = "Sorry, Product is out of stock";
+                response.sendRedirect("detail?ProductID=" + ProductID + "&message=" + message);
+            }
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

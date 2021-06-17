@@ -1,4 +1,3 @@
-
 package control;
 
 import entity.*;
@@ -27,19 +26,24 @@ public class AddControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8"); //Add Vietnamese Characters
-        //Get data from JSP
-        String name = request.getParameter("name");
-        String description = request.getParameter("description");
-        String price = request.getParameter("price");
-        String imageLink = request.getParameter("imageLink");
-        String CategoryID = request.getParameter("CategoryID");
-        String SellerID = request.getParameter("SellerID");
-        String amount = request.getParameter("amount");
+        try {
+            //Get data from JSP
+            String name = request.getParameter("name");
+            String description = request.getParameter("description");
+            String price = request.getParameter("price");
+            String imageLink = request.getParameter("imageLink");
+            String CategoryID = request.getParameter("CategoryID");
+            String SellerID = request.getParameter("SellerID");
+            String amount = request.getParameter("amount");
 
-        //Add data to Database
-        ProductDAO dao = new ProductDAO();
-        dao.add(name, description, price, imageLink, CategoryID, SellerID, amount);
-        response.sendRedirect("manager");
+            //Add data to Database
+            ProductDAO dao = new ProductDAO();
+            dao.add(name, description, price, imageLink, CategoryID, SellerID, amount);
+            response.sendRedirect("manager");
+        } catch (Exception e) {
+            response.sendRedirect("Error.jsp");
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

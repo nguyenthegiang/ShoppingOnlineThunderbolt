@@ -21,16 +21,20 @@ public class OrderDAO extends BaseDAO<Order> {
     PreparedStatement ps = null; //...
     ResultSet rs = null; //Nhận kết quả trả về
 
+    /**
+     * get all the current orders in database
+     * @return list order
+     */
     public List<Order> getAllOrder() {
         List<Order> list = new ArrayList<>();
         String query = "SELECT o.ID,o.USERID,o.TotalPrice, o.Note, os.Name \n"
                 + "FROM Orders o INNER JOIN Order_Status os\n"
                 + "ON o.Status = os.ID";
         try {
-            ps = connection.prepareStatement(query);//ném query sang bên SQL server
-            rs = ps.executeQuery();//Chạy câu lệnh query, nhận kết quả trả về
+            ps = connection.prepareStatement(query);//Throw the query to the SQL server 
+            rs = ps.executeQuery();//Run the query, get the results returned
 
-            //Giờ đây, câu lệnh đã đc chạy, rs là bảng Result -> Giờ phải lấy dữ liệu từ bảng rs và cho vào List
+            //Now, the command has been run, rs is the Result version -> Now have to get the data from the rs table and put it in the List
             while (rs.next()) {
                 list.add(new Order(rs.getInt("ID"), rs.getInt("UserId"), rs.getFloat("TotalPrice"),
                         rs.getString("Note"), rs.getString("Name")));
@@ -41,11 +45,19 @@ public class OrderDAO extends BaseDAO<Order> {
         return list;
     }
 
+    
+    /**
+     * adding a new order to database
+     * @param userID
+     * @param totalPrice
+     * @param note
+     * @param status 
+     */
     public void add(int userID, float totalPrice, String note, int status) {
         String query = "INSERT INTO Orders VALUES (?, ?, ?, ?);";
         try {
             ps = connection.prepareStatement(query);
-            //Set dữ liệu vào dấu ?
+            //Set data to the ?
             ps.setInt(1, userID);
             ps.setFloat(2, totalPrice);
             ps.setString(3, note);
@@ -55,13 +67,19 @@ public class OrderDAO extends BaseDAO<Order> {
         }
     }
 
+    
+   /**
+    * change the status of an specific order by the order id
+    * @param id: id of the order to be changed
+    * @param status: new status
+    */
     public void updateStatus(int id, int status) {
         String query = "UPDATE Orders\n"
                 + "SET Status = ?,\n"
                 + "WHERE ID = ?";
         try {
             ps = connection.prepareStatement(query);
-            //Set dữ liệu vào dấu ?
+            //Set data to the ?
             ps.setInt(1, status);
             ps.setInt(2, id);
             ps.executeUpdate();
@@ -69,6 +87,10 @@ public class OrderDAO extends BaseDAO<Order> {
         }
     }
 
+    /**
+     * count all the number of orders in database
+     * @return an integer number
+     */
     public int countOrders() {
         String query = "SELECT COUNT(*) FROM Orders";
         try {
@@ -82,7 +104,12 @@ public class OrderDAO extends BaseDAO<Order> {
         return 0;
     }
 
-    public Order getOrderByOrderID(int id) { //Phải để kiểu int vì khi lưu lên Session thì nó vẫn là kiểu int
+    /**
+     * get a particular order by its id
+     * @param id: the id of the order
+     * @return Order
+     */
+    public Order getOrderByOrderID(int id) { 
         String query = "SELECT o.id,o.userId,o.totalPrice, o.note, os.name \n"
                 + "FROM Orders o INNER JOIN Order_Status os\n"
                 + "ON o.Status = os.ID\n"
@@ -92,14 +119,24 @@ public class OrderDAO extends BaseDAO<Order> {
             ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                return (new Order(rs.getInt("ID"), rs.getInt("UserId"), rs.getFloat("TotalPrice"),
-                        rs.getString("Note"), rs.getString("name")));
+                return (new Order(
+                        rs.getInt("ID"),
+                        rs.getInt("UserId"),
+                        rs.getFloat("TotalPrice"),
+                        rs.getString("Note"),
+                        rs.getString("name")
+                ));
             }
         } catch (Exception e) {
         }
         return null;
     }
 
+    /**
+     * get list of orders of a specific user
+     * @param userId: id of the user
+     * @return List Order
+     */
     public List<Order> getOrderByUserID(int userId) {
         List<Order> list = new ArrayList<>();
         String query = "SELECT o.ID,o.USERID,o.TotalPrice, o.Note, os.Name \n"
@@ -107,14 +144,19 @@ public class OrderDAO extends BaseDAO<Order> {
                 + "ON o.Status = os.ID"
                 + "WHERE o.UserId = ?";
         try {
-            ps = connection.prepareStatement(query);//ném query sang bên SQL server
+            ps = connection.prepareStatement(query);
             ps.setInt(1, userId);
-            rs = ps.executeQuery();//Chạy câu lệnh query, nhận kết quả trả về
+            rs = ps.executeQuery();
 
-            //Giờ đây, câu lệnh đã đc chạy, rs là bảng Result -> Giờ phải lấy dữ liệu từ bảng rs và cho vào List
+            
             while (rs.next()) {
-                list.add(new Order(rs.getInt("ID"), rs.getInt("UserId"), rs.getFloat("TotalPrice"),
-                        rs.getString("Note"), rs.getString("Name")));
+                list.add(new Order(
+                        rs.getInt("ID"),
+                        rs.getInt("UserId"),
+                        rs.getFloat("TotalPrice"),
+                        rs.getString("Note"),
+                        rs.getString("Name")
+                ));
             }
         } catch (Exception e) {
         }
@@ -122,6 +164,11 @@ public class OrderDAO extends BaseDAO<Order> {
         return list;
     }
 
+    /**
+     * adding many orders
+     * @param orders (list of products in user's cart)
+     * @throws Exception 
+     */
     public void addOrderList(List<Order> orders)
             throws Exception {
 
@@ -150,7 +197,12 @@ public class OrderDAO extends BaseDAO<Order> {
         }
     }
 
-    public OrderDetail getOrderDetailByOrderID(int id) { //Phải để kiểu int vì khi lưu lên Session thì nó vẫn là kiểu int
+    /**
+     * getting detailed order by the order id
+     * @param id: ID of the order
+     * @return OrderDetail 
+     */
+    public OrderDetail getOrderDetailByOrderID(int id) {
         String query = "SELECT * FROM Order_Detail"
                 + " WHERE Order_ID = ?";
         try {
@@ -166,17 +218,24 @@ public class OrderDAO extends BaseDAO<Order> {
         return null;
     }
     
+    
+    /**
+     * delete a specific order by the order id
+     * @param id: id of the order
+     */
     public void delete(int id) {
         String query = "DELETE FROM Order_detail WHERE Order_ID = ?\n"
                 + "DELETE FROM Orders WHERE ID = ?";
         try {
             ps = connection.prepareStatement(query);
-            //Đẩy id vào trong dấu ? thứ nhất
+            //Put the id inside the first "?"
             ps.setInt(1, id);
             ps.setInt(2, id);
-            //Execute: Ko có bảng Result -> Ko dùng RS, chỉ dùng executeUpdate
+            //Execute: No Result table -> No RS, only executeUpdate execute
             ps.executeUpdate();
         } catch (Exception e) {
         }
     }
+    
+    
 }
