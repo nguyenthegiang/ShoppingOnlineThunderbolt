@@ -9,6 +9,7 @@ import DAL.*;
 import entity.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -113,19 +114,19 @@ public class BuyControl extends HttpServlet {
         CartDAO CartDAO = new CartDAO();
         List<Cart> listCart = CartDAO.getCart(a.getId()); //Truyền vào id của account
 
-        int total = 0;
+        double total = 0;
         for (Cart cart : listCart) {
             total += cart.getP().getPrice() * cart.getAmount();
         }
-
-        String cityName = request.getParameter("cityName");
+        
         ShipDAO ShipDAO = new ShipDAO();
+        String cityName = request.getParameter("cityName");
         int shipValue = ShipDAO.getShipPriceByCityName(cityName);
-
-        PrintWriter out = response.getWriter();
-        out.println(getPriceWithDot(total + shipValue) + " VND");
-
-        request.setAttribute("total", getPriceWithDot(total + shipValue));
+        total += total + Double.valueOf(shipValue);
+        
+        Order userOrder = new Order(0, a.getId(), total, "", "Waiting for Confirmation"); 
+        List<OrderDetail> lsProductInOrder = new ArrayList<>();
+        
     }
 
     /**
