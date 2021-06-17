@@ -164,59 +164,9 @@ public class OrderDAO extends BaseDAO<Order> {
         return list;
     }
 
-    /**
-     * adding many orders
-     * @param orders (list of products in user's cart)
-     * @throws Exception 
-     */
-    public void addOrderList(List<Order> orders)
-            throws Exception {
+    
 
-        // my SQL INSERT statement
-        String query = " INSERT INTO Orders (userId, totalPrice, "
-                + "note, status)"
-                + " VALUES (?, ?, ?, ?)";
-
-        // declare the preparedstatement reference
-        try {
-            // create the preparedstatement before the loop
-            ps = connection.prepareStatement(query);
-
-            // now loop through nearly 1,500 nodes in the list
-            for (Order n : orders) {
-                ps.setInt(1, n.getUserId());
-                ps.setFloat(2, n.getTotalPrice());
-                ps.setString(3, n.getNote());
-                ps.setString(4, n.getStatus());
-                ps.execute();           // the INSERT happens here
-            }
-        } catch (Exception se) {
-        } finally {
-            // close the statement when all the INSERT's are finished
-            ps.close();
-        }
-    }
-
-    /**
-     * getting detailed order by the order id
-     * @param id: ID of the order
-     * @return OrderDetail 
-     */
-    public OrderDetail getOrderDetailByOrderID(int id) {
-        String query = "SELECT * FROM Order_Detail"
-                + " WHERE Order_ID = ?";
-        try {
-            ps = connection.prepareStatement(query);
-            ps.setInt(1, id);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                return (new OrderDetail(rs.getInt("ID"), rs.getInt("Order_ID"), rs.getInt("ProductID"),
-                        rs.getString("ProductName"), rs.getInt("ProductPrice")));
-            }
-        } catch (Exception e) {
-        }
-        return null;
-    }
+    
     
     
     /**
