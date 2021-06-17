@@ -12,7 +12,7 @@ package entity;
 public class Order {
     private int id;
     private int userId;
-    private float totalPrice;
+    private double totalPrice;
     private String note;
     private String status;
 
@@ -20,7 +20,7 @@ public class Order {
         
     }
     
-    public Order(int id, int userId, float totalPrice, String note, String status) {
+    public Order(int id, int userId, double totalPrice, String note, String status) {
         this.id = id;
         this.userId = userId;
         this.totalPrice = totalPrice;
@@ -46,7 +46,7 @@ public class Order {
         this.userId = userId;
     }
 
-    public float getTotalPrice() {
+    public double getTotalPrice() {
         return totalPrice;
     }
 
