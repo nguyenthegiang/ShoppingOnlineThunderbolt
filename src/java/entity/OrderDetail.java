@@ -16,6 +16,15 @@ public class OrderDetail {
     private String productName;
     private int productPrice;
 
+    @Override
+    public String toString() {
+        return "OrderDetail{" + "id=" 
+                + id + ", "+ "orderID=" 
+                + orderID + ", productID=" 
+                + productID + ", productName=" 
+                + productName + ", productPrice=" 
+                + productPrice + '}';
+    }
     
     public OrderDetail(){
         

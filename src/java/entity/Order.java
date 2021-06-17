@@ -16,6 +16,17 @@ public class Order {
     private String note;
     private String status;
 
+    @Override
+    public String toString() {
+        return "Order{" + "id=" 
+                + id + ", userId=" 
+                + userId + ", totalPrice=" 
+                + totalPrice + ", note=" 
+                + note + ", status=" 
+                + status + '}';
+    }
+    
+    
     public Order(){
         
     }

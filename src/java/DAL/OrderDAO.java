@@ -23,6 +23,7 @@ public class OrderDAO extends BaseDAO<Order> {
 
     /**
      * get all the current orders in database
+     *
      * @return list order
      */
     public List<Order> getAllOrder() {
@@ -45,13 +46,13 @@ public class OrderDAO extends BaseDAO<Order> {
         return list;
     }
 
-    
     /**
      * adding a new order to database
+     *
      * @param userID
      * @param totalPrice
      * @param note
-     * @param status 
+     * @param status
      */
     public void add(int userID, float totalPrice, String note, int status) {
         String query = "INSERT INTO Orders VALUES (?, ?, ?, ?);";
@@ -67,12 +68,12 @@ public class OrderDAO extends BaseDAO<Order> {
         }
     }
 
-    
-   /**
-    * change the status of an specific order by the order id
-    * @param id: id of the order to be changed
-    * @param status: new status
-    */
+    /**
+     * change the status of an specific order by the order id
+     *
+     * @param id: id of the order to be changed
+     * @param status: new status
+     */
     public void updateStatus(int id, int status) {
         String query = "UPDATE Orders\n"
                 + "SET Status = ?,\n"
@@ -89,6 +90,7 @@ public class OrderDAO extends BaseDAO<Order> {
 
     /**
      * count all the number of orders in database
+     *
      * @return an integer number
      */
     public int countOrders() {
@@ -106,10 +108,11 @@ public class OrderDAO extends BaseDAO<Order> {
 
     /**
      * get a particular order by its id
+     *
      * @param id: the id of the order
      * @return Order
      */
-    public Order getOrderByOrderID(int id) { 
+    public Order getOrderByOrderID(int id) {
         String query = "SELECT o.id,o.userId,o.totalPrice, o.note, os.name \n"
                 + "FROM Orders o INNER JOIN Order_Status os\n"
                 + "ON o.Status = os.ID\n"
@@ -134,21 +137,21 @@ public class OrderDAO extends BaseDAO<Order> {
 
     /**
      * get list of orders of a specific user
+     *
      * @param userId: id of the user
      * @return List Order
      */
     public List<Order> getOrderByUserID(int userId) {
         List<Order> list = new ArrayList<>();
-        String query = "SELECT o.ID,o.USERID,o.TotalPrice, o.Note, os.Name \n"
-                + "FROM Orders o INNER JOIN Order_Status os\n"
-                + "ON o.Status = os.ID"
-                + "WHERE o.UserId = ?";
+        String query = "SELECT *\n"
+                + "                FROM Orders  INNER JOIN Order_Status \n"
+                + "                ON Orders.Status = Order_Status.ID\n"
+                + "                WHERE Orders.UserId = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, userId);
             rs = ps.executeQuery();
 
-            
             while (rs.next()) {
                 list.add(new Order(
                         rs.getInt("ID"),
@@ -164,7 +167,6 @@ public class OrderDAO extends BaseDAO<Order> {
         return list;
     }
 
-    
     /**
      * delete a specific order by the order id
      *
@@ -183,6 +185,5 @@ public class OrderDAO extends BaseDAO<Order> {
         } catch (Exception e) {
         }
     }
-    
-    
+
 }

@@ -359,7 +359,12 @@ public class ProductDAO extends BaseDAO<Product> {
             ps.setString(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                return (new ProductDetail(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink"), rs.getString("ManufacturerName")));
+                return (new ProductDetail(rs.getInt("ProductID"), 
+                        rs.getString("ProductName"),
+                        rs.getString("Description"), 
+                        rs.getInt("SellPrice"),
+                        rs.getString("imageLink"),
+                        rs.getString("ManufacturerName")));
             }
         } catch (Exception e) {
         }
