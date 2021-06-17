@@ -17,11 +17,14 @@
     <body>
         <div class="container">
             <div class="row">
-                <div class="col-6">
+                <br><br>
+            </div>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-5">
                     <img src="image/Other/ChangePass.jpg" alt="" style="height: 40em"/>
-
                 </div>
-                <div class="col-6">
+                <div class="col-md-5">
                     <h1>Change Your Password</h1>
                     <!-- Message for notification -->
                     <c:if test="${requestScope.message ne null}">
@@ -55,6 +58,7 @@
                         </form>
                     </c:if>
                 </div>
+                <div class="col-md-1"></div>
             </div>
         </div>
 
