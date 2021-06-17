@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link href="css/ChangePassword.css" rel="stylesheet" type="text/css"/>
     </head>
@@ -22,23 +23,24 @@
             <div class="row">
                 <div class="col-md-1"></div>
                 <div class="col-md-5" id="image">
-                    <img src="image/Other/ChangePass.jpg" alt="" style="height: 40em"/>
+                    <img src="image/Other/ChangePass.jpg" alt=""/>
                 </div>
                 <div class="col-md-5" id="text">
+                    <br><br><br><br><br><br>
                     <h1>Change Your Password</h1>
                     <!-- Message for notification -->
                     <c:if test="${requestScope.message ne null}">
-                        <h3>${requestScope.message}</h3>
+                        <p>${requestScope.message}</p>
                     </c:if>       
                     <br><br>
                     <!-- Input code form -->
-                    <c:if test="${requestScope.compare eq null}"><h3>We have sent a code to your email at ${sessionScope.acc.email}. 
-                            Please enter your code down below to change your password </h3>
+                    <c:if test="${requestScope.compare eq null}">
+                        <p id="noti"><i class="fa fa-bell"></i>We have sent a code to your email at ${sessionScope.acc.email}<br> 
+                            Please enter your code down below to change your password </p>
                         <form action="confirm-change-password" method="POST">
-                            <label for="code">Enter code:</label>
                             <input type="text" id="code" name="code" placeholder="Your Code" class="form-control">
                             <hr>
-                            <button type="submit">Confirm</button>
+                            <button type="submit"><i class="fa fa-check-circle"></i>Confirm</button>
                         </form>
                     </c:if>
 
@@ -54,7 +56,7 @@
                             <label for="pass">Re-enter password:</label>
                             <input type="text" id="repeat-new-pass" name="repeat-new-pass" placeholder="New Password">
                             <hr>
-                            <button class="btn btn-primary btn-block" type="submit">Confirm</button>
+                            <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-check-circle"></i>Confirm</button>
                         </form>
                     </c:if>
                 </div>
