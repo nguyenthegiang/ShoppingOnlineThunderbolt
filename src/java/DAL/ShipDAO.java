@@ -76,6 +76,30 @@ public class ShipDAO extends BaseDAO<Account> {
        }
         return 0;
     }
+    
+    /**
+     * get a shipping price from db using the id
+     * @param id
+     * @return an int number 
+     */
+    public Ship getCityByCId(int cityId) {
+        String query = "SELECT * FROM Ship WHERE id = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, cityId);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Ship(
+                        rs.getInt("id"),
+                        rs.getString("CityName"),
+                        rs.getInt("ShipPrice")
+                );
+            }
+        } catch (Exception e) {
+            e.printStackTrace();          
+       }
+        return null;
+    }
 
     public static void main(String[] args) {
         ShipDAO ShipDAO = new ShipDAO();
