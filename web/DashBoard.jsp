@@ -45,7 +45,7 @@
                             </c:if>
                             <c:if test = "${sessionScope.acc != null}">
                                 <li class="nav-item">
-                                    <a class="nav-link text-info" href="login">Hello ${sessionScope.acc.user}</a>
+                                    <a class="nav-link text-info" href="profile">Hello ${sessionScope.acc.user}</a>
                                 </li>
                                 <c:if test="${sessionScope.acc.isSell == 1}">
                                     <li class="nav-item">
