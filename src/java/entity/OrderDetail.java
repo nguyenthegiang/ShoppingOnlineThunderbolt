@@ -16,6 +16,15 @@ public class OrderDetail {
     private String productName;
     private int productPrice;
 
+    @Override
+    public String toString() {
+        return "OrderDetail{" + "id=" 
+                + id + ", "+ "orderID=" 
+                + orderID + ", productID=" 
+                + productID + ", productName=" 
+                + productName + ", productPrice=" 
+                + productPrice + '}';
+    }
     
     public OrderDetail(){
         
@@ -27,7 +36,10 @@ public class OrderDetail {
         this.productID = productID;
         this.productName = productName;
         this.productPrice = productPrice;
-    }  
+    }
+
+    
+    
     
     public int getId() {
         return id;
@@ -69,4 +81,7 @@ public class OrderDetail {
         this.productPrice = productPrice;
     }
     
+    
+    
 }
+

@@ -68,7 +68,7 @@
                     <br><br>
 
                     <%-- Link to view order history --%>
-                    <a href="#">Your orders</a>
+                    <a href="viewOrder?id=${sessionScope.acc.id}">Your orders</a>
                     <br><br>
 
                     <%-- Link to return to home page --%>

@@ -14,10 +14,10 @@
     </head>
     <body>
         <h1>Hello ${sessionScope.acc.user}</h1>
-        <h2>View your order history!</h2>
+        <h2>View your order details!</h2>
         <div>
-            <c:forEach items="${orders}" var="x">
-                <a href="viewOrderDetail?id=${x.id}">${x}</a>
+            <c:forEach items="${orderDetails}" var="x">
+                <p>${x}</p>
                 <hr>
             </c:forEach>
         <div>

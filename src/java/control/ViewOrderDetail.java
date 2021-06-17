@@ -5,10 +5,8 @@
  */
 package control;
 
-import DAL.OrderDAO;
-import DAL.UserDAO;
-import entity.Account;
-import entity.Order;
+import DAL.OrderDetailDAO;
+import entity.OrderDetail;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -17,14 +15,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Thuan
  */
-@WebServlet(name = "ViewOrder", urlPatterns = {"/viewOrder"})
-public class ViewOrder extends HttpServlet {
+@WebServlet(name = "ViewOrderDetail", urlPatterns = {"/viewOrderDetail"})
+public class ViewOrderDetail extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,21 +35,16 @@ public class ViewOrder extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        try {
+               
             int id = Integer.parseInt(request.getParameter("id"));
-            OrderDAO orderDAO = new OrderDAO();
+            OrderDetailDAO orderDAO = new OrderDetailDAO();
 
-            List<Order> orders = orderDAO.getOrderByUserID(id);
+            List<OrderDetail> orderDetails = orderDAO.getOrderDetailByOrderID(id);
 
-            request.setAttribute("orders", orders);
-            
-            request.getRequestDispatcher("ViewOrdersHistory.jsp").forward(request, response);
-        } catch (Exception ex) {
+            request.setAttribute("orderDetails", orderDetails);
 
-        }
+            request.getRequestDispatcher("ViewOrderDetails.jsp").forward(request, response);
         
-       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
