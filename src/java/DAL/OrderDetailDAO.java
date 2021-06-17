@@ -27,7 +27,7 @@ public class OrderDetailDAO extends BaseDAO<OrderDetail> {
      * @param oderDetail
      * @throws Exception
      */
-    private void addManyOrderDetails(int Order_ID, List<OrderDetail> oderDetail)
+    public void addManyOrderDetails(int Order_ID, List<OrderDetail> oderDetail)
             throws Exception {
 
         // my SQL INSERT statement
