@@ -3,8 +3,10 @@
     Created on : Mar 31, 2021, 7:54:26 PM
     Author     : ADMIN
 --%>
-
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
@@ -135,32 +137,33 @@
                             <tr >
                                 <td>Customer name</td>
                                 <td>Shipping Address</td>
+                                <td>Product Name</td>
                                 <td>Product Picture</td>
-                                <td>Price</td>
-                                <td>Number Of Product</td>
-                                <td>Customer's Phonenumber</td>
+                                <td>Sell Price</td>
+                                <td>Customer's Phone number</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var="item" items="${sales}" varStatus="x">
+                            <c:forEach var="item" items="${invoices}" varStatus="x">
                                 <tr style="padding:2px; border: 1px solid">
-                                    <td>${item.customerName}</td>
-                                    <td>${item.dayBuy}</td>
-                                    <td>${item.productId}</td>
+                                    <td>${item.userName}</td>
+                                    <td>${item.shipAddress}</td>
+                                    <td>${item.productName}</td>
+                                    <td><img style="width:200px;height: 200px;" src="image/${item.imageLink}"/></td>
                                     <td>
-                            <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${item.price}"/> $
-                            </td>
-                            <td>${item.numberOfProduct}</td>
-                            <c:set var="total" value="${total + item.price}" />
-                            </tr>
-                        </c:forEach>
+                            <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${item.sellPrice}"/>VNĐ
+                                    </td>
+                                    <td>${item.phoneNum}</td>
+                                    <c:set var="total" value="${total + item.sellPrice}" />
+                                </tr>
+                            </c:forEach>
                         </tbody>
                     </table>
                     </br>
                     </hr>
                     <h1 style="color:red;">Total:                                        
                         <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${total}"/> 
-                        $</h1>
+                        VNĐ</h1>
                 </div>
                 <div class="row">
                     <div class="col-6">

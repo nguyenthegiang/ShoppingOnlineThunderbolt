@@ -5,7 +5,9 @@
  */
 package control;
 
+import DAL.InvoicesDAO;
 import DAL.OrderDAO;
+import entity.Invoices;
 import entity.Order;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Thuan
  */
-@WebServlet(name = "ViewAllOrderAdmin", urlPatterns = {"/viewAllOrderAdmin"})
-public class ViewAllOrderAdmin extends HttpServlet {
+@WebServlet(name = "ViewAllInvoicesAdmin", urlPatterns = {"/viewAllInvoicesAdmin"})
+public class ViewAllInvoicesAdmin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,11 +38,11 @@ public class ViewAllOrderAdmin extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            OrderDAO orderDAO = new OrderDAO();
+            InvoicesDAO invoicesDAO = new InvoicesDAO();
 
-            List<Order> orders = orderDAO.getAllOrder();
+            List<Invoices> invoices = invoicesDAO.getAllInvoices();
 
-            request.setAttribute("orders", orders);
+            request.setAttribute("invoices", invoices);
             
             request.getRequestDispatcher("ViewAllInvoices.jsp").forward(request, response);
         } catch (Exception ex) {
