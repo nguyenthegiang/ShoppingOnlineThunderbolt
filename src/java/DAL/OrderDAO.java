@@ -45,19 +45,13 @@ public class OrderDAO extends BaseDAO<Order> {
 
         return list;
     }
-
+    
+    
     public List<Order> getAllOrderAdmin() {
         List<Order> list = new ArrayList<>();
-        String query = "SELECT users.Username,UserAddress.ShipAddress\n"
-                + ",product.ProductName, product.SellPrice,UserAddress.PhoneNum \n"
-                + "                FROM users  INNER JOIN UserAddress \n"
-                + "                ON users.UserID = UserAddress.UserID\n"
-                + "                INNER JOIN Orders \n"
-                + "                ON Orders.UserID = Users.UserID\n"
-                + "                INNER JOIN Order_Detail\n"
-                + "                ON Order_Detail.Order_ID = Orders.ID\n"
-                + "                INNER JOIN Product\n"
-                + "                ON Order_Detail.ProductID = Product.ProductID ";
+        String query = "SELECT o.ID,o.USERID,o.TotalPrice, o.Note, os.Name \n"
+                + "FROM Orders o INNER JOIN Order_Status os\n"
+                + "ON o.Status = os.ID";
         try {
             ps = connection.prepareStatement(query);//Throw the query to the SQL server 
             rs = ps.executeQuery();//Run the query, get the results returned
@@ -161,18 +155,18 @@ public class OrderDAO extends BaseDAO<Order> {
         }
         return null;
     }
-
-    public int getNewestOrderID() {
+    
+    public int getNewestOrderID() { 
         String query = "SELECT TOP(1) o.id,o.userId,o.totalPrice, o.note, os.name \n"
                 + "FROM Orders o INNER JOIN Order_Status os\n"
                 + "ON o.Status = os.ID\n"
                 + "ORDER BY o.id DESC";
         try {
             ps = connection.prepareStatement(query);
-
-            rs = ps.executeQuery();
+            
+            rs = ps.executeQuery();           
             while (rs.next()) {
-                Order a = new Order(
+                 Order a = new Order(
                         rs.getInt("ID"),
                         rs.getInt("UserId"),
                         rs.getFloat("TotalPrice"),
@@ -180,7 +174,7 @@ public class OrderDAO extends BaseDAO<Order> {
                         rs.getString("name")
                 );
                 return a.getId();
-            }
+            }           
         } catch (Exception e) {
         }
         return 0;
