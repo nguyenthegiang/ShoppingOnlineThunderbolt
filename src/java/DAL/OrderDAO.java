@@ -47,25 +47,7 @@ public class OrderDAO extends BaseDAO<Order> {
     }
     
     
-    public List<Order> getAllOrderAdmin() {
-        List<Order> list = new ArrayList<>();
-        String query = "SELECT o.ID,o.USERID,o.TotalPrice, o.Note, os.Name \n"
-                + "FROM Orders o INNER JOIN Order_Status os\n"
-                + "ON o.Status = os.ID";
-        try {
-            ps = connection.prepareStatement(query);//Throw the query to the SQL server 
-            rs = ps.executeQuery();//Run the query, get the results returned
-
-            //Now, the command has been run, rs is the Result version -> Now have to get the data from the rs table and put it in the List
-            while (rs.next()) {
-                list.add(new Order(rs.getInt("ID"), rs.getInt("UserId"), rs.getFloat("TotalPrice"),
-                        rs.getString("Note"), rs.getString("Name")));
-            }
-        } catch (Exception e) {
-        }
-
-        return list;
-    }
+    
 
     /**
      * adding a new order to database
