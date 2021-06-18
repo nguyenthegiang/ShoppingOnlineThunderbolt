@@ -114,9 +114,9 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <a style="text-decoration: none;" href =""><h5 class="card-title">Total Invoices</h5></a>
-                                    <a style="text-decoration: none;" href =""><h5 class="card-title">${totalCart}</h5></a>
-                                    <a style="text-decoration: none;" href =""><p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p></a>
+                                    <a style="text-decoration: none;" href ="viewAllOrderAdmin"><h5 class="card-title">Total Invoices</h5></a>
+                                    <a style="text-decoration: none;" href ="viewAllOrderAdmin"><h5 class="card-title">${totalCart}</h5></a>
+                                    <a style="text-decoration: none;" href ="viewAllOrderAdmin"><p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p></a>
                                 </div>
                             </div>
                         </div>
