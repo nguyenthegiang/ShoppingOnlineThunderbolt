@@ -71,10 +71,14 @@ public class BuyControl extends HttpServlet {
             HttpSession session = request.getSession(); //Dùng session để gọi đến id
             Account a = (Account) session.getAttribute("acc"); //Gọi đến account -> Phải ép kiểu để thành Object
 
+            // create necessary DAO
             CartDAO cartDAO = new CartDAO();
             ShipDAO shipDAO = new ShipDAO();
             UserAddressDAO userAddressDAO = new UserAddressDAO();
+            
+            // get products in user's cart
             List<Cart> listCart = cartDAO.getCart(a.getId()); //Truyền vào id của account
+            
             // get address of user
             UserAddress currentUserDefaultAddress = userAddressDAO.getAddressByUserId(a.getId());
             if (listCart.size() == 0) {
@@ -85,21 +89,21 @@ public class BuyControl extends HttpServlet {
             List<Ship> listShip = shipDAO.getAllShip();
             Ship currentUserDefaultCity = shipDAO.getCityByCId(currentUserDefaultAddress.getShipCityId());
 
+            // calculate total sum
             int total = 0;
             for (Cart cart : listCart) {
                 total += cart.getP().getPrice() * cart.getAmount();
             }  
-            
-            
-
+           
+            // set attribute, send to Buy.jsp
             request.setAttribute("listCart", listCart);
-            request.setAttribute("total", getPriceWithDot(total));
+            request.setAttribute("total", total);
             request.setAttribute("listShip", listShip);
             request.setAttribute("currentUserDefaultAddress", currentUserDefaultAddress);
             request.setAttribute("currentUserDefaultCity", currentUserDefaultCity);
             request.getRequestDispatcher("Buy.jsp").forward(request, response);
         } catch (Exception e) {
-            response.sendRedirect("Error.jsp");
+            e.printStackTrace();
         }
 
     }

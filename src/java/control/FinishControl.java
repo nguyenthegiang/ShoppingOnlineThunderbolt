@@ -9,6 +9,8 @@ import DAL.*;
 import entity.Account;
 import entity.Cart;
 import entity.OrderDetail;
+import entity.ShipInfo;
+import entity.UserAddress;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +42,7 @@ public class FinishControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         try {
-            
+
             HttpSession session = request.getSession(); //Use session to call id
             Account a = (Account) session.getAttribute("acc"); //Call to account -> Must cast to Object
 
@@ -48,20 +50,70 @@ public class FinishControl extends HttpServlet {
             CartDAO cartDAO = new CartDAO();
             OrderDAO orderDao = new OrderDAO();
             OrderDetailDAO odDao = new OrderDetailDAO();
-            
+            ShipDAO shipDAO = new ShipDAO();
+            ShipInfoDAO shipInfoDAO = new ShipInfoDAO();
+            UserAddressDAO userAddDAO = new UserAddressDAO();
+
             // get list of product in cart
             List<Cart> listCart = cartDAO.getCart(a.getId()); //Truyền vào id của account
+
+            // get shipping info of the order
+            boolean shipFlag = true;
+            shipFlag = Boolean.valueOf(request.getParameter("btnOtherAddress"));
+            String cityName = "";
+            ShipInfo shipInfo = new ShipInfo();
+
+            // do ship to an other address
+            if (shipFlag) {
+                
+                // get shipping info from form
+                String customerName = request.getParameter("lastName")
+                        + " "
+                        + request.getParameter("firstName");
+                String phoneNum = request.getParameter("phone");
+                String shippingAddress = request.getParameter("address");
+                int shippingCity = Integer.valueOf(request.getParameter("city"));
+                
+                // get city name of the city address from form 
+                cityName = shipDAO.getCityByCId(shippingCity).getCityName();
+                
+                // set shipping info to shipping address from form
+                shipInfo.setCustomerName(customerName);
+                shipInfo.setPhoneNum(phoneNum);
+                shipInfo.setShippingAddress(shippingAddress);
+                shipInfo.setShipCityId(shippingCity);
+            }
+
+            // ship to default address 
+            if (!shipFlag) {
+
+                // get default address
+                UserAddress defaulShipAddress
+                        = userAddDAO.getAddressByUserId(a.getId());
+
+                // get default address city
+                cityName = shipDAO.getCityByCId(
+                        defaulShipAddress.getShipCityId()).getCityName();
+
+                // set shipping info to default address
+                shipInfo.setCustomerName(defaulShipAddress.getShipName());
+                shipInfo.setPhoneNum(defaulShipAddress.getPhoneNum());
+                shipInfo.setShipCityId(defaulShipAddress.getShipCityId());
+                shipInfo.setShippingAddress(defaulShipAddress.getShipAddress());
+
+            }
+            shipInfo.setNote(request.getParameter("note"));
 
             // calculate total price of the order
             double total = 0;
             List<OrderDetail> lsProductInOrder = new ArrayList<>();
-            for (Cart cart : listCart) {
+            for (Cart cart : listCart) {              
                 total += cart.getP().getPrice() * cart.getAmount();
             }
-            ShipDAO ShipDAO = new ShipDAO();
-            String cityName = request.getParameter("cityName");
-            int shipValue = ShipDAO.getShipPriceByCityName(cityName);
-            total += total + Double.valueOf(shipValue);
+
+            int shipValue = shipDAO.getShipPriceByCityName(cityName);
+            System.out.println(shipValue);
+            total += Double.valueOf(shipValue);
 
             // add order to database
             orderDao.add(a.getId(), total, "", 1);
@@ -78,16 +130,20 @@ public class FinishControl extends HttpServlet {
                 lsProductInOrder.add(od);
             }
             odDao.addManyOrderDetails(newOrderId, lsProductInOrder);
+
+            // add ship info to the database
+            shipInfo.setOrderId(newOrderId);
             
-            // get shipping info of the order
+            shipInfoDAO.addShipInfo(shipInfo);
             
-            
+            // send order information to the buyer
+
             // remove the cart of the order
             cartDAO.deleteCart(a.getId());
 
             response.sendRedirect("Finish.jsp");
         } catch (Exception e) {
-            response.sendRedirect("Error.jsp");
+            e.printStackTrace();
         }
 
     }
