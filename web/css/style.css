@@ -83,9 +83,6 @@ a .active{
     animation-duration: 4s;
 }
 
-.container{
-    background-color: #ffffff;
-}
 
 #product{
     border-radius: 15px;
@@ -118,3 +115,28 @@ a .active{
     height: 100px;
     width: 100px;
 }
+
+.slide-wrapper {
+  width: 2912px;
+  -webkit-animation: slide 14s ease infinite;
+}
+
+@-webkit-keyframes slide {
+   20% {margin-left: 0px;}
+   30% {margin-left: -728px;}
+   50% {margin-left: -728px;}
+   60% {margin-left: -1456px;}
+   80% {margin-left: -1456px;}
+ }
+ 
+ #slideshow {
+   overflow: hidden;
+   height: 100%;
+   width: 100%;
+   margin: 0 auto;
+ }
+ .slide {
+   float: left;
+   height: 45%;
+   width: 45%;
+ }

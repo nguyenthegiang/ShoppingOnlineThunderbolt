@@ -28,12 +28,12 @@
 
             <!--Slideshow-->
             <!--<section class="jumbotron text-center" style="background-color: white;">-->
-            <div class="container">
+            <div class="container-fluid" style="background-color: #ebebf2">
                 <div class="row"></div>
                 <div class="col-md-12">
-                    <img class="mySlides" src="image/SlideShow/Intro.jpg" style="height: 100%; width: 100%; object-fit: contain; margin: auto">
-                    <img class="mySlides" src="image/SlideShow/image3.jpg" style="height: 100%; width: 100%; object-fit: contain; margin: auto">
-                    <img class="mySlides" src="image/SlideShow/image2.jpg" style="height: 100%; width: 100%; object-fit: contain; margin: auto">
+                    <img class="mySlides" src="image/SlideShow/Intro1.jpg" style="height: 80%; width: 80%; object-fit: contain; margin: auto">
+                    <img class="mySlides" src="image/SlideShow/Intro2.jpg" style="height: 80%; width: 80%; object-fit: contain; margin: auto">
+                    <img class="mySlides" src="image/SlideShow/Intro3.jpg" style="height: 80%; width: 80%; object-fit: contain; margin: auto">
                     <div class="w3-center w3-display-bottommiddle" style="width:100%">
                         <!--                        <div class="w3-left" onclick="plusDivs(-1)">&#10094;</div>
                                                 <div class="w3-right" onclick="plusDivs(1)">&#10095;</div>-->

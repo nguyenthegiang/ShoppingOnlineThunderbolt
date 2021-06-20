@@ -56,7 +56,7 @@
                         <p><a href="home" id="back"><i class="fa fa-angle-left"></i>Continue shopping</a></p>
                     </div>
                     <div class="col-md-4">
-                        <h5 style="float: left;font-family: Helvetica">Subtotal:</h5>  
+                        <h5 id="sub">Subtotal:</h5>  
                         <h3 style="float: right;font-family: Helvetica"> ${total} VNĐ</h3>
                         <br>
                         <hr>

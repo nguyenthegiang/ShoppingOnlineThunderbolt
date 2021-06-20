@@ -1,0 +1,26 @@
+h1{
+    font-family: Arial Rounde;
+    text-align: center;
+}
+
+#pImage{
+    border-radius: 50%;
+}
+
+#back{
+    color: #343a40; 
+    text-decoration: underline
+}
+i{
+    margin: 5px;
+}
+table{
+    border-spacing: calc;
+    initialborder: outset 10pt; 
+    border-collapse: separate;
+}
+
+#sub{
+    float: left;
+    font-family: Helvetica;
+}

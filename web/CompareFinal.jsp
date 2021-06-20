@@ -132,8 +132,15 @@
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th> ${product1.name} </th>
-                                    <th> ${product2.name} </th>
+                                    <th>                                     
+                                        <img style="max-height: 25em; max-width: 20em; padding:0;margin:0;border-radius: 50%" src="image/${product1.imageLink}" alt="Product picture"/>
+                                        <h4>${product1.name}</h4>
+                                    </th>
+                                    <th>                                     
+                                    <img style="height: 25em; width: 20em; padding:0;margin:0;border-radius: 50%" src="image/${product2.imageLink}" alt="Product picture"/>
+                                    <h4>${product2.name}</h4>
+
+                                    </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -143,7 +150,6 @@
                                     <p class="">
                                         ${product1.description}
                                     </p>
-                                    <img style="height: 25em; width: 20em; padding:0;margin:0;" src="image/${product1.imageLink}" alt="Product picture"/>
                                     <p><strong>
                                             <fmt:formatNumber type = "number" 
                                                               maxFractionDigits = "3" value = "${product1.price}"/> VND
@@ -159,7 +165,6 @@
                                     <p class="">
                                         ${product2.description}
                                     </p>
-                                    <img style="height: 25em; width: 20em; padding:0;margin:0;" src="image/${product2.imageLink}" alt="Product picture"/>
                                     <p><strong>
                                             <fmt:formatNumber type = "number" 
                                                               maxFractionDigits = "3" value = "${product2.price}"/> VND
@@ -173,29 +178,40 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td><i class="fa fa-tags"></i>Price</td>
+                                <td><strong>
+                                        <fmt:formatNumber type = "number" 
+                                                          maxFractionDigits = "3" value = "${product1.price}"/> VND
+                                    </strong></td>
+                                <td><strong>
+                                        <fmt:formatNumber type = "number" 
+                                                          maxFractionDigits = "3" value = "${product2.price}"/> VND
+                                    </strong></td>
+                            </tr>
+                            <tr>
                                 <td>Height</td>
                                 <td>5"</td>
-                                                                <td>15"</td>
+                                <td>15"</td>
                             </tr>
                             <tr>
                                 <td>Deepth</td>
                                 <td>5"</td>
-                                                                <td>5"</td>
+                                <td>5"</td>
                             </tr>
                             <tr>
                                 <td>Size</td>
                                 <td>XXL</td>
-                                                                <td>XL</td>
+                                <td>XL</td>
                             </tr>
                             <tr>
                                 <td>Width</td>
                                 <td>6.5"</td>
-                                                                <td>6"</td>
+                                <td>6"</td>
                             </tr>
                             <tr>
-                                <td>Weight</td>
+                                <td><i class="fa fa-balance-scale-left"></i>Weight</td>
                                 <td>0.5kg</td>
-                                                                <td>0.8kg</td>
+                                <td>0.8kg</td>
                             </tr>
                             <tr>
 
@@ -209,81 +225,83 @@
             </div>
 
         </div>
-    
+
 
         <jsp:include page="Footer.jsp"></jsp:include>
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             <script>
-                    function load(a_link, index, CateID) {
-                        var arr = document.getElementsByClassName('paging');
-                        for (var i = 0; i < arr.length; i++) {
-                            arr[i].classList.remove("active");
-                        }
+                                            function load(a_link, index, CateID) {
+                                                var arr = document.getElementsByClassName('paging');
+                                                for (var i = 0; i < arr.length; i++) {
+                                                    arr[i].classList.remove("active");
+                                                }
 
-                        a_link.parentElement.classList.add("active");
-                        //Sử dụng Ajax
-                        $.ajax({
-                            url: "/Assignment_ElectronicShop_Pro/paging",
-                            type: "get", //send it through get method
-                            data: {
-                                index: index,
-                                CategoryID: CateID
-                            },
-                            success: function (responseData) {
-                                //Trg hợp này: Có dữ liệu trả về -> responseData là dữ liệu trả về
-                                //Dữ liệu trả về ko phải 1 List mà là từng khối <div>
-                                //Bao quanh tất cả các khối <div> sản phẩm là 1 khối div "content" => sửa ở đây
-                                document.getElementById("content").innerHTML = responseData;
-                            }
-                        });
-                    }
+                                                a_link.parentElement.classList.add("active");
+                                                //Sử dụng Ajax
+                                                $.ajax({
+                                                    url: "/Assignment_ElectronicShop_Pro/paging",
+                                                    type: "get", //send it through get method
+                                                    data: {
+                                                        index: index,
+                                                        CategoryID: CateID
+                                                    },
+                                                    success: function (responseData) {
+                                                        //Trg hợp này: Có dữ liệu trả về -> responseData là dữ liệu trả về
+                                                        //Dữ liệu trả về ko phải 1 List mà là từng khối <div>
+                                                        //Bao quanh tất cả các khối <div> sản phẩm là 1 khối div "content" => sửa ở đây
+                                                        document.getElementById("content").innerHTML = responseData;
+                                                    }
+                                                });
+                                            }
 
 
-                    function addCart(ProductID) {
+                                            function addCart(ProductID) {
             <c:if test="${sessionScope.acc != null}">
-                        //Sử dụng Ajax
-                        $.ajax({
-                            url: "/Assignment_ElectronicShop_Pro/addToCart",
-                            type: "get", //send it through get method
-                            data: {
-                                ProductID: ProductID
-                            },
-                            success: function (message) {
-                                var res = message.split("|");
-                                //Change number of Product in cart
-                                document.getElementById("CartNum").innerHTML = res[0];
-                                alert(res[1]);
-                            },
-                            error: function () {
-                            }
-                        });
+                                                //Sử dụng Ajax
+                                                $.ajax({
+                                                    url: "/Assignment_ElectronicShop_Pro/addToCart",
+                                                    type: "get", //send it through get method
+                                                    data: {
+                                                        ProductID: ProductID
+                                                    },
+                                                    success: function (message) {
+                                                        var res = message.split("|");
+                                                        //Change number of Product in cart
+                                                        document.getElementById("CartNum").innerHTML = res[0];
+                                                        alert(res[1]);
+                                                    },
+                                                    error: function () {
+                                                    }
+                                                });
             </c:if>
             <c:if test="${sessionScope.acc == null}">
-                        location.href = "login";
+                                                location.href = "login";
             </c:if>
-                    }
+                                            }
 
-                    function searchByName(param) {
-                        var txtSearch = param.value;
-                        $.ajax({
-                            url: "/Assignment_ElectronicShop_Pro/compareByAjax",
-                            type: "get", //send it through get method
-                            data: {
-                                txt: txtSearch
-                            },
-                            success: function (data) {
-                                var row = document.getElementById("content");
-                                row.innerHTML = data;
-                            },
-                            error: function (xhr) {
-                                //Do Something to handle error
-                            }
-                        });
-                    };
-                    function submitForm () {
-                        document.forms['formFinal'].submit();
-                    };
+                                            function searchByName(param) {
+                                                var txtSearch = param.value;
+                                                $.ajax({
+                                                    url: "/Assignment_ElectronicShop_Pro/compareByAjax",
+                                                    type: "get", //send it through get method
+                                                    data: {
+                                                        txt: txtSearch
+                                                    },
+                                                    success: function (data) {
+                                                        var row = document.getElementById("content");
+                                                        row.innerHTML = data;
+                                                    },
+                                                    error: function (xhr) {
+                                                        //Do Something to handle error
+                                                    }
+                                                });
+                                            }
+                                            ;
+                                            function submitForm() {
+                                                document.forms['formFinal'].submit();
+                                            }
+                                            ;
         </script>  
 
     </body>

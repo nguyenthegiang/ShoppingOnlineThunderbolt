@@ -1,12 +1,16 @@
 body{
+    /*Set background image*/
     background-image:url(../image/Other/Error.jpg);
+    /*Auto resize background image to fit the div*/
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
 }
 
 a{
+    /*Specify the stack order*/
     z-index: 2;
+    /*Style the text*/
     color: black;
     text-decoration: none;
     font-weight: bold;
@@ -14,10 +18,13 @@ a{
 }
 
 #btnBack{
+    /*Set backgroung color*/
     background-image: linear-gradient(to right, #00f79c, #04f1f5);
+    /*Set width, margin, and padding of the button*/
     width: 200px; 
     margin: 0 0 0 23em; 
-    padding: 15px; 
+    padding: 15px;
+    /*Style border*/
     border-radius: 8px;
     border-style: hidden;
 }
