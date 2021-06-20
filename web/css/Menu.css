@@ -1,0 +1,29 @@
+nav{
+    background-color: #ebebf2;
+}
+#cart{
+    height: 36px; 
+    padding: 0.5em 1em; 
+    background-color: rgba(43, 189, 179, 0.7);
+    display: inline-block; 
+    border: none;
+    text-height: text-size;
+    margin: auto;
+}
+#search{
+    color: rgb(43, 189, 179);
+    border-color: rgb(43, 189, 179);
+    margin-left: 0;
+}
+#searchText{
+    margin-right: 0;
+}
+#linkHover:hover{
+    color: rgb(43, 189, 179);
+}
+#linkHover{
+    font-family: Arial;
+}
+#home{
+    font-size: larger;
+}
