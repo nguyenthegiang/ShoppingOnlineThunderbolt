@@ -9,6 +9,7 @@ import entity.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -206,6 +207,7 @@ public class ProductDAO extends BaseDAO<Product> {
 
     /**
      * Every 6 products will be displayed in a single page
+     *
      * @param index
      * @return list of 6 products
      */
@@ -226,6 +228,7 @@ public class ProductDAO extends BaseDAO<Product> {
 
     /**
      * categorizing products
+     *
      * @param index
      * @param CategoryID
      * @return list of products with same category
@@ -251,10 +254,10 @@ public class ProductDAO extends BaseDAO<Product> {
     }
 
     /**
-     * 
+     *
      * @param index
      * @param SellerID
-     * @return 
+     * @return
      */
     public List<Product> pagingManagerProduct(int index, int SellerID) {
         List<Product> list = new ArrayList<>();
@@ -270,7 +273,8 @@ public class ProductDAO extends BaseDAO<Product> {
                 while (rs.next()) {
                     list.add(new Product(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink")));
                 }
-            } catch (Exception e) {
+            } catch (SQLException e) {
+                System.out.println(e);
             }
         }
         return list;
@@ -313,6 +317,7 @@ public class ProductDAO extends BaseDAO<Product> {
 
     /**
      * count the products of a particular seller
+     *
      * @param SellerID
      * @return the number of product
      */
@@ -333,7 +338,7 @@ public class ProductDAO extends BaseDAO<Product> {
         }
         return 0;
     }
-    
+
     public Product getProductByID(String id) { //Must be int type because when saving to Session, it is still int
         String query = "SELECT * FROM Product WHERE ProductID = ?";
         try {
@@ -347,21 +352,21 @@ public class ProductDAO extends BaseDAO<Product> {
         }
         return null;
     }
-    
+
     //Get Product for Detail
     public ProductDetail getProductDetailByID(String id) { //Must be int type because when saving to Session, it is still int
-        String query = "SELECT * \n" +
-                        "FROM Product INNER JOIN Manufacturer\n" +
-                        "ON Product.ManufacturerID = Manufacturer.ManufacturerID\n" +
-                        "WHERE ProductID = ?";
+        String query = "SELECT * \n"
+                + "FROM Product INNER JOIN Manufacturer\n"
+                + "ON Product.ManufacturerID = Manufacturer.ManufacturerID\n"
+                + "WHERE ProductID = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                return (new ProductDetail(rs.getInt("ProductID"), 
+                return (new ProductDetail(rs.getInt("ProductID"),
                         rs.getString("ProductName"),
-                        rs.getString("Description"), 
+                        rs.getString("Description"),
                         rs.getInt("SellPrice"),
                         rs.getString("imageLink"),
                         rs.getString("ManufacturerName")));
@@ -373,6 +378,7 @@ public class ProductDAO extends BaseDAO<Product> {
 
     /**
      * Get a particular product
+     *
      * @param id
      * @return a product
      */
@@ -392,6 +398,7 @@ public class ProductDAO extends BaseDAO<Product> {
 
     /**
      * Search for a particular product by filling its name
+     *
      * @param name
      * @return a product
      */
@@ -412,6 +419,7 @@ public class ProductDAO extends BaseDAO<Product> {
 
     /**
      * Search for a product in admin/moderator mode by filling its name
+     *
      * @param name
      * @param SellerID
      * @return a product
@@ -434,6 +442,7 @@ public class ProductDAO extends BaseDAO<Product> {
 
     /**
      * Select top 3 most sold products
+     *
      * @return products
      */
     public List<ProductInManager> top3MostSell() {
@@ -452,6 +461,7 @@ public class ProductDAO extends BaseDAO<Product> {
 
     /**
      * select top 3 least sold products
+     *
      * @return products
      */
     public List<ProductInManager> top3LeastSell() {
@@ -534,7 +544,6 @@ public class ProductDAO extends BaseDAO<Product> {
 //        ProductInManager p = dao.getProductForManager("1");
 //        System.out.println(p);
 //        dao.add("a", "a", "1", "a", "1", "1", "1");
-        
         System.out.println(dao.getProductDetailByID("1"));
     }
 }

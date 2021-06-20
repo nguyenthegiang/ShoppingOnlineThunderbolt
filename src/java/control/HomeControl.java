@@ -32,7 +32,6 @@ public class HomeControl extends HttpServlet {
             ProductDAO ProductDAO = new ProductDAO();
             InforDAO InforDAO = new InforDAO();
             CategoryDAO CategoryDAO = new CategoryDAO();
-            UserDAO UserDAO = new UserDAO();
 
             List<Category> listC = CategoryDAO.getAllCategory(); //Get List Category
             Product hot = ProductDAO.getHotProduct(); //Get First Product

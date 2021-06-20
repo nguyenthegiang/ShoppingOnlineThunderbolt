@@ -6,7 +6,6 @@
 package DAL;
 
 import entity.Account;
-import entity.Information;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
