@@ -35,9 +35,9 @@
                     <br><br>
                     <!-- Input code form -->
                     <c:if test="${requestScope.compare eq null}">
-                        <p id="noti"><i class="fa fa-bell"></i>We have sent a code to your email at ${sessionScope.acc.email}<br> 
+                        <p id="noti"><i class="fa fa-bell"></i>We have sent a code to your email at ${email}<br> 
                             Please enter your code down below to reset your password </p>
-                        <form action="confirm-change-password" method="POST">
+                        <form action="forgetPassword" method="POST">
                             <input type="text" id="code" name="code" placeholder="Your Code" class="form-control">
                             <hr>
                             <button type="submit"><i class="fa fa-check-circle"></i>Confirm</button>
@@ -46,15 +46,12 @@
 
                     <!-- Password change form -->
                     <c:if test="${requestScope.compare ne null}">
-                        <form action="change-password" method="POST">
-                            <label for="pass">Enter old password:</label>
-                            <input type="text" id="pass" name="pass" placeholder="Old Password" class="form-control">
-                            <br><br>
+                        <form action="Forget_ChangePassword" method="POST">
                             <label for="pass">Enter new password:</label>
-                            <input type="text" id="new-pass" name="new-pass" placeholder="New Password">
+                            <input type="password" id="new-pass" name="new-pass" placeholder="New Password">
                             <br><br>
-                            <label for="pass">Re-enter password:</label>
-                            <input type="text" id="repeat-new-pass" name="repeat-new-pass" placeholder="New Password">
+                            <label for="pass">Re-enter new password:</label>
+                            <input type="password" id="repeat-new-pass" name="repeat-new-pass" placeholder="New Password">
                             <hr>
                             <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-check-circle"></i>Confirm</button>
                         </form>
@@ -63,8 +60,5 @@
                 <div class="col-md-1"></div>
             </div>
         </div>
-
-
-
     </body>
 </html>
