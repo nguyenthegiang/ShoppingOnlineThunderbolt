@@ -48,13 +48,13 @@
                     <c:if test="${requestScope.compare ne null}">
                         <form action="change-password" method="POST">
                             <label for="pass">Enter old password:</label>
-                            <input type="text" id="pass" name="pass" placeholder="Old Password" class="form-control">
+                            <input type="password" id="pass" name="pass" placeholder="Old Password" class="form-control">
                             <br><br>
                             <label for="pass">Enter new password:</label>
-                            <input type="text" id="new-pass" name="new-pass" placeholder="New Password">
+                            <input type="password" id="new-pass" name="new-pass" placeholder="New Password">
                             <br><br>
                             <label for="pass">Re-enter password:</label>
-                            <input type="text" id="repeat-new-pass" name="repeat-new-pass" placeholder="New Password">
+                            <input type="password" id="repeat-new-pass" name="repeat-new-pass" placeholder="New Password">
                             <hr>
                             <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-check-circle"></i>Confirm</button>
                         </form>
