@@ -156,8 +156,7 @@
                                     
                                     <td>${item.status}</td>
                                     <td>${item.date}</td>
-                                    <td><a href ="viewInvoiceDetailAdmin?id=${item.id}">Manage</a></td>
-                                    
+                                    <td><a href ="viewInvoiceDetailAdmin?id=${item.id}">Manage</a></td>                                     
                                     <c:set var="total" value="${total + item.totalPrice}" />
                                 </tr>
                             </c:forEach>

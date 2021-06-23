@@ -126,6 +126,7 @@ public class FinishControl extends HttpServlet {
             userOrder.setTotalPrice(total);
             userOrder.setNote("");
             userOrder.setStatus("Waiting for Confirmation");
+            userOrder.setDate(dtf.format(now));
             int newOrderId = orderDao.addOrder(userOrder, 1);
 
             // add list of product of the order to the database
