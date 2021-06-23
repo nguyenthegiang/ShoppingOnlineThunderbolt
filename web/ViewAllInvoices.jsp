@@ -141,7 +141,7 @@
                                 <td>Note</td>
                                 <td>Status  </td>
                                 <td>Day Buy</td>
-                                <td>Manage</td>
+                                <td></td>
                             </tr>
                         </thead>
                         <tbody>
@@ -156,7 +156,7 @@
                                     
                                     <td>${item.status}</td>
                                     <td>${item.date}</td>
-                                    <td><a href ="viewOrderDetailAdmin">VIEW</a></td>
+                                    <td><a href ="viewOrderDetailAdmin">Manage</a></td>
                                     
                                     <c:set var="total" value="${total + item.totalPrice}" />
                                 </tr>
