@@ -144,8 +144,7 @@ public class FinishControl extends HttpServlet {
             shipInfoDAO.addShipInfo(shipInfo);
 
             // send order information to the buyer
-            Order orderInfo = orderDao.getOrderByOrderID(newOrderId);
-            System.out.println(orderInfo);
+            Order orderInfo = orderDao.getOrderByOrderID(newOrderId);          
             String message = a.getUser() + "Order information: \n" + createOrderInfo(orderInfo);
             new SendEmail(a.getEmail(), a.getUser() + " Order Information", message);
 
