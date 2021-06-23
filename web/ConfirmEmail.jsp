@@ -8,6 +8,9 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Computer ERA</title>
+        <!--Favicon-->
+        <link rel="icon" type="image/png" href="image/faviconLogo.png" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Email Confirmation</title>
         <link href="css/confirmEmail.css" rel="stylesheet" type="text/css"/>
