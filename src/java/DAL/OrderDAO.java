@@ -142,7 +142,7 @@ public class OrderDAO extends BaseDAO<Order> {
     }
 
     public int getNewestOrderID() {
-        String query = "SELECT TOP(1) o.id,o.userId,o.totalPrice, o.note, os.name \n"
+        String query = "SELECT TOP(1) o.id,o.userId,o.totalPrice, o.note, os.name, o.daybuy \n"
                 + "FROM Orders o INNER JOIN Order_Status os\n"
                 + "ON o.Status = os.ID\n"
                 + "ORDER BY o.id DESC";
