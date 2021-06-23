@@ -12,7 +12,6 @@ package entity;
 public class Invoices {
     
     private String userName;
-    private String shipAddress;
     private String productName;
     private String imageLink;
     private int sellPrice;
@@ -20,7 +19,7 @@ public class Invoices {
 
     @Override
     public String toString() {
-        return "Invoices{" + "userName=" + userName + ", shipAddress=" + shipAddress + ", productName=" + productName + ", imageLink=" + imageLink + ", sellPrice=" + sellPrice + ", phoneNum=" + phoneNum + '}';
+        return "Invoices{" + "userName=" + userName + ", productName=" + productName + ", imageLink=" + imageLink + ", sellPrice=" + sellPrice + ", phoneNum=" + phoneNum + '}';
     }
 
     
@@ -29,9 +28,8 @@ public class Invoices {
         
     }
     
-    public Invoices(String userName, String shipAddress, String productName, String imageLink, int sellPrice, String phoneNum) {
+    public Invoices(String userName, String productName, String imageLink, int sellPrice, String phoneNum) {
         this.userName = userName;
-        this.shipAddress = shipAddress;
         this.productName = productName;
         this.imageLink = imageLink;
         this.sellPrice = sellPrice;
@@ -49,14 +47,7 @@ public class Invoices {
         this.userName = userName;
     }
 
-    public String getShipAddress() {
-        return shipAddress;
-    }
-
-    public void setShipAddress(String shipAddress) {
-        this.shipAddress = shipAddress;
-    }
-
+    
     public String getProductName() {
         return productName;
     }
