@@ -44,9 +44,13 @@ public class CompareByAjax extends HttpServlet {
             List<Product> list = dao.searchProductByName(txtSearch);
             PrintWriter out = response.getWriter();
 
-            /*Showing out 4 products with same name 
+            /*Showing out at most 4 products with same name 
           as the user typed in the search bar*/
-            for (int i = 0; i < 4; i++) {
+            int ProductNum = list.size();
+            if (ProductNum > 4) {
+                ProductNum = 4;
+            }
+            for (int i = 0; i < ProductNum; i++) {
                 Product o = list.get(i);
                 out.println("<a href=\"compareFinal?id=" + o.getId() + "\">\n"
                         + "                            <div class=\"my-2 my-lg-0\" style=\"width:100%;\">\n"
