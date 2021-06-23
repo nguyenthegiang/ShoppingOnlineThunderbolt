@@ -9,6 +9,8 @@ import entity.Order;
 import entity.OrderDetail;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,9 +47,6 @@ public class OrderDAO extends BaseDAO<Order> {
 
         return list;
     }
-    
-    
-    
 
     /**
      * adding a new order to database
@@ -56,16 +55,19 @@ public class OrderDAO extends BaseDAO<Order> {
      * @param totalPrice
      * @param note
      * @param status
+     * @param date
      */
-    public void add(int userID, double totalPrice, String note, int status) {
-        String query = "INSERT INTO Orders VALUES (?, ?, ?, ?);";
+    public void add(int userID, double totalPrice, String note, int status, String date) {
+        String query = "INSERT INTO Orders VALUES (?, ?, ?, ?,?);";
         try {
+
             ps = connection.prepareStatement(query);
             //Set data to the ?
             ps.setInt(1, userID);
             ps.setDouble(2, totalPrice);
             ps.setString(3, note);
             ps.setInt(4, status);
+            ps.setString(5, date);
             ps.executeUpdate();
         } catch (Exception e) {
         }
@@ -131,34 +133,34 @@ public class OrderDAO extends BaseDAO<Order> {
                         rs.getFloat("TotalPrice"),
                         rs.getString("Note"),
                         rs.getString("name"),
-                        rs.getString("date")
+                        rs.getString("daybuy")
                 ));
             }
         } catch (Exception e) {
         }
         return null;
     }
-    
-    public int getNewestOrderID() { 
+
+    public int getNewestOrderID() {
         String query = "SELECT TOP(1) o.id,o.userId,o.totalPrice, o.note, os.name \n"
                 + "FROM Orders o INNER JOIN Order_Status os\n"
                 + "ON o.Status = os.ID\n"
                 + "ORDER BY o.id DESC";
         try {
             ps = connection.prepareStatement(query);
-            
-            rs = ps.executeQuery();           
+
+            rs = ps.executeQuery();
             while (rs.next()) {
-                 Order a = new Order(
+                Order a = new Order(
                         rs.getInt("ID"),
                         rs.getInt("UserId"),
                         rs.getFloat("TotalPrice"),
                         rs.getString("Note"),
                         rs.getString("name"),
-                        rs.getString("date")
+                        rs.getString("daybuy")
                 );
                 return a.getId();
-            }           
+            }
         } catch (Exception e) {
         }
         return 0;
@@ -172,10 +174,12 @@ public class OrderDAO extends BaseDAO<Order> {
      */
     public List<Order> getOrderByUserID(int userId) {
         List<Order> list = new ArrayList<>();
-        String query = "SELECT *\n"
-                + "                FROM Orders  INNER JOIN Order_Status \n"
-                + "                ON Orders.Status = Order_Status.ID\n"
-                + "                WHERE Orders.UserId = ?";
+        String query = "SELECT o.ID, o.UserID, "
+                + "o.TotalPrice, o.Note, os.Name, "
+                + "o.DayBuy "
+                + "FROM Orders o  INNER JOIN Order_Status os\n"
+                + " ON o.Status = os.ID\n"
+                + "WHERE o.UserId = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, userId);
@@ -188,7 +192,7 @@ public class OrderDAO extends BaseDAO<Order> {
                         rs.getFloat("TotalPrice"),
                         rs.getString("Note"),
                         rs.getString("Name"),
-                        rs.getString("Date")
+                        rs.getString("Daybuy")
                 ));
             }
         } catch (Exception e) {
