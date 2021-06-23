@@ -60,24 +60,31 @@ public class PagingControl extends HttpServlet {
             PrintWriter out = response.getWriter();
             for (Product o : list) {
                 //Return blocks of divs -> Do not print each o, but print a whole block of divs
-                //Copy the home.jsp and edit: fix the ${} to " + o.get... + "
+                //Copy the home.jsp and edit: fix the ${} to " + o.get... + "                      
                 out.println("<div class=\"col-12 col-md-6 col-lg-4\">\n"
-                        + "                                <div class=\"card\">\n"
-                        + "                                    <a href=\"detail?ProductID=" + o.getId() + "\" title=\"View Product\"><img class=\"card-img-top\" src=\"image/" + o.getImageLink() + "\" alt=\"Card image cap\"></a>\n"
-                        + "                                    <div class=\"card-body\">\n"
-                        + "                                        <!--Xem chi tiet san pham-->\n"
-                        + "                                        <h4 class=\"card-title show_txt\"><a href=\"detail?ProductID=" + o.getId() + "\" title=\"View Product\">" + o.getName() + "</a></h4>\n"
-                        + "                                        <div class=\"row\">\n"
-                        + "                                            <div class=\"col\">\n"
-                        + "                                                <p class=\"btn btn-warning btn-block\">" + o.getPriceWithDot() + " VND</p>\n"
-                        + "                                            </div>\n"
-                        + "                                            <div class=\"col\">\n"
-                        + "                                                <a onclick=\"addCart(" + o.getId() + ")\" class=\"btn btn-info btn-block\" style=\"color: white\">Add to cart</a>\n"
-                        + "                                            </div>\n"
+                        + "                            <div class=\"card\" id=\"product\"> <!--class=\"card\"-->\n"
+                        + "                                <!--Product's image-->\n"
+                        + "                                <a href=\"detail?ProductID=" + o.getId() + "\" title=\"View Product\"><img class=\"card-img-top\" src=\"image/" + o.getImageLink() + "\" alt=\"Card image cap\"></a>\n"
+                        + "                                <div class=\"card-body\">\n"
+                        + "                                    <!--Product's name. Onlick: Product's Detail-->\n"
+                        + "                                    <h4 class=\"card-title show_txt\"><a href=\"detail?ProductID=" + o.getId() + "\" title=\"View Product\">" + o.getName() + "</a></h4>\n"
+                        + "                                    <div class=\"row\">\n"
+                        + "                                        <div class=\"col\">\n"
+                        + "                                            <!--Product's Price-->\n"
+                        + "                                            <a onclick=\"addCart(" + o.getId() + ")\"><p class=\"btn btn-warning btn-block\" id=\"price\">" + o.getPriceWithDot() + " VND</p></a>\n"
+                        + "\n"
+                        + "                                                <!--<p class=\"btn btn-warning btn-block\" id=\"price\">" + o.getPriceWithDot() + " VND</p>-->\n"
+                        + "                                        </div>\n"
+                        + "                                        <div class=\"col\">\n"
+                        + "                                            <a onclick=\"addCart(" + o.getId() + ")\" class=\"btn btn-info btn-block\" id=\"cart\">Add to cart</a>\n"
+                        + "                                        </div>\n"
+                        + "                                        <div class=\"col\">\n"
+                        + "                                            <a onmouseover=\"this.style.textDecoration = 'none';\" href=\"compare?id=" + o.getId() + "\"><p class=\"btn btn-warning btn-block\">Add to Compare</p></a>\n"
                         + "                                        </div>\n"
                         + "                                    </div>\n"
                         + "                                </div>\n"
-                        + "                            </div>");
+                        + "                            </div>\n"
+                        + "                        </div>");
             }
         } catch (Exception e) {
             response.sendRedirect("Error.jsp");
