@@ -15,26 +15,30 @@ public class Order {
     private double totalPrice;
     private String note;
     private String status;
+    private String date;
 
     @Override
     public String toString() {
-        return "Order{" + "id=" + id + ", userId=" + userId + ", totalPrice=" + totalPrice + ", note=" + note + ", status=" + status + '}';
+        return "Order{" + "id=" + id + ", userId=" + userId + ", totalPrice=" + totalPrice + ", note=" + note + ", status=" + status + ", date=" + date + '}';
     }
-    
-       
 
+    
+    
     public Order(){
         
     }
     
-    public Order(int id, int userId, double totalPrice, String note, String status) {
+    
+    public Order(int id, int userId, double totalPrice, String note, String status, String date) {
         this.id = id;
         this.userId = userId;
         this.totalPrice = totalPrice;
         this.note = note;
         this.status = status;
+        this.date = date;
     }
 
+    
     
     
     public int getId() {
@@ -57,7 +61,7 @@ public class Order {
         return totalPrice;
     }
 
-    public void setTotalPrice(float totalPrice) {
+    public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
 
@@ -76,6 +80,16 @@ public class Order {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+    
+    
     
     
 }
