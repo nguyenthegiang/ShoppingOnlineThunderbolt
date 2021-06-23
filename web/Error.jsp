@@ -8,6 +8,9 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Computer ERA</title>
+        <!--Favicon-->
+        <link rel="icon" type="image/png" href="image/faviconLogo.png" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Error</title>
         <!--Inserting style sheet to this html file-->
