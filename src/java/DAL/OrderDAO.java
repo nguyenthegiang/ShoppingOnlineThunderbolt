@@ -29,7 +29,7 @@ public class OrderDAO extends BaseDAO<Order> {
      */
     public List<Order> getAllOrder() {
         List<Order> list = new ArrayList<>();
-        String query = "SELECT o.ID,o.USERID,o.TotalPrice, o.Note, os.Name \n"
+        String query = "SELECT o.ID,o.USERID,o.TotalPrice, o.Note, os.Name, os.Date\n"
                 + "FROM Orders o INNER JOIN Order_Status os\n"
                 + "ON o.Status = os.ID";
         try {
@@ -39,7 +39,7 @@ public class OrderDAO extends BaseDAO<Order> {
             //Now, the command has been run, rs is the Result version -> Now have to get the data from the rs table and put it in the List
             while (rs.next()) {
                 list.add(new Order(rs.getInt("ID"), rs.getInt("UserId"), rs.getFloat("TotalPrice"),
-                        rs.getString("Note"), rs.getString("Name")));
+                        rs.getString("Note"), rs.getString("Name"), rs.getString("Date")));
             }
         } catch (Exception e) {
         }
@@ -158,7 +158,8 @@ public class OrderDAO extends BaseDAO<Order> {
                         rs.getInt("UserId"),
                         rs.getFloat("TotalPrice"),
                         rs.getString("Note"),
-                        rs.getString("name")
+                        rs.getString("name"),
+                        rs.getString("date")
                 ));
             }
         } catch (Exception e) {
@@ -181,7 +182,8 @@ public class OrderDAO extends BaseDAO<Order> {
                         rs.getInt("UserId"),
                         rs.getFloat("TotalPrice"),
                         rs.getString("Note"),
-                        rs.getString("name")
+                        rs.getString("name"),
+                        rs.getString("date")
                 );
                 return a.getId();
             }           
@@ -213,7 +215,8 @@ public class OrderDAO extends BaseDAO<Order> {
                         rs.getInt("UserId"),
                         rs.getFloat("TotalPrice"),
                         rs.getString("Note"),
-                        rs.getString("Name")
+                        rs.getString("Name"),
+                        rs.getString("Date")
                 ));
             }
         } catch (Exception e) {
