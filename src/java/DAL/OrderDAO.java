@@ -125,6 +125,46 @@ public class OrderDAO extends BaseDAO<Order> {
         }
     }
 
+    public void packaging(int id) {
+        String query = "UPDATE Orders\n"
+                + "SET Status = 2,\n"
+                + "WHERE ID = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            //Set data to the ?
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+    
+    public void delivering(int id) {
+        String query = "UPDATE Orders\n"
+                + "SET Status = 3,\n"
+                + "WHERE ID = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            //Set data to the ?
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+    
+    public void cancled(int id) {
+        String query = "UPDATE Orders\n"
+                + "SET Status = 4,\n"
+                + "WHERE ID = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            //Set data to the ?
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+
+    
     /**
      * count all the number of orders in database
      *

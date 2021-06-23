@@ -6,10 +6,12 @@
 package control;
 
 import DAL.CartDAO;
+import DAL.InvoicesDAO;
 import DAL.OrderDAO;
 import DAL.OrderDetailDAO;
 import entity.Order;
 import entity.OrderDetail;
+import entity.OrderDetailAdmin;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -41,13 +43,13 @@ public class ViewInvoiceDetailAdmin extends HttpServlet {
         
         int id = Integer.parseInt(request.getParameter("id"));
         try {
-            OrderDetailDAO orderDAO = new OrderDetailDAO();
+            InvoicesDAO invoicesDAO = new InvoicesDAO();
             CartDAO CartDAO = new CartDAO();
 
-            List<OrderDetail> orderDetail = orderDAO.getOrderDetailByOrderID(id);
+            List<OrderDetailAdmin> invoiceDetail = invoicesDAO.getInvoiceDetailByOrderID(id);
             int totalCart = CartDAO.countAllCart();
 
-            request.setAttribute("orderDetail", orderDetail);
+            request.setAttribute("invoiceDetail", invoiceDetail);
             request.setAttribute("totalCart", totalCart);
             request.setAttribute("OrderId", id);
 
