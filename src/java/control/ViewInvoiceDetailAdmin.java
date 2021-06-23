@@ -7,7 +7,9 @@ package control;
 
 import DAL.CartDAO;
 import DAL.OrderDAO;
+import DAL.OrderDetailDAO;
 import entity.Order;
+import entity.OrderDetail;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -21,8 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Thuan
  */
-@WebServlet(name = "ViewAllInvoicesAdmin", urlPatterns = {"/viewAllInvoicesAdmin"})
-public class ViewAllInvoicesAdmin extends HttpServlet {
+@WebServlet(name = "ViewInvoiceDetailAdmin", urlPatterns = {"/viewInvoiceDetailAdmin"})
+public class ViewInvoiceDetailAdmin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,17 +38,20 @@ public class ViewAllInvoicesAdmin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        int id = Integer.parseInt(request.getParameter("id"));
         try {
-            OrderDAO orderDAO = new OrderDAO();
+            OrderDetailDAO orderDAO = new OrderDetailDAO();
             CartDAO CartDAO = new CartDAO();
 
-            List<Order> orders = orderDAO.getAllOrder();
+            List<OrderDetail> orderDetail = orderDAO.getOrderDetailByOrderID(id);
             int totalCart = CartDAO.countAllCart();
 
-            request.setAttribute("orders", orders);
+            request.setAttribute("orderDetail", orderDetail);
             request.setAttribute("totalCart", totalCart);
+            request.setAttribute("OrderId", id);
 
-            request.getRequestDispatcher("ViewAllInvoices.jsp").forward(request, response);
+            request.getRequestDispatcher("ViewInvoiceDetail.jsp").forward(request, response);
         } catch (Exception ex) {
 
         }

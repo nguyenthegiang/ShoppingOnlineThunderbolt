@@ -132,33 +132,32 @@
                             padding:10px; border: 1px solid;
                         }
                     </style>
+                    <h2>Order ID: ${OrderId}</h2>
                     <table style="margin-left:3em; border: 1px solid;">
                         <thead >
                             <tr >
-                                <td>Order ID</td>
-                                <td>User Id</td>
-                                <td>Total Price</td>
-                                <td>Note</td>
-                                <td>Status  </td>
-                                <td>Day Buy</td>
+                                <td>ID</td>
+                                <td>Product ID</td>
+                                <td>Product Name</td>
+                                <td>Product Price</td>                               
                                 <td></td>
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var="item" items="${orders}" varStatus="x">
+                            <c:forEach var="item" items="${orderDetail}" varStatus="x">
                                 <tr style="padding:2px; border: 1px solid">
                                     <td>${item.id}</td>
-                                    <td>${item.userId}</td>
+                                    <td>${item.productID}</td>
+                                    <td>${item.productName}</td>
+
                                     <td>
-                            <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${item.totalPrice}"/>VNĐ
+                                        <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${item.productPrice}"/>VNĐ
                                     </td>
-                                    <td>${item.note}</td>
-                                    
-                                    <td>${item.status}</td>
-                                    <td>${item.date}</td>
-                                    <td><a href ="viewInvoiceDetailAdmin?id=${item.id}">Manage</a></td>
-                                    
-                                    <c:set var="total" value="${total + item.totalPrice}" />
+
+                                  
+                                    <td><a href ="viewOrderDetailAdmin?id=${item.id}">Manage</a></td>
+
+                                    <c:set var="total" value="${total + item.productPrice}" />
                                 </tr>
                             </c:forEach>
                         </tbody>

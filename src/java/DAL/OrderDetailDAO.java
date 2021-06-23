@@ -5,7 +5,6 @@
  */
 package DAL;
 
-import entity.Order;
 import entity.OrderDetail;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

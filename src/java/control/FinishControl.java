@@ -13,6 +13,8 @@ import entity.OrderDetail;
 import entity.ShipInfo;
 import entity.UserAddress;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -21,6 +23,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import util.FormatPrice;
+import util.SendEmail;
 
 /**
  *
@@ -54,6 +58,8 @@ public class FinishControl extends HttpServlet {
             ShipDAO shipDAO = new ShipDAO();
             ShipInfoDAO shipInfoDAO = new ShipInfoDAO();
             UserAddressDAO userAddDAO = new UserAddressDAO();
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            LocalDateTime now = LocalDateTime.now();
 
             // get list of product in cart
             List<Cart> listCart = cartDAO.getCart(a.getId()); //Truyền vào id của account
@@ -111,9 +117,7 @@ public class FinishControl extends HttpServlet {
             for (Cart cart : listCart) {
                 total += cart.getP().getPrice() * cart.getAmount();
             }
-
-            int shipValue = shipDAO.getShipPriceByCityName(cityName);
-            System.out.println(shipValue);
+            int shipValue = shipDAO.getShipPriceByCityName(cityName);            
             total += Double.valueOf(shipValue);
 
             // add order to database
@@ -122,15 +126,7 @@ public class FinishControl extends HttpServlet {
             userOrder.setTotalPrice(total);
             userOrder.setNote("");
             userOrder.setStatus("Waiting for Confirmation");
-
-            orderDao.add(
-                    userOrder.getUserId(),
-                    userOrder.getTotalPrice(),
-                    userOrder.getNote(),
-                    1);
-
-            // get the order id
-            int newOrderId = orderDao.getNewestOrderID();
+            int newOrderId = orderDao.addOrder(userOrder, 1);
 
             // add list of product of the order to the database
             for (Cart cart : listCart) {
@@ -148,6 +144,11 @@ public class FinishControl extends HttpServlet {
             shipInfoDAO.addShipInfo(shipInfo);
 
             // send order information to the buyer
+            Order orderInfo = orderDao.getOrderByOrderID(newOrderId);
+            System.out.println(orderInfo);
+            String message = a.getUser() + "Order information: \n" + createOrderInfo(orderInfo);
+            new SendEmail(a.getEmail(), a.getUser() + " Order Information", message);
+
             // remove the cart of the order
             cartDAO.deleteCart(a.getId());
 
@@ -159,11 +160,14 @@ public class FinishControl extends HttpServlet {
     }
 
     private String createOrderInfo(Order order) {
-        return  "Order Id: "+
-                "\nNote: "
-                + order.getNote() +
-                "\nStatus: " +
-                order.getStatus();
+        return "Your Order Id: "
+                + order.getId()
+                + "\nSubtotal : "
+                + FormatPrice.getTotalPriceWithSeparator(order.getTotalPrice())
+                + "\nNote: "
+                + order.getNote()
+                + "\nStatus: "
+                + order.getStatus();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

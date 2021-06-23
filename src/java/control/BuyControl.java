@@ -94,6 +94,7 @@ public class BuyControl extends HttpServlet {
             for (Cart cart : listCart) {
                 total += cart.getP().getPrice() * cart.getAmount();
             }  
+            total += currentUserDefaultCity.getShipPrice();
            
             // set attribute, send to Buy.jsp
             request.setAttribute("listCart", listCart);
