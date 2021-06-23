@@ -76,6 +76,7 @@ public class OrderDAO extends BaseDAO<Order> {
 
     /**
      * adding a new order to database, return the order Id
+     *
      * @param order order to add
      * @param statusId status id of the order to add
      * @return id of the order to add
@@ -109,51 +110,23 @@ public class OrderDAO extends BaseDAO<Order> {
      * change the status of an specific order by the order id
      *
      * @param id: id of the order to be changed
-     * @param status: new status
      */
-    public void updateStatus(int id, int status) {
-        String query = "UPDATE Orders\n"
-                + "SET Status = ?,\n"
-                + "WHERE ID = ?";
-        try {
-            ps = connection.prepareStatement(query);
-            //Set data to the ?
-            ps.setInt(1, status);
-            ps.setInt(2, id);
-            ps.executeUpdate();
-        } catch (Exception e) {
-        }
-    }
-
     public void packaging(int id) {
         String query = "UPDATE Orders\n"
-                + "SET Status = 2,\n"
-                + "WHERE ID = ?";
+                + "                SET Status = 2\n"
+                + "                WHERE ID = ?";
         try {
             ps = connection.prepareStatement(query);
-            //Set data to the ?
+            //Set data to the "?"
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (Exception e) {
         }
     }
-    
+
     public void delivering(int id) {
         String query = "UPDATE Orders\n"
-                + "SET Status = 3,\n"
-                + "WHERE ID = ?";
-        try {
-            ps = connection.prepareStatement(query);
-            //Set data to the ?
-            ps.setInt(1, id);
-            ps.executeUpdate();
-        } catch (Exception e) {
-        }
-    }
-    
-    public void cancled(int id) {
-        String query = "UPDATE Orders\n"
-                + "SET Status = 4,\n"
+                + "SET Status = 3\n"
                 + "WHERE ID = ?";
         try {
             ps = connection.prepareStatement(query);
@@ -164,7 +137,19 @@ public class OrderDAO extends BaseDAO<Order> {
         }
     }
 
-    
+    public void cancled(int id) {
+        String query = "UPDATE Orders\n"
+                + "SET Status = 4\n"
+                + "WHERE ID = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            //Set data to the ?
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+
     /**
      * count all the number of orders in database
      *
@@ -291,7 +276,7 @@ public class OrderDAO extends BaseDAO<Order> {
         } catch (Exception e) {
         }
     }
-    
+
     public static void main(String[] args) {
         OrderDAO orderDAO = new OrderDAO();
         Order a = orderDAO.getOrderByOrderID(2);

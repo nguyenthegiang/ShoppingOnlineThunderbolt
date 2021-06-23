@@ -41,14 +41,11 @@ public class ApproveOrder extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         try {
             OrderDAO orderDAO = new OrderDAO();
-            CartDAO CartDAO = new CartDAO();
             
             orderDAO.packaging(id);
-            int totalCart = CartDAO.countAllCart();
             List<Order> orders = orderDAO.getAllOrder();
             
             
-            request.setAttribute("totalCart", totalCart);
             request.setAttribute("orders", orders);
 
             

@@ -140,6 +140,7 @@
                                 <td>User Name</td>
                                 <td>Product ID</td>
                                 <td>Product Name</td>                               
+                                <td>Product Price</td>                               
                                 <td>Product Image</td>                               
                                 <td>Shipping Address</td>                               
                                 <td>Customer's Phone Number</td>                               
@@ -170,7 +171,11 @@
                     <h1  style="color:red;">Total:                                        
                         <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${total}"/> 
                         VNĐ</h1>
-                        <a href="approveOrder?id=${OrderId}"><button>Approve</button></a>
+
+                        <form action="approveOrder">
+                            <input type="hidden" value="${OrderId}" name="id"/>
+                            <input type="submit" value="Approve"/>
+                        </form>
                 </div>
                 <div class="row">
                     <div class="col-6">
