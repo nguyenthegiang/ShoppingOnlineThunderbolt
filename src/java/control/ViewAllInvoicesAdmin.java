@@ -5,9 +5,7 @@
  */
 package control;
 
-import DAL.InvoicesDAO;
 import DAL.OrderDAO;
-import entity.Invoices;
 import entity.Order;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -38,9 +36,9 @@ public class ViewAllInvoicesAdmin extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            InvoicesDAO invoicesDAO = new InvoicesDAO();
+            OrderDAO invoicesDAO = new OrderDAO();
 
-            List<Invoices> invoices = invoicesDAO.getAllInvoices();
+            List<Order> invoices = invoicesDAO.getAllOrder();
 
             request.setAttribute("invoices", invoices);
             

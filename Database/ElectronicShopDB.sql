@@ -288,6 +288,7 @@ CREATE TABLE [dbo].[Orders](
 	[TotalPrice] [float] NULL,
 	[Note] [nvarchar](2000) NULL,
 	[Status] [int] NULL,
+	[DayBuy] [char](50) NULL ,
 	constraint userID_in_user_order FOREIGN KEY(UserID) REFERENCES Users(UserID),
 	constraint statusID_in_order_status FOREIGN KEY(Status) REFERENCES Order_Status(ID)
 ) ON [PRIMARY]
@@ -300,8 +301,7 @@ CREATE TABLE [dbo].[Order_Detail](
 	[Order_ID] [int] NOT NULL,
 	[ProductID] [int] NOT NULL,
 	[ProductName] [nvarchar](1000) NOT NULL,
-	[ProductPrice] [int] NOT NULL,
-	[DayBuy] [char](50) NULL ,
+	[ProductPrice] [int] NOT NULL,	
 	constraint orderID_in_order FOREIGN KEY(Order_ID) REFERENCES Orders(ID),
 	constraint productID_in_order_detail FOREIGN KEY(ProductID) REFERENCES Product(ProductID)
 ) ON [PRIMARY]
