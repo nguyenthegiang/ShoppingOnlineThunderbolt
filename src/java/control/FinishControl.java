@@ -8,6 +8,7 @@ package control;
 import DAL.*;
 import entity.Account;
 import entity.Cart;
+import entity.Order;
 import entity.OrderDetail;
 import entity.ShipInfo;
 import entity.UserAddress;
@@ -65,7 +66,7 @@ public class FinishControl extends HttpServlet {
 
             // do ship to an other address
             if (shipFlag) {
-                
+
                 // get shipping info from form
                 String customerName = request.getParameter("lastName")
                         + " "
@@ -73,10 +74,10 @@ public class FinishControl extends HttpServlet {
                 String phoneNum = request.getParameter("phone");
                 String shippingAddress = request.getParameter("address");
                 int shippingCity = Integer.valueOf(request.getParameter("city"));
-                
+
                 // get city name of the city address from form 
                 cityName = shipDAO.getCityByCId(shippingCity).getCityName();
-                
+
                 // set shipping info to shipping address from form
                 shipInfo.setCustomerName(customerName);
                 shipInfo.setPhoneNum(phoneNum);
@@ -107,7 +108,7 @@ public class FinishControl extends HttpServlet {
             // calculate total price of the order
             double total = 0;
             List<OrderDetail> lsProductInOrder = new ArrayList<>();
-            for (Cart cart : listCart) {              
+            for (Cart cart : listCart) {
                 total += cart.getP().getPrice() * cart.getAmount();
             }
 
@@ -116,7 +117,18 @@ public class FinishControl extends HttpServlet {
             total += Double.valueOf(shipValue);
 
             // add order to database
-            orderDao.add(a.getId(), total, "", 1);
+            Order userOrder = new Order();
+            userOrder.setUserId(a.getId());
+            userOrder.setTotalPrice(total);
+            userOrder.setNote("");
+            userOrder.setStatus("Waiting for Confirmation");
+
+            orderDao.add(
+                    userOrder.getUserId(),
+                    userOrder.getTotalPrice(),
+                    userOrder.getNote(),
+                    1);
+
             // get the order id
             int newOrderId = orderDao.getNewestOrderID();
 
@@ -133,11 +145,9 @@ public class FinishControl extends HttpServlet {
 
             // add ship info to the database
             shipInfo.setOrderId(newOrderId);
-            
             shipInfoDAO.addShipInfo(shipInfo);
-            
-            // send order information to the buyer
 
+            // send order information to the buyer
             // remove the cart of the order
             cartDAO.deleteCart(a.getId());
 
@@ -146,6 +156,14 @@ public class FinishControl extends HttpServlet {
             e.printStackTrace();
         }
 
+    }
+
+    private String createOrderInfo(Order order) {
+        return  "Order Id: "+
+                "\nNote: "
+                + order.getNote() +
+                "\nStatus: " +
+                order.getStatus();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -158,6 +176,7 @@ public class FinishControl extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
