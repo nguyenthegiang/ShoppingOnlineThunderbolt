@@ -6,9 +6,10 @@
 package DAL;
 
 import entity.Order;
-import entity.OrderDetail;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,9 +47,6 @@ public class OrderDAO extends BaseDAO<Order> {
         return list;
     }
     
-    
-    
-
     /**
      * adding a new order to database
      *
@@ -69,6 +67,36 @@ public class OrderDAO extends BaseDAO<Order> {
             ps.executeUpdate();
         } catch (Exception e) {
         }
+    }
+    
+    /**
+     * adding a new order to database, return the order Id
+     * @param order to add
+     * @return the id of the added order
+     */
+    public int addOrder(Order order) {
+
+        String query = "Insert into Orders values(?, ?, ?, ?)";
+        int check = 0;
+
+        try {
+            ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setObject(1, order.getUserId());
+            ps.setObject(2, order.getTotalPrice());
+            ps.setObject(3, order.getNote());
+            ps.setObject(4, order.getStatus());
+
+            check = ps.executeUpdate();
+            if (check > 0) {
+                ResultSet rs = ps.getGeneratedKeys();
+                rs.next();
+                return rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        }
+        return 0;
     }
 
     /**
