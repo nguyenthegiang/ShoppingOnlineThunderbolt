@@ -5,6 +5,7 @@
  */
 package control;
 
+import DAL.CartDAO;
 import DAL.OrderDAO;
 import entity.Order;
 import java.io.IOException;
@@ -36,12 +37,15 @@ public class ViewAllInvoicesAdmin extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            OrderDAO invoicesDAO = new OrderDAO();
+            OrderDAO orderDAO = new OrderDAO();
+            CartDAO CartDAO = new CartDAO();
 
-            List<Order> invoices = invoicesDAO.getAllOrder();
+            List<Order> orders = orderDAO.getAllOrder();
+            int totalCart = CartDAO.countAllCart();
 
-            request.setAttribute("invoices", invoices);
-            
+            request.setAttribute("orders", orders);
+            request.setAttribute("totalCart", totalCart);
+
             request.getRequestDispatcher("ViewAllInvoices.jsp").forward(request, response);
         } catch (Exception ex) {
 

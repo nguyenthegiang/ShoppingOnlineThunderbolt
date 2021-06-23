@@ -30,7 +30,7 @@ public class OrderDAO extends BaseDAO<Order> {
      */
     public List<Order> getAllOrder() {
         List<Order> list = new ArrayList<>();
-        String query = "SELECT o.ID,o.USERID,o.TotalPrice, o.Note, os.Name, os.Date\n"
+        String query = "SELECT o.ID,o.USERID,o.TotalPrice, o.Note, os.Name, o.Daybuy\n"
                 + "FROM Orders o INNER JOIN Order_Status os\n"
                 + "ON o.Status = os.ID";
         try {
@@ -40,7 +40,7 @@ public class OrderDAO extends BaseDAO<Order> {
             //Now, the command has been run, rs is the Result version -> Now have to get the data from the rs table and put it in the List
             while (rs.next()) {
                 list.add(new Order(rs.getInt("ID"), rs.getInt("UserId"), rs.getFloat("TotalPrice"),
-                        rs.getString("Note"), rs.getString("Name"), rs.getString("Date")));
+                        rs.getString("Note"), rs.getString("Name"), rs.getString("Daybuy")));
             }
         } catch (Exception e) {
         }

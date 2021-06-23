@@ -135,26 +135,30 @@
                     <table style="margin-left:3em; border: 1px solid;">
                         <thead >
                             <tr >
-                                <td>Customer name</td>
-                                <td>Shipping Address</td>
-                                <td>Product Name</td>
-                                <td>Product Picture</td>
-                                <td>Sell Price</td>
-                                <td>Customer's Phone number</td>
+                                <td>Order ID</td>
+                                <td>User Id</td>
+                                <td>Total Price</td>
+                                <td>Note</td>
+                                <td>Status  </td>
+                                <td>Day Buy</td>
+                                <td>Manage</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var="item" items="${invoices}" varStatus="x">
+                            <c:forEach var="item" items="${orders}" varStatus="x">
                                 <tr style="padding:2px; border: 1px solid">
-                                    <td>${item.userName}</td>
-                                    <td>${item.shipAddress}</td>
-                                    <td>${item.productName}</td>
-                                    <td><img style="width:200px;height: 200px;" src="image/${item.imageLink}"/></td>
+                                    <td>${item.id}</td>
+                                    <td>${item.userId}</td>
                                     <td>
-                            <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${item.sellPrice}"/>VNĐ
+                            <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${item.totalPrice}"/>VNĐ
                                     </td>
-                                    <td>${item.phoneNum}</td>
-                                    <c:set var="total" value="${total + item.sellPrice}" />
+                                    <td>${item.note}</td>
+                                    
+                                    <td>${item.status}</td>
+                                    <td>${item.date}</td>
+                                    <td><a href ="viewOrderDetailAdmin">VIEW</a></td>
+                                    
+                                    <c:set var="total" value="${total + item.totalPrice}" />
                                 </tr>
                             </c:forEach>
                         </tbody>
