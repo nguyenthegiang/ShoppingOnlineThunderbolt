@@ -23,7 +23,7 @@
     </head>
     <body>
         <jsp:include page="Menu.jsp"></jsp:include>
-            <h1>your shopping cart</h1>
+            <h1>Shopping Cart</h1>
             <div class="container">
                 <a type="button" href="deleteCart" class="btn btn-danger" style="float: right; margin: 10px"><i class="fa fa-trash"></i>Delete Cart</a>
                 <table class="table">
@@ -68,11 +68,6 @@
                 </div>
             </div>
 
-
-
-
-
-
             <!-- <div class="btn-group" role="group" aria-label="Basic outlined example">
                  <button type="button" class="btn btn-warning">Total</button>
                  <button type="button" class="btn btn-outline-primary">${total} VND</button>
@@ -85,6 +80,5 @@
              <div>&emsp;</div><div>&emsp;</div><div>&emsp;</div>
              <p><a href="home" id="back"><i class="fa fa-angle-left"></i>Continue shopping</a></p>
          </div>-->
-
     </body>
 </html>
