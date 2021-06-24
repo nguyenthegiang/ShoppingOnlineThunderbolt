@@ -305,14 +305,19 @@ public class CartDAO extends BaseDAO<Account> {
 //        System.out.println("After: " + CartDAO.countNumCart(7));
 
         /*---------Test Case for deleteProductCart() method---------*/
-        List<Cart> list = CartDAO.getCart(1);
-        for (Cart cart : list) {
-            System.out.println(cart);
-        }
-        CartDAO.add1ProductToCart(1, 1);
-        list = CartDAO.getCart(1);
-        for (Cart cart : list) {
-            System.out.println(cart);
-        }
+//        List<Cart> list = CartDAO.getCart(1);
+//        for (Cart cart : list) {
+//            System.out.println(cart);
+//        }
+//        CartDAO.add1ProductToCart(1, 1);
+//        list = CartDAO.getCart(1);
+//        for (Cart cart : list) {
+//            System.out.println(cart);
+//        }
+
+        /*---------Test Case for add1Amount() method---------*/
+        System.out.println("Before: " + CartDAO.countAmountProduct(1));
+        CartDAO.add1Amount(1);
+        System.out.println("After: " + CartDAO.countAmountProduct(1));
     }
 }
