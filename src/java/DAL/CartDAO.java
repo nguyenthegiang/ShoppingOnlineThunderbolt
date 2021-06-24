@@ -229,7 +229,7 @@ public class CartDAO extends BaseDAO<Account> {
             for (Cart cart : list) {
                 if (cart.getP().getId() == productID) {
                     String query = "UPDATE Cart\n"
-                            + "SET Amount = Amount - 1\n"
+                            + "SET Amount = Amount + 1\n"
                             + " WHERE UserID = ? AND ProductID = ?";
                     try {
                         ps = connection.prepareStatement(query);
@@ -291,6 +291,15 @@ public class CartDAO extends BaseDAO<Account> {
 //        CartDAO.deleteProductCart(7, 12);
 //        System.out.println("After: " + CartDAO.countNumCart(7));
 
-        
+        /*---------Test Case for deleteProductCart() method---------*/
+        List<Cart> list = CartDAO.getCart(1);
+        for (Cart cart : list) {
+            System.out.println(cart);
+        }
+        CartDAO.add1ProductToCart(1, 1);
+        list = CartDAO.getCart(1);
+        for (Cart cart : list) {
+            System.out.println(cart);
+        }
     }
 }
