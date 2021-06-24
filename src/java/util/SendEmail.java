@@ -9,7 +9,6 @@ package util;
  *
  * @author TRANTATDAT
  */
-import java.io.File;
 import java.util.Properties;
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -34,7 +33,7 @@ public class SendEmail {
         this.message = message;
         this.sentEmail(toEmail, subject, message);
     }
-  
+
     // Email and password of the sender
     private final String MAIL = "computererashop@gmail.com";
     private final String PASSWORD = "Thunderbolt123";
@@ -47,6 +46,7 @@ public class SendEmail {
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.host", "smtp.gmail.com");
+        System.setProperty("mail.mime.charset", "utf-8");
 
         // Authenticator
         Session session = Session.getInstance(props, new Authenticator() {
@@ -54,8 +54,8 @@ public class SendEmail {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(MAIL, PASSWORD);
             }
-        });
-
+        });         
+                      
         // Mail info
         try {
             Message message = new MimeMessage(session);
