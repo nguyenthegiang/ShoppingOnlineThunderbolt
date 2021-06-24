@@ -551,33 +551,22 @@ public class ProductDAO extends BaseDAO<Product> {
 //            System.out.println(o);
 //        }
         
-//        List<Product> list = dao.getTop6();
-//        for (Product o : list) {
-//            System.out.println(o);
-//        }
-//        List<Category> list = dao.getAllCategory();
-//        for (Category o : list) {
-//            System.out.println(o);
-//        }
-//        Information x = dao.getInfor();
-//        System.out.println(x);
-//        System.out.println(dao.login("nguyenthegiang", "nguyenthegiang"));
-
-//        List<ProductInManager> list = dao.top3MostSell();
-//        for (ProductInManager productInManager : list) {
-//            System.out.println(productInManager);
-//        }
+        /*---------Test Case for searchProductInManager() method---------*/
 //        List<Product> list = dao.searchProductInManager("asus", 1);
 //        for (Product product : list) {
 //            System.out.println(product);
 //        }
-//        List<Product> list = dao.pagingByCategory(1, 1);
-//        for (Product product : list) {
-//            System.out.println(product);
+        
+        /*---------Test Case for top3MostSell() method---------*/
+//        List<ProductInManager> list = dao.top3MostSell();
+//        for (ProductInManager productInManager : list) {
+//            System.out.println(productInManager);
 //        }
-//        ProductInManager p = dao.getProductForManager("1");
-//        System.out.println(p);
-//        dao.add("a", "a", "1", "a", "1", "1", "1");
 
+        /*---------Test Case for top3LeastSell() method---------*/
+//        List<ProductInManager> list = dao.top3LeastSell();
+//        for (ProductInManager productInManager : list) {
+//            System.out.println(productInManager);
+//        }
     }
 }
