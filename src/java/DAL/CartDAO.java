@@ -247,6 +247,19 @@ public class CartDAO extends BaseDAO<Account> {
         
         return false;
     }
+    
+    //Add 1 amount from Product after 1 Customer Delete 1 amount from cart
+    public void add1Amount(int ProductID) {
+        String query = "UPDATE Product\n"
+                + "SET Amount = Amount + 1\n"
+                + "WHERE ProductID = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, ProductID);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
 
     public static void main(String[] args) {
         CartDAO CartDAO = new CartDAO();
