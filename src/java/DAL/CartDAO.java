@@ -287,8 +287,8 @@ public class CartDAO extends BaseDAO<Account> {
                         ps.executeUpdate();
                     } catch (Exception e) {
                     }
-                    //Call to delete1amount
-                    dao.delete1Amount(productID);
+                    //Call to add1Amount
+                    dao.add1Amount(productID);
                     return true;
                 }
             }           
@@ -340,7 +340,7 @@ public class CartDAO extends BaseDAO<Account> {
 //        CartDAO.deleteProductCart(7, 12);
 //        System.out.println("After: " + CartDAO.countNumCart(7));
 
-        /*---------Test Case for deleteProductCart() method---------*/
+        /*---------Test Case for add1ProductToCart() method---------*/
 //        List<Cart> list = CartDAO.getCart(1);
 //        for (Cart cart : list) {
 //            System.out.println(cart);
@@ -352,8 +352,19 @@ public class CartDAO extends BaseDAO<Account> {
 //        }
 
         /*---------Test Case for add1Amount() method---------*/
-        System.out.println("Before: " + CartDAO.countAmountProduct(1));
-        CartDAO.add1Amount(1);
-        System.out.println("After: " + CartDAO.countAmountProduct(1));
+//        System.out.println("Before: " + CartDAO.countAmountProduct(1));
+//        CartDAO.add1Amount(1);
+//        System.out.println("After: " + CartDAO.countAmountProduct(1));
+        
+        /*---------Test Case for delete1ProductFromCart() method---------*/
+        List<Cart> list = CartDAO.getCart(1);
+        for (Cart cart : list) {
+            System.out.println(cart);
+        }
+        CartDAO.delete1ProductFromCart(1, 1);
+        list = CartDAO.getCart(1);
+        for (Cart cart : list) {
+            System.out.println(cart);
+        }
     }
 }
