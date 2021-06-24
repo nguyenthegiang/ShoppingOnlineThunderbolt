@@ -109,5 +109,21 @@ public class UserAddressDAO extends BaseDAO<UserAddress> {
         }
         return null;
     }
+    
+    public void add(UserAddress userAddress) {
+        String query = "INSERT INTO UserAddress VALUES (?, ?, ?, ?, ?);";
+        try {
+            ps = connection.prepareStatement(query);
+            //Set data to the "?"
+            ps.setInt(1, userAddress.getUserId());
+            ps.setString(2, userAddress.getShipName());
+            ps.setString(3, userAddress.getShipAddress());
+            ps.setInt(4, userAddress.getShipCityId());
+            ps.setString(5, userAddress.getPhoneNum());        
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
           
 }
