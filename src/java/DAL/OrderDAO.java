@@ -10,8 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -234,7 +232,7 @@ public class OrderDAO extends BaseDAO<Order> {
         String query = "SELECT o.ID, o.UserID, "
                 + "o.TotalPrice, o.Note, os.Name, "
                 + "o.DayBuy "
-                + "FROM Orders o INNER JOIN Order_Status os\n"
+                + "FROM Orders o  INNER JOIN Order_Status os\n"
                 + " ON o.Status = os.ID\n"
                 + "WHERE o.UserId = ?";
         try {
@@ -279,7 +277,7 @@ public class OrderDAO extends BaseDAO<Order> {
 
     public static void main(String[] args) {
         OrderDAO orderDAO = new OrderDAO();
-        Order a = orderDAO.getOrderByOrderID(2);
+        Order a = orderDAO.getOrderByOrderID(7);
         System.out.println(a);
     }
 

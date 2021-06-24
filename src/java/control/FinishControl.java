@@ -117,7 +117,7 @@ public class FinishControl extends HttpServlet {
             for (Cart cart : listCart) {
                 total += cart.getP().getPrice() * cart.getAmount();
             }
-            int shipValue = shipDAO.getShipPriceByCityName(cityName);            
+            int shipValue = shipDAO.getShipPriceByCityName(cityName);
             total += Double.valueOf(shipValue);
 
             // add order to database
@@ -145,9 +145,19 @@ public class FinishControl extends HttpServlet {
             shipInfoDAO.addShipInfo(shipInfo);
 
             // send order information to the buyer
-            Order orderInfo = orderDao.getOrderByOrderID(newOrderId);          
-            String message = a.getUser() + "Order information: \n" + createOrderInfo(orderInfo);
-            new SendEmail(a.getEmail(), a.getUser() + " Order Information", message);
+            Order orderInfo = orderDao.getOrderByOrderID(newOrderId);
+            ShipInfo shipInfoOfOrder
+                    = shipInfoDAO.getShipInfoByOrderId(newOrderId);
+            String message = "Thanks for shopping at ComputerERA\n\n"
+                    + a.getUser()
+                    + " Order information: \n"
+                    + createOrderInfo(orderInfo, shipInfoOfOrder)
+                    + "\n\nSee more information of your order at ComputerERA shop website!";
+            
+            new SendEmail(
+                    a.getEmail(),
+                    a.getUser() + " Order Information",
+                    message);
 
             // remove the cart of the order
             cartDAO.deleteCart(a.getId());
@@ -155,19 +165,28 @@ public class FinishControl extends HttpServlet {
             response.sendRedirect("Finish.jsp");
         } catch (Exception e) {
             e.printStackTrace();
+            response.sendRedirect("Error.jsp");
         }
 
     }
 
-    private String createOrderInfo(Order order) {
+    private String createOrderInfo(Order order, ShipInfo shipInfo) {
         return "Your Order Id: "
                 + order.getId()
-                + "\nSubtotal : "
+                + "\nSubtotal: "
                 + FormatPrice.getTotalPriceWithSeparator(order.getTotalPrice())
+                + "\nDate(yyyy/mm/dd): "
+                + order.getDate()
                 + "\nNote: "
                 + order.getNote()
                 + "\nStatus: "
-                + order.getStatus();
+                + order.getStatus()
+                + "\nReceiver's Name: "
+                + shipInfo.getCustomerName()
+                +"\nReceiver's Phone Number: "
+                + shipInfo.getPhoneNum()
+                +"\nReceiver's Address: "
+                + shipInfo.getShippingAddress();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
