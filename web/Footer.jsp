@@ -10,6 +10,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Computer ERA</title>
+        <!--Favicon-->
+        <link rel="icon" type="image/png" href="image/faviconLogo.png" />
     </head>
     <body>
         <!-- Footer -->
