@@ -159,7 +159,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            
+
                             <!--
                             These are fake attributes added for testing purpose
                             -->                           
@@ -198,46 +198,46 @@
                         <input class="form-control mr-sm-2" type="search" placeholder="Search a product" aria-label="Search..." oninput="searchByName(this)" value="${txtS}" name="txt">
                     </form>
 
-                                        <div id="content" style="">
-<!--                                            <div class="my-2 my-lg-0" style="width:100%;">
-                                                <div style="padding:20px; padding-top:10px; padding-left:50px;margin-left:10px;" class="" id=""> class="card"
-                                                    Product's image
-                                                    <img style="float:left;" width="20%;" style="padding-top:10px;" src="image/${product.imageLink}"/>
-                    
-                                                    <p style="  display: -webkit-box;
-                                                       -webkit-box-orient: vertical;
-                                                       -webkit-line-clamp: 5;  /* Number of lines displayed before it truncate */
-                                                       overflow: hidden;
-                                                       padding-top:10px;
-                                                       ">${product.name}
-                                                    </p>
-                    
-                                                </div>
-                                            </div>
-                                                                    <div style="" class=""><a href="products.html" class="">Back to Products Page</a></div>-->
-                                        </div>
+                    <div id="content" style="">
+                        <!--                                            <div class="my-2 my-lg-0" style="width:100%;">
+                                                                        <div style="padding:20px; padding-top:10px; padding-left:50px;margin-left:10px;" class="" id=""> class="card"
+                                                                            Product's image
+                                                                            <img style="float:left;" width="20%;" style="padding-top:10px;" src="image/${product.imageLink}"/>
+                                            
+                                                                            <p style="  display: -webkit-box;
+                                                                               -webkit-box-orient: vertical;
+                                                                               -webkit-line-clamp: 5;  /* Number of lines displayed before it truncate */
+                                                                               overflow: hidden;
+                                                                               padding-top:10px;
+                                                                               ">${product.name}
+                                                                            </p>
+                                            
+                                                                        </div>
+                                                                    </div>
+                                                                                            <div style="" class=""><a href="products.html" class="">Back to Products Page</a></div>-->
+                    </div>
                     <br><br>
                     <c:set var="productSession" value="${product.id}" scope="session" />
-<!--                    <div id="content" style="">
-                        <a class="productLink" href="compareFinal?id=${product.id}">
-                            <div class="my-2 my-lg-0" style="width:100%;">
-                                <div style="padding:20px; padding-top:10px; padding-left:50px;margin-left:10px;" class="" id=""> 
-                                    <img style="float:left;margin-left:10px;" width="20%;" style="padding-top:10px;" src="image/${product.imageLink}"/>
-
-                                    <p style="  display: -webkit-box;
-                                       -webkit-box-orient: vertical;
-                                       -webkit-line-clamp: 5;  /* Number of lines displayed before it truncate */
-                                       overflow: hidden;
-                                       padding-top:10px;
-                                       ">${product.name}
-                                    </p>
-
-                                </div>
-                            </div>
-                        </a> <br><br><br>
-
-                                                <div style="" class=""><a href="products.html" class="">Back to Products Page</a></div>
-                    </div>-->
+                    <!--                    <div id="content" style="">
+                                            <a class="productLink" href="compareFinal?id=${product.id}">
+                                                <div class="my-2 my-lg-0" style="width:100%;">
+                                                    <div style="padding:20px; padding-top:10px; padding-left:50px;margin-left:10px;" class="" id=""> 
+                                                        <img style="float:left;margin-left:10px;" width="20%;" style="padding-top:10px;" src="image/${product.imageLink}"/>
+                    
+                                                        <p style="  display: -webkit-box;
+                                                           -webkit-box-orient: vertical;
+                                                           -webkit-line-clamp: 5;  /* Number of lines displayed before it truncate */
+                                                           overflow: hidden;
+                                                           padding-top:10px;
+                                                           ">${product.name}
+                                                        </p>
+                    
+                                                    </div>
+                                                </div>
+                                            </a> <br><br><br>
+                    
+                                                                    <div style="" class=""><a href="products.html" class="">Back to Products Page</a></div>
+                                        </div>-->
 
 
 
@@ -254,77 +254,77 @@
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             <script>
-                    function load(a_link, index, CateID) {
-                        var arr = document.getElementsByClassName('paging');
-                        for (var i = 0; i < arr.length; i++) {
-                            arr[i].classList.remove("active");
-                        }
+                                            function load(a_link, index, CateID) {
+                                                var arr = document.getElementsByClassName('paging');
+                                                for (var i = 0; i < arr.length; i++) {
+                                                    arr[i].classList.remove("active");
+                                                }
 
-                        a_link.parentElement.classList.add("active");
-                        //Sử dụng Ajax
-                        $.ajax({
-                            url: "/Assignment_ElectronicShop_Pro/paging",
-                            type: "get", //send it through get method
-                            data: {
-                                index: index,
-                                CategoryID: CateID
-                            },
-                            success: function (responseData) {
-                                //Trg hợp này: Có dữ liệu trả về -> responseData là dữ liệu trả về
-                                //Dữ liệu trả về ko phải 1 List mà là từng khối <div>
-                                //Bao quanh tất cả các khối <div> sản phẩm là 1 khối div "content" => sửa ở đây
-                                document.getElementById("content").innerHTML = responseData;
-                            }
-                        });
-                    }
+                                                a_link.parentElement.classList.add("active");
+                                                //Sử dụng Ajax
+                                                $.ajax({
+                                                    url: "/Assignment_ElectronicShop_Pro/paging",
+                                                    type: "get", //send it through get method
+                                                    data: {
+                                                        index: index,
+                                                        CategoryID: CateID
+                                                    },
+                                                    success: function (responseData) {
+                                                        //Trg hợp này: Có dữ liệu trả về -> responseData là dữ liệu trả về
+                                                        //Dữ liệu trả về ko phải 1 List mà là từng khối <div>
+                                                        //Bao quanh tất cả các khối <div> sản phẩm là 1 khối div "content" => sửa ở đây
+                                                        document.getElementById("content").innerHTML = responseData;
+                                                    }
+                                                });
+                                            }
 
 
-                    function addCart(ProductID) {
+                                            function addCart(ProductID) {
             <c:if test="${sessionScope.acc != null}">
-                        //Sử dụng Ajax
-                        $.ajax({
-                            url: "/Assignment_ElectronicShop_Pro/addToCart",
-                            type: "get", //send it through get method
-                            data: {
-                                ProductID: ProductID
-                            },
-                            success: function (message) {
-                                var res = message.split("|");
-                                //Change number of Product in cart
-                                document.getElementById("CartNum").innerHTML = res[0];
-                                alert(res[1]);
-                            },
-                            error: function () {
-                            }
-                        });
+                                                //Sử dụng Ajax
+                                                $.ajax({
+                                                    url: "/Assignment_ElectronicShop_Pro/addToCart",
+                                                    type: "get", //send it through get method
+                                                    data: {
+                                                        ProductID: ProductID
+                                                    },
+                                                    success: function (message) {
+                                                        var res = message.split("|");
+                                                        //Change number of Product in cart
+                                                        document.getElementById("CartNum").innerHTML = res[0];
+                                                        alert(res[1]);
+                                                    },
+                                                    error: function () {
+                                                    }
+                                                });
             </c:if>
             <c:if test="${sessionScope.acc == null}">
-                        location.href = "login";
+                                                location.href = "login";
             </c:if>
-                    }
+                                            }
 
-                    function searchByName(param) {
-                        var txtSearch = param.value;
-                        $.ajax({
-                            url: "/Assignment_ElectronicShop_Pro/compareByAjax",
-                            type: "get", //send it through get method
-                            data: {
-                                txt: txtSearch
-                            },
-                            success: function (data) {
-                                var row = document.getElementById("content");
-                                row.innerHTML = data;
-                            },
-                            error: function (xhr) {
-                                //Do Something to handle error
-                            }
-                        });
-                    }
-                    ;
-                    function submitForm() {
-                        document.forms['formFinal'].submit();
-                    }
-                    ;
+                                            function searchByName(param) {
+                                                var txtSearch = param.value;
+                                                $.ajax({
+                                                    url: "/Assignment_ElectronicShop_Pro/compareByAjax",
+                                                    type: "get", //send it through get method
+                                                    data: {
+                                                        txt: txtSearch
+                                                    },
+                                                    success: function (data) {
+                                                        var row = document.getElementById("content");
+                                                        row.innerHTML = data;
+                                                    },
+                                                    error: function (xhr) {
+                                                        //Do Something to handle error
+                                                    }
+                                                });
+                                            }
+                                            ;
+                                            function submitForm() {
+                                                document.forms['formFinal'].submit();
+                                            }
+                                            ;
         </script>  
 
     </body>
