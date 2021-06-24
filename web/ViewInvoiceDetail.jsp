@@ -171,11 +171,13 @@
                     <h1  style="color:red;">Total:                                        
                         <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${total}"/> 
                         VNĐ</h1>
+                    <div style="margin:10px; float:left">
+                        <a  href ="approveOrder?id=${OrderId}"><button>Approve</button></a>
+                    </div>
+                    <div style="margin:10px; float:right;">
+                        <a  href ="cancelOrder?id=${OrderId}"><button>Cancel</button></a>
+                    </div>
 
-                        <form action="approveOrder">
-                            <input type="hidden" value="${OrderId}" name="id"/>
-                            <input type="submit" value="Approve"/>
-                        </form>
                 </div>
                 <div class="row">
                     <div class="col-6">

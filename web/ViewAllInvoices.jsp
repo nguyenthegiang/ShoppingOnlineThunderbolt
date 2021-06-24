@@ -21,7 +21,7 @@
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
-       <title>Computer ERA</title>
+        <title>Computer ERA</title>
         <!--Favicon-->
         <link rel="icon" type="image/png" href="image/faviconLogo.png" />
     </head>
@@ -152,13 +152,31 @@
                                     <td>${item.id}</td>
                                     <td>${item.userId}</td>
                                     <td>
-                            <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${item.totalPrice}"/>VNĐ
+                                        <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${item.totalPrice}"/>VNĐ
                                     </td>
                                     <td>${item.note}</td>
-                                    
-                                    <td>${item.status}</td>
-                                    <td>${item.date}</td>
-                                    <td><a href ="viewInvoiceDetailAdmin?id=${item.id}">Manage</a></td>                                     
+                                    <c:if test="${item.status eq 'Packaging'}">
+                                        <td>${item.status}</td>
+                                        <td>${item.date}</td>
+                                        <!--<td><a href ="viewInvoiceDetailAdmin?id=${item.id}">Cancel</a></td>-->
+                                        <td>Waiting to deliver</td>
+                                    </c:if>                                   
+                                    <c:if test="${item.status eq 'Canceled'}">
+                                        <td>${item.status}</td>
+                                        <td>${item.date}</td>
+                                        <td><a href ="viewInvoiceDetailAdmin?id=${item.id}">View</a></td>
+                                    </c:if>
+                                    <c:if test="${item.status eq 'Delivering'}">
+                                        <td>${item.status}</td>
+                                        <td>${item.date}</td>
+                                        <td><a href ="viewInvoiceDetailAdmin?id=${item.id}">Products being shipped</a></td>
+                                    </c:if>
+                                    <c:if test="${item.status eq 'Waiting for Confirmation'}">
+                                        <td>${item.status}</td>
+                                        <td>${item.date}</td>
+                                        <td><a href ="viewInvoiceDetailAdmin?id=${item.id}">Manage</a></td>
+                                    </c:if>
+
                                     <c:set var="total" value="${total + item.totalPrice}" />
                                 </tr>
                             </c:forEach>
