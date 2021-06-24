@@ -121,7 +121,7 @@
                         <input style="margin-bottom: 8px; border-radius: 8px" name="pass" value="${password}" type="password" id="password" class="form-control" placeholder="Password" required="">
 
                         <div class="form-group form-check">
-                            
+
 
                             <ul>
                                 <li style="display: inline-block;">

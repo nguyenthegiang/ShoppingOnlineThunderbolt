@@ -145,7 +145,7 @@
                     <h4>Success!</h4>
                     <p>You have finished your purchase successfully</p>
                     <p>Check your email for details.</p>
-                    <button onclick="location.href='home'" class="btn btn-success" data-dismiss="modal"><span>Continue Purchase</span> <i
+                    <button onclick="location.href = 'home'" class="btn btn-success" data-dismiss="modal"><span>Continue Purchase</span> <i
                             class="material-icons">&#xE5C8;</i></button>                            
                 </div>
             </div>

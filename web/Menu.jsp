@@ -45,7 +45,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="dashBoard" id="linkHover">Dash Board</a>
                             </li>
-                            
+
                             <li class="nav-item">
                                 <a class="nav-link" href="manager" id="linkHover">Manager Product</a>
                             </li> 
