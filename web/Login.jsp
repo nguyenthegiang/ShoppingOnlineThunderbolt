@@ -121,16 +121,25 @@
                         <input style="margin-bottom: 8px; border-radius: 8px" name="pass" value="${password}" type="password" id="password" class="form-control" placeholder="Password" required="">
 
                         <div class="form-group form-check">
-                            <input name="remember" value="1" type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                            
+
+                            <ul>
+                                <li style="display: inline-block;">
+                                    <input name="remember" value="1" type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <label class="form-check-label" for="exampleCheck1" style="margin: auto; ; display: inline-block">Remember me</label>
+                                </li>
+                                <li style="display: inline-block; margin: 5px 30px"></li>
+                                <li style="display: inline-block">
+                                    <a href="ForgetPass.jsp" style="color: #000; text-align: center" style="margin: auto; display: inline-block"><i class="fa fa-lock-alt" style="color: black"></i>Forget Password</a>
+                                </li>
+                            </ul>
                         </div>
                         <!-- For fb login -->
                         <input type="text" id="email" name="email" style="display: none;">
                         <input type="text" id="loginFB" name="loginFB" value="false" style="display: none;">
 
-                        <div class="form-group">                           
+                        <div class="form-group">            
                             <button class="btn btn-success btn-block" id="btnSubmit" type="submit" style="background-image: linear-gradient(to right, #00f79c, #04f1f5); color: black; width: 200px; margin: auto; padding: 10px; border-radius: 8px"><i class="fas fa-sign-in-alt"></i> Sign in</button>
-                            <a href="ForgetPass.jsp">Forget Password</a>
                             <hr>
                             <button class="btn btn-primary btn-block" type="button" style="background-image: linear-gradient(to right, #00f79c, #04f1f5); color: black; width: 200px; margin: auto; padding: 10px; border-radius: 8px" id="btn-signup"><i class="fas fa-user-plus"></i> Sign up</button>
                         </div>
