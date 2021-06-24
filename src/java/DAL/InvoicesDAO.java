@@ -57,4 +57,42 @@ public class InvoicesDAO extends BaseDAO<OrderDetailAdmin> {
 
         return list;
     }
+    
+    
+    public List<OrderDetailAdmin> getInvoiceDetailBySellerID(int sellerId) {
+        List<OrderDetailAdmin> list = new ArrayList<>();
+        String query = " SELECT od.id, od.Order_ID, u.username,od.productId,\n" +
+"                p.productName,p.imageLink,p.SellPrice, si.shippingAddress, si.phoneNum\n" +
+"                FROM Order_Detail od INNER JOIN Orders o\n" +
+"                ON od.Order_ID = o.ID\n" +
+"                INNER JOIN Users u\n" +
+"                ON o.UserID = u.UserID\n" +
+"                INNER JOIN Product p\n" +
+"                ON od.ProductID = p.ProductID\n" +
+"                INNER JOIN ShipInfo si\n" +
+"                ON o.ID = si.Order_ID\n" +
+"                WHERE   p.SellerID = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, sellerId);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(new OrderDetailAdmin(
+                        rs.getInt("ID"),
+                        rs.getInt("Order_ID"),
+                        rs.getString("username"),
+                        rs.getInt("productID"),
+                        rs.getString("productName"),
+                        rs.getString("imageLink"),
+                        rs.getInt("SellPrice"),
+                        rs.getString("ShippingAddress"),
+                        rs.getString("PhoneNum")
+                ));
+            }
+        } catch (Exception e) {
+        }
+
+        return list;
+    }
 }

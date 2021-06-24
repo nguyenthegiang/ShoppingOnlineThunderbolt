@@ -255,6 +255,36 @@ public class OrderDAO extends BaseDAO<Order> {
 
         return list;
     }
+    
+    
+//    public List<Order> getOrderBySellerID(int sellerId) {
+//        List<Order> list = new ArrayList<>();
+//        String query = "SELECT o.ID, o.UserID, "
+//                + "o.TotalPrice, o.Note, os.Name, "
+//                + "o.DayBuy "
+//                + "FROM Orders o  INNER JOIN Order_Status os\n"
+//                + " ON o.Status = os.ID\n"
+//                + "WHERE o.UserId = ?";
+//        try {
+//            ps = connection.prepareStatement(query);
+//            ps.setInt(1, sellerId);
+//            rs = ps.executeQuery();
+//
+//            while (rs.next()) {
+//                list.add(new Order(
+//                        rs.getInt("ID"),
+//                        rs.getInt("UserId"),
+//                        rs.getFloat("TotalPrice"),
+//                        rs.getString("Note"),
+//                        rs.getString("Name"),
+//                        rs.getString("Daybuy")
+//                ));
+//            }
+//        } catch (Exception e) {
+//        }
+//
+//        return list;
+//    }
 
     /**
      * delete a specific order by the order id

@@ -7,6 +7,7 @@ package control;
 
 import DAL.CartDAO;
 import DAL.OrderDAO;
+import entity.Account;
 import entity.Order;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -37,19 +39,25 @@ public class ViewAllInvoicesAdmin extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-                    
-            OrderDAO orderDAO = new OrderDAO();
-            CartDAO CartDAO = new CartDAO();
+            HttpSession session = request.getSession();
+            Account a = (Account) session.getAttribute("acc");
+            if (a.getIsAdmin() == 1) {
+                OrderDAO orderDAO = new OrderDAO();
+                CartDAO CartDAO = new CartDAO();
 
-            List<Order> orders = orderDAO.getAllOrder();
-            int totalCart = CartDAO.countAllCart();
+                List<Order> orders = orderDAO.getAllOrder();
+                int totalCart = CartDAO.countAllCart();
 
-            request.setAttribute("orders", orders);
-            request.setAttribute("totalCart", totalCart);
+                request.setAttribute("orders", orders);
+                request.setAttribute("totalCart", totalCart);
 
-            request.getRequestDispatcher("ViewAllInvoices.jsp").forward(request, response);
+                request.getRequestDispatcher("ViewAllInvoices.jsp").forward(request, response);
+            } else if(a.getIsAdmin() != 1) {
+                request.setAttribute("sellerId", a.getId());
+                request.getRequestDispatcher("viewInvoiceDetailAdmin").forward(request, response);
+            }
         } catch (Exception ex) {
-
+                response.sendRedirect("Error.jsp");
         }
     }
 
