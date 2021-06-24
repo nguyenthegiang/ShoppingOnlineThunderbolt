@@ -505,6 +505,7 @@ public class ProductDAO extends BaseDAO<Product> {
         //Waiting...
         
         /*---------Test Case for delete() method---------*/
+        //Waiting...
 //        dao.delete("1");
         
         /*---------Test Case for countProduct() method---------*/
@@ -527,6 +528,28 @@ public class ProductDAO extends BaseDAO<Product> {
 //        for (Product o : list) {
 //            System.out.println(o);
 //        }
+
+        /*---------Test Case for countProductByCategory() method---------*/
+//        System.out.println(dao.countProductByCategory(1));
+
+        /*---------Test Case for countProductBySeller() method---------*/
+//        System.out.println(dao.countProductBySeller(1));
+        
+        /*---------Test Case for getProductDetailByID() method---------*/
+//        System.out.println(dao.getProductByID("1"));   
+
+        /*---------Test Case for getProductDetailByID() method---------*/
+//        System.out.println(dao.getProductDetailByID("1"));
+ 
+        /*---------Test Case for getProductForManager() method---------*/
+//        ProductInManager p = dao.getProductForManager("1");
+//        System.out.println(p);
+
+        /*---------Test Case for searchProductByName() method---------*/
+//        List<Product> list = dao.searchProductByName("msi");
+//        for (Product o : list) {
+//            System.out.println(o);
+//        }
         
 //        List<Product> list = dao.getTop6();
 //        for (Product o : list) {
@@ -540,20 +563,6 @@ public class ProductDAO extends BaseDAO<Product> {
 //        System.out.println(x);
 //        System.out.println(dao.login("nguyenthegiang", "nguyenthegiang"));
 
-
-
-//        System.out.println(dao.countProductByCategory(1));
-//        System.out.println(dao.countProductByCategory(2));
-//        System.out.println(dao.countProductByCategory(3));
-//        System.out.println(dao.countProductByCategory(4));
-//        List<Product> list = dao.searchProductByName("msi");
-//        for (Product o : list) {
-//            System.out.println(o);
-//        }
-//        ProductInManager p = dao.getProductForManager("1");
-//        System.out.println(p);
-
-//        System.out.println(dao.countProductBySeller(1));
 //        List<ProductInManager> list = dao.top3MostSell();
 //        for (ProductInManager productInManager : list) {
 //            System.out.println(productInManager);
@@ -570,6 +579,5 @@ public class ProductDAO extends BaseDAO<Product> {
 //        System.out.println(p);
 //        dao.add("a", "a", "1", "a", "1", "1", "1");
 
-//        System.out.println(dao.getProductDetailByID("1"));
     }
 }
