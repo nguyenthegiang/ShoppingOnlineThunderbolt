@@ -295,6 +295,7 @@ public class ProductDAO extends BaseDAO<Product> {
 //        }
 //        return list;
 //    }
+    
     //count total product
     public int countProductByCategory(int CategoryID) {
         if (CategoryID == 0) {
@@ -506,6 +507,27 @@ public class ProductDAO extends BaseDAO<Product> {
         /*---------Test Case for delete() method---------*/
 //        dao.delete("1");
         
+        /*---------Test Case for countProduct() method---------*/
+//        System.out.println(dao.countProduct());
+
+        /*---------Test Case for pagingProduct() method---------*/
+//        List<Product> list = dao.pagingProduct(1);
+//        for (Product o : list) {
+//            System.out.println(o);
+//        }
+
+        /*---------Test Case for pagingByCategory() method---------*/
+//        List<Product> list = dao.pagingByCategory(1, 1);
+//        for (Product o : list) {
+//            System.out.println(o);
+//        }
+
+        /*---------Test Case for pagingManagerProduct() method---------*/
+//        List<Product> list = dao.pagingManagerProduct(1, 1);
+//        for (Product o : list) {
+//            System.out.println(o);
+//        }
+        
 //        List<Product> list = dao.getTop6();
 //        for (Product o : list) {
 //            System.out.println(o);
@@ -518,15 +540,8 @@ public class ProductDAO extends BaseDAO<Product> {
 //        System.out.println(x);
 //        System.out.println(dao.login("nguyenthegiang", "nguyenthegiang"));
 
-//        System.out.println(dao.countProduct());
-//        List<Product> list = dao.pagingProduct(1);
-//        for (Product o : list) {
-//            System.out.println(o);
-//        }
-//        List<Product> list = dao.pagingByCategory(1, 1);
-//        for (Product o : list) {
-//            System.out.println(o);
-//        }
+
+
 //        System.out.println(dao.countProductByCategory(1));
 //        System.out.println(dao.countProductByCategory(2));
 //        System.out.println(dao.countProductByCategory(3));
@@ -537,10 +552,7 @@ public class ProductDAO extends BaseDAO<Product> {
 //        }
 //        ProductInManager p = dao.getProductForManager("1");
 //        System.out.println(p);
-//        List<Product> list = dao.pagingManagerProduct(1, 1);
-//        for (Product o : list) {
-//            System.out.println(o);
-//        }
+
 //        System.out.println(dao.countProductBySeller(1));
 //        List<ProductInManager> list = dao.top3MostSell();
 //        for (ProductInManager productInManager : list) {
