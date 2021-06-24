@@ -155,7 +155,6 @@
                                         <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${item.totalPrice}"/>VNĐ
                                     </td>
                                     <td>${item.note}</td>
-                                    <c:if test="${item.status eq 'Packaging'}">
                                         <td>${item.status}</td>
                                         <td>${item.date}</td>
                                         <td><a  style="cursor: pointer " onclick="formAutoSubmit('${item.id}');">View</a></td>
@@ -163,34 +162,7 @@
                                     <input type="hidden" value="Packaging" name="status">
                                     <input type="hidden" value="${item.id}" name="id">
                                 </form>
-                            </c:if>                                   
-                            <c:if test="${item.status eq 'Canceled'}">
-                                <td>${item.status}</td>
-                                <td>${item.date}</td>
-                                <td><a style="cursor: pointer "  onclick="formAutoSubmit('${item.id}');">View</a></td>
-                                <form style="display:none;" id="${item.id}" action="viewOrderDetail">
-                                    <input type="hidden" value="Canceled" name="status">
-                                    <input type="hidden" value="${item.id}" name="id">
-                                </form>
-                            </c:if>
-                            <c:if test="${item.status eq 'Delivering'}">
-                                <td>${item.status}</td>
-                                <td>${item.date}</td>
-                                <td><a  style="cursor: pointer "onclick="formAutoSubmit('${item.id}');">Products being shipped</a></td>
-                                <form style="display:none;" id="${item.id}" action="viewOrderDetail">
-                                    <input type="hidden" value="Delivering" name="status">
-                                    <input type="hidden" value="${item.id}" name="id">
-                                </form>
-                            </c:if>
-                            <c:if test="${item.status eq 'Waiting for Confirmation'}">
-                                <td>${item.status}</td>
-                                <td>${item.date}</td>
-                                <td><a style="cursor: pointer " onclick="formAutoSubmit('${item.id}');">Manage</a></td>
-                                <form style="display:none;" id="${item.id}" action="viewOrderDetail">
-                                    <input type="hidden" value="Waiting for Confirmation" name="status">
-                                    <input type="hidden" value="${item.id}" name="id">
-                                </form>
-                            </c:if>
+                            
 
                             <c:set var="total" value="${total + item.totalPrice}" />
                             </tr>
