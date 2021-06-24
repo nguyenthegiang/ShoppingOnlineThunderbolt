@@ -242,12 +242,12 @@ public class CartDAO extends BaseDAO<Account> {
                     dao.delete1Amount(productID);
                     return true;
                 }
-            }           
+            }
         }
-        
+
         return false;
     }
-    
+
     //Add 1 amount from Product after 1 Customer Delete 1 amount from cart
     public void add1Amount(int ProductID) {
         String query = "UPDATE Product\n"
@@ -260,7 +260,7 @@ public class CartDAO extends BaseDAO<Account> {
         } catch (Exception e) {
         }
     }
-    
+
     /**
      * delete 1 Product from Cart, Use when User Click "-" in ListCart
      *
@@ -277,7 +277,7 @@ public class CartDAO extends BaseDAO<Account> {
             List<Cart> list = dao.getCart(userID);
             for (Cart cart : list) {
                 if (cart.getP().getId() == productID) {
-                    String query = "UPDATE Cart\n"
+                    String query = "SELECT Cart\n"
                             + "SET Amount = Amount - 1\n"
                             + " WHERE UserID = ? AND ProductID = ?";
                     try {
@@ -289,11 +289,31 @@ public class CartDAO extends BaseDAO<Account> {
                     }
                     //Call to add1Amount
                     dao.add1Amount(productID);
+
+                    //If Amount is now 0 -> Delete this product from Cart
+                    int amount = 0;
+                    String query2 = "SELECT Amount \n"
+                            + "FROM Cart\n"
+                            + "WHERE UserID = ? AND ProductID = ?";
+                    try {
+                        ps = connection.prepareStatement(query2);
+                        ps.setInt(1, userID);
+                        ps.setInt(2, productID);
+                        rs = ps.executeQuery();
+                        while (rs.next()) {
+                            amount = rs.getInt(1);
+                        }
+                    } catch (Exception e) {
+                    }
+                    
+                    if (amount == 0) {
+                        deleteProductCart(userID, productID);
+                    }
                     return true;
                 }
-            }           
+            }
         }
-        
+
         return false;
     }
 
@@ -355,14 +375,15 @@ public class CartDAO extends BaseDAO<Account> {
 //        System.out.println("Before: " + CartDAO.countAmountProduct(1));
 //        CartDAO.add1Amount(1);
 //        System.out.println("After: " + CartDAO.countAmountProduct(1));
-        
+
         /*---------Test Case for delete1ProductFromCart() method---------*/
-        List<Cart> list = CartDAO.getCart(1);
+        List<Cart> list = CartDAO.getCart(7);
         for (Cart cart : list) {
             System.out.println(cart);
         }
-        CartDAO.delete1ProductFromCart(1, 1);
-        list = CartDAO.getCart(1);
+        CartDAO.delete1ProductFromCart(7, 12);
+        System.out.println();
+        list = CartDAO.getCart(7);
         for (Cart cart : list) {
             System.out.println(cart);
         }
