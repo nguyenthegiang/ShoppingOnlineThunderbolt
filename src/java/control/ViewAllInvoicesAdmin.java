@@ -7,6 +7,7 @@ package control;
 
 import DAL.CartDAO;
 import DAL.OrderDAO;
+import entity.Account;
 import entity.Order;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -37,7 +39,7 @@ public class ViewAllInvoicesAdmin extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-                    
+
             OrderDAO orderDAO = new OrderDAO();
             CartDAO CartDAO = new CartDAO();
 
@@ -48,8 +50,9 @@ public class ViewAllInvoicesAdmin extends HttpServlet {
             request.setAttribute("totalCart", totalCart);
 
             request.getRequestDispatcher("ViewAllInvoices.jsp").forward(request, response);
-        } catch (Exception ex) {
 
+        } catch (Exception ex) {
+            response.sendRedirect("Error.jsp");
         }
     }
 

@@ -48,4 +48,6 @@ public class OrderDetailWithImageDAO extends BaseDAO<OrderDetailWithImage> {
         return list;
     }
 
+    
+
 }

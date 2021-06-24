@@ -132,7 +132,12 @@
                             padding:10px; border: 1px solid;
                         }
                     </style>
+                    <c:if test="${sessionScope.acc.isAdmin == 1}">
                     <h2>Order ID: ${OrderId}</h2>
+                    </c:if>
+                    <c:if test="${sessionScope.acc.isAdmin != 1}">
+                    <h2>Seller ID: ${sellerId}</h2>
+                    </c:if>
                     <table style="margin-left:3em; border: 1px solid;">
                         <thead >
                             <tr >

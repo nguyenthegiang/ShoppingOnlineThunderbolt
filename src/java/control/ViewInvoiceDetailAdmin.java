@@ -9,6 +9,7 @@ import DAL.CartDAO;
 import DAL.InvoicesDAO;
 import DAL.OrderDAO;
 import DAL.OrderDetailDAO;
+import entity.Account;
 import entity.Order;
 import entity.OrderDetail;
 import entity.OrderDetailAdmin;
@@ -20,6 +21,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -42,21 +44,41 @@ public class ViewInvoiceDetailAdmin extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         try {
-            String status = request.getParameter("status");
-            int id = Integer.parseInt(request.getParameter("id"));
+            HttpSession session = request.getSession();
+            Account a = (Account) session.getAttribute("acc");
+            if (a.getIsAdmin() == 1) {
+                String status = request.getParameter("status");
+                int id = Integer.parseInt(request.getParameter("id"));
 
-            InvoicesDAO invoicesDAO = new InvoicesDAO();
-            CartDAO CartDAO = new CartDAO();
+                InvoicesDAO invoicesDAO = new InvoicesDAO();
+                CartDAO CartDAO = new CartDAO();
 
-            List<OrderDetailAdmin> invoiceDetail = invoicesDAO.getInvoiceDetailByOrderID(id);
-            int totalCart = CartDAO.countAllCart();
+                List<OrderDetailAdmin> invoiceDetail = invoicesDAO.getInvoiceDetailByOrderID(id);
+                int totalCart = CartDAO.countAllCart();
 
-            request.setAttribute("invoiceDetail", invoiceDetail);
-            request.setAttribute("totalCart", totalCart);
-            request.setAttribute("OrderId", id);
-            request.setAttribute("sta", status);
+                request.setAttribute("invoiceDetail", invoiceDetail);
+                request.setAttribute("totalCart", totalCart);
+                request.setAttribute("OrderId", id);
+                request.setAttribute("sta", status);
 
-            request.getRequestDispatcher("ViewInvoiceDetail.jsp").forward(request, response);
+                request.getRequestDispatcher("ViewInvoiceDetail.jsp").forward(request, response);
+            } else if(a.getIsAdmin()!= 1){
+                String status = request.getParameter("status");
+                int id = Integer.parseInt(request.getParameter("sellerId"));
+
+                InvoicesDAO invoicesDAO = new InvoicesDAO();
+                CartDAO CartDAO = new CartDAO();
+
+                List<OrderDetailAdmin> invoiceDetail = invoicesDAO.getInvoiceDetailBySellerID(id);
+                int totalCart = CartDAO.countAllCart();
+
+                request.setAttribute("invoiceDetail", invoiceDetail);
+                request.setAttribute("totalCart", totalCart);
+                request.setAttribute("sellerId", id);
+                request.setAttribute("sta", status);
+
+                request.getRequestDispatcher("ViewInvoiceDetail.jsp").forward(request, response);
+            }
         } catch (Exception ex) {
 
         }
