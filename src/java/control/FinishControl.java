@@ -58,7 +58,7 @@ public class FinishControl extends HttpServlet {
             OrderDetailDAO odDao = new OrderDetailDAO();
             ShipDAO shipDAO = new ShipDAO();
             ShipInfoDAO shipInfoDAO = new ShipInfoDAO();
-            UserAddressDAO userAddDAO = new UserAddressDAO();
+            UserAddressDAO userAddDAO = new UserAddressDAO();            
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
             LocalDateTime now = LocalDateTime.now();
 
@@ -109,7 +109,7 @@ public class FinishControl extends HttpServlet {
                 shipInfo.setShipCityId(defaulShipAddress.getShipCityId());
                 shipInfo.setShippingAddress(defaulShipAddress.getShipAddress());
 
-            }            
+            }
 
             // calculate total price of the order
             double total = 0;
@@ -153,7 +153,7 @@ public class FinishControl extends HttpServlet {
                     + " Order information: \n"
                     + createOrderInfo(orderInfo, shipInfoOfOrder)
                     + "\n\nSee more information of your order at ComputerERA shop website!";
-            
+
             new SendEmail(
                     a.getEmail(),
                     FormatString.formatToUTF8String(a.getUser()) + " Order Information",
@@ -175,7 +175,7 @@ public class FinishControl extends HttpServlet {
                 + order.getId()
                 + "\nSubtotal: "
                 + FormatPrice.getTotalPriceWithSeparator(order.getTotalPrice())
-                +" VND"
+                + " VND"
                 + "\nDate(yyyy/mm/dd): "
                 + order.getDate()
                 + "\nNote: "
@@ -184,11 +184,11 @@ public class FinishControl extends HttpServlet {
                 + order.getStatus()
                 + "\nReceiver's Name: "
                 + shipInfo.getCustomerName()
-                +"\nReceiver's Phone Number: "
+                + "\nReceiver's Phone Number: "
                 + shipInfo.getPhoneNum()
-                +"\nReceiver's Address: "
+                + "\nReceiver's Address: "
                 + shipInfo.getShippingAddress();
-        
+
         return FormatString.formatToUTF8String(message);
     }
 
