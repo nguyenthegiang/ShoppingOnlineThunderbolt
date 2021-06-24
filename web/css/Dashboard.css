@@ -1,6 +1,30 @@
-.nav-link{
+/*.nav-link{
     color: black;
 }
 .nav-link:hover{
     color: rgb(43, 189, 179);
+}*/
+
+i{
+    margin: 2px;
+    padding: 2px;
+}
+
+.nav-link{
+    position: relative;
+    font-size: large;
+    display: inline-block;
+    color: rgb(43, 189, 179);
+    overflow: hidden;
+    background: linear-gradient(to right, rgb(43, 189, 179), midnightblue 50%, royalblue 50%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+    transition: background-position 275ms ease;
+    text-decoration: none; 
+}
+.nav-link:hover{
+    background-position: 0 100%;
 }
