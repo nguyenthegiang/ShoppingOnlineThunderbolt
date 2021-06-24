@@ -171,13 +171,16 @@
                     <h1  style="color:red;">Total:                                        
                         <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${total}"/> 
                         VNĐ</h1>
+
+
+                        <c:if test="${sta eq 'Waiting for Confirmation'}">
                     <div style="margin:10px; float:left">
                         <a  href ="approveOrder?id=${OrderId}"><button>Approve</button></a>
                     </div>
                     <div style="margin:10px; float:right;">
                         <a  href ="cancelOrder?id=${OrderId}"><button>Cancel</button></a>
                     </div>
-
+                        </c:if>
                 </div>
                 <div class="row">
                     <div class="col-6">

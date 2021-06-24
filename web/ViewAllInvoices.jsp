@@ -158,30 +158,46 @@
                                     <c:if test="${item.status eq 'Packaging'}">
                                         <td>${item.status}</td>
                                         <td>${item.date}</td>
-                                        <!--<td><a href ="viewInvoiceDetailAdmin?id=${item.id}">Cancel</a></td>-->
-                                        <td>Waiting to deliver</td>
-                                    </c:if>                                   
-                                    <c:if test="${item.status eq 'Canceled'}">
-                                        <td>${item.status}</td>
-                                        <td>${item.date}</td>
-                                        <td><a href ="viewInvoiceDetailAdmin?id=${item.id}">View</a></td>
-                                    </c:if>
-                                    <c:if test="${item.status eq 'Delivering'}">
-                                        <td>${item.status}</td>
-                                        <td>${item.date}</td>
-                                        <td><a href ="viewInvoiceDetailAdmin?id=${item.id}">Products being shipped</a></td>
-                                    </c:if>
-                                    <c:if test="${item.status eq 'Waiting for Confirmation'}">
-                                        <td>${item.status}</td>
-                                        <td>${item.date}</td>
-                                        <td><a href ="viewInvoiceDetailAdmin?id=${item.id}">Manage</a></td>
-                                    </c:if>
+                                        <td><a  style="cursor: pointer " onclick="formAutoSubmit('${item.id}');">View</a></td>
+                                <form style="display:none;" id="${item.id}" action="viewInvoiceDetailAdmin">
+                                    <input type="hidden" value="Packaging" name="status">
+                                    <input type="hidden" value="${item.id}" name="id">
+                                </form>
+                            </c:if>                                   
+                            <c:if test="${item.status eq 'Canceled'}">
+                                <td>${item.status}</td>
+                                <td>${item.date}</td>
+                                <td><a style="cursor: pointer "  onclick="formAutoSubmit('${item.id}');">View</a></td>
+                                <form style="display:none;" id="${item.id}" action="viewInvoiceDetailAdmin">
+                                    <input type="hidden" value="Canceled" name="status">
+                                    <input type="hidden" value="${item.id}" name="id">
+                                </form>
+                            </c:if>
+                            <c:if test="${item.status eq 'Delivering'}">
+                                <td>${item.status}</td>
+                                <td>${item.date}</td>
+                                <td><a  style="cursor: pointer "onclick="formAutoSubmit('${item.id}');">Products being shipped</a></td>
+                                <form style="display:none;" id="${item.id}" action="viewInvoiceDetailAdmin">
+                                    <input type="hidden" value="Delivering" name="status">
+                                    <input type="hidden" value="${item.id}" name="id">
+                                </form>
+                            </c:if>
+                            <c:if test="${item.status eq 'Waiting for Confirmation'}">
+                                <td>${item.status}</td>
+                                <td>${item.date}</td>
+                                <td><a style="cursor: pointer " onclick="formAutoSubmit('${item.id}');">Manage</a></td>
+                                <form style="display:none;" id="${item.id}" action="viewInvoiceDetailAdmin">
+                                    <input type="hidden" value="Waiting for Confirmation" name="status">
+                                    <input type="hidden" value="${item.id}" name="id">
+                                </form>
+                            </c:if>
 
-                                    <c:set var="total" value="${total + item.totalPrice}" />
-                                </tr>
-                            </c:forEach>
+                            <c:set var="total" value="${total + item.totalPrice}" />
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
+
                     </br>
                     </hr>
                     <h1 style="color:red;">Total:                                        
@@ -212,6 +228,17 @@
                 </div>
             </div>
 
+
+            <script type="text/javascript">
+
+                function formAutoSubmit(name) {
+
+                    var frm = document.getElementById(name);
+
+                    frm.submit();
+
+                }
+            </script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     </body>
 </html>

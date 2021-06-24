@@ -37,6 +37,7 @@ public class ViewAllInvoicesAdmin extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
+                    
             OrderDAO orderDAO = new OrderDAO();
             CartDAO CartDAO = new CartDAO();
 
