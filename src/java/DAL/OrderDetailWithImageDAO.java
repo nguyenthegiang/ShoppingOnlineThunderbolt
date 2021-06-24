@@ -48,37 +48,6 @@ public class OrderDetailWithImageDAO extends BaseDAO<OrderDetailWithImage> {
         return list;
     }
 
-    public List<OrderDetailWithImage> getOrderDetailBySellerId(int sellerId) {
-        List<OrderDetailWithImage> list = new ArrayList<>();
-        String query = "SELECT p.imageLink,o.ID, od.ID, od.ProductName,\n"
-                + "                od.ProductID,\n"
-                + "                od.ProductPrice\n"
-                + "                FROM Orders o  INNER JOIN Order_Status os\n"
-                + "                ON o.Status = os.ID\n"
-                + "                INNER JOIN Order_Detail od \n"
-                + "                ON o.ID = od.Order_ID\n"
-                + "                INNER JOIN Product p\n"
-                + "                ON od.ProductID = p.ProductID\n"
-                + "                WHERE p.SellerID=?";
-        try {
-            ps = connection.prepareStatement(query);
-            ps.setInt(1, sellerId);
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                list.add(new OrderDetailWithImage(
-                        rs.getString("imageLink"),
-                        rs.getInt("id"),
-                        rs.getInt("order_Id"),
-                        rs.getInt("ProductId"),
-                        rs.getString("productName"),
-                        rs.getInt("productPrice")
-                ));
-            }
-        } catch (Exception e) {
-        }
-
-        return list;
-    }
+    
 
 }

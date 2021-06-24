@@ -62,7 +62,7 @@ public class ViewInvoiceDetailAdmin extends HttpServlet {
                 request.setAttribute("sta", status);
 
                 request.getRequestDispatcher("ViewInvoiceDetail.jsp").forward(request, response);
-            } else {
+            } else if(a.getIsAdmin()!= 1){
                 String status = request.getParameter("status");
                 int id = Integer.parseInt(request.getParameter("sellerId"));
 
@@ -74,7 +74,7 @@ public class ViewInvoiceDetailAdmin extends HttpServlet {
 
                 request.setAttribute("invoiceDetail", invoiceDetail);
                 request.setAttribute("totalCart", totalCart);
-                request.setAttribute("OrderId", id);
+                request.setAttribute("sellerId", id);
                 request.setAttribute("sta", status);
 
                 request.getRequestDispatcher("ViewInvoiceDetail.jsp").forward(request, response);

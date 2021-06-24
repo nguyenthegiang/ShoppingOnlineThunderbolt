@@ -39,25 +39,20 @@ public class ViewAllInvoicesAdmin extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            HttpSession session = request.getSession();
-            Account a = (Account) session.getAttribute("acc");
-            if (a.getIsAdmin() == 1) {
-                OrderDAO orderDAO = new OrderDAO();
-                CartDAO CartDAO = new CartDAO();
 
-                List<Order> orders = orderDAO.getAllOrder();
-                int totalCart = CartDAO.countAllCart();
+            OrderDAO orderDAO = new OrderDAO();
+            CartDAO CartDAO = new CartDAO();
 
-                request.setAttribute("orders", orders);
-                request.setAttribute("totalCart", totalCart);
+            List<Order> orders = orderDAO.getAllOrder();
+            int totalCart = CartDAO.countAllCart();
 
-                request.getRequestDispatcher("ViewAllInvoices.jsp").forward(request, response);
-            } else if(a.getIsAdmin() != 1) {
-                request.setAttribute("sellerId", a.getId());
-                request.getRequestDispatcher("viewInvoiceDetailAdmin").forward(request, response);
-            }
+            request.setAttribute("orders", orders);
+            request.setAttribute("totalCart", totalCart);
+
+            request.getRequestDispatcher("ViewAllInvoices.jsp").forward(request, response);
+
         } catch (Exception ex) {
-                response.sendRedirect("Error.jsp");
+            response.sendRedirect("Error.jsp");
         }
     }
 

@@ -120,6 +120,7 @@
                                     <div class="col-md-4">
                                         <a href=""><img src="image/InvoiceIcon.png" alt="..." width="70%;" style="margin-top: 10px;"></a>
                                     </div>
+                                    <c:if test="${sessionScope.acc.isAdmin == 1}">
                                     <div class="col-md-8">
                                         <div class="card-body">
                                             <a style="text-decoration: none;" href ="viewAllInvoicesAdmin"><h5 class="card-title">Total Invoices</h5></a>
@@ -127,6 +128,16 @@
                                             <a style="text-decoration: none;" href ="viewAllInvoicesAdmin"><p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p></a>
                                         </div>
                                     </div>
+                                    </c:if>
+                                    <c:if test="${sessionScope.acc.isAdmin != 1}">
+                                        <div class="col-md-8">
+                                        <div class="card-body">
+                                            <a style="text-decoration: none;" href ="viewInvoiceDetailAdmin?sellerId=${sessionScope.acc.id}"><h5 class="card-title">Total Invoices</h5></a>
+                                            <a style="text-decoration: none;" href ="viewInvoiceDetailAdmin?sellerId=${sessionScope.acc.id}"><h5 class="card-title">${totalCart}</h5></a>
+                                            <a style="text-decoration: none;" href ="viewInvoiceDetailAdmin?sellerId=${sessionScope.acc.id}"><p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p></a>
+                                        </div>
+                                    </div>
+                                    </c:if>
                                 </div>
                             </div>
                         </div>
