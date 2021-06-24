@@ -136,22 +136,30 @@
                     <table style="margin-left:3em; border: 1px solid;">
                         <thead >
                             <tr >
+                                <td>No.</td>
+                                <td>User Name</td>
                                 <td>Product ID</td>
-                                <td>Product Name</td>
+                                <td>Product Name</td>                               
                                 <td>Product Price</td>                               
+                                <td>Product Image</td>                               
+                                <td>Shipping Address</td>                               
+                                <td>Customer's Phone Number</td>                               
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var="item" items="${orderDetail}" varStatus="x">
+                            <c:forEach var="item" items="${invoiceDetail}" varStatus="x">
                                 <tr style="padding:2px; border: 1px solid">
+                                    <td>${x.index+1}</td>
+                                    <td>${item.customerName}</td>
                                     <td>${item.productID}</td>
                                     <td>${item.productName}</td>
-
+                                    <td><img height="250px" width="200px" src="image/${item.imageLink}"/></td>
                                     <td>
                                         <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${item.productPrice}"/>VNĐ
                                     </td>
+                                    <td>${item.shipAddress}</td>
+                                    <td>${item.phoneNumber}</td>
 
-                                  
 
                                     <c:set var="total" value="${total + item.productPrice}" />
                                 </tr>
@@ -160,9 +168,14 @@
                     </table>
                     </br>
                     </hr>
-                    <h1 style="color:red;">Total:                                        
+                    <h1  style="color:red;">Total:                                        
                         <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${total}"/> 
                         VNĐ</h1>
+
+                        <form action="approveOrder">
+                            <input type="hidden" value="${OrderId}" name="id"/>
+                            <input type="submit" value="Approve"/>
+                        </form>
                 </div>
                 <div class="row">
                     <div class="col-6">

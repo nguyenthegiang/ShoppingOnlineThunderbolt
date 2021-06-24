@@ -17,8 +17,8 @@ public class OrderDetailAdmin {
     private String productName;
     private String imageLink;
     private int productPrice;
-    private int shipAddress;
-    private int phoneNumber;
+    private String shipAddress;
+    private String phoneNumber;
 
     @Override
     public String toString() {
@@ -31,7 +31,7 @@ public class OrderDetailAdmin {
     public OrderDetailAdmin() {
     } 
     
-    public OrderDetailAdmin(int id, int orderID, String customerName, int productID, String productName, String imageLink, int productPrice, int shipAddress, int phoneNumber) {
+    public OrderDetailAdmin(int id, int orderID, String customerName, int productID, String productName, String imageLink, int productPrice, String shipAddress, String phoneNumber) {
         this.id = id;
         this.orderID = orderID;
         this.customerName = customerName;
@@ -102,19 +102,19 @@ public class OrderDetailAdmin {
         this.productPrice = productPrice;
     }
 
-    public int getShipAddress() {
+    public String getShipAddress() {
         return shipAddress;
     }
 
-    public void setShipAddress(int shipAddress) {
+    public void setShipAddress(String shipAddress) {
         this.shipAddress = shipAddress;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
     

@@ -8,9 +8,7 @@ package control;
 import DAL.CartDAO;
 import DAL.InvoicesDAO;
 import DAL.OrderDAO;
-import DAL.OrderDetailDAO;
 import entity.Order;
-import entity.OrderDetail;
 import entity.OrderDetailAdmin;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,8 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Thuan
  */
-@WebServlet(name = "ViewInvoiceDetailAdmin", urlPatterns = {"/viewInvoiceDetailAdmin"})
-public class ViewInvoiceDetailAdmin extends HttpServlet {
+@WebServlet(name = "ApproveOrder", urlPatterns = {"/approveOrder"})
+public class ApproveOrder extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,23 +38,23 @@ public class ViewInvoiceDetailAdmin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
         int id = Integer.parseInt(request.getParameter("id"));
         try {
-            InvoicesDAO invoicesDAO = new InvoicesDAO();
-            CartDAO CartDAO = new CartDAO();
+            OrderDAO orderDAO = new OrderDAO();
+            
+            orderDAO.packaging(id);
+            List<Order> orders = orderDAO.getAllOrder();
+            
+            
+            request.setAttribute("orders", orders);
 
-            List<OrderDetailAdmin> invoiceDetail = invoicesDAO.getInvoiceDetailByOrderID(id);
-            int totalCart = CartDAO.countAllCart();
-
-            request.setAttribute("invoiceDetail", invoiceDetail);
-            request.setAttribute("totalCart", totalCart);
-            request.setAttribute("OrderId", id);
-
-            request.getRequestDispatcher("ViewInvoiceDetail.jsp").forward(request, response);
+            
+            
+            request.getRequestDispatcher("ViewAllInvoices.jsp").forward(request, response);
         } catch (Exception ex) {
 
         }
+     
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

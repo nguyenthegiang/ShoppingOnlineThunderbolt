@@ -10,7 +10,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Computer ERA</title>
+        <!--Favicon-->
+        <link rel="icon" type="image/png" href="image/faviconLogo.png" />
     </head>
     <body>
         <h1>Hello ${sessionScope.acc.user}</h1>
