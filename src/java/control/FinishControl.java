@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import util.FormatPrice;
+import util.FormatString;
 import util.SendEmail;
 
 /**
@@ -108,8 +109,7 @@ public class FinishControl extends HttpServlet {
                 shipInfo.setShipCityId(defaulShipAddress.getShipCityId());
                 shipInfo.setShippingAddress(defaulShipAddress.getShipAddress());
 
-            }
-            shipInfo.setNote(request.getParameter("note"));
+            }            
 
             // calculate total price of the order
             double total = 0;
@@ -124,7 +124,7 @@ public class FinishControl extends HttpServlet {
             Order userOrder = new Order();
             userOrder.setUserId(a.getId());
             userOrder.setTotalPrice(total);
-            userOrder.setNote("");
+            userOrder.setNote(request.getParameter("note"));
             userOrder.setStatus("Waiting for Confirmation");
             userOrder.setDate(dtf.format(now));
             int newOrderId = orderDao.addOrder(userOrder, 1);
@@ -149,14 +149,14 @@ public class FinishControl extends HttpServlet {
             ShipInfo shipInfoOfOrder
                     = shipInfoDAO.getShipInfoByOrderId(newOrderId);
             String message = "Thanks for shopping at ComputerERA\n\n"
-                    + a.getUser()
+                    + FormatString.formatToUTF8String(a.getUser())
                     + " Order information: \n"
                     + createOrderInfo(orderInfo, shipInfoOfOrder)
                     + "\n\nSee more information of your order at ComputerERA shop website!";
             
             new SendEmail(
                     a.getEmail(),
-                    a.getUser() + " Order Information",
+                    FormatString.formatToUTF8String(a.getUser()) + " Order Information",
                     message);
 
             // remove the cart of the order
@@ -171,10 +171,11 @@ public class FinishControl extends HttpServlet {
     }
 
     private String createOrderInfo(Order order, ShipInfo shipInfo) {
-        return "Your Order Id: "
+        String message = "Your Order Id: "
                 + order.getId()
                 + "\nSubtotal: "
                 + FormatPrice.getTotalPriceWithSeparator(order.getTotalPrice())
+                +" VND"
                 + "\nDate(yyyy/mm/dd): "
                 + order.getDate()
                 + "\nNote: "
@@ -187,6 +188,8 @@ public class FinishControl extends HttpServlet {
                 + shipInfo.getPhoneNum()
                 +"\nReceiver's Address: "
                 + shipInfo.getShippingAddress();
+        
+        return FormatString.formatToUTF8String(message);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -118,11 +118,11 @@ public class NotLoginFilter implements Filter {
 
         HttpSession session = httpRequest.getSession();
         Account a = (Account) session.getAttribute("acc");
-
+       
         if (a == null) { //If a = null -> not logged in -> Redirect to login
             httpResponse.sendRedirect("login");
         }
-
+       
         try {
             chain.doFilter(request, response);
         } catch (Throwable t) {
