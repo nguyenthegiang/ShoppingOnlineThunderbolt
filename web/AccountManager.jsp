@@ -14,6 +14,8 @@
         <!--Favicon-->
         <link rel="icon" type="image/png" href="image/faviconLogo.png" />
         <title>Computer ERA</title>
+        <link href="css/Dashboard.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -202,14 +204,16 @@
             }
         </style>
         <nav class="navbar navbar-expand-lg navbar-light bg-light flex-column" style="position: fixed; left: 20px;">
-            <a class="navbar-brand" href="dashBoard"><img src="image/MenuLogo.png" width="200px"></a>
+            <br>
+            <a class="navbar-brand" href="dashBoard"><img src="image/Other/Logo.jpg" width="200px"></a>
+            <br>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="home">Home</a>
+                    <a class="nav-link" href="home"><i class="fas fa-home"></i>Home</a>
                 </li>
                 <c:if test="${sessionScope.acc == null}">
                     <li class="nav-item">
@@ -218,20 +222,24 @@
                 </c:if>
                 <c:if test = "${sessionScope.acc != null}">
                     <li class="nav-item">
-                        <a class="nav-link text-info" href="login">Hello ${sessionScope.acc.user}</a>
+                        <a class="nav-link" href="profile"><i class="fas fa-user-circle"></i>Hello ${sessionScope.acc.user}</a>
                     </li>
+
                     <c:if test="${sessionScope.acc.isSell == 1}">
                         <li class="nav-item">
-                            <a class="nav-link" href="manager">Manager Product</a>
+                            <a class="nav-link" href="manager"><i class="fas fa-tasks"></i>Manager Product</a>
                         </li> 
                     </c:if>
+
                     <c:if test="${sessionScope.acc.isAdmin == 1}">
                         <li class="nav-item">
-                            <a class="nav-link" href="accountManager">Manager Account</a>
+                            <a class="nav-link" href="accountManager"><i class="fas fa-tasks"></i>Manager Account</a>
                         </li> 
                     </c:if>
                 </c:if>
-
+                <li>
+                    <a class="nav-link" href="logout" style="position: fixed; right: 10px;">LogOut</a>
+                </li>
                 <li class="nav-item">&nbsp;
                 </li> 
             </ul>
