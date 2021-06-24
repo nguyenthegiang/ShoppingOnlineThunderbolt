@@ -51,14 +51,14 @@
             <div class="container">
                 <div class="row">
                 <jsp:include page="Left.jsp"></jsp:include>
-                <div class="col-sm-9">
-                    <div class="container">
-                        <div class="card">
-                            <div class="row">
-                                <aside class="col-sm-5 border-right">
-                                    <article class="gallery-wrap"> 
-                                        <div class="img-big-wrap">
-                                            <div> <a href="#"><img src="image/${detail.imageLink}"></a></div>
+                    <div class="col-sm-9">
+                        <div class="container">
+                            <div class="card">
+                                <div class="row">
+                                    <aside class="col-sm-5 border-right">
+                                        <article class="gallery-wrap"> 
+                                            <div class="img-big-wrap">
+                                                <div> <a href="#"><img src="image/${detail.imageLink}"></a></div>
                                         </div> <!-- slider-product.// -->
                                         <div class="img-small-wrap">
                                         </div> <!-- slider-nav.// -->
@@ -74,13 +74,13 @@
                                                 <span class="currency">VND </span><span class="num">${detail.priceWithDot}</span>
                                             </span> 
                                         </p> <!-- price-detail-wrap .// -->
-<!--                                        <dl class="item-property">
-                                            <dt>Description</dt>
-                                            <dd><p>
-                                                    ${detail.description}
-                                                </p></dd>
-                                        </dl>
-                                                -->
+                                        <!--                                        <dl class="item-property">
+                                                                                    <dt>Description</dt>
+                                                                                    <dd><p>
+                                        ${detail.description}
+                                    </p></dd>
+                            </dl>
+                                        -->
                                         <hr>
                                         <dl class="item-property">
                                             <dt>Manufacturer</dt>
@@ -116,34 +116,34 @@
                 </div>
             </div>
         </div>
-       
-       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-       <script>           
-                function addCart2(ProductID) {
-                    <c:if test="${sessionScope.acc != null}">
-                        var select_value = document.getElementById("select_id").value;       
-                        //Sử dụng Ajax
-                            $.ajax({
-                            url: "/Assignment_ElectronicShop_Pro/addMany",
-                            type: "get", //send it through get method
-                            data: {
-                                ProductID: ProductID,
-                                Quantity: select_value
-                            },
-                            success: function (message) {
-                                alert(message);                
-                            }
-                        });
-                    </c:if>
-                    <c:if test="${sessionScope.acc == null}">
-                        location.href = "login";
-                    </c:if>
-                }
-                
-                function buy(ProductID) {
-                    var select_value = document.getElementById("select_id").value;
-                    location.href="buyNow?ProductID=" + ProductID + "&Quantity=" + select_value;
-                }
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+                                             function addCart2(ProductID) {
+            <c:if test="${sessionScope.acc != null}">
+                                                 var select_value = document.getElementById("select_id").value;
+                                                 //Sử dụng Ajax
+                                                 $.ajax({
+                                                     url: "/Assignment_ElectronicShop_Pro/addMany",
+                                                     type: "get", //send it through get method
+                                                     data: {
+                                                         ProductID: ProductID,
+                                                         Quantity: select_value
+                                                     },
+                                                     success: function (message) {
+                                                         alert(message);
+                                                     }
+                                                 });
+            </c:if>
+            <c:if test="${sessionScope.acc == null}">
+                                                 location.href = "login";
+            </c:if>
+                                             }
+
+                                             function buy(ProductID) {
+                                                 var select_value = document.getElementById("select_id").value;
+                                                 location.href = "buyNow?ProductID=" + ProductID + "&Quantity=" + select_value;
+                                             }
         </script>  
     </body>
 </html>
