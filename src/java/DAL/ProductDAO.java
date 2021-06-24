@@ -23,7 +23,6 @@ public class ProductDAO extends BaseDAO<Product> {
     PreparedStatement ps = null; //...
     ResultSet rs = null; //Get the results returned
 
-    //1 function to Load All Animals -> This function will have to return 1 List of Animals
     public List<Product> getAllProduct() {
         List<Product> list = new ArrayList<>();
         String query = "SELECT * FROM Product";
@@ -66,8 +65,8 @@ public class ProductDAO extends BaseDAO<Product> {
      */
     public Product getFavoriteProduct() {
         //Product with second most amount
-        String query = "select top 2 * from Product\n"
-                + "order by Amount desc";
+        String query = "SELECT TOP 2 * FROM Product\n"
+                + "ORDER BY Amount DESC";
         try {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
@@ -479,15 +478,34 @@ public class ProductDAO extends BaseDAO<Product> {
     }
 
     public static void main(String[] args) {
-        //Kiểm tra xem List đã có dữ liệu chưa
         ProductDAO dao = new ProductDAO();
+        /*---------Test Case for getAllProduct() method---------*/
 //        List<Product> list = dao.getAllProduct();
 //        for (Product o : list) {
 //            System.out.println(o);
 //        }
 
+        /*---------Test Case for getHotProduct() method---------*/
 //        System.out.println(dao.getHotProduct());
+        
+        /*---------Test Case for getFavoriteProduct() method---------*/
 //        System.out.println(dao.getFavoriteProduct());
+        
+        /*---------Test Case for getProductBySellID() method---------*/
+//        List<Product> list = dao.getProductBySellID(1);
+//        for (Product product : list) {
+//            System.out.println(product);
+//        }
+
+        /*---------Test Case for edit() method---------*/
+        //Waiting...
+        
+        /*---------Test Case for add() method---------*/
+        //Waiting...
+        
+        /*---------Test Case for delete() method---------*/
+//        dao.delete("1");
+        
 //        List<Product> list = dao.getTop6();
 //        for (Product o : list) {
 //            System.out.println(o);
@@ -499,12 +517,7 @@ public class ProductDAO extends BaseDAO<Product> {
 //        Information x = dao.getInfor();
 //        System.out.println(x);
 //        System.out.println(dao.login("nguyenthegiang", "nguyenthegiang"));
-//        List<Product> list = dao.getProductBySellID(1);
-//        for (Product product : list) {
-//            System.out.println(product);
-//        }
-//        dao.edit("1", "Webcam Logitech BRIO Ultra HD Pro", "6499000", "Webcam Logitech BRIO Ultra HD Pro.png", "4", "1");
-//        dao.delete("1");
+
 //        System.out.println(dao.countProduct());
 //        List<Product> list = dao.pagingProduct(1);
 //        for (Product o : list) {
@@ -544,6 +557,7 @@ public class ProductDAO extends BaseDAO<Product> {
 //        ProductInManager p = dao.getProductForManager("1");
 //        System.out.println(p);
 //        dao.add("a", "a", "1", "a", "1", "1", "1");
-        System.out.println(dao.getProductDetailByID("1"));
+
+//        System.out.println(dao.getProductDetailByID("1"));
     }
 }
