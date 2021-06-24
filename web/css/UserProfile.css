@@ -22,3 +22,24 @@ button{
     border-radius: 8px;
     border-color: none;
 }
+#link{
+    color: black;
+    text-decoration: none;
+}
+#back{
+    color: black;
+    text-decoration: underline;
+}
+#profileIcon{
+    margin: 0.5em 3.5em ; 
+    font-size: 50px;
+    font-weight: 300;
+}
+h5{
+    text-align: center; 
+    font-family: Arial;
+    margin-bottom: 40px;
+    font-size: initial;
+    font-weight: 600;
+    padding: 2px;
+}
