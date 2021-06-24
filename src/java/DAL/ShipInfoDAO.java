@@ -27,7 +27,7 @@ public class ShipInfoDAO extends BaseDAO<ShipInfo>{
      * @return a shipping info
      */
     public ShipInfo getShipInfoByOrderId(int orderId) {
-        String query = "SELECT * FROM ShipInfo WHERE OrderID = ?";
+        String query = "SELECT * FROM ShipInfo WHERE Order_ID = ?";
         ShipInfo theShipInfo = new ShipInfo();
         try {
             ps = connection.prepareStatement(query);
@@ -36,7 +36,7 @@ public class ShipInfoDAO extends BaseDAO<ShipInfo>{
             while (rs.next()) {
                 theShipInfo = new ShipInfo(
                         rs.getInt("ID"),
-                        rs.getInt("OrderID"),
+                        rs.getInt("Order_ID"),
                         rs.getString("CustomerName"),
                         rs.getString("ShippingAddress"),
                         rs.getInt("ShipCityID"),
@@ -58,7 +58,7 @@ public class ShipInfoDAO extends BaseDAO<ShipInfo>{
      * @return a list of shiping info
      */
     public List<ShipInfo> getShipInfoByCityId(int cityId) {
-        String query = "SELECT * FROM ShipInfo WHERE CityID = ?";
+        String query = "SELECT * FROM ShipInfo WHERE [ShipCityID] = ?";
         List<ShipInfo> lsShipInfo = new ArrayList<>();
         ShipInfo theShipInfo = new ShipInfo();
         try {
@@ -68,7 +68,7 @@ public class ShipInfoDAO extends BaseDAO<ShipInfo>{
             while (rs.next()) {
                 theShipInfo = new ShipInfo(
                         rs.getInt("ID"),
-                        rs.getInt("OrderID"),
+                        rs.getInt("Order_ID"),
                         rs.getString("CustomerName"),
                         rs.getString("ShippingAddress"),
                         rs.getInt("ShipCityID"),
