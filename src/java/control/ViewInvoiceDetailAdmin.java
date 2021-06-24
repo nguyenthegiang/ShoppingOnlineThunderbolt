@@ -40,9 +40,11 @@ public class ViewInvoiceDetailAdmin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        int id = Integer.parseInt(request.getParameter("id"));
+
         try {
+            String status = request.getParameter("status");
+            int id = Integer.parseInt(request.getParameter("id"));
+
             InvoicesDAO invoicesDAO = new InvoicesDAO();
             CartDAO CartDAO = new CartDAO();
 
@@ -52,6 +54,7 @@ public class ViewInvoiceDetailAdmin extends HttpServlet {
             request.setAttribute("invoiceDetail", invoiceDetail);
             request.setAttribute("totalCart", totalCart);
             request.setAttribute("OrderId", id);
+            request.setAttribute("sta", status);
 
             request.getRequestDispatcher("ViewInvoiceDetail.jsp").forward(request, response);
         } catch (Exception ex) {

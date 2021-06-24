@@ -134,13 +134,13 @@
                                     <th></th>
                                     <th>                                     
                                         <img style="max-height: 25em; max-width: 20em; padding:0;margin:0;border-radius: 50%" src="image/${product1.imageLink}" alt="Product picture"/>
-                                        <h4>${product1.name}</h4>
-                                    </th>
-                                    <th>                                     
+                                    <h4>${product1.name}</h4>
+                                </th>
+                                <th>                                     
                                     <img style="height: 25em; width: 20em; padding:0;margin:0;border-radius: 50%" src="image/${product2.imageLink}" alt="Product picture"/>
                                     <h4>${product2.name}</h4>
 
-                                    </th>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>

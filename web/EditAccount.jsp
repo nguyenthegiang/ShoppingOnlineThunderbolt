@@ -252,24 +252,24 @@
             }	
         </style>
         <script>
-            
+
         </script>
     </head>
     <body>
         <jsp:include page="Menu.jsp"></jsp:include>
-        <!-- Edit Product -->
-        <div id="editEmployeeModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form action="editAccount" method="POST">
-                        <div class="modal-header">						
-                            <h4 class="modal-title">Edit Account</h4>
-                            <a type="button" class="close" href="accountManager" aria-hidden="true">&times;</a>
-                        </div>
-                        <div class="modal-body">	
-                            <div class="form-group">
-                                <label>ID</label>
-                                <input type="text"  class="form-control" name="id" value="${id}" readonly>
+            <!-- Edit Product -->
+            <div id="editEmployeeModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="editAccount" method="POST">
+                            <div class="modal-header">						
+                                <h4 class="modal-title">Edit Account</h4>
+                                <a type="button" class="close" href="accountManager" aria-hidden="true">&times;</a>
+                            </div>
+                            <div class="modal-body">	
+                                <div class="form-group">
+                                    <label>ID</label>
+                                    <input type="text"  class="form-control" name="id" value="${id}" readonly>
                             </div>
                             <div class="form-group">
                                 <label>UserName</label>

@@ -43,7 +43,7 @@
                             <img src="image/dathongbao.png" alt="Đăng ký bộ công thương">
                         </a>
                     </div>
-                  
+
                     <div class="col-md-4 col-lg-3 col-xl-3">
                         <iframe style="display:inline;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.4855345740834!2d105.52487561467366!3d21.013249986006812!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31345b465a4e65fb%3A0xaae6040cfabe8fe!2sFPT%20University!5e0!3m2!1sen!2s!4v1616682971231!5m2!1sen!2s"  height="350" style="border:0;" allowfullscreen=""></iframe>
 

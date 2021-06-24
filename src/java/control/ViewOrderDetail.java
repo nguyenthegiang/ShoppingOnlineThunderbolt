@@ -6,7 +6,9 @@
 package control;
 
 import DAL.OrderDetailDAO;
+import DAL.OrderDetailWithImageDAO;
 import entity.OrderDetail;
+import entity.OrderDetailWithImage;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -37,9 +39,9 @@ public class ViewOrderDetail extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
                
             int id = Integer.parseInt(request.getParameter("id"));
-            OrderDetailDAO orderDAO = new OrderDetailDAO();
+            OrderDetailWithImageDAO orderDAO = new OrderDetailWithImageDAO();
 
-            List<OrderDetail> orderDetails = orderDAO.getOrderDetailByOrderID(id);
+            List<OrderDetailWithImage> orderDetails = orderDAO.getOrderDetail(id);
 
             request.setAttribute("orderDetails", orderDetails);
 

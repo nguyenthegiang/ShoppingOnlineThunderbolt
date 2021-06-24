@@ -23,7 +23,6 @@ public class ProductDAO extends BaseDAO<Product> {
     PreparedStatement ps = null; //...
     ResultSet rs = null; //Get the results returned
 
-    //1 function to Load All Animals -> This function will have to return 1 List of Animals
     public List<Product> getAllProduct() {
         List<Product> list = new ArrayList<>();
         String query = "SELECT * FROM Product";
@@ -66,8 +65,8 @@ public class ProductDAO extends BaseDAO<Product> {
      */
     public Product getFavoriteProduct() {
         //Product with second most amount
-        String query = "select top 2 * from Product\n"
-                + "order by Amount desc";
+        String query = "SELECT TOP 2 * FROM Product\n"
+                + "ORDER BY Amount DESC";
         try {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
@@ -296,6 +295,7 @@ public class ProductDAO extends BaseDAO<Product> {
 //        }
 //        return list;
 //    }
+    
     //count total product
     public int countProductByCategory(int CategoryID) {
         if (CategoryID == 0) {
@@ -479,71 +479,94 @@ public class ProductDAO extends BaseDAO<Product> {
     }
 
     public static void main(String[] args) {
-        //Kiểm tra xem List đã có dữ liệu chưa
         ProductDAO dao = new ProductDAO();
+        /*---------Test Case for getAllProduct() method---------*/
 //        List<Product> list = dao.getAllProduct();
 //        for (Product o : list) {
 //            System.out.println(o);
 //        }
 
+        /*---------Test Case for getHotProduct() method---------*/
 //        System.out.println(dao.getHotProduct());
+        
+        /*---------Test Case for getFavoriteProduct() method---------*/
 //        System.out.println(dao.getFavoriteProduct());
-//        List<Product> list = dao.getTop6();
-//        for (Product o : list) {
-//            System.out.println(o);
-//        }
-//        List<Category> list = dao.getAllCategory();
-//        for (Category o : list) {
-//            System.out.println(o);
-//        }
-//        Information x = dao.getInfor();
-//        System.out.println(x);
-//        System.out.println(dao.login("nguyenthegiang", "nguyenthegiang"));
+        
+        /*---------Test Case for getProductBySellID() method---------*/
 //        List<Product> list = dao.getProductBySellID(1);
 //        for (Product product : list) {
 //            System.out.println(product);
 //        }
-//        dao.edit("1", "Webcam Logitech BRIO Ultra HD Pro", "6499000", "Webcam Logitech BRIO Ultra HD Pro.png", "4", "1");
+
+        /*---------Test Case for edit() method---------*/
+        //Waiting...
+        
+        /*---------Test Case for add() method---------*/
+        //Waiting...
+        
+        /*---------Test Case for delete() method---------*/
+        //Waiting...
 //        dao.delete("1");
+        
+        /*---------Test Case for countProduct() method---------*/
 //        System.out.println(dao.countProduct());
+
+        /*---------Test Case for pagingProduct() method---------*/
 //        List<Product> list = dao.pagingProduct(1);
 //        for (Product o : list) {
 //            System.out.println(o);
 //        }
+
+        /*---------Test Case for pagingByCategory() method---------*/
 //        List<Product> list = dao.pagingByCategory(1, 1);
 //        for (Product o : list) {
 //            System.out.println(o);
 //        }
-//        System.out.println(dao.countProductByCategory(1));
-//        System.out.println(dao.countProductByCategory(2));
-//        System.out.println(dao.countProductByCategory(3));
-//        System.out.println(dao.countProductByCategory(4));
-//        List<Product> list = dao.searchProductByName("msi");
-//        for (Product o : list) {
-//            System.out.println(o);
-//        }
-//        ProductInManager p = dao.getProductForManager("1");
-//        System.out.println(p);
+
+        /*---------Test Case for pagingManagerProduct() method---------*/
 //        List<Product> list = dao.pagingManagerProduct(1, 1);
 //        for (Product o : list) {
 //            System.out.println(o);
 //        }
+
+        /*---------Test Case for countProductByCategory() method---------*/
+//        System.out.println(dao.countProductByCategory(1));
+
+        /*---------Test Case for countProductBySeller() method---------*/
 //        System.out.println(dao.countProductBySeller(1));
-//        List<ProductInManager> list = dao.top3MostSell();
-//        for (ProductInManager productInManager : list) {
-//            System.out.println(productInManager);
+        
+        /*---------Test Case for getProductDetailByID() method---------*/
+//        System.out.println(dao.getProductByID("1"));   
+
+        /*---------Test Case for getProductDetailByID() method---------*/
+//        System.out.println(dao.getProductDetailByID("1"));
+ 
+        /*---------Test Case for getProductForManager() method---------*/
+//        ProductInManager p = dao.getProductForManager("1");
+//        System.out.println(p);
+
+        /*---------Test Case for searchProductByName() method---------*/
+//        List<Product> list = dao.searchProductByName("msi");
+//        for (Product o : list) {
+//            System.out.println(o);
 //        }
+        
+        /*---------Test Case for searchProductInManager() method---------*/
 //        List<Product> list = dao.searchProductInManager("asus", 1);
 //        for (Product product : list) {
 //            System.out.println(product);
 //        }
-//        List<Product> list = dao.pagingByCategory(1, 1);
-//        for (Product product : list) {
-//            System.out.println(product);
+        
+        /*---------Test Case for top3MostSell() method---------*/
+//        List<ProductInManager> list = dao.top3MostSell();
+//        for (ProductInManager productInManager : list) {
+//            System.out.println(productInManager);
 //        }
-//        ProductInManager p = dao.getProductForManager("1");
-//        System.out.println(p);
-//        dao.add("a", "a", "1", "a", "1", "1", "1");
-        System.out.println(dao.getProductDetailByID("1"));
+
+        /*---------Test Case for top3LeastSell() method---------*/
+//        List<ProductInManager> list = dao.top3LeastSell();
+//        for (ProductInManager productInManager : list) {
+//            System.out.println(productInManager);
+//        }
     }
 }
