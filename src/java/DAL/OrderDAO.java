@@ -81,7 +81,7 @@ public class OrderDAO extends BaseDAO<Order> {
      */
     public int addOrder(Order order, int statusId) {
 
-        String query = "Insert into Orders values(?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Orders VALUES(?, ?, ?, ?, ?)";
         int check = 0;
 
         try {
