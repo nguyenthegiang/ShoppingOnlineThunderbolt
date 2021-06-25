@@ -135,7 +135,7 @@ public class OrderDAO extends BaseDAO<Order> {
         }
     }
 
-    public void cancled(int id) {
+    public void canceled(int id) {
         String query = "UPDATE Orders\n"
                 + "SET Status = 4\n"
                 + "WHERE ID = ?";
