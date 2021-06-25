@@ -73,10 +73,11 @@ public class BuyControl extends HttpServlet {
             CartDAO cartDAO = new CartDAO();
             ShipDAO shipDAO = new ShipDAO();
             UserAddressDAO userAddressDAO = new UserAddressDAO();
-            
+            ProductDAO productDAO = new ProductDAO();
+
             // get products in user's cart
             List<Cart> listCart = cartDAO.getCart(a.getId()); //Truyền vào id của account
-            
+
             // get address of user
             UserAddress currentUserDefaultAddress = userAddressDAO.getAddressByUserId(a.getId());
             if (listCart.size() == 0) {
@@ -89,11 +90,23 @@ public class BuyControl extends HttpServlet {
 
             // calculate total sum
             int total = 0;
+            String message = "Some of the products are currently out of stock:";
             for (Cart cart : listCart) {
-                total += cart.getP().getPrice() * cart.getAmount();
-            }  
+                ProductInManager p = 
+                        productDAO.getProductForManager(
+                                String.valueOf(cart.getP().getId())
+                        );
+                if (p != null) {
+                    if (p.getAmount() >= cart.getAmount()) {
+                        total += cart.getP().getPrice() * cart.getAmount();
+                    } else {
+                        message += cart.getP().getName() +", ";
+                        request.setAttribute("message", message);                       
+                    }
+                }
+            }
             total += currentUserDefaultCity.getShipPrice();
-           
+
             // set attribute, send to Buy.jsp
             request.setAttribute("listCart", listCart);
             request.setAttribute("total", total);
