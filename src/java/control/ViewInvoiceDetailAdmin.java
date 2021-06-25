@@ -51,10 +51,9 @@ public class ViewInvoiceDetailAdmin extends HttpServlet {
                 int id = Integer.parseInt(request.getParameter("id"));
 
                 InvoicesDAO invoicesDAO = new InvoicesDAO();
-                CartDAO CartDAO = new CartDAO();
-
+                OrderDAO orderDAO = new OrderDAO();
                 List<OrderDetailAdmin> invoiceDetail = invoicesDAO.getInvoiceDetailByOrderID(id);
-                int totalCart = CartDAO.countAllCart();
+                int totalCart = orderDAO.countOrders();
 
                 request.setAttribute("invoiceDetail", invoiceDetail);
                 request.setAttribute("totalCart", totalCart);
@@ -68,9 +67,9 @@ public class ViewInvoiceDetailAdmin extends HttpServlet {
 
                 InvoicesDAO invoicesDAO = new InvoicesDAO();
                 CartDAO CartDAO = new CartDAO();
-
+                OrderDAO orderDAO = new OrderDAO();
                 List<OrderDetailAdmin> invoiceDetail = invoicesDAO.getInvoiceDetailBySellerID(id);
-                int totalCart = CartDAO.countAllCart();
+                int totalCart = orderDAO.countOrders();
 
                 request.setAttribute("invoiceDetail", invoiceDetail);
                 request.setAttribute("totalCart", totalCart);
