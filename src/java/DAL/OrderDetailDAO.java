@@ -21,7 +21,7 @@ public class OrderDetailDAO extends BaseDAO<OrderDetail> {
     ResultSet rs = null; //Nhận kết quả trả về
 
     /**
-     * Adding many oder_detail to a specific order by the order ID
+     * Adding many order_detail to a specific order by the order ID
      *
      * @param oderDetail: list of order details need to be inserted
      * @param Order_ID: the id of the order which would be inserted in
@@ -54,7 +54,7 @@ public class OrderDetailDAO extends BaseDAO<OrderDetail> {
     }
 
     /**
-     * getting detailed orders by the order id
+     * Getting products in an order by the order id
      *
      * @param id: ID of the order
      * @return OrderDetail
