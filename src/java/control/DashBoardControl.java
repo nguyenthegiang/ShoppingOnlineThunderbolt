@@ -42,11 +42,11 @@ public class DashBoardControl extends HttpServlet {
         try {
             ProductDAO ProductDAO = new ProductDAO();
             UserDAO UserDAO = new UserDAO();
-            CartDAO CartDAO = new CartDAO();
+            OrderDAO orderDAO = new OrderDAO();
 
             int totalAccount = UserDAO.countAllAccount();
             int totalProduct = ProductDAO.countProduct();
-            int totalCart = CartDAO.countAllCart();
+            int totalCart = orderDAO.countOrders();
 
             List<ProductInManager> top3LeastSell = ProductDAO.top3LeastSell();
             List<DashBoardProduct> top3LeastSellD = amountToProportionLeast3(top3LeastSell);
