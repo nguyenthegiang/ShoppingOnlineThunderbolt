@@ -39,7 +39,7 @@ public class CancelOrder extends HttpServlet {
         try {
             OrderDAO orderDAO = new OrderDAO();
             
-            orderDAO.cancled(id);
+            orderDAO.canceled(id);
             List<Order> orders = orderDAO.getAllOrder();
             
             
