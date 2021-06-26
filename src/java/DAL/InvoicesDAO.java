@@ -24,7 +24,7 @@ public class InvoicesDAO extends BaseDAO<OrderDetailAdmin> {
 
     public List<OrderDetailAdmin> getInvoiceDetailByOrderID(int orderId) {
         List<OrderDetailAdmin> list = new ArrayList<>();
-        String query = "SELECT od.id, od.Order_ID, u.username,od.productId,\n"
+        String query = "SELECT od.id,u.UserId, od.Order_ID, u.username,od.productId,\n"
                 + "p.productName,p.imageLink,p.SellPrice, si.shippingAddress, si.phoneNum\n"
                 + "FROM Order_Detail od INNER JOIN Orders o\n"
                 + "ON od.Order_ID = o.ID\n"
@@ -43,6 +43,7 @@ public class InvoicesDAO extends BaseDAO<OrderDetailAdmin> {
             while (rs.next()) {
                 list.add(new OrderDetailAdmin(
                         rs.getInt("ID"),
+                        rs.getInt("userId"),
                         rs.getInt("Order_ID"),
                         rs.getString("username"),
                         rs.getInt("productID"),
@@ -61,7 +62,7 @@ public class InvoicesDAO extends BaseDAO<OrderDetailAdmin> {
 
     public List<OrderDetailAdmin> getInvoiceDetailBySellerID(int sellerId) {
         List<OrderDetailAdmin> list = new ArrayList<>();
-        String query = "SELECT od.id, od.Order_ID, u.username,od.productId,\n"
+        String query = "SELECT od.id,u.userId, od.Order_ID, u.username,od.productId,\n"
                 + "                p.productName,p.imageLink,p.SellPrice, si.shippingAddress, si.phoneNum\n"
                 + "                FROM Order_Detail od INNER JOIN Orders o\n"
                 + "                ON od.Order_ID = o.ID\n"
@@ -80,6 +81,7 @@ public class InvoicesDAO extends BaseDAO<OrderDetailAdmin> {
             while (rs.next()) {
                 list.add(new OrderDetailAdmin(
                         rs.getInt("ID"),
+                        rs.getInt("userID"),
                         rs.getInt("Order_ID"),
                         rs.getString("username"),
                         rs.getInt("productID"),

@@ -10,7 +10,9 @@ package entity;
  * @author Thuan
  */
 public class OrderDetailAdmin {
+
     private int id;
+    private int userId;
     private int orderID;
     private String customerName;
     private int productID;
@@ -20,19 +22,9 @@ public class OrderDetailAdmin {
     private String shipAddress;
     private String phoneNumber;
 
-    @Override
-    public String toString() {
-        return "OrderDetailAdmin{" + "id=" + id + ", orderID=" + orderID + ", customerName=" + customerName + ", productID=" + productID + ", productName=" + productName + ", imageLink=" + imageLink + ", productPrice=" + productPrice + ", shipAddress=" + shipAddress + ", phoneNumber=" + phoneNumber + '}';
-    }
-
-    
-    
-    
-    public OrderDetailAdmin() {
-    } 
-    
-    public OrderDetailAdmin(int id, int orderID, String customerName, int productID, String productName, String imageLink, int productPrice, String shipAddress, String phoneNumber) {
+    public OrderDetailAdmin(int id, int userId, int orderID, String customerName, int productID, String productName, String imageLink, int productPrice, String shipAddress, String phoneNumber) {
         this.id = id;
+        this.userId = userId;
         this.orderID = orderID;
         this.customerName = customerName;
         this.productID = productID;
@@ -43,15 +35,28 @@ public class OrderDetailAdmin {
         this.phoneNumber = phoneNumber;
     }
 
-    
-    
-    
+    @Override
+    public String toString() {
+        return "OrderDetailAdmin{" + "id=" + id + ", userId=" + userId + ", orderID=" + orderID + ", customerName=" + customerName + ", productID=" + productID + ", productName=" + productName + ", imageLink=" + imageLink + ", productPrice=" + productPrice + ", shipAddress=" + shipAddress + ", phoneNumber=" + phoneNumber + '}';
+    }
+
+    public OrderDetailAdmin() {
+    }
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getOrderID() {
@@ -117,7 +122,5 @@ public class OrderDetailAdmin {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-    
-    
-    
+
 }
