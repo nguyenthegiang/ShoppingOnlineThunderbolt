@@ -11,6 +11,10 @@
         <!--The Menu nav bar of Home Page-->
         <link href="css/Menu.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
         <jsp:useBean id="c" class="DAL.CartDAO"></jsp:useBean>
         </head>
         <body>
@@ -40,6 +44,69 @@
                             <!--Link to user profile-->
                             <a class="nav-link" href="profile" id="linkHover">Hello ${sessionScope.acc.user}</a>
                         </li>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="display: unset !important;">
+                        <ul class="nav nav-pills mr-auto justify-content-end">                            
+                            <li class="nav-item dropdown">
+                                <a class="nav-link text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-bell" style="color:black;"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="head text-light bg-dark">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-sm-12 col-12">
+                                                <span>Notifications (3)</span>
+                                                <a href="" class="float-right text-light">Mark all as read</a>
+                                            </div>
+                                    </li>
+                                    <li class="notification-box">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-sm-3 col-3 text-center">
+                                                <img src="image/47734_tai_nghe_corsair_hs35_stereo_blue_0005_1.jpg" class="w-50 rounded-circle">
+                                            </div>    
+                                            <div class="col-lg-8 col-sm-8 col-8">
+                                                <strong class="text-info">David John</strong>
+                                                <div>
+                                                    Lorem ipsum dolor sit amet, consectetur
+                                                </div>
+                                                <small class="text-warning">27.11.2015, 15:00</small>
+                                            </div>    
+                                        </div>
+                                    </li>
+                                    <li class="notification-box bg-gray">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-sm-3 col-3 text-center">
+                                                <img src="/demo/man-profile.jpg" class="w-50 rounded-circle">
+                                            </div>    
+                                            <div class="col-lg-8 col-sm-8 col-8">
+                                                <strong class="text-info">David John</strong>
+                                                <div>
+                                                    Lorem ipsum dolor sit amet, consectetur
+                                                </div>
+                                                <small class="text-warning">27.11.2015, 15:00</small>
+                                            </div>    
+                                        </div>
+                                    </li>
+                                    <li class="notification-box">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-sm-3 col-3 text-center">
+                                                <img src="/demo/man-profile.jpg" class="w-50 rounded-circle">
+                                            </div>    
+                                            <div class="col-lg-8 col-sm-8 col-8">
+                                                <strong class="text-info">David John</strong>
+                                                <div>
+                                                    Lorem ipsum dolor sit amet, consectetur
+                                                </div>
+                                                <small class="text-warning">27.11.2015, 15:00</small>
+                                            </div>    
+                                        </div>
+                                    </li>
+                                    <li class="footer bg-dark text-center">
+                                        <a href="" class="text-light">View All</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                         <!--Kiểm tra xem có phải người bán ko: isSell = 1-->
                         <c:if test="${sessionScope.acc.isSell == 1}">
                             <li class="nav-item">
@@ -60,8 +127,8 @@
                             <!--Sửa: khi ấn logout: dẫn -> servlet-->
                             <a class="nav-link" href="logout" id="linkHover">LogOut</a>
                         </li>
-                    </c:if>
-                </ul>
+                    </c:if>                   
+                </ul>                    
                 <form class="form-inline my-2 my-lg-0" action="search" method="post">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search..." oninput="searchByName(this)" value="${txtS}" name="txt" id="searchText">
                     <button class="btn my-2 my-sm-0" type="submit" id="search"><i class="fa fa-search"></i></button>
@@ -73,5 +140,8 @@
                 </form>
             </div>
         </nav>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
     </body>
 </html>
