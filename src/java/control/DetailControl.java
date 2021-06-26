@@ -8,7 +8,6 @@ package control;
 import entity.*;
 import DAL.*;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -52,32 +51,52 @@ public class DetailControl extends HttpServlet {
             ProductDAO dao = new ProductDAO();
             ProductDetail p = dao.getProductDetailByID(id);
             FeedbackDAO feedbackDao = new FeedbackDAO();
-            Feedback_RepliesDAO feedback_RepliesDao = new Feedback_RepliesDAO();
-
+            UserDAO userDao = new UserDAO();
+            FeedbackRepliesDAO feedbackRepliesDao = new FeedbackRepliesDAO();
             CategoryDAO CategoryDAO = new CategoryDAO();
-            List<Category> listC = CategoryDAO.getAllCategory();
-            List<Feedback> lsFeedback = 
-                    feedbackDao.getFeedbacksByProductId(Integer.parseInt(id));
-            List<Feedback_Replies> lsFeedback_Replies = 
-                    new ArrayList<Feedback_Replies>();
-            for (Feedback feedback : lsFeedback) {
-                lsFeedback_Replies.addAll(
-                        feedback_RepliesDao.
-                                getFeedbacksByFeedbackId(
-                                        feedback.getId()
-                                )
-                );                
-            }
-            
-
             ProductDAO ProductDAO = new ProductDAO();
+            
+            // create list of categories, feedback, account that made feedback and account that replies
+            List<Category> listC = CategoryDAO.getAllCategory();
+            List<Feedback> lsFeedback
+                    = feedbackDao.getFeedbacksByProductId(Integer.parseInt(id));
+            List<Account> lsAccount = new ArrayList<>();
+            List<Account> lsAccountReplies = new ArrayList<>();
+            List<FeedbackReplies> lsFeedbackReplies = new ArrayList<>();
+
+            // give data for list replies, list account made feedback and list of account that replies
+            for (Feedback feedback : lsFeedback) {
+                // get all replies of feedback
+                lsFeedbackReplies = feedbackRepliesDao.
+                        getFeedbacksByFeedbackId(feedback.getId());               
+                feedback.setListReplies(lsFeedbackReplies);
+                
+                //get all account that made replies
+                for (FeedbackReplies lsFeedbackReply : lsFeedbackReplies) {
+                    Account a = userDao.getAccountByID(
+                        String.valueOf(
+                                lsFeedbackReply.getUserId()
+                        ));
+                    lsAccountReplies.add(a);
+                }
+
+                // get all account that made feedback
+                Account a = userDao.getAccountByID(
+                        String.valueOf(
+                                feedback.getUserId()
+                        ));
+                lsAccount.add(a);
+            }
+
+            // get hot and favourite product
             Product hot = ProductDAO.getHotProduct();
             Product favor = ProductDAO.getFavoriteProduct();
 
             //PUSH to JSP
             request.setAttribute("allCategory", listC);
             request.setAttribute("lsFeedback", lsFeedback);
-            request.setAttribute("lsFeedbackReplies", lsFeedback_Replies);
+            request.setAttribute("lsAccount", lsAccount);
+            request.setAttribute("lsAccountReplies", lsAccountReplies);
             request.setAttribute("hot", hot);
             request.setAttribute("favor", favor);
 

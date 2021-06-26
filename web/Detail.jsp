@@ -118,9 +118,17 @@
                             </div>
                             <div class="feedback">
                                 <ul class="comments" style="display: block">
-                                    <c:forEach items="${requestScope.lsFeedback}" var="f">
+                                    <c:forEach items="${requestScope.lsFeedback}" var="f" varStatus="loop">
                                         <li>
-                                            <p>${f.feedbackDetail}</p>
+                                            <p>${requestScope.lsAccount[loop.index].user}<br>${f.feedbackDetail}</p>
+                                            <c:if test="${f.listReplies.size() != 0}">
+                                                <h5>Replies:</h5>
+                                                <ul>
+                                                    <c:forEach items="${f.listReplies}" var="fr" varStatus="loopReplies">
+                                                        <li><p>${requestScope.lsAccountReplies[loopReplies.index].user}<br>${fr.repliesText}</p></li>
+                                                    </c:forEach>
+                                                </ul>
+                                            </c:if>
                                         </li>
                                     </c:forEach>
                                 </ul>
