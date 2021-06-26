@@ -29,105 +29,121 @@
         <title>Fill in an address</title>
     </head>
     <body>
-<!--        <h1>Add Shipping Information To Your Account</h1>
+        <!--        <h1>Add Shipping Information To Your Account</h1>
+                <div class="container">
+                    <form class="card-body" action="add-address" method="post">
+        
+                        Grid row
+                        <div class="row">
+        
+                            Grid column
+                            <div class="col-md-6 mb-2">
+        
+                                firstName
+                                <div class="md-form ">
+                                    <input type="text" id="firstName" name="firstName" class="form-control" required>
+                                    <label for="firstName" class="">First name</label>
+                                </div>
+        
+                            </div>
+                            Grid column
+        
+                            Grid column
+                            <div class="col-md-6 mb-2">
+        
+                                lastName
+                                <div class="md-form">
+                                    <input type="text" id="lastName" name="lastName" class="form-control" required>
+                                    <label for="lastName" class="">Last name</label>
+                                </div>
+        
+                            </div>
+                            Grid column
+        
+                        </div>
+                        Grid row
+                        <br>                   
+        
+                        <div class="md-form mb-5">
+                            <label for="phone" class="">Mobile:</label>
+                            <input type="text" id="phone" name="phone" class="form-control" placeholder="Your Phone Number" required>
+                        </div>
+        
+                        <div class="md-form mb-5">
+                            <label for="city">City</label>           
+                            <select class="form-select" aria-label="Default select example" name="city" id="city">
+        <c:forEach items="${requestScope.listShip}" var="o">
+            <option value="${o.id}">${o.cityName}</option>
+        </c:forEach>
+    </select>
+</div>
+
+address
+<div class="md-form mb-5">
+    <label for="address" class="">Address</label>
+    <input type="text" id="address" name="address" class="form-control" placeholder="1234 Main St" required>                    
+</div>
+<hr>               
+<button class="btn btn-info btn-lg btn-block" type="submit">Add Address</button>
+</form>
+</div>-->
+
+
         <div class="container">
-            <form class="card-body" action="add-address" method="post">
+            <div class="row">
+                <br>
+            </div>
+            <div class="row" class="get-in-touch">
+                <!--bootstrap-->
+                <section >
 
-                Grid row
-                <div class="row">
+                    <form class="contact-form row" action="add-address" method="post">
+                        <h2>Add Shipping Information To Your Account</h2>
+                        <br>
+                        <div class="container">
+                            <div class="row">
+                                <div class="form-field col-lg-1"></div>
+                                <div class="form-field col-lg-5">
 
-                    Grid column
-                    <div class="col-md-6 mb-2">
-
-                        firstName
-                        <div class="md-form ">
-                            <input type="text" id="firstName" name="firstName" class="form-control" required>
-                            <label for="firstName" class="">First name</label>
+                                    <input type="text" id="firstname" class="input-text js-input" name="firstName"  required>
+                                    <label class="label" for="name">First name</label>
+                                </div>
+                                <div class="form-field col-lg-5">
+                                    <input type="text" id="lastName" name="lastName" class="input-text js-input" required>
+                                    <label class="label" for="email">Last name</label>
+                                </div>
+                                <div class="form-field col-lg-1"></div>
+                                <div class="form-field col-lg-1"></div>
+                                <div class="form-field col-lg-7">
+                                    <input id="phone" class="input-text js-input" type="text" required>
+                                    <label class="label" for="phone">Contact Number</label>
+                                </div>
+                                <div class="form-field col-lg-4"></div>
+                                <div class="form-field col-lg-1"></div>
+                                <div class="form-field col-lg-7">
+                                    <label for="city" id="cityLabel">City</label>           
+                                    <select class="form-select" aria-label="Default select example" name="city" id="city">
+                                        <c:forEach items="${requestScope.listShip}" var="o">
+                                            <option value="${o.id}">${o.cityName}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                <div class="form-field col-lg-4"></div>
+                                <div class="form-field col-lg-1"></div>
+                                <div class="form-field col-lg-7">
+                                    <input type="text" id="address" name="address" class="input-text js-input" required>     
+                                    <label class="label" for="message">Address</label>
+                                </div>
+                                <div class="form-field col-lg-12">
+                                    <input class="submit-btn" type="submit" value="Submit" id="submit">
+                                </div>
+                            </div>
                         </div>
 
-                    </div>
-                    Grid column
 
-                    Grid column
-                    <div class="col-md-6 mb-2">
-
-                        lastName
-                        <div class="md-form">
-                            <input type="text" id="lastName" name="lastName" class="form-control" required>
-                            <label for="lastName" class="">Last name</label>
-                        </div>
-
-                    </div>
-                    Grid column
-
-                </div>
-                Grid row
-                <br>                   
-
-                <div class="md-form mb-5">
-                    <label for="phone" class="">Mobile:</label>
-                    <input type="text" id="phone" name="phone" class="form-control" placeholder="Your Phone Number" required>
-                </div>
-
-                <div class="md-form mb-5">
-                    <label for="city">City</label>           
-                    <select class="form-select" aria-label="Default select example" name="city" id="city">
-                        <c:forEach items="${requestScope.listShip}" var="o">
-                            <option value="${o.id}">${o.cityName}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-
-                address
-                <div class="md-form mb-5">
-                    <label for="address" class="">Address</label>
-                    <input type="text" id="address" name="address" class="form-control" placeholder="1234 Main St" required>                    
-                </div>
-                <hr>               
-                <button class="btn btn-info btn-lg btn-block" type="submit">Add Address</button>
-            </form>
-        </div>-->
-
-
-        <div class="container">
-            <!--bootstrap-->
-            <section class="get-in-touch">
-                <h1 class="title">Add Shipping Information To Your Account</h1>
-                <form class="contact-form row" action="add-address" method="post">
-                    <div class="form-field col-lg-6">
-
-                        <input type="text" id="firstname" class="input-text js-input" name="firstName"  required>
-                        <label class="label" for="name">First name</label>
-                    </div>
-                    <div class="form-field col-lg-6 ">
-                        <input type="text" id="lastName" name="lastName" class="input-text js-input" required>
-                        <label class="label" for="email">Last name</label>
-                    </div>
-
-                    <div class="form-field col-lg-8 ">
-                        <input id="phone" class="input-text js-input" type="text" required>
-                        <label class="label" for="phone">Contact Number</label>
-                    </div>
-
-                    <div class="form-field col-lg-8">
-                        <label for="city" id="cityLabel">City</label>           
-                        <select class="form-select" aria-label="Default select example" name="city" id="city">
-                            <c:forEach items="${requestScope.listShip}" var="o">
-                                <option value="${o.id}">${o.cityName}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
-
-                    <div class="form-field col-lg-8">
-                        <input type="text" id="address" name="address" class="input-text js-input" required>     
-                        <label class="label" for="message">Address</label>
-                    </div>
-                    <div class="form-field col-lg-12">
-                        <input class="submit-btn" type="submit" value="Submit">
-                    </div>
-                </form>
-            </section>
+                    </form>
+                </section>
+            </div>
         </div>
-
     </body>
 </html>

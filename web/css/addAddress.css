@@ -85,3 +85,34 @@ EDIT ON
     transition: transform .2s ease-in-out, 
         -webkit-transform .2s ease-in-out;
 }
+
+h2{
+    color: #5543ca;
+    padding: 2em 8em 1em 8em;
+    font-family: Arial;
+    font-size: medium;
+    text-align: center;
+}
+
+section{
+    -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    border-radius: 30px;
+    background-color: #fff;
+    z-index: 1;
+}
+
+#submit{
+    margin: 1em 27em 1em 27em;
+    border-radius: 8px;
+    padding: 10px 20px;
+}
+
+body{
+    /*Set background image*/
+    background-image:url(../image/Other/ShippingBackground.jpg);
+    /*Auto resize background image to fit the div*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    z-index: -1;
+}
