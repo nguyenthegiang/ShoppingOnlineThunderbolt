@@ -49,6 +49,25 @@ GO
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+CREATE TABLE Notifications(
+	
+	ID int PRIMARY KEY identity (1,1),
+	UserID int,
+	OrderID int,
+	content char(1000),
+	status char (30),
+	time char (50),
+	constraint UserID_in_Users FOREIGN KEY(UserID) REFERENCES Users(userId),
+	constraint OrderID_in_Orders FOREIGN KEY(OrderID) REFERENCES Orders(ID)
+
+);
+	INSERT INTO Notifications VALUES(10,8,'Your order has been packaged and now being delivered.','unread','123');
+	INSERT INTO Notifications VALUES(10,15,'Your order has been packaged and now being delivered.','unread','123');
+	INSERT INTO Notifications VALUES(10,16,'Your order has been packaged and now being delivered.','unread','123');
+	INSERT INTO Notifications VALUES(8,13,'Your order has been packaged and now being delivered.','unread','123');
+GO
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 CREATE TABLE Category (
 	CategoryID int PRIMARY KEY identity(1,1),
 	CategoryName nvarchar(1000),

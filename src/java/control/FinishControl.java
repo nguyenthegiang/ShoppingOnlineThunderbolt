@@ -62,6 +62,7 @@ public class FinishControl extends HttpServlet {
 
             // get DateTime to format order date
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm");
             LocalDateTime now = LocalDateTime.now();
 
             // get list of product in cart
@@ -128,7 +129,7 @@ public class FinishControl extends HttpServlet {
             userOrder.setTotalPrice(total);
             userOrder.setNote(request.getParameter("note"));
             userOrder.setStatus("Waiting for Confirmation");
-            userOrder.setDate(dtf.format(now));
+            userOrder.setDate(dtf.format(now)+" at "+dtf1.format(now));
             int newOrderId = orderDao.addOrder(userOrder, 1);
 
             // add list of product of the order to the database

@@ -10,6 +10,7 @@ package entity;
  * @author Thuan
  */
 public class OrderDetailWithImage extends OrderDetail {
+
     private String imageLink;
 
     public OrderDetailWithImage(String imageLink) {
@@ -19,17 +20,11 @@ public class OrderDetailWithImage extends OrderDetail {
     public OrderDetailWithImage() {
     }
 
-    
     public OrderDetailWithImage(String imageLink, int id, int orderID, int productID, String productName, int productPrice) {
         super(id, orderID, productID, productName, productPrice);
         this.imageLink = imageLink;
     }
 
-    
-    
-    
-    
-    
     @Override
     public void setProductPrice(int productPrice) {
         super.setProductPrice(productPrice); //To change body of generated methods, choose Tools | Templates.
@@ -84,7 +79,7 @@ public class OrderDetailWithImage extends OrderDetail {
     public String toString() {
         return super.toString(); //To change body of generated methods, choose Tools | Templates.
     }
-   
+
     public String getImageLink() {
         return imageLink;
     }
@@ -92,7 +87,5 @@ public class OrderDetailWithImage extends OrderDetail {
     public void setImageLink(String imageLink) {
         this.imageLink = imageLink;
     }
-    
-    
-    
+
 }
