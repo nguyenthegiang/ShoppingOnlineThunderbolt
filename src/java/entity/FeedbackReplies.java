@@ -9,16 +9,16 @@ package entity;
  *
  * @author TRANTATDAT
  */
-public class Feedback_Replies {
+public class FeedbackReplies {
     private int id;
     private int feedbackId;
     private int userId;
     private String repliesText;
 
-    public Feedback_Replies() {
+    public FeedbackReplies() {
     }
 
-    public Feedback_Replies(int id, int feedbackId, int userId, String repliesText) {
+    public FeedbackReplies(int id, int feedbackId, int userId, String repliesText) {
         this.id = id;
         this.feedbackId = feedbackId;
         this.userId = userId;
