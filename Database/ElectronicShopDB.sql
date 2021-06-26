@@ -49,6 +49,22 @@ GO
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+CREATE TABLE Notifications(
+	
+	ID int PRIMARY KEY identity (1,1),
+	UserID int,
+	OrderID int,
+	content char(1000),
+	status char (30),
+	time char (50),
+	constraint UserID_in_Users FOREIGN KEY(UserID) REFERENCES Users(userId),
+	constraint OrderID_in_Orders FOREIGN KEY(OrderID) REFERENCES Orders(ID)
+
+);
+
+GO
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 CREATE TABLE Category (
 	CategoryID int PRIMARY KEY identity(1,1),
 	CategoryName nvarchar(1000),
