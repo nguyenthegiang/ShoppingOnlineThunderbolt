@@ -18,7 +18,7 @@ public class Feedback {
     private int productId;
     private int star;
     private String feedbackDetail;
-    private List<Feedback_Replies> lsReplies;
+    private List<FeedbackReplies> listReplies;
 
     public Feedback() {
     }
@@ -31,13 +31,13 @@ public class Feedback {
         this.feedbackDetail = feedbackDetail;
     }
      
-    public Feedback(int id, int userId, int productId, int star, String feedbackDetail, List<Feedback_Replies> lsReplies) {
+    public Feedback(int id, int userId, int productId, int star, String feedbackDetail, List<FeedbackReplies> lsReplies) {
         this.id = id;
         this.userId = userId;
         this.productId = productId;
         this.star = star;
         this.feedbackDetail = feedbackDetail;
-        this.lsReplies = lsReplies;
+        this.listReplies = lsReplies;
     }
 
     public int getId() {
@@ -80,17 +80,17 @@ public class Feedback {
         this.feedbackDetail = feedbackDetail;
     }
 
-    public List<Feedback_Replies> getLsReplies() {
-        return lsReplies;
+    public List<FeedbackReplies> getListReplies() {
+        return this.listReplies;
     }
 
-    public void setLsReplies(List<Feedback_Replies> lsReplies) {
-        this.lsReplies = lsReplies;
+    public void setListReplies(List<FeedbackReplies> lsReplies) {
+        this.listReplies = lsReplies;
     }
 
     @Override
     public String toString() {
-        return "Feedback{" + "id=" + id + ", userId=" + userId + ", productId=" + productId + ", star=" + star + ", feedbackDetail=" + feedbackDetail + ", lsReplies=" + lsReplies + '}';
+        return "Feedback{" + "id=" + id + ", userId=" + userId + ", productId=" + productId + ", star=" + star + ", feedbackDetail=" + feedbackDetail + ", lsReplies=" + listReplies + '}';
     }
 
 }
