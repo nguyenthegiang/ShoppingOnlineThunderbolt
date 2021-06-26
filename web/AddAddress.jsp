@@ -124,7 +124,7 @@ address
                                     <label for="city" id="cityLabel">City</label>           
                                     <select class="form-select" aria-label="Default select example" name="city" id="city">
                                         <c:forEach items="${requestScope.listShip}" var="o">
-                                            <option value="${o.id}">${o.cityName}</option>
+                                            <option value="${o.id}" id="option">${o.cityName}</option>
                                         </c:forEach>
                                     </select>
                                 </div>
@@ -134,7 +134,7 @@ address
                                     <input type="text" id="address" name="address" class="input-text js-input" required>     
                                     <label class="label" for="message">Address</label>
                                 </div>
-                                <div class="form-field col-lg-12">
+                                <div class="col-lg-12">
                                     <input class="submit-btn" type="submit" value="Submit" id="submit">
                                 </div>
                             </div>
