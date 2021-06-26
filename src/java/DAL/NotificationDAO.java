@@ -237,3 +237,4 @@ public class NotificationDAO extends BaseDAO<Notification> {
         return 0;
     }
 }
+

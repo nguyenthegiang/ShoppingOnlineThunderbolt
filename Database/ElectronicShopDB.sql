@@ -48,26 +48,6 @@ INSERT INTO Users VALUES (N'dinhthanhhoang', N'dinhthanhhoang', N'k', N'bbbbb', 
 GO
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-CREATE TABLE Notifications(
-	
-	ID int PRIMARY KEY identity (1,1),
-	UserID int,
-	OrderID int,
-	content char(1000),
-	status char (30),
-	time char (50),
-	constraint UserID_in_Users FOREIGN KEY(UserID) REFERENCES Users(userId),
-	constraint OrderID_in_Orders FOREIGN KEY(OrderID) REFERENCES Orders(ID)
-
-);
-	INSERT INTO Notifications VALUES(10,8,'Your order has been packaged and now being delivered.','unread','123');
-	INSERT INTO Notifications VALUES(10,15,'Your order has been packaged and now being delivered.','unread','123');
-	INSERT INTO Notifications VALUES(10,16,'Your order has been packaged and now being delivered.','unread','123');
-	INSERT INTO Notifications VALUES(8,13,'Your order has been packaged and now being delivered.','unread','123');
-GO
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 CREATE TABLE Category (
 	CategoryID int PRIMARY KEY identity(1,1),
 	CategoryName nvarchar(1000),
@@ -382,7 +362,25 @@ GO
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+CREATE TABLE Notifications(
+	
+	ID int PRIMARY KEY identity (1,1),
+	UserID int,
+	OrderID int,
+	content char(1000),
+	status char (30),
+	time char (50),
+	constraint UserID_in_Users FOREIGN KEY(UserID) REFERENCES Users(userId),
+	constraint OrderID_in_Orders FOREIGN KEY(OrderID) REFERENCES Orders(ID)
+
+);
+
+GO
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 CREATE TABLE Feedback (
+	ID int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	UserID int,
 	ProductID int,
 	Star int, --1-5
@@ -407,3 +405,20 @@ INSERT INTO Feedback VALUES (7, 56, 5, N'Rất tốt');
 INSERT INTO Feedback VALUES (8, 70, 3, N'Đóng gói chưa tốt');
 INSERT INTO Feedback VALUES (7, 68, 2, N'Sai màu sản phẩm');
 INSERT INTO Feedback VALUES (8, 71, 2, N'Gửi thiếu linh kiện');
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE Feedback_Replies (
+	ID int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
+	FeedbackID int,
+	UserID int,
+	RepliesText nvarchar(2000),
+	constraint userID_in_user_4 FOREIGN KEY(UserID) REFERENCES Users(UserID),
+	constraint feedbackID_in_feedback FOREIGN KEY(FeedbackID) REFERENCES Feedback(ID),
+) ON [PRIMARY]
+GO
+
+INSERT INTO Feedback_Replies VALUES (1, 5, N'Xin Cám Ơn!');
+INSERT INTO Feedback_Replies VALUES (2, 4, N'Xin Cám Ơn!');
+INSERT INTO Feedback_Replies VALUES (3, 6, N'Xin Cám Ơn!');
+
