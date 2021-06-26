@@ -29,7 +29,6 @@ public class NotificationDAO extends BaseDAO<Notification> {
      * @param orderId: the order which related to the notification
      * @param content: content of the notification
      * @param status: status of the notification (read or unread)
-     * @param time: time of the notification
      */
     public void addNotification(int userID, int orderId, String content,
             String status) {
@@ -135,8 +134,29 @@ public class NotificationDAO extends BaseDAO<Notification> {
      *
      * @return an integer number
      */
+    public int countUnreadNotifications(int userId) {
+        String query = "SELECT COUNT(*) FROM Notifications WHERE userId=? "
+                + "and Status = 'unread'";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, userId);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+        }
+        return 0;
+    }
+    
+    
+    /**
+     * count all the number of unread notifications in database of an user
+     *
+     * @return an integer number
+     */
     public int countNotifications(int userId) {
-        String query = "SELECT COUNT(*) FROM Notifications WHERE userId=?";
+        String query = "SELECT COUNT(*) FROM Notifications WHERE userId=? ";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(5, userId);
