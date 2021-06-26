@@ -58,7 +58,9 @@ public class FinishControl extends HttpServlet {
             OrderDetailDAO odDao = new OrderDetailDAO();
             ShipDAO shipDAO = new ShipDAO();
             ShipInfoDAO shipInfoDAO = new ShipInfoDAO();
-            UserAddressDAO userAddDAO = new UserAddressDAO();            
+            UserAddressDAO userAddDAO = new UserAddressDAO();
+
+            // get DateTime to format order date
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
             LocalDateTime now = LocalDateTime.now();
 
