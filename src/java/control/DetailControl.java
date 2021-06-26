@@ -9,6 +9,7 @@ import entity.*;
 import DAL.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -50,9 +51,24 @@ public class DetailControl extends HttpServlet {
             //CAll DAO
             ProductDAO dao = new ProductDAO();
             ProductDetail p = dao.getProductDetailByID(id);
+            FeedbackDAO feedbackDao = new FeedbackDAO();
+            Feedback_RepliesDAO feedback_RepliesDao = new Feedback_RepliesDAO();
 
             CategoryDAO CategoryDAO = new CategoryDAO();
             List<Category> listC = CategoryDAO.getAllCategory();
+            List<Feedback> lsFeedback = 
+                    feedbackDao.getFeedbacksByProductId(Integer.parseInt(id));
+            List<Feedback_Replies> lsFeedback_Replies = 
+                    new ArrayList<Feedback_Replies>();
+            for (Feedback feedback : lsFeedback) {
+                lsFeedback_Replies.addAll(
+                        feedback_RepliesDao.
+                                getFeedbacksByFeedbackId(
+                                        feedback.getId()
+                                )
+                );                
+            }
+            
 
             ProductDAO ProductDAO = new ProductDAO();
             Product hot = ProductDAO.getHotProduct();
@@ -60,7 +76,8 @@ public class DetailControl extends HttpServlet {
 
             //PUSH to JSP
             request.setAttribute("allCategory", listC);
-
+            request.setAttribute("lsFeedback", lsFeedback);
+            request.setAttribute("lsFeedbackReplies", lsFeedback_Replies);
             request.setAttribute("hot", hot);
             request.setAttribute("favor", favor);
 

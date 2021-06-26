@@ -107,11 +107,25 @@
                                         <hr>
                                         <button onclick="buy(${detail.id})" class="btn btn-lg btn-info text-uppercase"> Buy now </button>
                                         <button onclick="addCart2(${detail.id})" class="btn btn-lg btn-outline-info text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </button>
-                                    </article> <!-- card-body.// -->
+
+                                    </article> <!-- card-body.// -->                                   
                                 </aside> <!-- col.// -->
                             </div> <!-- row.// -->
                         </div> <!-- card.// -->
-
+                        
+                            <div class="title">
+                                <h3 class="text-success">Feedbacks</h3>
+                            </div>
+                            <div class="feedback">
+                                <ul class="comments" style="display: block">
+                                    <c:forEach items="${requestScope.lsFeedback}" var="f">
+                                        <li>
+                                            <p>${f.feedbackDetail}</p>
+                                        </li>
+                                    </c:forEach>
+                                </ul>
+                            </div>
+                        
                     </div>
                 </div>
             </div>
@@ -119,31 +133,31 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
-                                             function addCart2(ProductID) {
+                                            function addCart2(ProductID) {
             <c:if test="${sessionScope.acc != null}">
-                                                 var select_value = document.getElementById("select_id").value;
-                                                 //Sử dụng Ajax
-                                                 $.ajax({
-                                                     url: "/Assignment_ElectronicShop_Pro/addMany",
-                                                     type: "get", //send it through get method
-                                                     data: {
-                                                         ProductID: ProductID,
-                                                         Quantity: select_value
-                                                     },
-                                                     success: function (message) {
-                                                         alert(message);
-                                                     }
-                                                 });
+                                                var select_value = document.getElementById("select_id").value;
+                                                //Sử dụng Ajax
+                                                $.ajax({
+                                                    url: "/Assignment_ElectronicShop_Pro/addMany",
+                                                    type: "get", //send it through get method
+                                                    data: {
+                                                        ProductID: ProductID,
+                                                        Quantity: select_value
+                                                    },
+                                                    success: function (message) {
+                                                        alert(message);
+                                                    }
+                                                });
             </c:if>
             <c:if test="${sessionScope.acc == null}">
-                                                 location.href = "login";
+                                                location.href = "login";
             </c:if>
-                                             }
+                                            }
 
-                                             function buy(ProductID) {
-                                                 var select_value = document.getElementById("select_id").value;
-                                                 location.href = "buyNow?ProductID=" + ProductID + "&Quantity=" + select_value;
-                                             }
+                                            function buy(ProductID) {
+                                                var select_value = document.getElementById("select_id").value;
+                                                location.href = "buyNow?ProductID=" + ProductID + "&Quantity=" + select_value;
+                                            }
         </script>  
     </body>
 </html>
