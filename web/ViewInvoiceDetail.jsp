@@ -162,10 +162,9 @@
                                     <td>
                                         <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${item.productPrice}"/>VNĐ
                                     </td>
-                                    <td>${item.shipAddress}</td>
+                                    <td>${item.shipAddress}</td>                      
                                     <td>${item.phoneNumber}</td>
-
-
+                                    <c:set var="userId" value="${item.userId}"/>
                                     <c:set var="total" value="${total + item.productPrice}" />
                                 </tr>
                             </c:forEach>
@@ -179,11 +178,16 @@
 
 
                     <c:if test="${sta eq 'Waiting for Confirmation'}">
+                        <form action="approveOrder" id="form1">
+                            <input type="hidden" value="${OrderId}" name="orderId"/>
+                            <input type="hidden" value="${userId}" name="userId"/>
+                        </form>
                         <div style="margin:10px; float:left">
-                            <a  href ="approveOrder?id=${OrderId}"><button>Approve</button></a>
+                            <a  onclick="formAutoSubmit()"><button>Approve</button></a>
+                            <!--<a  href ="approveOrder?id=${OrderId}"><button>Approve</button></a>-->
                         </div>
                         <div style="margin:10px; float:right;">
-                            <a  href ="cancelOrder?id=${OrderId}"><button>Cancel</button></a>
+                            <a  onclick="formAutoSubmit()"><button>Cancel</button></a>
                         </div>
                     </c:if>
                 </div>
@@ -211,6 +215,16 @@
                 </div>
             </div>
 
+                        <script type="text/javascript">
+
+            function formAutoSubmit() {
+
+                var frm = document.getElementById('form1');
+
+                frm.submit();
+
+            }
+        </script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     </body>
 </html>

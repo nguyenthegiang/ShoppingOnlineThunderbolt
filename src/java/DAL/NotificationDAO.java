@@ -30,11 +30,10 @@ public class NotificationDAO extends BaseDAO<Notification> {
      *
      * @param userID: the user's ID
      * @param orderId: the order which related to the notification
-     * @param status: status of the notification (read or unread)
      */
-    public void approveOrderAdminNoti(int userID, int orderId, String status) {
+    public void approveOrderAdminNoti(int userID, int orderId) {
 
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm");
 
         LocalDateTime now = LocalDateTime.now();
@@ -45,7 +44,7 @@ public class NotificationDAO extends BaseDAO<Notification> {
             //Set data to the ?
             ps.setInt(1, userID);
             ps.setInt(2, orderId);
-            ps.setString(3, "Your order with ID" + orderId + " has been approved, now being packaged"
+            ps.setString(3, "Your order with ID " + orderId + " has been approved, now being packaged"
                     + "and soon will be delivered..!");
             ps.setString(4, "unread");
             ps.setString(5, dtf.format(now) + " at " + dtf1.format(now));
@@ -64,7 +63,7 @@ public class NotificationDAO extends BaseDAO<Notification> {
     public void userReceivedOrderNoti(int userId, int orderId, List<Integer> adminSellerId)
             throws Exception {
 
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm");
 
         LocalDateTime now = LocalDateTime.now();
@@ -98,9 +97,8 @@ public class NotificationDAO extends BaseDAO<Notification> {
      *
      * @param userID: the user's ID
      * @param orderId: the order which related to the notification
-     * @param status: status of the notification (read or unread)
      */
-    public void cancelOrderNoti(int userID, int orderId, String status) {
+    public void cancelOrderNoti(int userID, int orderId) {
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm");
@@ -112,7 +110,7 @@ public class NotificationDAO extends BaseDAO<Notification> {
             //Set data to the ?
             ps.setInt(1, userID);
             ps.setInt(2, orderId);
-            ps.setString(3, "Your order with ID" + orderId + " has been canceled, "
+            ps.setString(3, "Your order with ID " + orderId + " has been canceled, "
                     + "We are very sorry for this unconvinience!");
             ps.setString(4, "unread");
             ps.setString(5, dtf.format(now) + " at " + dtf1.format(now));
@@ -239,3 +237,4 @@ public class NotificationDAO extends BaseDAO<Notification> {
         return 0;
     }
 }
+
