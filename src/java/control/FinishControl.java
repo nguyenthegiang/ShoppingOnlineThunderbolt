@@ -61,7 +61,7 @@ public class FinishControl extends HttpServlet {
             UserAddressDAO userAddDAO = new UserAddressDAO();
 
             // get DateTime to format order date
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
             LocalDateTime now = LocalDateTime.now();
 
             // get list of product in cart
