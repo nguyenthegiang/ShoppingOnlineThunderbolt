@@ -23,6 +23,14 @@ public class Feedback {
     public Feedback() {
     }
 
+    public Feedback(int id, int userId, int productId, int star, String feedbackDetail) {
+        this.id = id;
+        this.userId = userId;
+        this.productId = productId;
+        this.star = star;
+        this.feedbackDetail = feedbackDetail;
+    }
+     
     public Feedback(int id, int userId, int productId, int star, String feedbackDetail, List<Feedback_Replies> lsReplies) {
         this.id = id;
         this.userId = userId;
