@@ -61,7 +61,10 @@ CREATE TABLE Notifications(
 	constraint OrderID_in_Orders FOREIGN KEY(OrderID) REFERENCES Orders(ID)
 
 );
-
+	INSERT INTO Notifications VALUES(10,8,'Your order has been packaged and now being delivered.','unread','123');
+	INSERT INTO Notifications VALUES(10,15,'Your order has been packaged and now being delivered.','unread','123');
+	INSERT INTO Notifications VALUES(10,16,'Your order has been packaged and now being delivered.','unread','123');
+	INSERT INTO Notifications VALUES(8,13,'Your order has been packaged and now being delivered.','unread','123');
 GO
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
