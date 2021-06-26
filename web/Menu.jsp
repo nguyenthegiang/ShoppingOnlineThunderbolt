@@ -46,10 +46,10 @@
                         </li>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="display: unset !important;">
                             <ul class="nav nav-pills mr-auto justify-content-end">           
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <li class="nav-item dropdown ">
+                                    <a  onclick="notiRead(${sessionScope.acc.id})" class=" nav-link text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fa fa-bell" style="color:black;">     
-                                            <span class="badge">3</span>
+                                            <span class="badge" id="unread">${unread}</span>
                                         </i>
 
                                     </a>
@@ -58,7 +58,7 @@
                                         <li class="head text-light bg-dark">
                                             <div class="row">
                                                 <div class="col-lg-12 col-sm-12 col-12">
-                                                    <span>Notifications</span>
+                                                    <span>Notifications (${unread} unread)</span>
                                                     <a href="" class="float-right text-light">Mark all as read</a>
                                                 </div>
                                         </li>
@@ -149,5 +149,25 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <script>
+                                        function notiRead(userId) {
+                                            //Sử dụng Ajax
+                                            $.ajax({
+                                                url: "/Assignment_ElectronicShop_Pro/notiRead",
+                                                type: "get", //send it through get method
+                                                data: {
+                                                    userId: userId
+                                                },
+                                                success: function () {
+                                                    //Change number of Product in cart
+                                                    document.getElementById("unread").innerHTML = 0;
+                                                },
+                                                error: function () {
+                                                }
+                                            });
+                                        }
+        </script>
     </body>
 </html>
