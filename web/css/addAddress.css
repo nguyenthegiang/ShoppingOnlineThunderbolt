@@ -30,12 +30,13 @@ EDIT ON
 .contact-form .input-text {
     display: block;
     width: 100%;
-    height: 36px;
+    height: 30px;
     border-width: 0 0 2px 0;
     border-color: #5543ca;
-    font-size: 18px;
+    font-size: 15px;
     line-height: 26px;
     font-weight: 400;
+    padding: 10px;
 }
 .contact-form .input-text:focus {
     outline: none;
@@ -48,7 +49,7 @@ EDIT ON
 .contact-form .label {
     position: absolute;
     left: 20px;
-    bottom: 11px;
+    bottom: 18px;
     font-size: 18px;
     line-height: 26px;
     font-weight: 400;
