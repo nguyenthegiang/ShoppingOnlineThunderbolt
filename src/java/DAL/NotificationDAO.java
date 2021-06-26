@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -48,6 +50,85 @@ public class NotificationDAO extends BaseDAO<Notification> {
         } catch (Exception e) {
         }
     }
+    
+    /**
+     * Get all the notifications of the user
+     * @param userId: id of the user
+     * @return list notifications
+     */
+    public List<Notification> getNotificationsByUserID(int userId) {
+        List<Notification> list = new ArrayList<>();
+        String query = "SELECT * FROM Notifications WHERE userID=?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, userId);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(new Notification(
+                        rs.getInt("ID"),
+                        rs.getInt("UserId"),
+                        rs.getInt("OrderID"),
+                        rs.getString("Content"),
+                        rs.getString("Status"),
+                        rs.getString("Time")
+                ));
+            }
+        } catch (Exception e) {
+        }
+
+        return list;
+    }
+    
+    
+    /**
+     * Get all the notifications of the user
+     * @param userId: id of the user
+     * @return list notifications
+     */
+    public List<Notification> getUnreadNotificationsByUserID(int userId) {
+        List<Notification> list = new ArrayList<>();
+        String query = "SELECT * FROM Notifications WHERE userID=? and "
+                + "Status ='unread'";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, userId);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(new Notification(
+                        rs.getInt("ID"),
+                        rs.getInt("UserId"),
+                        rs.getInt("OrderID"),
+                        rs.getString("Content"),
+                        rs.getString("Status"),
+                        rs.getString("Time")
+                ));
+            }
+        } catch (Exception e) {
+        }
+
+        return list;
+    }
+    
+    /**
+     * change the status of the notification to read
+     * @param userId 
+     */
+    public void read(int userId) {
+        String query = "UPDATE Notifications\n"
+                + "SET Status = 'read'\n"
+                + "WHERE userID = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            //Set data to the ?
+            ps.setInt(1, userId);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+    
+    
 
     /**
      * count all the number of unread notifications in database of an user
