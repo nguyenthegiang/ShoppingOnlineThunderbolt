@@ -24,3 +24,8 @@ table{
     float: left;
     font-family: Helvetica;
 }
+
+#plus, #minus {
+    text-decoration: none; 
+    color: black;
+}

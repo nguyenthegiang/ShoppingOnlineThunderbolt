@@ -19,6 +19,9 @@
             .container table img{
                 height: 100px;
             }
+            .amount {
+                font-size: 20px;
+            }
         </style>
     </head>
     <body>
@@ -42,15 +45,17 @@
                             <td><img src="image/${o.p.imageLink}" id="pImage"></td>
                             <td>${o.p.name}</td>
                             <td>${o.p.priceWithDot} VND</td>
-                            <td><a href="PlusMinusProductInCart?Message=minus&ProductID=${o.p.id}">-</a> 
+                            <td class="amount">
+                                <a id="minus" href="PlusMinusProductInCart?Message=minus&ProductID=${o.p.id}" type="button">-</a> 
                                 ${o.amount}
-                                <a href="PlusMinusProductInCart?Message=plus&ProductID=${o.p.id}">+</a> 
+                                <a id="plus" href="PlusMinusProductInCart?Message=plus&ProductID=${o.p.id}" type="button">+</a> 
                             </td>
                             <td><a href="deleteProductInCart?ProductID=${o.p.id}"><i class="fa fa-times-circle" style="color: #dddddd; font-size: x-large; margin: "></i></a></td>
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
+            </div>F
 
             <div class="container">
                 <div class="row">
