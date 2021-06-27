@@ -50,7 +50,7 @@
                                 ${o.amount}
                                 <a id="plus" href="PlusMinusProductInCart?Message=plus&ProductID=${o.p.id}" type="button">+</a> 
                             </td>
-                            <td><a href="deleteProductInCart?ProductID=${o.p.id}"><i class="fa fa-times-circle" style="color: #dddddd; font-size: x-large; margin: "></i></a></td>
+                            <td><a href="deleteProductInCart?ProductID=${o.p.id}"><i class="fas fa-trash-alt" style="color: red; font-size: x-large; margin: "></i></a></td>
                         </tr>
                     </c:forEach>
                 </tbody>
