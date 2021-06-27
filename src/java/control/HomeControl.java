@@ -100,6 +100,7 @@ public class HomeControl extends HttpServlet {
                 Product favor = ProductDAO.getFavoriteProduct(); //Get Last Product
                 Information infor = InforDAO.getInfor(); //Get Information
                 List<Notification> notis = notiDAO.getNotificationsByUserID(userId);
+                int notiss = notiDAO.countNotifications(userId);
 
                 //Paging By CategoryID
                 String CategoryID = request.getParameter("CategoryID");
@@ -141,6 +142,7 @@ public class HomeControl extends HttpServlet {
                 request.setAttribute("end", endPage);
                 request.setAttribute("unread", unreadNotifications);
                 request.setAttribute("notis", notis);
+                request.setAttribute("numberOfNotifications", notiss);
                 request.setAttribute("tag", index); //Page number
                 request.setAttribute("count", count);
                 request.setAttribute("CateID", CID);

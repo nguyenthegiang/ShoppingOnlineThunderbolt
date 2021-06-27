@@ -90,6 +90,38 @@ public class NotificationDAO extends BaseDAO<Notification> {
         } catch (Exception se) {
         }
     }
+    
+    public void userBuyNoti(int userId, int orderId, List<Integer> adminSellerId)
+            throws Exception {
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm");
+
+        LocalDateTime now = LocalDateTime.now();
+        // my SQL INSERT statement
+        String query = " INSERT INTO Notifications "
+                + " VALUES (?, ?, ?, ?, ?)";
+
+        // declare the preparedstatement reference
+        try {
+            // create the preparedstatement before the loop
+            ps = connection.prepareStatement(query);
+
+            // now loop through nearly 1,500 nodes in the list
+            for (Integer n : adminSellerId) {
+                ps.setInt(1, n);
+                ps.setInt(2, orderId);
+                ps.setString(3, "The customer with ID " + userId + " has placed an order"
+                        + "with OrderID: "+ orderId
+                        + "Check it out! ");
+                ps.setString(4, "unread");
+                ps.setString(5, dtf.format(now) + " at " + dtf1.format(now));
+
+                ps.execute();           // the INSERT happens here
+            }
+        } catch (Exception se) {
+        }
+    }
 
     /**
      * Adding a notification to admin by user that their order has been shipped
@@ -127,7 +159,8 @@ public class NotificationDAO extends BaseDAO<Notification> {
      */
     public List<Notification> getNotificationsByUserID(int userId) {
         List<Notification> list = new ArrayList<>();
-        String query = "SELECT * FROM Notifications WHERE userID=? ORDER BY id DESC";
+        String query = " SELECT TOP 5 * FROM Notifications "
+                + "WHERE userID=? ORDER BY id DESC";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, userId);
@@ -228,7 +261,7 @@ public class NotificationDAO extends BaseDAO<Notification> {
         String query = "SELECT COUNT(*) FROM Notifications WHERE userId=? ";
         try {
             ps = connection.prepareStatement(query);
-            ps.setInt(5, userId);
+            ps.setInt(1, userId);
             rs = ps.executeQuery();
             while (rs.next()) {
                 return rs.getInt(1);
