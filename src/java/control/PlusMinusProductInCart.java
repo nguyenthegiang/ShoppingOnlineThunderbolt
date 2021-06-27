@@ -5,12 +5,10 @@
  */
 package control;
 
-import DAL.NotificationDAO;
+import DAL.CartDAO;
 import entity.Account;
-import entity.Notification;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,10 +18,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Thuan
+ * @author ADMIN
  */
-@WebServlet(name = "ViewAllNotifications", urlPatterns = {"/viewAllNotifications"})
-public class ViewAllNotifications extends HttpServlet {
+@WebServlet(name = "PlusMinusProductInCart", urlPatterns = {"/PlusMinusProductInCart"})
+public class PlusMinusProductInCart extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,19 +35,26 @@ public class ViewAllNotifications extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+        //Get the message returned from JSP to determine whether the request is
+        //to plus or minus
+        String message = request.getParameter("Message");
+        //Get the ProductID from request
+        int ProductID = Integer.parseInt(request.getParameter("ProductID"));
+        //Call to Session to get the Account of Customer
         HttpSession session = request.getSession();
-        NotificationDAO notiDAO = new NotificationDAO();
-        Account a = (Account)session.getAttribute("acc");
-        int userId = a.getId();
-        int numberNoti = notiDAO.countNotifications(userId);
+        Account acc = (Account) session.getAttribute("acc");
         
-        List<Notification> notis = notiDAO.getAllNotificationsByUserID(userId);
+        //Call to DAO
+        CartDAO CartDAO = new CartDAO();
+        if (message.equals(("minus"))) {
+            CartDAO.delete1ProductFromCart(acc.getId(), ProductID);
+        }
+        else if (message.equals(("plus"))) {
+            CartDAO.add1ProductToCart(acc.getId(), ProductID);
+        }
         
-        request.setAttribute("notis", notis);
-        request.setAttribute("numberNoti", numberNoti);
-        
-        request.getRequestDispatcher("ViewAllNotifications.jsp").forward(request, response);
+        //Reload Page
+        response.sendRedirect("show");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

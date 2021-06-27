@@ -42,9 +42,9 @@
                             <td><img src="image/${o.p.imageLink}" id="pImage"></td>
                             <td>${o.p.name}</td>
                             <td>${o.p.priceWithDot} VND</td>
-                            <td><a href="PlusMinusProductInCart?Message=minus">-</a> 
+                            <td><a href="PlusMinusProductInCart?Message=minus&ProductID=${o.p.id}">-</a> 
                                 ${o.amount}
-                                <a href="PlusMinusProductInCart?Message=plus">+</a> 
+                                <a href="PlusMinusProductInCart?Message=plus&ProductID=${o.p.id}">+</a> 
                             </td>
                             <td><a href="deleteProductInCart?ProductID=${o.p.id}"><i class="fa fa-times-circle" style="color: #dddddd; font-size: x-large; margin: "></i></a></td>
                         </tr>
