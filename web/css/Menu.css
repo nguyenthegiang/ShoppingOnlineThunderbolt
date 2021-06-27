@@ -37,11 +37,13 @@ nav{
 #bell{
     color: black;
 }
+
 #bell:hover{
     color: rgb(43, 189, 179);
 }
 #dropdown{
     display: none;
+    z-index: 1;
 }
 
 #sup:hover #dropdown{
