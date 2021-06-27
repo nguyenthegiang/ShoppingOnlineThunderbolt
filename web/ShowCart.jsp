@@ -14,7 +14,8 @@
         <!------ Include the above in your HEAD tag ---------->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
-        <link href="css/ShowCart.css" rel="stylesheet" type="text/css"/><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="css/ShowCart.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <style>
             .container table img{
                 height: 100px;
@@ -23,14 +24,13 @@
                 margin: 0;
                 display: inline-block;
                 border: none;
-                text-decoration: none;
-                color: #000;
+                background-color: #ecf0f1;
             }
 
             #plus, #minus{
                 text-decoration: none;
                 color: #000;
-                background-color: #ecf0f1
+                background-color: #ecf0f1;
             }
         </style>
     </head>
@@ -51,16 +51,16 @@
                     </thead>
                     <tbody>
                     <c:forEach items="${list}" var="o">
-                        <tr  class="spacer">
+                        <tr class="spacer">
                             <td><img src="image/${o.p.imageLink}" id="pImage"></td>
                             <td>${o.p.name}</td>
                             <td>${o.p.priceWithDot} VND</td>
-                            <td class="amount">
+                            <td class="amount" style="background-color: #ffffff">
                                 <button id="amount"><a id="minus" href="PlusMinusProductInCart?Message=minus&ProductID=${o.p.id}" type="button">-</a></button> 
                                 ${o.amount}
                                 <button id="amount"><a id="plus" href="PlusMinusProductInCart?Message=plus&ProductID=${o.p.id}" type="button">+</a></button>
                             </td>
-                            <td><a href="deleteProductInCart?ProductID=${o.p.id}"><i class="fas fa-trash-alt" style="color: red; font-size: x-large; margin: "></i></a></td>
+                            <td><a href="deleteProductInCart?ProductID=${o.p.id}"><i class="fas fa-trash-alt" style="color: red; font-size: x-large;"></i></a></td>
                         </tr>
                     </c:forEach>
                 </tbody>

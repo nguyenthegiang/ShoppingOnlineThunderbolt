@@ -25,9 +25,3 @@ table{
     font-family: Helvetica;
 }
 
-.amount{
-    margin: 0;
-    display: inline-block;
-    border: none;
-    background-color: #00f79c;
-}
