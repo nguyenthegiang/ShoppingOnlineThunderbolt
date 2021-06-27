@@ -99,7 +99,7 @@ public class HomeControl extends HttpServlet {
                 Product hot = ProductDAO.getHotProduct(); //Get First Product
                 Product favor = ProductDAO.getFavoriteProduct(); //Get Last Product
                 Information infor = InforDAO.getInfor(); //Get Information
-                List<Notification> notis = notiDAO.getNotificationsByUserID(userId);
+                List<Notification> notis = notiDAO.getTop5NotificationsByUserID(userId);
                 int notiss = notiDAO.countNotifications(userId);
 
                 //Paging By CategoryID

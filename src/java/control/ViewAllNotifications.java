@@ -42,10 +42,12 @@ public class ViewAllNotifications extends HttpServlet {
         NotificationDAO notiDAO = new NotificationDAO();
         Account a = (Account)session.getAttribute("acc");
         int userId = a.getId();
+        int numberNoti = notiDAO.countNotifications(userId);
         
-        List<Notification> notis = notiDAO.getNotificationsByUserID(userId);
+        List<Notification> notis = notiDAO.getAllNotificationsByUserID(userId);
         
         request.setAttribute("notis", notis);
+        request.setAttribute("numberNoti", numberNoti);
         
         request.getRequestDispatcher("ViewAllNotifications.jsp").forward(request, response);
     }

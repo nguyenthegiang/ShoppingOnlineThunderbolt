@@ -253,47 +253,74 @@
                     <div class="table-title">
                         <div class="row">
                             <div class="col-sm-5">
-                                <h2><b>Notifications</b></h2>
+                                <h2><b>Notifications (${numberNoti})</b></h2>
                             </div>
                             <div class="col-sm-7">
                             </div>
                         </div>
                     </div>
                     <table class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th colspan="4">Content</th>	
-                                <th></th>
-                                <th>Status</th>
-                                <th>Time</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach items="${notis}" var="o">
-                                <c:set var="sta">${o.status}</c:set>
-                            <c:if test="${sta eq 'read'}">
-                                <form action="viewInvoiceDetailAdmin" id="${o.orderId}1" style="display:none;">
-                                    <input type="hidden" value="${o.orderId}" name="id"/>
-                                </form>
-                                <tr onClick="formAutoSubmit('${o.orderId}1')" style="cursor:pointer">
-                                    <td colspan="5">${o.content}</td>
-                                    <td>${o.status}</td>
-                                    <td>${o.time}</td>    
+                        <!--if user is admin-->
+                        <c:if test="${sessionScope.acc.isAdmin==1}">
+                            <thead>
+                                <tr>
+                                    <th colspan="4">Content</th>	
+                                    <th></th>
+                                    <th>Status</th>
+                                    <th>Time</th>
                                 </tr>
-                            </c:if>
-                            <c:if test="${sta eq 'unread'}">
-                                <form action="viewInvoiceDetailAdmin" id="${o.orderId}2" style="display:none;">
-                                    <input type="hidden" value="${o.orderId}" name="id"/>
-                                    <input type="hidden" value="Waiting for Confirmation" name="status"/>
-                                </form>
-                                <tr onClick="formAutoSubmit('${o.orderId}2')" style="cursor:pointer">
-                                    <td colspan="5">${o.content}</td>
-                                    <td>${o.status}</td>
-                                    <td>${o.time}</td>    
-                                </tr>
-                            </c:if>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="${notis}" var="o">
+                                    <c:set var="sta">${o.status}</c:set>
+                                    <c:if test="${sta eq 'read'}">
+                                    <form action="viewInvoiceDetailAdmin" id="${o.orderId}1" style="display:none;">
+                                        <input type="hidden" value="${o.orderId}" name="id"/>
+                                    </form>
+                                    <tr onClick="formAutoSubmit('${o.orderId}1')" style="cursor:pointer">
+                                        <td colspan="5">${o.content}</td>
+                                        <td>${o.status}</td>
+                                        <td>${o.time}</td>    
+                                    </tr>
+                                </c:if>
+                                <c:if test="${sta eq 'unread'}">
+                                    <form action="viewInvoiceDetailAdmin" id="${o.orderId}2" style="display:none;">
+                                        <input type="hidden" value="${o.orderId}" name="id"/>
+                                        <input type="hidden" value="Waiting for Confirmation" name="status"/>
+                                    </form>
+                                    <tr onClick="formAutoSubmit('${o.orderId}2')" style="cursor:pointer">
+                                        <td colspan="5">${o.content}</td>
+                                        <td>${o.status}</td>
+                                        <td>${o.time}</td>    
+                                    </tr>
+                                </c:if>
 
-                        </c:forEach>
+                            </c:forEach>
+                        </c:if>
+
+
+                        <!--if user is seller-->
+                        <c:if test="${sessionScope.acc.isAdmin!=1}">
+                            <thead>
+                                <tr>
+                                    <th colspan="4">Content</th>	
+                                    <th></th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="${notis}" var="o">
+                                    <form action="viewInvoiceDetailAdmin" id="${o.orderId}3" style="display:none;">
+                                        <input type="hidden" value="${sessionScope.acc.id}" name="sellerId"/>
+                                        <input type="hidden" value="${o.orderId}" name="orderId"/>
+                                    </form>
+                                    <tr onClick="formAutoSubmit('${o.orderId}3')" style="cursor:pointer">
+                                        <td colspan="5">${o.content}</td>
+                                        <td>${o.time}</td>    
+                                    </tr>
+
+                            </c:forEach>
+                        </c:if>
                         </tbody>
                     </table>
                 </div>

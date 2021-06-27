@@ -152,14 +152,45 @@ public class NotificationDAO extends BaseDAO<Notification> {
     }
 
     /**
+     * Get 5 latest notifications of the user
+     *
+     * @param userId: id of the user
+     * @return list notifications
+     */
+    public List<Notification> getTop5NotificationsByUserID(int userId) {
+        List<Notification> list = new ArrayList<>();
+        String query = " SELECT TOP 5 * FROM Notifications "
+                + "WHERE userID=? ORDER BY id DESC";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, userId);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(new Notification(
+                        rs.getInt("ID"),
+                        rs.getInt("UserId"),
+                        rs.getInt("OrderID"),
+                        rs.getString("Content"),
+                        rs.getString("Status"),
+                        rs.getString("Time")
+                ));
+            }
+        } catch (Exception e) {
+        }
+
+        return list;
+    }
+    
+    /**
      * Get all the notifications of the user
      *
      * @param userId: id of the user
      * @return list notifications
      */
-    public List<Notification> getNotificationsByUserID(int userId) {
+    public List<Notification> getAllNotificationsByUserID(int userId) {
         List<Notification> list = new ArrayList<>();
-        String query = " SELECT TOP 5 * FROM Notifications "
+        String query = " SELECT * FROM Notifications "
                 + "WHERE userID=? ORDER BY id DESC";
         try {
             ps = connection.prepareStatement(query);
