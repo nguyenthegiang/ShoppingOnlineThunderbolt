@@ -43,7 +43,8 @@ public class ApproveOrder extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         int orderId = Integer.parseInt(request.getParameter("orderId"));
         int userId = Integer.parseInt(request.getParameter("userId"));
-        
+        HttpSession session = request.getSession();
+        Account a = (Account)session.getAttribute("acc");
         
         try {
             OrderDAO orderDAO = new OrderDAO();
@@ -51,6 +52,7 @@ public class ApproveOrder extends HttpServlet {
             
             orderDAO.packaging(orderId);
             notiDAO.approveOrderAdminNoti(userId, orderId);
+            notiDAO.readOneNoti(a.getId(), orderId);
             List<Order> orders = orderDAO.getAllOrder();
             
             

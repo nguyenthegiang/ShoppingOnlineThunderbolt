@@ -65,7 +65,7 @@
                                     </li> 
                                 </c:if>
                                      <li class="nav-item">
-                                        <a class="nav-link" href="accountManager"><i class="fas fa-tasks"></i>Notifications (${numberNoti})</a>
+                                        <a class="nav-link" href="viewAllNotifications"><i class="fas fa-tasks"></i>Notifications (${numberNoti})</a>
                                     </li> 
                             </c:if>
 

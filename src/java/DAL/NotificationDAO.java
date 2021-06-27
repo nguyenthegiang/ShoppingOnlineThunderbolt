@@ -231,6 +231,20 @@ public class NotificationDAO extends BaseDAO<Notification> {
         } catch (Exception e) {
         }
     }
+    
+    public void readOneNoti(int userId,int orderId) {
+        String query = "UPDATE Notifications\n"
+                + "SET Status = 'read'\n"
+                + "WHERE userID = ? AND orderID=?";
+        try {
+            ps = connection.prepareStatement(query);
+            //Set data to the ?
+            ps.setInt(1, userId);
+            ps.setInt(2, orderId);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
 
     /**
      * count all the number of unread notifications in database of an user

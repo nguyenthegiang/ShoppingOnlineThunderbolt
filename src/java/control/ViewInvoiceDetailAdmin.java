@@ -7,6 +7,7 @@ package control;
 
 import DAL.CartDAO;
 import DAL.InvoicesDAO;
+import DAL.NotificationDAO;
 import DAL.OrderDAO;
 import DAL.OrderDetailDAO;
 import entity.Account;
@@ -64,12 +65,11 @@ public class ViewInvoiceDetailAdmin extends HttpServlet {
             } else if(a.getIsAdmin()!= 1){
                 String status = request.getParameter("status");
                 int id = Integer.parseInt(request.getParameter("sellerId"));
-
                 InvoicesDAO invoicesDAO = new InvoicesDAO();
                 CartDAO CartDAO = new CartDAO();
                 OrderDAO orderDAO = new OrderDAO();
                 List<OrderDetailAdmin> invoiceDetail = invoicesDAO.getInvoiceDetailBySellerID(id);
-                int totalCart = orderDAO.countOrders();
+                int totalCart = orderDAO.countOrders();                
 
                 request.setAttribute("invoiceDetail", invoiceDetail);
                 request.setAttribute("totalCart", totalCart);
