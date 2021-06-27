@@ -90,7 +90,7 @@
                             <div class="card mb-3" style="max-width: 540px;">
                                 <div class="row g-0">
                                     <div class="col-md-4">
-                                        <a href="accountManager" style="text-decoration: none;"><img src="image/AccountIcon.png" alt="..." width="70%;"></a>
+                                        <a href="accountManager" style="text-decoration: none;"><img src="image/Other/AccountDashboard.jpg" alt="" width="100px"/></a>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
@@ -106,7 +106,7 @@
                             <div class="card mb-3" style="max-width: 540px;">
                                 <div class="row g-0">
                                     <div class="col-md-4">
-                                        <a href="manager" style="text-decoration: none;"><img src="image/ProductIcon.png" alt="..." width="70%;"></a>
+                                        <a href="manager" style="text-decoration: none;"><img src="image/Other/ProductDashboard.jpg" alt="" width="100px"/></a>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
@@ -122,7 +122,7 @@
                             <div class="card mb-3" style="max-width: 540px;">
                                 <div class="row g-0">
                                     <div class="col-md-4">
-                                        <a href=""><img src="image/InvoiceIcon.png" alt="..." width="70%;" style="margin-top: 10px;"></a>
+                                        <a href=""><img src="image/Other/InvoiceDashboard.jpg" alt="" width="100px"/></a>
                                     </div>
                                     <c:if test="${sessionScope.acc.isAdmin == 1}">
                                     <div class="col-md-8">
