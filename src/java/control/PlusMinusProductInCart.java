@@ -6,17 +6,9 @@
 package control;
 
 import DAL.CartDAO;
-import DAL.InvoicesDAO;
-import DAL.NotificationDAO;
-import DAL.OrderDAO;
-import DAL.OrderDetailDAO;
 import entity.Account;
-import entity.Order;
-import entity.OrderDetail;
-import entity.OrderDetailAdmin;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,10 +18,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Thuan
+ * @author ADMIN
  */
-@WebServlet(name = "ViewInvoiceDetailAdmin", urlPatterns = {"/viewInvoiceDetailAdmin"})
-public class ViewInvoiceDetailAdmin extends HttpServlet {
+@WebServlet(name = "PlusMinusProductInCart", urlPatterns = {"/PlusMinusProductInCart"})
+public class PlusMinusProductInCart extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,47 +35,26 @@ public class ViewInvoiceDetailAdmin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        try {
-            HttpSession session = request.getSession();
-            Account a = (Account) session.getAttribute("acc");
-            if (a.getIsAdmin() == 1) {
-                String status = request.getParameter("status");
-                int id = Integer.parseInt(request.getParameter("id"));
-
-                InvoicesDAO invoicesDAO = new InvoicesDAO();
-                OrderDAO orderDAO = new OrderDAO();
-                List<OrderDetailAdmin> invoiceDetail = invoicesDAO.getInvoiceDetailByOrderID(id);
-                int totalCart = orderDAO.countOrders();
-
-                request.setAttribute("invoiceDetail", invoiceDetail);
-                request.setAttribute("totalCart", totalCart);
-                request.setAttribute("OrderId", id);
-                request.setAttribute("sta", status);
-
-                request.getRequestDispatcher("ViewInvoiceDetail.jsp").forward(request, response);
-            } else if(a.getIsAdmin()!= 1){
-                String status = request.getParameter("status");
-                int sellerId = Integer.parseInt(request.getParameter("sellerId"));
-                int orderId = Integer.parseInt(request.getParameter("orderId"));
-                InvoicesDAO invoicesDAO = new InvoicesDAO();
-                CartDAO CartDAO = new CartDAO();
-                NotificationDAO notiDAO = new NotificationDAO();
-                OrderDAO orderDAO = new OrderDAO();
-                List<OrderDetailAdmin> invoiceDetail = invoicesDAO.getInvoiceDetailBySellerID(sellerId);
-                int totalCart = orderDAO.countOrders();  
-                notiDAO.readOneNoti(sellerId, orderId);
-
-                request.setAttribute("invoiceDetail", invoiceDetail);
-                request.setAttribute("totalCart", totalCart);
-                request.setAttribute("sellerId", sellerId);
-                request.setAttribute("sta", status);
-
-                request.getRequestDispatcher("ViewInvoiceDetail.jsp").forward(request, response);
-            }
-        } catch (Exception ex) {
-
+        //Get the message returned from JSP to determine whether the request is
+        //to plus or minus
+        String message = request.getParameter("Message");
+        //Get the ProductID from request
+        int ProductID = Integer.parseInt(request.getParameter("ProductID"));
+        //Call to Session to get the Account of Customer
+        HttpSession session = request.getSession();
+        Account acc = (Account) session.getAttribute("acc");
+        
+        //Call to DAO
+        CartDAO CartDAO = new CartDAO();
+        if (message.equals(("minus"))) {
+            CartDAO.delete1ProductFromCart(acc.getId(), ProductID);
         }
+        else if (message.equals(("plus"))) {
+            CartDAO.add1ProductToCart(acc.getId(), ProductID);
+        }
+        
+        //Reload Page
+        response.sendRedirect("show");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

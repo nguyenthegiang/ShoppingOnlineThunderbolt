@@ -86,7 +86,6 @@
                                                                 <img src="image/47734_tai_nghe_corsair_hs35_stereo_blue_0005_1.jpg" class="w-50 rounded-circle">
                                                             </div>    
                                                             <div class="col-lg-8 col-sm-8 col-8" >
-                                                                <strong class="text-info">David John</strong>
                                                                 <div>
                                                                     ${item.content}
                                                                 </div>

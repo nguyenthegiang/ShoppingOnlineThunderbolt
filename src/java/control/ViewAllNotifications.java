@@ -5,15 +5,9 @@
  */
 package control;
 
-import DAL.CartDAO;
-import DAL.InvoicesDAO;
 import DAL.NotificationDAO;
-import DAL.OrderDAO;
-import DAL.OrderDetailDAO;
 import entity.Account;
-import entity.Order;
-import entity.OrderDetail;
-import entity.OrderDetailAdmin;
+import entity.Notification;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -28,8 +22,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Thuan
  */
-@WebServlet(name = "ViewInvoiceDetailAdmin", urlPatterns = {"/viewInvoiceDetailAdmin"})
-public class ViewInvoiceDetailAdmin extends HttpServlet {
+@WebServlet(name = "ViewAllNotifications", urlPatterns = {"/viewAllNotifications"})
+public class ViewAllNotifications extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,47 +37,19 @@ public class ViewInvoiceDetailAdmin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        try {
-            HttpSession session = request.getSession();
-            Account a = (Account) session.getAttribute("acc");
-            if (a.getIsAdmin() == 1) {
-                String status = request.getParameter("status");
-                int id = Integer.parseInt(request.getParameter("id"));
-
-                InvoicesDAO invoicesDAO = new InvoicesDAO();
-                OrderDAO orderDAO = new OrderDAO();
-                List<OrderDetailAdmin> invoiceDetail = invoicesDAO.getInvoiceDetailByOrderID(id);
-                int totalCart = orderDAO.countOrders();
-
-                request.setAttribute("invoiceDetail", invoiceDetail);
-                request.setAttribute("totalCart", totalCart);
-                request.setAttribute("OrderId", id);
-                request.setAttribute("sta", status);
-
-                request.getRequestDispatcher("ViewInvoiceDetail.jsp").forward(request, response);
-            } else if(a.getIsAdmin()!= 1){
-                String status = request.getParameter("status");
-                int sellerId = Integer.parseInt(request.getParameter("sellerId"));
-                int orderId = Integer.parseInt(request.getParameter("orderId"));
-                InvoicesDAO invoicesDAO = new InvoicesDAO();
-                CartDAO CartDAO = new CartDAO();
-                NotificationDAO notiDAO = new NotificationDAO();
-                OrderDAO orderDAO = new OrderDAO();
-                List<OrderDetailAdmin> invoiceDetail = invoicesDAO.getInvoiceDetailBySellerID(sellerId);
-                int totalCart = orderDAO.countOrders();  
-                notiDAO.readOneNoti(sellerId, orderId);
-
-                request.setAttribute("invoiceDetail", invoiceDetail);
-                request.setAttribute("totalCart", totalCart);
-                request.setAttribute("sellerId", sellerId);
-                request.setAttribute("sta", status);
-
-                request.getRequestDispatcher("ViewInvoiceDetail.jsp").forward(request, response);
-            }
-        } catch (Exception ex) {
-
-        }
+        
+        HttpSession session = request.getSession();
+        NotificationDAO notiDAO = new NotificationDAO();
+        Account a = (Account)session.getAttribute("acc");
+        int userId = a.getId();
+        int numberNoti = notiDAO.countNotifications(userId);
+        
+        List<Notification> notis = notiDAO.getAllNotificationsByUserID(userId);
+        
+        request.setAttribute("notis", notis);
+        request.setAttribute("numberNoti", numberNoti);
+        
+        request.getRequestDispatcher("ViewAllNotifications.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

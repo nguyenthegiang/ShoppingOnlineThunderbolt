@@ -7,6 +7,7 @@ package control;
 
 import DAL.NotificationDAO;
 import DAL.OrderDAO;
+import entity.Account;
 import entity.Order;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,6 +40,8 @@ public class CancelOrder extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         int orderId = Integer.parseInt(request.getParameter("orderId"));
         int userId = Integer.parseInt(request.getParameter("userId"));
+        HttpSession session = request.getSession();
+        Account a = (Account)session.getAttribute("acc");
         try {
             OrderDAO orderDAO = new OrderDAO();
             NotificationDAO notiDAO = new NotificationDAO();
@@ -45,6 +49,7 @@ public class CancelOrder extends HttpServlet {
             orderDAO.canceled(orderId);
             List<Order> orders = orderDAO.getAllOrder();
             notiDAO.cancelOrderNoti(userId, orderId);
+            notiDAO.readOneNoti(a.getId(), orderId);
 
             request.setAttribute("orders", orders);
 
