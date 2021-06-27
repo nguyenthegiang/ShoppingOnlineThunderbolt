@@ -277,7 +277,7 @@ public class CartDAO extends BaseDAO<Account> {
             List<Cart> list = dao.getCart(userID);
             for (Cart cart : list) {
                 if (cart.getP().getId() == productID) {
-                    String query = "SELECT Cart\n"
+                    String query = "UPDATE Cart\n"
                             + "SET Amount = Amount - 1\n"
                             + " WHERE UserID = ? AND ProductID = ?";
                     try {
@@ -288,12 +288,12 @@ public class CartDAO extends BaseDAO<Account> {
                     } catch (Exception e) {
                     }
                     //Call to add1Amount
-                    dao.add1Amount(productID);
+                    //dao.add1Amount(productID);
 
                     //If Amount is now 0 -> Delete this product from Cart
                     int amount = 0;
                     String query2 = "SELECT Amount \n"
-                            + "FROM Cart\n"
+                            + "FROM Cart \n"
                             + "WHERE UserID = ? AND ProductID = ?";
                     try {
                         ps = connection.prepareStatement(query2);
@@ -377,27 +377,27 @@ public class CartDAO extends BaseDAO<Account> {
 //        System.out.println("After: " + CartDAO.countAmountProduct(1));
 
         /*---------Test Case for add1ProductToCart() method---------*/
-        List<Cart> list = CartDAO.getCart(7);
-        for (Cart cart : list) {
-            System.out.println(cart);
-        }
-        CartDAO.add1ProductToCart(7, 12);
-        System.out.println();
-        list = CartDAO.getCart(7);
-        for (Cart cart : list) {
-            System.out.println(cart);
-        }
-
-        /*---------Test Case for delete1ProductFromCart() method---------*/
 //        List<Cart> list = CartDAO.getCart(7);
 //        for (Cart cart : list) {
 //            System.out.println(cart);
 //        }
-//        CartDAO.delete1ProductFromCart(7, 12);
+//        CartDAO.add1ProductToCart(7, 12);
 //        System.out.println();
 //        list = CartDAO.getCart(7);
 //        for (Cart cart : list) {
 //            System.out.println(cart);
 //        }
+
+        /*---------Test Case for delete1ProductFromCart() method---------*/
+        List<Cart> list = CartDAO.getCart(7);
+        for (Cart cart : list) {
+            System.out.println(cart);
+        }
+        CartDAO.delete1ProductFromCart(7, 12);
+        System.out.println();
+        list = CartDAO.getCart(7);
+        for (Cart cart : list) {
+            System.out.println(cart);
+        }
     }
 }
