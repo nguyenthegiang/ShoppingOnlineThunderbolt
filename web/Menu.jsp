@@ -58,26 +58,45 @@
                                         <li class="head text-light bg-dark">
                                             <div class="row">
                                                 <div class="col-lg-12 col-sm-12 col-12">
-                                                    <span>Notifications</span>
+                                                    <span>Notifications (most recently)</span>
                                                     <a href="" class="float-right text-light">Mark all as read</a>
                                                 </div>
                                         </li>
-                                        <c:forEach items="${notis}" var="item">
-                                            <li class="notification-box">
-                                                <div class="row">
-                                                    <div class="col-lg-3 col-sm-3 col-3 text-center">
-                                                        <img src="image/47734_tai_nghe_corsair_hs35_stereo_blue_0005_1.jpg" class="w-50 rounded-circle">
-                                                    </div>    
-                                                    <div class="col-lg-8 col-sm-8 col-8">
-                                                        <!--<strong class="text-info">David John</strong>-->
-                                                        <div>
-                                                            ${item.content}
+                                        <c:if test="${sessionScope.acc != null}">
+                                            <c:forEach items="${notis}" var="item">
+                                                <form action="viewInvoiceDetailAdmin" id="${item.orderId}1" style="display:none;">
+                                                    <input type="hidden" value="${item.orderId}" name="id"/>
+                                                    <input type="hidden" value="Waiting for Confirmation" name="status"/>
+                                                </form>
+                                                <form action="viewOrderDetail" id="${item.orderId}2" style="display:none;">
+                                                    <input type="hidden" value="${item.orderId}" name="id"/>
+                                                </form>
+                                                <a 
+                                                    <c:if test="${sessionScope.acc.isAdmin == 1}">
+                                                        onclick="formAutoSubmit('${item.orderId}1')"
+                                                    </c:if>
+                                                    <c:if test="${sessionScope.acc.isAdmin != 1}">
+                                                        onclick="formAutoSubmit('${item.orderId}2')"
+                                                    </c:if>
+                                                    style="text-decoration: none;cursor: pointer;">
+                                                    <li class="notification-box" style="cursor: pointer;">
+                                                        <div class="row">
+                                                            <div class="col-lg-3 col-sm-3 col-3 text-center">
+                                                                <img src="image/47734_tai_nghe_corsair_hs35_stereo_blue_0005_1.jpg" class="w-50 rounded-circle">
+                                                            </div>    
+                                                            <div class="col-lg-8 col-sm-8 col-8">
+                                                                <!--<strong class="text-info">David John</strong>-->
+                                                                <div>
+                                                                    ${item.content}
+                                                                </div>
+                                                                <small class="text-warning">${item.time}</small>
+                                                            </div>    
                                                         </div>
-                                                        <small class="text-warning">${item.time}</small>
-                                                    </div>    
-                                                </div>
-                                            </li>
-                                        </c:forEach>
+                                                    </li>
+                                                </a>
+                                            </c:forEach>
+                                        </c:if>
+
                                         <!--                                    <li class="notification-box bg-gray">
                                                                                 <div class="row">
                                                                                     <div class="col-lg-3 col-sm-3 col-3 text-center">
@@ -152,22 +171,31 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
         <script>
-                                        function notiRead(userId) {
-                                            //Sử dụng Ajax
-                                            $.ajax({
-                                                url: "/Assignment_ElectronicShop_Pro/notiRead",
-                                                type: "get", //send it through get method
-                                                data: {
-                                                    userId: userId
-                                                },
-                                                success: function () {
-                                                    //Change number of Product in cart
-                                                    document.getElementById("unread").innerHTML = 0;
-                                                },
-                                                error: function () {
-                                                }
-                                            });
-                                        }
+                                                            function notiRead(userId) {
+                                                                //Sử dụng Ajax
+                                                                $.ajax({
+                                                                    url: "/Assignment_ElectronicShop_Pro/notiRead",
+                                                                    type: "get", //send it through get method
+                                                                    data: {
+                                                                        userId: userId
+                                                                    },
+                                                                    success: function () {
+                                                                        //Change number of Product in cart
+                                                                        document.getElementById("unread").innerHTML = 0;
+                                                                    },
+                                                                    error: function () {
+                                                                    }
+                                                                });
+                                                            }
+
+                                                            function formAutoSubmit(name) {
+
+                                                                var frm = document.getElementById(name);
+
+                                                                frm.submit();
+
+                                                            }
         </script>
+
     </body>
 </html>

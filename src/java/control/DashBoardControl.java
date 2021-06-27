@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -43,10 +44,14 @@ public class DashBoardControl extends HttpServlet {
             ProductDAO ProductDAO = new ProductDAO();
             UserDAO UserDAO = new UserDAO();
             OrderDAO orderDAO = new OrderDAO();
+            NotificationDAO notiDAO = new NotificationDAO();
+            HttpSession session = request.getSession();
+            Account a = (Account)session.getAttribute("acc");
 
             int totalAccount = UserDAO.countAllAccount();
             int totalProduct = ProductDAO.countProduct();
             int totalCart = orderDAO.countOrders();
+            int numberNoti = notiDAO.countUnreadNotifications(a.getId());
 
             List<ProductInManager> top3LeastSell = ProductDAO.top3LeastSell();
             List<DashBoardProduct> top3LeastSellD = amountToProportionLeast3(top3LeastSell);
@@ -56,6 +61,7 @@ public class DashBoardControl extends HttpServlet {
             request.setAttribute("totalProduct", totalProduct);
             request.setAttribute("totalAccount", totalAccount);
             request.setAttribute("totalCart", totalCart);
+            request.setAttribute("numberNoti", numberNoti);
 
             request.setAttribute("top3MostSellD", top3MostSellD);
             request.setAttribute("top3LeastSellD", top3LeastSellD);

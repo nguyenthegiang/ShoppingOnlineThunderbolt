@@ -45,7 +45,7 @@ public class NotificationDAO extends BaseDAO<Notification> {
             ps.setInt(1, userID);
             ps.setInt(2, orderId);
             ps.setString(3, "Your order with ID " + orderId + " has been approved, now being packaged"
-                    + "and soon will be delivered..!");
+                    + " and soon will be delivered..!");
             ps.setString(4, "unread");
             ps.setString(5, dtf.format(now) + " at " + dtf1.format(now));
             ps.executeUpdate();
@@ -112,8 +112,8 @@ public class NotificationDAO extends BaseDAO<Notification> {
                 ps.setInt(1, n);
                 ps.setInt(2, orderId);
                 ps.setString(3, "The customer with ID " + userId + " has placed an order"
-                        + "with OrderID: "+ orderId
-                        + "Check it out! ");
+                        + " with OrderID: "+ orderId
+                        + ". Check it out! ");
                 ps.setString(4, "unread");
                 ps.setString(5, dtf.format(now) + " at " + dtf1.format(now));
 

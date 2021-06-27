@@ -64,6 +64,9 @@
                                         <a class="nav-link" href="accountManager"><i class="fas fa-tasks"></i>Manager Account</a>
                                     </li> 
                                 </c:if>
+                                     <li class="nav-item">
+                                        <a class="nav-link" href="accountManager"><i class="fas fa-tasks"></i>Notifications (${numberNoti})</a>
+                                    </li> 
                             </c:if>
 
                             <li class="nav-item">&nbsp;
