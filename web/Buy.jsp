@@ -79,7 +79,14 @@
                     return formatter.format(priceToFormat)
                 }
 
-
+                function changeCredit() {
+                    var x = document.getElementById("myNumber").value;
+                    document.getElementById("demo").innerHTML = x;
+                    var y = document.getElementById("myName").value;
+                    document.getElementById("name").innerHTML = y;
+                    
+                }
+                
             </script>
         <jsp:include page="Menu.jsp"></jsp:include>
 
@@ -130,7 +137,7 @@
                                         <textarea class="form-control" name="note" rows="5" cols="12" placeholder="Note"></textarea>
                                     </div>
                                     <button type="submit" class="btn btn-primary" value="Deliver to this address" id="deliverButton">Deliver to this address</button>
-<!--                                    <input type="submit" class="btn btn-primary" value="Deliver to this address">-->
+                                    <!--                                    <input type="submit" class="btn btn-primary" value="Deliver to this address">-->
                                 </form>
                             </div>
                         </c:if>
@@ -238,7 +245,7 @@
                                         <div class="row">
                                             <div class="col-md-6 mb-3">
                                                 <label for="cc-name">Name on card</label>
-                                                <input type="text" class="form-control" id="cc-name" placeholder="">
+                                                <input type="text" class="form-control" id="myName" placeholder="" onchange="changeCredit()">
                                                 <small class="text-muted">Full name as displayed on card</small>
                                                 <div class="invalid-feedback">
                                                     Name on card is required
@@ -246,11 +253,22 @@
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="cc-number">Credit card number</label>
-                                                <input type="text" class="form-control" id="cc-number" placeholder="">
+                                                <input type="text" class="form-control" id="myNumber" placeholder="" onchange="changeCredit()">
                                                 <div class="invalid-feedback">
                                                     Credit card number is required
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="row" id="creditCard">
+                                            <img src="image/Other/Credit Card.jpg" alt="" style="width:100%;"/>
+                                            <div class="bottom-left">
+                                                <p id="demo" style="color: silver; font-size: x-large"></p>
+                                            </div>
+                                            <div class="bottom-left-name">
+                                                <p id="name" style="color: silver; font-size: x-large"></p>
+                                            </div>
+                                            <br>
+                                            
                                         </div>
                                         <hr class="mb-4">
                                         <button class="btn btn-info btn-lg btn-block" type="submit">Checkout</button>

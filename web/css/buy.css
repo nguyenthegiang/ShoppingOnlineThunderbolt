@@ -35,3 +35,22 @@ body{
     background-color:gray;
     width: 500px;
 }
+#creditCard{
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.bottom-left {
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+  text-align: left;
+}
+
+.bottom-left-name {
+  position: absolute;
+  text-align: left;
+  bottom: 20px;
+  left: 50px;
+}
