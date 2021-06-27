@@ -14,13 +14,24 @@ body{
     margin: 10px 10px 10px 0;
     width: 34em;
 }
-button{
-    width: 20em;
-    margin: auto;
+#deliverButton{
+    width: 20rem;
+    margin: 0 1em 0 7em;
+    background-color: rgb(43, 189, 179);
+    border-color: #2bbd9d;
+    align-items: center;
+    border-radius: 20px;
 }
-hr{
-    height:0.5px;
+
+#deliverButton:hover{
+    background-color: #2bbd9d;
+    -webkit-box-shadow: 0 10px 30px 0 rgba(86, 245, 216,0.2);
+}
+
+#line{
+    height:0.2px;
     border-width:0;
     color:gray;
-    background-color:gray
+    background-color:gray;
+    width: 500px;
 }

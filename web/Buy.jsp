@@ -129,7 +129,7 @@
                                     <div class="mb-3">
                                         <textarea class="form-control" name="note" rows="5" cols="12" placeholder="Note"></textarea>
                                     </div>
-                                    <button type="submit" class="btn btn-primary" value="Deliver to this address">Deliver to this address</button>
+                                    <button type="submit" class="btn btn-primary" value="Deliver to this address" id="deliverButton">Deliver to this address</button>
 <!--                                    <input type="submit" class="btn btn-primary" value="Deliver to this address">-->
                                 </form>
                             </div>
@@ -140,8 +140,8 @@
                     <!--Different address-->
                     <c:if test="${requestScope.message eq null}">
                         <div class="different-address">
-                            <hr>
-                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            <hr id="line">
+                            <button class="btn btn-primary" id="deliverButton" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                                 Change Shipping Information
                             </button>
                             <br>
