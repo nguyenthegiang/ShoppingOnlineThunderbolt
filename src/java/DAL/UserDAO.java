@@ -108,6 +108,21 @@ public class UserDAO extends BaseDAO<Account> {
         }
         return list;
     }
+    
+    
+    public List<Integer> getAllAdminAndSeller() {
+        List<Integer> list = new ArrayList<>();
+        String query = "SELECT userId FROM Users WHERE isSeller = 1";
+        try {
+            ps = connection.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(rs.getInt("userId"));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
 
     /**
      * Delete an account from the database

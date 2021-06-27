@@ -60,6 +60,7 @@ public class FinishControl extends HttpServlet {
             ShipInfoDAO shipInfoDAO = new ShipInfoDAO();
             UserAddressDAO userAddDAO = new UserAddressDAO();
             NotificationDAO notiDAO = new NotificationDAO();
+            UserDAO accountDAO = new UserDAO();
 
             // get DateTime to format order date
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
@@ -132,6 +133,11 @@ public class FinishControl extends HttpServlet {
             userOrder.setStatus("Waiting for Confirmation");
             userOrder.setDate(dtf.format(now)+" at "+dtf1.format(now));
             int newOrderId = orderDao.addOrder(userOrder, 1);
+            
+            
+            //get all ID of seller and admin
+            List<Integer> idAdminSeller = accountDAO.getAllAdminAndSeller();
+            notiDAO.userBuyNoti(a.getId(), newOrderId, idAdminSeller);
 
             // add list of product of the order to the database
             for (Cart cart : listCart) {
