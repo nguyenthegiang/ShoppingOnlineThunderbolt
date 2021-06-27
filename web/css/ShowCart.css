@@ -25,7 +25,9 @@ table{
     font-family: Helvetica;
 }
 
-#plus, #minus {
-    text-decoration: none; 
-    color: black;
+.amount{
+    margin: 0;
+    display: inline-block;
+    border: none;
+    background-color: #00f79c;
 }

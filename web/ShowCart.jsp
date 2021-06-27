@@ -19,8 +19,18 @@
             .container table img{
                 height: 100px;
             }
-            .amount {
-                font-size: 20px;
+            #amount{
+                margin: 0;
+                display: inline-block;
+                border: none;
+                text-decoration: none;
+                color: #000;
+            }
+
+            #plus, #minus{
+                text-decoration: none;
+                color: #000;
+                background-color: #ecf0f1
             }
         </style>
     </head>
@@ -46,9 +56,9 @@
                             <td>${o.p.name}</td>
                             <td>${o.p.priceWithDot} VND</td>
                             <td class="amount">
-                                <a id="minus" href="PlusMinusProductInCart?Message=minus&ProductID=${o.p.id}" type="button">-</a> 
+                                <button id="amount"><a id="minus" href="PlusMinusProductInCart?Message=minus&ProductID=${o.p.id}" type="button">-</a></button> 
                                 ${o.amount}
-                                <a id="plus" href="PlusMinusProductInCart?Message=plus&ProductID=${o.p.id}" type="button">+</a> 
+                                <button id="amount"><a id="plus" href="PlusMinusProductInCart?Message=plus&ProductID=${o.p.id}" type="button">+</a></button>
                             </td>
                             <td><a href="deleteProductInCart?ProductID=${o.p.id}"><i class="fas fa-trash-alt" style="color: red; font-size: x-large; margin: "></i></a></td>
                         </tr>
