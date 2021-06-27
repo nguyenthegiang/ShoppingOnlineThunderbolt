@@ -27,3 +27,23 @@ nav{
 #home{
     font-size: larger;
 }
+#noticeContent:hover{
+    background-color: #f0f3f5;
+}
+#noticeContent{
+    width: 100%;
+    margin: auto;
+}
+#bell{
+    color: black;
+}
+#bell:hover{
+    color: rgb(43, 189, 179);
+}
+#dropdown{
+    display: none;
+}
+
+#sup:hover #dropdown{
+    display: block;
+}
