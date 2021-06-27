@@ -47,7 +47,7 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="display: unset !important;">
                             <ul class="nav nav-pills mr-auto justify-content-end">           
                                 <li class="nav-item dropdown " id="sup">
-                                    <a onclick="notiRead(${sessionScope.acc.id})" class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <a onclick="notiRead(${sessionScope.acc.id})" class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #ebebf2;">
                                         <i class="fa fa-bell" id="bell">     
                                             <span id="unread">${unread}</span>
                                         </i>

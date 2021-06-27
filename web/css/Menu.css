@@ -49,3 +49,7 @@ nav{
 #sup:hover #dropdown{
     display: block;
 }
+
+#navbarDropdown:active{
+    background-color: #ebebf2;
+}
