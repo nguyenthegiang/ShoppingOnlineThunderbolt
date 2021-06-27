@@ -46,15 +46,15 @@
                         </li>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="display: unset !important;">
                             <ul class="nav nav-pills mr-auto justify-content-end">           
-                                <li class="nav-item dropdown ">
-                                    <a  onclick="notiRead(${sessionScope.acc.id})" class=" nav-link text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa fa-bell" style="color:black;">     
-                                            <span class="badge" id="unread">${unread}</span>
+                                <li class="nav-item dropdown " id="sup">
+                                    <a onclick="notiRead(${sessionScope.acc.id})" class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-bell" id="bell">     
+                                            <span id="unread">${unread}</span>
                                         </i>
 
                                     </a>
 
-                                    <ul class="dropdown-menu">
+                                    <ul class="dropdown-menu" id="dropdown">
                                         <li class="head text-light bg-dark">
                                             <div class="row">
                                                 <div class="col-lg-12 col-sm-12 col-12">
@@ -62,6 +62,7 @@
                                                     <a href="" class="float-right text-light">Mark all as read</a>
                                                 </div>
                                         </li>
+                                        
                                         <c:if test="${sessionScope.acc != null}">
                                             <c:forEach items="${notis}" var="item">
                                                 <form action="viewInvoiceDetailAdmin" id="${item.orderId}1" style="display:none;">
@@ -78,14 +79,14 @@
                                                     <c:if test="${sessionScope.acc.isAdmin != 1}">
                                                         onclick="formAutoSubmit('${item.orderId}2')"
                                                     </c:if>
-                                                    style="text-decoration: none;cursor: pointer;">
-                                                    <li class="notification-box" style="cursor: pointer;">
-                                                        <div class="row">
+                                                        style="text-decoration: none;cursor: pointer">
+                                                    <li class="notification-box" style="cursor: pointer;" >
+                                                        <div class="row" id="noticeContent">
                                                             <div class="col-lg-3 col-sm-3 col-3 text-center">
                                                                 <img src="image/47734_tai_nghe_corsair_hs35_stereo_blue_0005_1.jpg" class="w-50 rounded-circle">
                                                             </div>    
-                                                            <div class="col-lg-8 col-sm-8 col-8">
-                                                                <!--<strong class="text-info">David John</strong>-->
+                                                            <div class="col-lg-8 col-sm-8 col-8" >
+                                                                <strong class="text-info">David John</strong>
                                                                 <div>
                                                                     ${item.content}
                                                                 </div>
@@ -97,34 +98,7 @@
                                             </c:forEach>
                                         </c:if>
 
-                                        <!--                                    <li class="notification-box bg-gray">
-                                                                                <div class="row">
-                                                                                    <div class="col-lg-3 col-sm-3 col-3 text-center">
-                                                                                        <img src="/demo/man-profile.jpg" class="w-50 rounded-circle">
-                                                                                    </div>    
-                                                                                    <div class="col-lg-8 col-sm-8 col-8">
-                                                                                        <strong class="text-info">David John</strong>
-                                                                                        <div>
-                                                                                            Lorem ipsum dolor sit amet, consectetur
-                                                                                        </div>
-                                                                                        <small class="text-warning">27.11.2015, 15:00</small>
-                                                                                    </div>    
-                                                                                </div>
-                                                                            </li>
-                                                                            <li class="notification-box">
-                                                                                <div class="row">
-                                                                                    <div class="col-lg-3 col-sm-3 col-3 text-center">
-                                                                                        <img src="/demo/man-profile.jpg" class="w-50 rounded-circle">
-                                                                                    </div>    
-                                                                                    <div class="col-lg-8 col-sm-8 col-8">
-                                                                                        <strong class="text-info">David John</strong>
-                                                                                        <div>
-                                                                                            Lorem ipsum dolor sit amet, consectetur
-                                                                                        </div>
-                                                                                        <small class="text-warning">27.11.2015, 15:00</small>
-                                                                                    </div>    
-                                                                                </div>
-                                                                            </li>-->
+                                        
                                         <li class="footer bg-dark text-center">
                                             <a href="" class="text-light">View All (${numberOfNotifications})</a>
                                         </li>
