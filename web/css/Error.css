@@ -22,7 +22,7 @@ a{
     background-image: linear-gradient(to right, #00f79c, #04f1f5);
     /*Set width, margin, and padding of the button*/
     width: 200px; 
-    margin: 0 0 0 23em; 
+    margin: 5em 0 0 23em; 
     padding: 15px;
     /*Style border*/
     border-radius: 8px;
