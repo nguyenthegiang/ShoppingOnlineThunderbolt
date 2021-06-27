@@ -1,5 +1,3 @@
-
-
 i{
     margin: 2px;
     padding: 2px;
@@ -7,7 +5,7 @@ i{
 
 .nav-link{
     position: relative;
-    font-size: large;
+    font-size: medium;
     display: inline-block;
     color: rgb(43, 189, 179);
     overflow: hidden;
@@ -26,4 +24,16 @@ i{
 
 nav{
     background-color: #ebebf2;
+}
+
+.line{
+    height:1px;
+    border-width:0;
+    color:gray;
+    background-color:gray;
+}
+
+.nav-link:active{
+    background-color: #2bbd9d;
+    color: black;
 }

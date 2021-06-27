@@ -39,7 +39,7 @@
                         <ul class="nav flex-column">
                             <li class="nav-item">
                                 <a class="nav-link" href="home"><i class="fas fa-home"></i>Home</a>
-                                <hr>
+                                <hr class="line">
                             </li>
                             <c:if test="${sessionScope.acc == null}">
                                 <li class="nav-item">
@@ -49,23 +49,24 @@
                             <c:if test = "${sessionScope.acc != null}">
                                 <li class="nav-item">
                                     <a class="nav-link" href="profile"><i class="fas fa-user-circle"></i>Hello ${sessionScope.acc.user}</a>
-                                    <hr>
+                                    <hr class="line">
                                 </li>
                                 
                                 <c:if test="${sessionScope.acc.isSell == 1}">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="manager"><i class="fad fa-tasks-alt"></i>Manager Product</a>
-                                        <hr>
+                                        <a class="nav-link" href="manager"><i class="fas fa-tasks"></i>Manager Product</a>
+                                        <hr class="line">
                                     </li> 
                                 </c:if>
                                 
                                 <c:if test="${sessionScope.acc.isAdmin == 1}">
                                     <li class="nav-item">
                                         <a class="nav-link" href="accountManager"><i class="fas fa-tasks"></i>Manager Account</a>
+                                        <hr class="line">
                                     </li> 
                                 </c:if>
                                      <li class="nav-item">
-                                        <a class="nav-link" href="viewAllNotifications"><i class="fas fa-tasks"></i>Notifications (${numberNoti})</a>
+                                        <a class="nav-link" href="viewAllNotifications"><i class="fas fa-bell"></i>Notifications (${numberNoti})</a>
                                     </li> 
                             </c:if>
 

@@ -31,11 +31,11 @@
 
     <a class="nav-link" href="logout" style="position: fixed; right: 10px;">LogOut</a>
 
-    <div class="container">
+    <div class="container-fluid" style="width: 100%">
         <div class="row">
-            <div class="col-3">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light flex-column">
-                    <a class="navbar-brand" href="dashBoard"><img src="image/MenuLogo.png" width="200px"></a>
+            <div class="col-lg-2 col-md-2" style="background-color: #ebebf2;">
+                <nav class="navbar navbar-expand-lg navbar-light flex-column">
+                    <a class="navbar-brand" href="dashBoard"><img src="image/Other/Logo.jpg" width="200px"></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -70,128 +70,108 @@
                     </ul>
                 </nav>
             </div>
-            <div class="col-6">
-                <section class="jumbotron text-center" style="background-color: white;">
-                    <div class="container">
-                        <h1 class="jumbotron-heading"><img src="image/MainLogo.png" alt="Main Logo" width="60%"/></h1>
-                        <p class="lead text-muted mb-0">Điện thoại, Tablet, Laptop, Phụ kiện chính hãng giá tốt...</p>
-                    </div>
-                </section>
-            </div>
-        </div>
-        <div class="row" style="margin-top: 20px;">
-            <!--                <div class="col-4">
-                                <div class="card mb-3" style="max-width: 540px;">
-                                    <div class="row g-0">
-                                        <div class="col-md-4">
-                                            <img src="image/AccountIcon.png" alt="..." width="70%;">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Total Accounts</h5>
-                                                <h5 class="card-title">${totalAccount}</h5>
-                                                <p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p>
-                                            </div>
+            <div class="col-lg-9 col-md-9">
+                <div class="row">
+                    <section class="jumbotron text-center" style="background-color: white;">
+                        <div class="container">
+                            <h1 class="jumbotron-heading"><img src="image/MainLogo.png" alt="Main Logo" width="60%"/></h1>
+                            <p class="lead text-muted mb-0">Điện thoại, Tablet, Laptop, Phụ kiện chính hãng giá tốt...</p>
+                        </div>
+                    </section>
+
+                    <div class="row" style="margin-top: 20px;">
+
+                        <div class="col-4">
+                            <div class="card mb-3" style="max-width: 540px;">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="image/InvoiceIcon.png" alt="..." width="70%;" style="margin-top: 10px;">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Order Detail</h5>
+                                            <h5 class="card-title">${totalCart}</h5>
+                                            <p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-4">
-                                <div class="card mb-3" style="max-width: 540px;">
-                                    <div class="row g-0">
-                                        <div class="col-md-4">
-                                            <img src="image/ProductIcon.png" alt="..." width="70%;">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Total Products</h5>
-                                                <h5 class="card-title">${totalProduct}</h5>
-                                                <p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>-->
-            <div class="col-4">
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="image/InvoiceIcon.png" alt="..." width="70%;" style="margin-top: 10px;">
                         </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Order Detail</h5>
-                                <h5 class="card-title">${totalCart}</h5>
-                                <p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p>
+                        <hr>
+                        <div class="row">
+                            <style>
+                                td{
+                                    padding-right:3em;
+                                    padding:10px; border: 1px solid;
+                                }
+                            </style>
+                            <table style="margin-left:3em; border: 1px solid;">
+                                <thead >
+                                    <tr >
+                                        <td>No.</td>
+                                        <td>Product ID</td>
+                                        <td>Product Name</td>
+                                        <td>Product Picture</td>
+                                        <td>Product Price  </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach var="item" items="${orderDetails}" varStatus="x">
+                                        <tr style="padding:2px; border: 1px solid">
+                                            <td>${item.id}</td>
+                                            <td>${item.productID}</td>
+                                            <td>${item.productName}</td>
+                                            <td><img height="250px" width="200px" src="image/${item.imageLink}"/></td>
+                                            <td>
+                                                <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${item.productPrice}"/>VNĐ
+                                            </td>
+
+                                            <c:set var="total" value="${total + item.productPrice}" />
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+
+                            </br>
+                            </hr>
+                            <h1 style="color:red;">Total:                                        
+                                <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${total}"/> 
+                                VNĐ</h1>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <h3>Most Selling Product</h3>
+                                <c:forEach var="o" items="${top3MostSellD}">
+                                    <h6>${o.name}</h6>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: ${o.proportion}%" aria-valuenow="${o.proportion}" aria-valuemin="0" aria-valuemax="100">${o.amount}</div>
+                                    </div>
+                                    <br>
+                                </c:forEach>
+                            </div>
+                            <div class="col-6">
+                                <h3>Least Selling Product</h3>
+                                <c:forEach var="o" items="${top3LeastSellD}">
+                                    <h6>${o.name}</h6>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: ${o.proportion}%" aria-valuenow="${o.proportion}" aria-valuemin="0" aria-valuemax="100">${o.amount}</div>
+                                    </div>
+                                    <br>
+                                </c:forEach>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <style>
-                    td{
-                        padding-right:3em;
-                        padding:10px; border: 1px solid;
-                    }
-                </style>
-                <table style="margin-left:3em; border: 1px solid;">
-                    <thead >
-                        <tr >
-                            <td>No.</td>
-                            <td>Product ID</td>
-                            <td>Product Name</td>
-                            <td>Product Picture</td>
-                            <td>Product Price  </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach var="item" items="${orderDetails}" varStatus="x">
-                            <tr style="padding:2px; border: 1px solid">
-                                <td>${item.id}</td>
-                                <td>${item.productID}</td>
-                                <td>${item.productName}</td>
-                                <td><img height="250px" width="200px" src="image/${item.imageLink}"/></td>
-                                <td>
-                                    <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${item.productPrice}"/>VNĐ
-                                </td>
 
-                                <c:set var="total" value="${total + item.productPrice}" />
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
 
-                </br>
-                </hr>
-                <h1 style="color:red;">Total:                                        
-                    <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${total}"/> 
-                    VNĐ</h1>
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    <h3>Most Selling Product</h3>
-                    <c:forEach var="o" items="${top3MostSellD}">
-                        <h6>${o.name}</h6>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: ${o.proportion}%" aria-valuenow="${o.proportion}" aria-valuemin="0" aria-valuemax="100">${o.amount}</div>
-                        </div>
-                        <br>
-                    </c:forEach>
+
+
+
+
                 </div>
-                <div class="col-6">
-                    <h3>Least Selling Product</h3>
-                    <c:forEach var="o" items="${top3LeastSellD}">
-                        <h6>${o.name}</h6>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: ${o.proportion}%" aria-valuenow="${o.proportion}" aria-valuemin="0" aria-valuemax="100">${o.amount}</div>
-                        </div>
-                        <br>
-                    </c:forEach>
-                </div>
+
             </div>
         </div>
+
 
 
         <script type="text/javascript">
