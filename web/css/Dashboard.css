@@ -37,3 +37,16 @@ nav{
     background-color: #2bbd9d;
     color: black;
 }
+#headerImage{
+    margin-left: 70px;
+    padding: 0px;
+}
+#total{
+    color: black;
+    text-align: center;
+}
+
+#amount{
+    font-size: 80px;
+    text-align: center;
+}

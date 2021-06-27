@@ -21,7 +21,6 @@
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
         <link href="css/Dashboard.css" rel="stylesheet" type="text/css"/>
-
         <title>Computer ERA</title>
     </head>
     <body>
@@ -89,13 +88,14 @@
                         <div class="col-4">
                             <div class="card mb-3" style="max-width: 540px;">
                                 <div class="row g-0">
-                                    <div class="col-md-4">
-                                        <a href="accountManager" style="text-decoration: none;"><img src="image/Other/AccountDashboard.jpg" alt="" width="100px"/></a>
+                                    <div class="col-md-12">
+                                        <a href="accountManager" style="text-decoration: none;"><img src="image/Other/AccountDashboard.jpg" alt="" id="headerImage" width="250px"/></a>
                                     </div>
-                                    <div class="col-md-8">
+                                    <br><hr>
+                                    <div class="col-md-12">
                                         <div class="card-body">
-                                            <a href="accountManager" style="text-decoration: none;"><h5 class="card-title">Total Accounts</h5></a>
-                                            <a href="accountManager" style="text-decoration: none;"><h5 class="card-title">${totalAccount}</h5></a>
+                                            <a href="accountManager" style="text-decoration: none;"><h5 class="card-title" id="total">Total Accounts</h5></a>
+                                            <a href="accountManager" style="text-decoration: none;"><h5 class="card-title" id="amount">${totalAccount}</h5></a>
                                             <a href="accountManager" style="text-decoration: none;"><p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p></a>
                                         </div>
                                     </div>
@@ -105,13 +105,14 @@
                         <div class="col-4">
                             <div class="card mb-3" style="max-width: 540px;">
                                 <div class="row g-0">
-                                    <div class="col-md-4">
-                                        <a href="manager" style="text-decoration: none;"><img src="image/Other/ProductDashboard.jpg" alt="" width="100px"/></a>
+                                    <div class="col-md-12">
+                                        <a href="manager" style="text-decoration: none;"><img src="image/Other/ProductDashboard.jpg" alt="" id="headerImage" width="250px"/></a>
                                     </div>
-                                    <div class="col-md-8">
+                                    <br><hr>
+                                    <div class="col-md-12">
                                         <div class="card-body">
-                                            <a href="manager" style="text-decoration: none;"><h5 class="card-title">Total Products</h5></a>
-                                            <a href="manager" style="text-decoration: none;"><h5 class="card-title">${totalProduct}</h5></a>
+                                            <a href="manager" style="text-decoration: none;"><h5 class="card-title" id="total">Total Products</h5></a>
+                                            <a href="manager" style="text-decoration: none;"><h5 class="card-title" id="amount">${totalProduct}</h5></a>
                                             <a href="manager" style="text-decoration: none;"><p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p></a>
                                         </div>
                                     </div>
@@ -121,14 +122,15 @@
                         <div class="col-4">
                             <div class="card mb-3" style="max-width: 540px;">
                                 <div class="row g-0">
-                                    <div class="col-md-4">
-                                        <a href=""><img src="image/Other/InvoiceDashboard.jpg" alt="" width="100px"/></a>
+                                    <div class="col-md-12">
+                                        <a href=""><img src="image/Other/InvoiceDashboard.jpg" alt="" id="headerImage" width="250px"/></a>
                                     </div>
+                                    <br><hr>
                                     <c:if test="${sessionScope.acc.isAdmin == 1}">
-                                    <div class="col-md-8">
+                                    <div class="col-md-12">
                                         <div class="card-body">
-                                            <a style="text-decoration: none;" href ="viewAllInvoicesAdmin"><h5 class="card-title">Total Invoices</h5></a>
-                                            <a style="text-decoration: none;" href ="viewAllInvoicesAdmin"><h5 class="card-title">${totalCart}</h5></a>
+                                            <a style="text-decoration: none;" href ="viewAllInvoicesAdmin"><h5 class="card-title" id="total">Total Invoices</h5></a>
+                                            <a style="text-decoration: none;" href ="viewAllInvoicesAdmin"><h5 class="card-title" id="amount">${totalCart}</h5></a>
                                             <a style="text-decoration: none;" href ="viewAllInvoicesAdmin"><p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p></a>
                                         </div>
                                     </div>
