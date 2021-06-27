@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -127,7 +127,7 @@ public class NotificationDAO extends BaseDAO<Notification> {
      */
     public List<Notification> getNotificationsByUserID(int userId) {
         List<Notification> list = new ArrayList<>();
-        String query = "SELECT * FROM Notifications WHERE userID=?";
+        String query = "SELECT * FROM Notifications WHERE userID=? ORDER BY id DESC";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, userId);
@@ -158,7 +158,8 @@ public class NotificationDAO extends BaseDAO<Notification> {
     public List<Notification> getUnreadNotificationsByUserID(int userId) {
         List<Notification> list = new ArrayList<>();
         String query = "SELECT * FROM Notifications WHERE userID=? and "
-                + "Status ='unread'";
+                + "Status ='unread'"
+                + "ORDER BY id DESC";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, userId);

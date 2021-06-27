@@ -5,6 +5,7 @@
  */
 package control;
 
+import DAL.NotificationDAO;
 import DAL.OrderDAO;
 import entity.Order;
 import java.io.IOException;
@@ -35,18 +36,18 @@ public class CancelOrder extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        int id = Integer.parseInt(request.getParameter("id"));
+        int orderId = Integer.parseInt(request.getParameter("orderId"));
+        int userId = Integer.parseInt(request.getParameter("userId"));
         try {
             OrderDAO orderDAO = new OrderDAO();
-            
-            orderDAO.canceled(id);
+            NotificationDAO notiDAO = new NotificationDAO();
+
+            orderDAO.canceled(orderId);
             List<Order> orders = orderDAO.getAllOrder();
-            
-            
+            notiDAO.cancelOrderNoti(userId, orderId);
+
             request.setAttribute("orders", orders);
 
-            
-            
             request.getRequestDispatcher("ViewAllInvoices.jsp").forward(request, response);
         } catch (Exception ex) {
 

@@ -183,11 +183,15 @@
                             <input type="hidden" value="${userId}" name="userId"/>
                         </form>
                         <div style="margin:10px; float:left">
-                            <a  onclick="formAutoSubmit()"><button>Approve</button></a>
+                            <a  onclick="formAutoSubmit('form1')"><button>Approve</button></a>
                             <!--<a  href ="approveOrder?id=${OrderId}"><button>Approve</button></a>-->
                         </div>
+                        <form action="cancelOrder" id="form2">
+                            <input type="hidden" value="${OrderId}" name="orderId"/>
+                            <input type="hidden" value="${userId}" name="userId"/>
+                        </form>
                         <div style="margin:10px; float:right;">
-                            <a  onclick="formAutoSubmit()"><button>Cancel</button></a>
+                            <a  onclick="formAutoSubmit('form2')"><button>Cancel</button></a>
                         </div>
                     </c:if>
                 </div>
@@ -217,9 +221,9 @@
 
                         <script type="text/javascript">
 
-            function formAutoSubmit() {
+            function formAutoSubmit(name) {
 
-                var frm = document.getElementById('form1');
+                var frm = document.getElementById(name);
 
                 frm.submit();
 
