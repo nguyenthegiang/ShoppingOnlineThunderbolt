@@ -112,7 +112,7 @@ public class CartDAO extends BaseDAO<Account> {
                     } catch (Exception e) {
                     }
                     //Call to delete1amount
-                    dao.delete1Amount(productID);
+                    //dao.delete1Amount(productID);
                     return true;
                 }
             }
