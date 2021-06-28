@@ -86,194 +86,195 @@
                                             </div>
                                         </section>
                                     </div>-->
-                <div class="row" style="margin-top: 20px;">
-                    <div class="col-4" id="borderCard">
-                        <div class="card mb-3" style="max-width: 540px;">
-                            <div class="row g-0">
-                                <div class="col-md-12">
-                                    <a href="accountManager" style="text-decoration: none;"><img src="image/Other/AccountDashboard.jpg" alt="" id="headerImage" width="250px"/></a>
-                                </div>
-                                <div class="col-md-12" id="dashboardCard">
-                                    <div class="card-body">
-                                        <a href="accountManager" style="text-decoration: none;"><h5 class="card-title" id="total">Total Accounts</h5></a>
-                                        <a href="accountManager" style="text-decoration: none;"><h5 class="card-title" id="amount">${totalAccount}</h5></a>
-                                        <a href="accountManager" style="text-decoration: none;"><p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p></a>
+                <div class="col-md-10">
+                    <div class="row" style="margin-top: 20px;">
+                        <div class="col-4" id="borderCard">
+                            <div class="card mb-3" style="max-width: 540px;">
+                                <div class="row g-0">
+                                    <div class="col-md-12">
+                                        <a href="accountManager" style="text-decoration: none;"><img src="image/Other/AccountDashboard.jpg" alt="" id="headerImage" width="250px"/></a>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4" id="borderCard">
-                        <div class="card mb-3" style="max-width: 540px;">
-                            <div class="row g-0">
-                                <div class="col-md-12">
-                                    <a href="manager" style="text-decoration: none;"><img src="image/Other/ProductDashboard.jpg" alt="" id="headerImage" width="250px"/></a>
-                                </div>
-                                <div class="col-md-12" id="dashboardCard">
-                                    <div class="card-body">
-                                        <a href="manager" style="text-decoration: none;"><h5 class="card-title" id="total">Total Products</h5></a>
-                                        <a href="manager" style="text-decoration: none;"><h5 class="card-title" id="amount">${totalProduct}</h5></a>
-                                        <a href="manager" style="text-decoration: none;"><p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4" id="borderCard">
-                        <div class="card mb-3" style="max-width: 540px;">
-                            <div class="row g-0">
-                                <div class="col-md-12">
-                                    <a href=""><img src="image/Other/InvoiceDashboard.jpg" alt="" id="headerImage" width="250px"/></a>
-                                </div>
-                                <c:if test="${sessionScope.acc.isAdmin == 1}">
                                     <div class="col-md-12" id="dashboardCard">
                                         <div class="card-body">
-                                            <a style="text-decoration: none;" href ="viewAllInvoicesAdmin"><h5 class="card-title" id="total">Total Invoices</h5></a>
-                                            <a style="text-decoration: none;" href ="viewAllInvoicesAdmin"><h5 class="card-title" id="amount">${totalCart}</h5></a>
-                                            <a style="text-decoration: none;" href ="viewAllInvoicesAdmin"><p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p></a>
+                                            <a href="accountManager" style="text-decoration: none;"><h5 class="card-title" id="total">Total Accounts</h5></a>
+                                            <a href="accountManager" style="text-decoration: none;"><h5 class="card-title" id="amount">${totalAccount}</h5></a>
+                                            <a href="accountManager" style="text-decoration: none;"><p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p></a>
                                         </div>
                                     </div>
-                                </c:if>
-                                <c:if test="${sessionScope.acc.isAdmin != 1}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4" id="borderCard">
+                            <div class="card mb-3" style="max-width: 540px;">
+                                <div class="row g-0">
                                     <div class="col-md-12">
+                                        <a href="manager" style="text-decoration: none;"><img src="image/Other/ProductDashboard.jpg" alt="" id="headerImage" width="250px"/></a>
+                                    </div>
+                                    <div class="col-md-12" id="dashboardCard">
                                         <div class="card-body">
-                                            <a style="text-decoration: none;" href ="viewInvoiceDetailAdmin?sellerId=${sessionScope.acc.id}"><h5 class="card-title">Total Invoices</h5></a>
-                                            <a style="text-decoration: none;" href ="viewInvoiceDetailAdmin?sellerId=${sessionScope.acc.id}"><h5 class="card-title">${totalCart}</h5></a>
-                                            <a style="text-decoration: none;" href ="viewInvoiceDetailAdmin?sellerId=${sessionScope.acc.id}"><p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p></a>
+                                            <a href="manager" style="text-decoration: none;"><h5 class="card-title" id="total">Total Products</h5></a>
+                                            <a href="manager" style="text-decoration: none;"><h5 class="card-title" id="amount">${totalProduct}</h5></a>
+                                            <a href="manager" style="text-decoration: none;"><p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p></a>
                                         </div>
                                     </div>
-                                </c:if>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4" id="borderCard">
+                            <div class="card mb-3" style="max-width: 540px;">
+                                <div class="row g-0">
+                                    <div class="col-md-12">
+                                        <a href=""><img src="image/Other/InvoiceDashboard.jpg" alt="" id="headerImage" width="250px"/></a>
+                                    </div>
+                                    <c:if test="${sessionScope.acc.isAdmin == 1}">
+                                        <div class="col-md-12" id="dashboardCard">
+                                            <div class="card-body">
+                                                <a style="text-decoration: none;" href ="viewAllInvoicesAdmin"><h5 class="card-title" id="total">Total Invoices</h5></a>
+                                                <a style="text-decoration: none;" href ="viewAllInvoicesAdmin"><h5 class="card-title" id="amount">${totalCart}</h5></a>
+                                                <a style="text-decoration: none;" href ="viewAllInvoicesAdmin"><p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p></a>
+                                            </div>
+                                        </div>
+                                    </c:if>
+                                    <c:if test="${sessionScope.acc.isAdmin != 1}">
+                                        <div class="col-md-12">
+                                            <div class="card-body">
+                                                <a style="text-decoration: none;" href ="viewInvoiceDetailAdmin?sellerId=${sessionScope.acc.id}"><h5 class="card-title">Total Invoices</h5></a>
+                                                <a style="text-decoration: none;" href ="viewInvoiceDetailAdmin?sellerId=${sessionScope.acc.id}"><h5 class="card-title">${totalCart}</h5></a>
+                                                <a style="text-decoration: none;" href ="viewInvoiceDetailAdmin?sellerId=${sessionScope.acc.id}"><p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p></a>
+                                            </div>
+                                        </div>
+                                    </c:if>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
 
 
 
 
 
-                <div class="row">
-                    <canvas id="myChart" style="width:100%;max-width:1000px"></canvas>
+                    <div class="row">
+                        <canvas id="myChart" style="width:100%;max-width:1000px"></canvas>
 
-                    <script>
-                        var xValues = ["Italy", "France", "Spain", ""];
-                        var yValues = [55, 49, 50, 0];
-                        let i = 0;
+                        <script>
+                            var xValues = ["Italy", "France", "Spain", ""];
+                            var yValues = [55, 49, 50, 0];
+                            let i = 0;
 
-                        while (i < 3) {
-                        <c:forEach var="o" items="${top3MostSellD}">
-                            xValues[i] = "${o.name}";
-                            i++;
-                        </c:forEach>
-                        }
-
-                        let j = 0;
-                        while (j < 3) {
-                        <c:forEach var="o" items="${top3MostSellD}">
-                            yValues[j] = "${o.proportion}";
-                            j++;
-                        </c:forEach>
-                        }
-
-                        var barColors = ["red", "green", "blue"];
-
-                        new Chart("myChart", {
-                            type: "bar",
-                            data: {
-                                labels: xValues,
-                                datasets: [{
-                                        backgroundColor: barColors,
-                                        data: yValues
-                                    }]
-                            },
-                            options: {
-                                legend: {display: false},
-                                title: {
-                                    display: true,
-                                    text: "Most Selling Product"
-                                }
+                            while (i < 3) {
+                            <c:forEach var="o" items="${top3MostSellD}">
+                                xValues[i] = "${o.name}";
+                                i++;
+                            </c:forEach>
                             }
-                        });
-                    </script>
-                </div>                    
 
-                <div class="row">
-                    <canvas id="myChart2" style="width:100%;max-width:1000px"></canvas>
-
-                    <script>
-                        var xValues = ["Italy", "France", "Spain", ""];
-                        var yValues = [55, 49, 50, 0];
-                        let x = 0;
-
-                        while (x < 3) {
-                        <c:forEach var="o" items="${top3LeastSellD}">
-                            xValues[x] = "${o.name}";
-                            x++;
-                        </c:forEach>
-                        }
-
-                        let y = 0;
-                        while (y < 3) {
-                        <c:forEach var="o" items="${top3LeastSellD}">
-                            yValues[y] = "${o.proportion}";
-                            y++;
-                        </c:forEach>
-                        }
-
-                        var barColors = ["red", "green", "blue"];
-
-                        new Chart("myChart2", {
-                            type: "bar",
-                            data: {
-                                labels: xValues,
-                                datasets: [{
-                                        backgroundColor: barColors,
-                                        data: yValues
-                                    }]
-                            },
-                            options: {
-                                legend: {display: false},
-                                title: {
-                                    display: true,
-                                    text: "Least Selling Product"
-                                }
+                            let j = 0;
+                            while (j < 3) {
+                            <c:forEach var="o" items="${top3MostSellD}">
+                                yValues[j] = "${o.proportion}";
+                                j++;
+                            </c:forEach>
                             }
-                        });
-                    </script>
-                </div>
 
+                            var barColors = ["red", "green", "blue"];
 
+                            new Chart("myChart", {
+                                type: "bar",
+                                data: {
+                                    labels: xValues,
+                                    datasets: [{
+                                            backgroundColor: barColors,
+                                            data: yValues
+                                        }]
+                                },
+                                options: {
+                                    legend: {display: false},
+                                    title: {
+                                        display: true,
+                                        text: "Most Selling Product"
+                                    }
+                                }
+                            });
+                        </script>
+                    </div>                    
 
+                    <div class="row">
+                        <canvas id="myChart2" style="width:100%;max-width:1000px"></canvas>
 
+                        <script>
+                            var xValues = ["Italy", "France", "Spain", ""];
+                            var yValues = [55, 49, 50, 0];
+                            let x = 0;
 
+                            while (x < 3) {
+                            <c:forEach var="o" items="${top3LeastSellD}">
+                                xValues[x] = "${o.name}";
+                                x++;
+                            </c:forEach>
+                            }
 
+                            let y = 0;
+                            while (y < 3) {
+                            <c:forEach var="o" items="${top3LeastSellD}">
+                                yValues[y] = "${o.proportion}";
+                                y++;
+                            </c:forEach>
+                            }
 
+                            var barColors = ["red", "green", "blue"];
 
-                <div class="row">
-                    <div class="col-6">
-                        <h3>Most Selling Product</h3>
-                        <c:forEach var="o" items="${top3MostSellD}">
-                            <h6>${o.name}</h6>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: ${o.proportion}%" aria-valuenow="${o.proportion}" aria-valuemin="0" aria-valuemax="100">${o.amount}</div>
-                            </div>
-                            <br>
-                        </c:forEach>
+                            new Chart("myChart2", {
+                                type: "bar",
+                                data: {
+                                    labels: xValues,
+                                    datasets: [{
+                                            backgroundColor: barColors,
+                                            data: yValues
+                                        }]
+                                },
+                                options: {
+                                    legend: {display: false},
+                                    title: {
+                                        display: true,
+                                        text: "Least Selling Product"
+                                    }
+                                }
+                            });
+                        </script>
                     </div>
-                    <div class="col-6">
-                        <h3>Least Selling Product</h3>
-                        <c:forEach var="o" items="${top3LeastSellD}">
-                            <h6>${o.name}</h6>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: ${o.proportion}%" aria-valuenow="${o.proportion}" aria-valuemin="0" aria-valuemax="100">${o.amount}</div>
-                            </div>
-                            <br>
-                        </c:forEach>
-                    </div>
+
+
+
+
+
+
+
+
+<!--                    <div class="row">
+                        <div class="col-6">
+                            <h3>Most Selling Product</h3>
+                            <c:forEach var="o" items="${top3MostSellD}">
+                                <h6>${o.name}</h6>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: ${o.proportion}%" aria-valuenow="${o.proportion}" aria-valuemin="0" aria-valuemax="100">${o.amount}</div>
+                                </div>
+                                <br>
+                            </c:forEach>
+                        </div>
+                        <div class="col-6">
+                            <h3>Least Selling Product</h3>
+                            <c:forEach var="o" items="${top3LeastSellD}">
+                                <h6>${o.name}</h6>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: ${o.proportion}%" aria-valuenow="${o.proportion}" aria-valuemin="0" aria-valuemax="100">${o.amount}</div>
+                                </div>
+                                <br>
+                            </c:forEach>
+                        </div>
+                    </div>-->
+
                 </div>
-
-
             </div>
         </div>
 
