@@ -156,31 +156,29 @@
                 <div class="row">
                     <canvas id="myChart" style="width:100%;max-width:1000px"></canvas>
 
-
-
                     <script>
                         var xValues = ["Italy", "France", "Spain", ""];
                         var yValues = [55, 49, 50, 0];
                         let i = 0;
-                        
+
                         while (i < 3) {
                         <c:forEach var="o" items="${top3MostSellD}">
                             xValues[i] = "${o.name}";
                             i++;
                         </c:forEach>
                         }
-                        
+
                         let j = 0;
                         while (j < 3) {
                         <c:forEach var="o" items="${top3MostSellD}">
                             yValues[j] = "${o.proportion}";
                             j++;
                         </c:forEach>
-                        } 
-                        
+                        }
+
                         var barColors = ["red", "green", "blue"];
-                        
-                           new Chart("myChart", {
+
+                        new Chart("myChart", {
                             type: "bar",
                             data: {
                                 labels: xValues,
@@ -200,6 +198,50 @@
                     </script>
                 </div>                    
 
+                <div class="row">
+                    <canvas id="myChart2" style="width:100%;max-width:1000px"></canvas>
+
+                    <script>
+                        var xValues = ["Italy", "France", "Spain", ""];
+                        var yValues = [55, 49, 50, 0];
+                        let x = 0;
+
+                        while (x < 3) {
+                        <c:forEach var="o" items="${top3LeastSellD}">
+                            xValues[x] = "${o.name}";
+                            x++;
+                        </c:forEach>
+                        }
+
+                        let y = 0;
+                        while (y < 3) {
+                        <c:forEach var="o" items="${top3LeastSellD}">
+                            yValues[y] = "${o.proportion}";
+                            y++;
+                        </c:forEach>
+                        }
+
+                        var barColors = ["red", "green", "blue"];
+
+                        new Chart("myChart2", {
+                            type: "bar",
+                            data: {
+                                labels: xValues,
+                                datasets: [{
+                                        backgroundColor: barColors,
+                                        data: yValues
+                                    }]
+                            },
+                            options: {
+                                legend: {display: false},
+                                title: {
+                                    display: true,
+                                    text: "Least Selling Product"
+                                }
+                            }
+                        });
+                    </script>
+                </div>
 
 
 
