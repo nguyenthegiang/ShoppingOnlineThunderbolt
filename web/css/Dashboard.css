@@ -54,3 +54,6 @@ nav{
 #dashboardCard{
     background-image: linear-gradient(to right, #cba1f7, #9dc8f5);
 }
+script{
+    font-weight: bold;
+}

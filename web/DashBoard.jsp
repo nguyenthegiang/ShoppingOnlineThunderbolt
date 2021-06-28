@@ -158,8 +158,8 @@
                         <canvas id="myChart" style="width:100%;max-width:1000px"></canvas>
 
                         <script>
-                            var xValues = ["Italy", "France", "Spain", ""];
-                            var yValues = [55, 49, 50, 0];
+                            var xValues = ["", "", "", ""];
+                            var yValues = [0, 0, 0, 0];
                             let i = 0;
 
                             while (i < 3) {
@@ -177,7 +177,7 @@
                             </c:forEach>
                             }
 
-                            var barColors = ["red", "green", "blue"];
+                            var barColors = ["#82bfd9", "#c995e6", "#82d9bb"];
 
                             new Chart("myChart", {
                                 type: "bar",
@@ -203,8 +203,8 @@
                         <canvas id="myChart2" style="width:100%;max-width:1000px"></canvas>
 
                         <script>
-                            var xValues = ["Italy", "France", "Spain", ""];
-                            var yValues = [55, 49, 50, 0];
+                            var xValues = ["", "", "", ""];
+                            var yValues = [0, 0, 0, 0];
                             let x = 0;
 
                             while (x < 3) {
@@ -222,7 +222,7 @@
                             </c:forEach>
                             }
 
-                            var barColors = ["red", "green", "blue"];
+                            var barColors = ["#e6d795", "#e69595", "#e695a4"];
 
                             new Chart("myChart2", {
                                 type: "bar",
