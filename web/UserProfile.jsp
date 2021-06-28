@@ -74,7 +74,9 @@
 
                     <%-- Link to change user password --%>
                     <!--                    <div class="change-password">-->
-                    <button class="btn btn-primary btn-block"><a href="confirm-change-password" id="link">Change password</a></button>
+                    <!--<button class="btn btn-primary btn-block">-->
+                        <a class="btn btn-primary btn-block" href="confirm-change-password" id="link">Change password</a>
+                    <!--</button>-->
 
 
                     <!--                    </div>-->
