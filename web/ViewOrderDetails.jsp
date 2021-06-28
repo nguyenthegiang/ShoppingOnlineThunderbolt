@@ -118,7 +118,7 @@
                                 <tbody>
                                     <c:forEach var="item" items="${orderDetails}" varStatus="x">
                                     <form action="detail" id="viewDetail${item.id}">
-                                        <input type="hidden" value="${item.id}" name="ProductId"/>
+                                        <input type="hidden" value="${item.productID}" name="ProductID"/>
                                     </form>
                                         <tr  onclick="formAutoSubmit('viewDetail${item.id}')" style="border: 1px solid; cursor: pointer;">
                                             <td>${item.id}</td>
