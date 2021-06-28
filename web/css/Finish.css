@@ -1,0 +1,36 @@
+body{
+    background-image:url(../image/Other/FinishShoppingBackground.jpg);
+    font-family: 'Varela Round', sans-serif;
+    background-repeat: no-repeat;
+    background-size: 180vh;
+    position: relative;
+    background-position: top;
+}
+
+a{
+    /*Set backgroung color*/
+    background-image: linear-gradient(to right, #00f79c, #04f1f5);
+    /*Set width, margin, and padding of the button*/
+    width: 200px;  
+    padding: 10px;
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    display: block;
+    font-size: medium;
+    font-weight: 600;
+    /*Style border*/
+    border-radius: 8px;
+    border-style: hidden;
+    position: absolute;
+    bottom: -10vh;
+    right: 22vw;
+}
+a:hover{
+    background-color: #2bbd9d;
+    -webkit-box-shadow: 0 10px 30px 0 rgba(0, 0, 0,0.1);
+    border-color: #2bbdb3;
+    text-decoration: none;
+    text-align: center;
+    color: black;
+}
