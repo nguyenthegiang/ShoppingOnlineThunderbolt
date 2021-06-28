@@ -49,7 +49,7 @@ public class ViewOrder extends HttpServlet {
             
             request.getRequestDispatcher("ViewOrdersHistory.jsp").forward(request, response);
         } catch (Exception ex) {
-
+            response.sendRedirect("Error.jsp");
         }
         
        

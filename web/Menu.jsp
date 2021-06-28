@@ -32,22 +32,22 @@
                         <!--Add thêm code Login ở đây-->
                         <!--Trong test là điều kiện của mình-->
                         <!--sessionScope: gọi đến Session : nếu acc = null thì hiển thị menu là Login còn nếu khác null thì hiển thị là Logout-->
-                    <c:if test="${sessionScope.acc == null}">
+                    <c:if test="${acc == null}">
                         <li class="nav-item">
                             <a class="nav-link" href="login" id="linkHover">Login</a>
                         </li>
                     </c:if>
 
                     <!--Nếu acc khác null -> login rồi -> hiển thị cả 3 menu dưới-->
-                    <c:if test = "${sessionScope.acc != null}">
+                    <c:if test = "${acc != null}">
                         <li class="nav-item">
                             <!--Link to user profile-->
-                            <a class="nav-link" href="profile" id="linkHover">Hello ${sessionScope.acc.user}</a>
+                            <a class="nav-link" href="profile" id="linkHover">Hello ${acc.user}</a>
                         </li>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="display: unset !important;">
                             <ul class="nav nav-pills mr-auto justify-content-end">           
                                 <li class="nav-item dropdown " id="sup">
-                                    <a onclick="notiRead(${sessionScope.acc.id})" class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #ebebf2;">
+                                    <a onclick="notiRead(${acc.id})" class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #ebebf2;">
                                         <i class="fa fa-bell" id="bell">     
                                             <span id="unread">${unread}</span>
                                         </i>
@@ -63,7 +63,7 @@
                                                 </div>
                                         </li>
                                         
-                                        <c:if test="${sessionScope.acc != null}">
+                                        <c:if test="${acc != null}">
                                             <c:forEach items="${notis}" var="item">
                                                 <form action="viewInvoiceDetailAdmin" id="${item.orderId}1" style="display:none;">
                                                     <input type="hidden" value="${item.orderId}" name="id"/>
@@ -73,10 +73,10 @@
                                                     <input type="hidden" value="${item.orderId}" name="id"/>
                                                 </form>
                                                 <a 
-                                                    <c:if test="${sessionScope.acc.isAdmin == 1}">
+                                                    <c:if test="${acc.isAdmin == 1}">
                                                         onclick="formAutoSubmit('${item.orderId}1')"
                                                     </c:if>
-                                                    <c:if test="${sessionScope.acc.isAdmin != 1}">
+                                                    <c:if test="${acc.isAdmin != 1}">
                                                         onclick="formAutoSubmit('${item.orderId}2')"
                                                     </c:if>
                                                         style="text-decoration: none;cursor: pointer">
@@ -106,7 +106,7 @@
                             </ul>
                         </div>
                         <!--Kiểm tra xem có phải người bán ko: isSell = 1-->
-                        <c:if test="${sessionScope.acc.isSell == 1}">
+                        <c:if test="${acc.isSell == 1}">
                             <li class="nav-item">
                                 <a class="nav-link" href="dashBoard" id="linkHover">Dash Board</a>
                             </li>
@@ -116,7 +116,7 @@
                             </li> 
                         </c:if>
                         <!--Kiểm tra xem có phải admin ko: isAdmin == 1-->
-                        <c:if test="${sessionScope.acc.isAdmin == 1}">
+                        <c:if test="${acc.isAdmin == 1}">
                             <li class="nav-item">
                                 <a class="nav-link" href="accountManager" id="linkHover">Manager Account</a>
                             </li> 

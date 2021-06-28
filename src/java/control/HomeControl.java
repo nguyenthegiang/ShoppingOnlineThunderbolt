@@ -146,6 +146,7 @@ public class HomeControl extends HttpServlet {
                 request.setAttribute("tag", index); //Page number
                 request.setAttribute("count", count);
                 request.setAttribute("CateID", CID);
+                request.setAttribute("acc",user);
                 request.setAttribute("CateName", CategoryDAO.getCateNameByID(CID));
 
                 request.getRequestDispatcher("Home.jsp").forward(request, response);

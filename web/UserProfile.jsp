@@ -37,12 +37,12 @@
                     </c:if>       
 
                     <%-- Display user email --%>
-                    <h5>Email: ${sessionScope.acc.email}</h5>
+                    <h5>Email: ${acc.email}</h5>
 
                     <%-- Display user role --%>
                     <h5 style="display: inline-block">Role: </h5>
                     <c:choose>
-                        <c:when test="${sessionScope.acc.isSell==1}">
+                        <c:when test="${acc.isSell==1}">
                             <input type="checkbox" checked="checked" disabled="disabled" style="display: inline-block">
                             <label>Seller</label>
                             <input type="checkbox" disabled="disabled" style="display: inline-block">
@@ -60,13 +60,13 @@
                     <br>
                     <h5 style="display: inline-block">Status: </h5>
                     <c:choose>
-                        <c:when test="${sessionScope.acc.status == 1}">
+                        <c:when test="${acc.status == 1}">
                             <span class="active">Active</span>
                         </c:when> 
-                        <c:when test="${sessionScope.acc.status == 3}">
+                        <c:when test="${acc.status == 3}">
                             <span class="login-facebook">Login with Facebook</span>
                         </c:when>
-                        <c:when test="${sessionScope.acc.status == 4}">
+                        <c:when test="${acc.status == 4}">
                             <span class="unverified">Unverified</span>
                         </c:when>
                     </c:choose>      
@@ -81,7 +81,9 @@
                     <br><br>
 
                     <%-- Link to view order history --%>
-                    <button class="btn btn-primary btn-block"><a href="viewOrder?id=${sessionScope.acc.id}" id="link">Your orders</a></button>
+                    <!--<button class="btn btn-primary btn-block">-->
+                        <a class="btn btn-primary btn-block" href="viewOrder?id=${acc.id}" id="link">Your orders</a>
+                    <!--</button>-->
                     <br><br>
 
                     <%-- Link to return to home page --%>
