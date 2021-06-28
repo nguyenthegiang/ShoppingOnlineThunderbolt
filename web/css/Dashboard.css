@@ -50,3 +50,7 @@ nav{
     font-size: 80px;
     text-align: center;
 }
+
+#dashboardCard{
+    background-image: linear-gradient(to right, #cba1f7, #9dc8f5);
+}
