@@ -23,8 +23,21 @@ button{
     border-color: none;
 }
 #link{
+    display: block;
+    background-image: linear-gradient(to right, #00f79c, #04f1f5);
     color: black;
+    border-radius: 10px;
+    border-color: #00f79c;
     text-decoration: none;
+    padding: 10px;
+    text-align: center;
+    font-weight: 600;
+    font-size: initial;
+}
+#link:hover{
+    border-color:#2b72bd;
+    background-color: #2bbd9d;
+    -webkit-box-shadow: 0 10px 30px 0 rgba(86, 245, 216,0.2);
 }
 #back{
     color: black;

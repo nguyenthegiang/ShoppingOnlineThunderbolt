@@ -73,19 +73,12 @@
                     <br><br>
 
                     <%-- Link to change user password --%>
-                    <!--                    <div class="change-password">-->
-                    <!--<button class="btn btn-primary btn-block">-->
-                        <a class="btn btn-primary btn-block" href="confirm-change-password" id="link">Change password</a>
-                    <!--</button>-->
+                    <a class="btn btn-primary btn-block" href="confirm-change-password" id="link">Change password</a>
 
-
-                    <!--                    </div>-->
                     <br><br>
 
                     <%-- Link to view order history --%>
-                    <!--<button class="btn btn-primary btn-block">-->
-                        <a class="btn btn-primary btn-block" href="viewOrder?id=${acc.id}" id="link">Your orders</a>
-                    <!--</button>-->
+                    <a class="btn btn-primary btn-block" href="viewOrder?id=${acc.id}" id="link">Your orders</a>
                     <br><br>
 
                     <%-- Link to return to home page --%>
