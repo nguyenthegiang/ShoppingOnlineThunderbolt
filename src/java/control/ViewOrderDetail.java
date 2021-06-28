@@ -5,8 +5,10 @@
  */
 package control;
 
+import DAL.OrderDAO;
 import DAL.OrderDetailDAO;
 import DAL.OrderDetailWithImageDAO;
+import entity.Order;
 import entity.OrderDetail;
 import entity.OrderDetailWithImage;
 import java.io.IOException;
@@ -40,10 +42,13 @@ public class ViewOrderDetail extends HttpServlet {
                
             int id = Integer.parseInt(request.getParameter("id"));
             OrderDetailWithImageDAO orderDAO = new OrderDetailWithImageDAO();
-
+            OrderDAO odDAO = new OrderDAO();
+            
             List<OrderDetailWithImage> orderDetails = orderDAO.getOrderDetail(id);
+            Order order = odDAO.getOrderByOrderID(id);
 
             request.setAttribute("orderDetails", orderDetails);
+            request.setAttribute("order", order);
 
             request.getRequestDispatcher("ViewOrderDetails.jsp").forward(request, response);
         

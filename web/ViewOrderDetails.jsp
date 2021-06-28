@@ -89,7 +89,7 @@
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
-                                            <h5 class="card-title">Order Detail</h5>
+                                            <h5 class="card-title">Order ID: ${order.id} (${order.status})</h5>
                                             <h5 class="card-title">${totalCart}</h5>
                                             <p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p>
                                         </div>
@@ -117,11 +117,14 @@
                                 </thead>
                                 <tbody>
                                     <c:forEach var="item" items="${orderDetails}" varStatus="x">
-                                        <tr style="padding:2px; border: 1px solid">
+                                    <form action="detail" id="viewDetail${item.id}">
+                                        <input type="hidden" value="${item.id}" name="ProductId"/>
+                                    </form>
+                                        <tr  onclick="formAutoSubmit('viewDetail${item.id}')" style="border: 1px solid; cursor: pointer;">
                                             <td>${item.id}</td>
                                             <td>${item.productID}</td>
                                             <td>${item.productName}</td>
-                                            <td><img height="250px" width="200px" src="image/${item.imageLink}"/></td>
+                                            <td><img height="130px" width="100px" src="image/${item.imageLink}"/></td>
                                             <td>
                                                 <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${item.productPrice}"/>VNĐ
                                             </td>
