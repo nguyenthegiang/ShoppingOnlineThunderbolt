@@ -161,6 +161,22 @@
                     <script>
                         var xValues = ["Italy", "France", "Spain", ""];
                         var yValues = [55, 49, 50, 0];
+                        let i = 0;
+                        
+                        while (i < 3) {
+                        <c:forEach var="o" items="${top3MostSellD}">
+                            xValues[i] = "${o.name}";
+                            i++;
+                        </c:forEach>
+                        }
+                        
+                        let j = 0;
+                        while (j < 3) {
+                        <c:forEach var="o" items="${top3MostSellD}">
+                            yValues[j] = "${o.proportion}";
+                            j++;
+                        </c:forEach>
+                        } 
                         
                         var barColors = ["red", "green", "blue"];
                         
