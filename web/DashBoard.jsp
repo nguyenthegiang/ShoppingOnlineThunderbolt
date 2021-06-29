@@ -154,32 +154,125 @@
 
 
 
+                    <!--                    <div class="row">
+                                            <canvas id="myChart" style="width:100%;max-width:1000px"></canvas>
+                    
+                                            <script>
+                                                var xValues = ["", "", "", ""];
+                                                var yValues = [0, 0, 0, 0];
+                                                let i = 0;
+                    
+                                                while (i < 3) {
+                    <c:forEach var="o" items="${top3MostSellD}">
+                        xValues[i] = "${o.name}";
+                        i++;
+                    </c:forEach>
+                    }
+
+                    let j = 0;
+                    while (j < 3) {
+                    <c:forEach var="o" items="${top3MostSellD}">
+                        yValues[j] = "${o.proportion}";
+                        j++;
+                    </c:forEach>
+                    }
+
+                    var barColors = ["#82bfd9", "#c995e6", "#82d9bb"];
+
+                    new Chart("myChart", {
+                        type: "bar",
+                        data: {
+                            labels: xValues,
+                            datasets: [{
+                                    backgroundColor: barColors,
+                                    data: yValues
+                                }]
+                        },
+                        options: {
+                            legend: {display: false},
+                            title: {
+                                display: true,
+                                text: "Most Selling Product"
+                            }
+                        }
+                    });
+                </script>
+            </div>                    -->
+
+                    <!--                    <div class="row">
+                                            <canvas id="myChart2" style="width:100%;max-width:1000px"></canvas>
+                    
+                                            <script>
+                                                var xValues = ["", "", "", ""];
+                                                var yValues = [0, 0, 0, 0];
+                                                let x = 0;
+                    
+                                                while (x < 3) {
+                    <c:forEach var="o" items="${top3LeastSellD}">
+                        xValues[x] = "${o.name}";
+                        x++;
+                    </c:forEach>
+                    }
+
+                    let y = 0;
+                    while (y < 3) {
+                    <c:forEach var="o" items="${top3LeastSellD}">
+                        yValues[y] = "${o.proportion}";
+                        y++;
+                    </c:forEach>
+                    }
+
+                    var barColors = ["#e6d795", "#e69595", "#e695a4"];
+
+                    new Chart("myChart2", {
+                        type: "bar",
+                        data: {
+                            labels: xValues,
+                            datasets: [{
+                                    backgroundColor: barColors,
+                                    data: yValues
+                                }]
+                        },
+                        options: {
+                            legend: {display: false},
+                            title: {
+                                display: true,
+                                text: "Least Selling Product"
+                            }
+                        }
+                    });
+                </script>
+            </div>-->
+
+
+
+
                     <div class="row">
-                        <canvas id="myChart" style="width:100%;max-width:1000px"></canvas>
+                        <canvas id="myChart3" style="width:100%;max-width:500px"></canvas>
 
                         <script>
-                            var xValues = ["", "", "", ""];
-                            var yValues = [0, 0, 0, 0];
-                            let i = 0;
+                            var xValues = ["", "", "", "", "", "", "", ""];
+                            var yValues = [0, 0, 0, 0, 0, 0, 0, 0];
+                            let a = 0;
 
-                            while (i < 3) {
-                            <c:forEach var="o" items="${top3MostSellD}">
-                                xValues[i] = "${o.name}";
-                                i++;
+                            while (a < 8) {
+                            <c:forEach var="o" items="${recentOrder}">
+                                xValues[a] = "${o.date}";
+                                a++;
                             </c:forEach>
                             }
 
-                            let j = 0;
-                            while (j < 3) {
-                            <c:forEach var="o" items="${top3MostSellD}">
-                                yValues[j] = "${o.proportion}";
-                                j++;
+                            let b = 0;
+                            while (b < 8) {
+                            <c:forEach var="o" items="${recentOrder}">
+                                yValues[b] = "${o.id}";
+                                b++;
                             </c:forEach>
                             }
 
-                            var barColors = ["#82bfd9", "#c995e6", "#82d9bb"];
+                            var barColors = ["#e6d795", "#e69595", "#e695a4", "#e6d795", "#e69595", "#e695b7", "#e4a795", "#e36595"];
 
-                            new Chart("myChart", {
+                            new Chart("myChart3", {
                                 type: "bar",
                                 data: {
                                     labels: xValues,
@@ -192,67 +285,14 @@
                                     legend: {display: false},
                                     title: {
                                         display: true,
-                                        text: "Most Selling Product"
-                                    }
-                                }
-                            });
-                        </script>
-                    </div>                    
-
-                    <div class="row">
-                        <canvas id="myChart2" style="width:100%;max-width:1000px"></canvas>
-
-                        <script>
-                            var xValues = ["", "", "", ""];
-                            var yValues = [0, 0, 0, 0];
-                            let x = 0;
-
-                            while (x < 3) {
-                            <c:forEach var="o" items="${top3LeastSellD}">
-                                xValues[x] = "${o.name}";
-                                x++;
-                            </c:forEach>
-                            }
-
-                            let y = 0;
-                            while (y < 3) {
-                            <c:forEach var="o" items="${top3LeastSellD}">
-                                yValues[y] = "${o.proportion}";
-                                y++;
-                            </c:forEach>
-                            }
-
-                            var barColors = ["#e6d795", "#e69595", "#e695a4"];
-
-                            new Chart("myChart2", {
-                                type: "bar",
-                                data: {
-                                    labels: xValues,
-                                    datasets: [{
-                                            backgroundColor: barColors,
-                                            data: yValues
-                                        }]
-                                },
-                                options: {
-                                    legend: {display: false},
-                                    title: {
-                                        display: true,
-                                        text: "Least Selling Product"
+                                        text: "Recent Order"
                                     }
                                 }
                             });
                         </script>
                     </div>
-
-
-
-
-
-
-
-
-<!--                    <div class="row">
-                        <div class="col-6">
+                    <div class="row">
+                        <div class="col-5">
                             <h3>Most Selling Product</h3>
                             <c:forEach var="o" items="${top3MostSellD}">
                                 <h6>${o.name}</h6>
@@ -262,7 +302,8 @@
                                 <br>
                             </c:forEach>
                         </div>
-                        <div class="col-6">
+                        <div class="col-2"></div>
+                        <div class="col-5">
                             <h3>Least Selling Product</h3>
                             <c:forEach var="o" items="${top3LeastSellD}">
                                 <h6>${o.name}</h6>
@@ -272,7 +313,37 @@
                                 <br>
                             </c:forEach>
                         </div>
-                    </div>-->
+
+                    </div>
+
+
+
+
+
+
+
+                    <!--                    <div class="row">
+                                            <div class="col-6">
+                                                <h3>Most Selling Product</h3>
+                    <c:forEach var="o" items="${top3MostSellD}">
+                        <h6>${o.name}</h6>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: ${o.proportion}%" aria-valuenow="${o.proportion}" aria-valuemin="0" aria-valuemax="100">${o.amount}</div>
+                        </div>
+                        <br>
+                    </c:forEach>
+                </div>
+                <div class="col-6">
+                    <h3>Least Selling Product</h3>
+                    <c:forEach var="o" items="${top3LeastSellD}">
+                        <h6>${o.name}</h6>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: ${o.proportion}%" aria-valuenow="${o.proportion}" aria-valuemin="0" aria-valuemax="100">${o.amount}</div>
+                        </div>
+                        <br>
+                    </c:forEach>
+                </div>
+            </div>-->
 
                 </div>
             </div>
@@ -382,30 +453,9 @@
 </div>
 </div>
 </div>
-<div class="row">
-<div class="col-6">
-<h3>Most Selling Product</h3>
-        <c:forEach var="o" items="${top3MostSellD}">
-            <h6>${o.name}</h6>
-            <div class="progress">
-                <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: ${o.proportion}%" aria-valuenow="${o.proportion}" aria-valuemin="0" aria-valuemax="100">${o.amount}</div>
-            </div>
-            <br>
-        </c:forEach>
+        -->
     </div>
-    <div class="col-6">
-        <h3>Least Selling Product</h3>
-        <c:forEach var="o" items="${top3LeastSellD}">
-            <h6>${o.name}</h6>
-            <div class="progress">
-                <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: ${o.proportion}%" aria-valuenow="${o.proportion}" aria-valuemin="0" aria-valuemax="100">${o.amount}</div>
-            </div>
-            <br>
-        </c:forEach>
-    </div>
-</div>
-</div>-->
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-    </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+</body>
 </html>
