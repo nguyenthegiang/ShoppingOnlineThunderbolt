@@ -287,25 +287,25 @@ CREATE TABLE [dbo].[Orders](
 	[TotalPrice] [float] NULL,
 	[Note] [nvarchar](2000) NULL,
 	[Status] [int] NULL,
-	[DayBuy] [char](50) NULL ,
+	[DayBuy] [DATETIME] NULL ,
 	constraint userID_in_user_order FOREIGN KEY(UserID) REFERENCES Users(UserID),
 	constraint statusID_in_order_status FOREIGN KEY(Status) REFERENCES Order_Status(ID)
 ) ON [PRIMARY]
 GO
 
-INSERT INTO Orders VALUES (2, 7020000, null, 3, '2021/06/26 at 13:49');
-INSERT INTO Orders VALUES (3, 7020000, null, 3, '2021/06/23 at 21:23');
-INSERT INTO Orders VALUES (4, 7020000, null, 3, '2021/06/06 at 04:17');
-INSERT INTO Orders VALUES (5, 7020000, null, 3, '2021/06/16 at 12:36');
-INSERT INTO Orders VALUES (5, 7020000, null, 3, '2021/06/12 at 10:18');
-INSERT INTO Orders VALUES (10, 2000000, 'black', 3, '2021/05/23 at 21:23');
-INSERT INTO Orders VALUES (8, 250000, 'free shipping', 3, '2021/06/12 at 04:17');
-INSERT INTO Orders VALUES (7, 8020000, null, 3, '2021/06/26 at 12:36');
-INSERT INTO Orders VALUES (7, 1020000, null, 3, '2021/06/22 at 10:18');
-INSERT INTO Orders VALUES (11, 2370000, 'hello', 3, '2021/06/23 at 21:23');
-INSERT INTO Orders VALUES (12, 8390000, 'black', 3, '2021/06/06 at 04:17');
-INSERT INTO Orders VALUES (3, 6720000, null, 3, '2021/06/14 at 12:36');
-INSERT INTO Orders VALUES (7, 17020000, 'hi', 3, '2021/06/12 at 10:18');
+INSERT INTO Orders VALUES (2, 7020000, null, 3, '2021/06/26 13:49');
+INSERT INTO Orders VALUES (3, 7020000, null, 3, '2021/06/23 21:23');
+INSERT INTO Orders VALUES (4, 7020000, null, 3, '2021/06/06 04:17');
+INSERT INTO Orders VALUES (5, 7020000, null, 3, '2021/06/16 12:36');
+INSERT INTO Orders VALUES (5, 7020000, null, 3, '2021/06/12 10:18');
+INSERT INTO Orders VALUES (10, 2000000, 'black', 3, '2021/05/23 21:23');
+INSERT INTO Orders VALUES (8, 250000, 'free shipping', 3, '2021/06/12 04:17');
+INSERT INTO Orders VALUES (7, 8020000, null, 3, '2021/06/26 12:36');
+INSERT INTO Orders VALUES (7, 1020000, null, 3, '2021/06/22 10:18');
+INSERT INTO Orders VALUES (11, 2370000, 'hello', 3, '2021/06/23 21:23');
+INSERT INTO Orders VALUES (12, 8390000, 'black', 3, '2021/06/06 04:17');
+INSERT INTO Orders VALUES (3, 6720000, null, 3, '2021/06/14 12:36');
+INSERT INTO Orders VALUES (7, 17020000, 'hi', 3, '2021/06/12 10:18');
 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -437,3 +437,4 @@ INSERT INTO Feedback_Replies VALUES (1, 5, N'Xin Cám Ơn!');
 INSERT INTO Feedback_Replies VALUES (2, 4, N'Xin Cám Ơn!');
 INSERT INTO Feedback_Replies VALUES (3, 6, N'Xin Cám Ơn!');
 
+select * from Orders
