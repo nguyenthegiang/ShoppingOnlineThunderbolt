@@ -10,6 +10,7 @@
         <title>Computer ERA</title>
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
         <style>
@@ -43,6 +44,9 @@
             .img-big-wrap img{
                 width: 100% !important;
                 height: auto !important;
+            }
+            .checked {
+                color: orange;
             }
         </style>
     </head>
@@ -112,28 +116,37 @@
                                 </aside> <!-- col.// -->
                             </div> <!-- row.// -->
                         </div> <!-- card.// -->
-                        
-                            <div class="title">
-                                <h3 class="text-success">Feedbacks</h3>
-                            </div>
-                            <div class="feedback">
-                                <ul class="comments" style="display: block">
-                                    <c:forEach items="${requestScope.lsFeedback}" var="f" varStatus="loop">
-                                        <li>
-                                            <p>${requestScope.lsAccount[loop.index].user}<br>${f.feedbackDetail}</p>
+
+                        <div class="title">
+                            <h3 class="text-success">Feedbacks</h3>
+                        </div>
+                        <div class="feedback">
+                            <ul class="comments" style="display: block">
+                                <c:forEach items="${requestScope.lsFeedback}" var="f" varStatus="loop">
+                                    <li>
+                                        <p>${requestScope.lsAccount[loop.index].user}&nbsp;&nbsp;&nbsp;
+                                            <c:forEach begin="1" end="${f.star}">
+                                                <span class="fa fa-star checked"></span>
+                                            </c:forEach>
+                                            <br>${f.feedbackDetail}</p>
                                             <c:if test="${f.listReplies.size() != 0}">
-                                                <h5>Replies:</h5>
-                                                <ul>
-                                                    <c:forEach items="${f.listReplies}" var="fr" varStatus="loopReplies">
-                                                        <li><p>${requestScope.lsAccountReplies[loopReplies.index].user}<br>${fr.repliesText}</p></li>
-                                                    </c:forEach>
-                                                </ul>
-                                            </c:if>
-                                        </li>
-                                    </c:forEach>
-                                </ul>
-                            </div>
-                        
+                                            <h5>Replies:</h5>
+                                            <ul>
+                                                <c:forEach items="${f.listReplies}" var="fr" varStatus="loopReplies">
+                                                    <li>
+                                                        <p>${requestScope.lsAccountReplies[loopReplies.index].user}
+                                                            <br>
+                                                            ${fr.repliesText}
+                                                        </p>
+                                                    </li>
+                                                </c:forEach>
+                                            </ul>
+                                        </c:if>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                        </div>
+
                     </div>
                 </div>
             </div>
