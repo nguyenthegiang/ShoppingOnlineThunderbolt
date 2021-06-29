@@ -255,8 +255,7 @@ public class OrderDAO extends BaseDAO<Order> {
 
         return list;
     }
-    
-    
+
 //    public List<Order> getOrderBySellerID(int sellerId) {
 //        List<Order> list = new ArrayList<>();
 //        String query = "SELECT o.ID, o.UserID, "
@@ -285,7 +284,6 @@ public class OrderDAO extends BaseDAO<Order> {
 //
 //        return list;
 //    }
-
     /**
      * delete a specific order by the order id
      *
@@ -305,10 +303,37 @@ public class OrderDAO extends BaseDAO<Order> {
         }
     }
 
+    public List<Order> getRecentOrder() {
+        List<Order> list = new ArrayList<>();
+        String query = "declare @format varchar(100) = 'yyyy/MM/dd'\n"
+                + "SELECT COUNT(*) as Amount, format(DayBuy,@format) as OrderDate\n"
+                + "FROM Orders\n"
+                + "WHERE DayBuy >= GETDATE()-30\n"
+                + "GROUP BY format(DayBuy,@format)\n"
+                + "ORDER BY format(DayBuy,@format)";
+        try {
+            ps = connection.prepareStatement(query);//Throw the query to the SQL server 
+            rs = ps.executeQuery();//Run the query, get the results returned
+
+            //Now, the command has been run, rs is the Result version -> Now have to get the data from the rs table and put it in the List
+            while (rs.next()) {
+                Order o = new Order();
+                o.setId(rs.getInt("Amount"));
+                o.setDate(rs.getString("OrderDate"));
+                list.add(o);
+            }
+        } catch (Exception e) {
+        }
+
+        return list;
+    }
+
     public static void main(String[] args) {
         OrderDAO orderDAO = new OrderDAO();
-        Order a = orderDAO.getOrderByOrderID(7);
-        System.out.println(a);
+        List<Order> list = orderDAO.getRecentOrder();
+        for (Order order : list) {
+            System.out.println(order);
+        }
     }
 
 }
