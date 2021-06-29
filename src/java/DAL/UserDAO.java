@@ -6,6 +6,7 @@
 package DAL;
 
 import entity.Account;
+import entity.Product;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -323,6 +324,22 @@ public class UserDAO extends BaseDAO<Account> {
         }
         return 0;
     }
+    public List<Account> searchAccountInManager(String name) {
+        List<Account> list = new ArrayList<>();
+        String query = "select * from Users \n" +
+                        "Where Username like ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, "%" + name + "%");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Account(rs.getInt("UserID"),rs.getString("UserName"),rs.getString("Password"),rs.getString("email"),rs.getString("ActiveCode"),rs.getInt("isSeller"),rs.getInt("isAdmin"),rs.getInt("StatusID")));
+         //Product(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink")));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
 
     public static void main(String[] args) {
         UserDAO UserDAO = new UserDAO();
@@ -347,6 +364,11 @@ public class UserDAO extends BaseDAO<Account> {
 //        Account a = UserDAO.getAccountByEmail("a");
 //        System.out.println(a);
 //        System.out.println(UserDAO.countAllAccount());
+   // List<Account> list = UserDAO.searchAccountInManager("buingochuyen");
+      //  for (Account account : list) {
+        //   System.out.println(account);
+        //}
+       
 
         System.out.println(UserDAO.checkForgetPassword("nguyenthegiang", "nguyenthe.giang.775@gmail.com"));
     }
