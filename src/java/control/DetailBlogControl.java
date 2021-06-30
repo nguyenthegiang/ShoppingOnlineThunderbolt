@@ -41,8 +41,8 @@ public class DetailBlogControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             //Get ID back
-            //String id = request.getParameter("ID");
-            String id ="1";
+            String id = request.getParameter("ID");
+            
             
             //Get Message Out of Stock (IF that have)
             try {
