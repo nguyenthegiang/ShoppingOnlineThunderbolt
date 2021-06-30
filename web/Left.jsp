@@ -41,14 +41,6 @@
                     <h5 class="card-title">${favor.name}</h5>
                     <p class="bloc_left_price">${favor.priceWithDot} VND</p>
                 </div>
-            </div>
-            <div class="card bg-light mb-3">
-                <div class="card-header bg-info text-white text-uppercase">HOT NEWS</div>
-                <div class="card-body">
-                    <img class="img-fluid" src="image/${news.imageLink}"/>
-                    <h5 class="card-title">${news.title}</h5>
-                    
-                </div>
             </div>    
         </div>
     </body>
