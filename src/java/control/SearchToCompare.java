@@ -99,7 +99,7 @@ public class SearchToCompare extends HttpServlet {
                 request.setAttribute("count", count);
                 request.setAttribute("CateID", CID);
 
-                request.getRequestDispatcher("Home.jsp").forward(request, response);
+                request.getRequestDispatcher("ProductList.jsp").forward(request, response);
             }
         } catch (Exception e) {
             response.sendRedirect("Error.jsp");
