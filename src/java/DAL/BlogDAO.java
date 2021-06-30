@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * test push 2
  * @author thong
  */
 public class BlogDAO extends BaseDAO<BlogDAO> {
