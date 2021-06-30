@@ -14,6 +14,6 @@
         <link rel="icon" type="image/png" href="image/faviconLogo.png" />
     </head>
     <body>
-        <p>${notis}</p>
+        <p>${req}</p>
     </body>
 </html>

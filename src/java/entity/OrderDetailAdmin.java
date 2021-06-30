@@ -21,12 +21,12 @@ public class OrderDetailAdmin {
     private int productPrice;
     private String shipAddress;
     private String phoneNumber;
-    private int status;
+    private String status;
 
     public OrderDetailAdmin(int id, int userId, int orderID, 
             String customerName, int productID, String productName,
             String imageLink, int productPrice, String shipAddress,
-            String phoneNumber, int status) {
+            String phoneNumber, String status) {
         this.id = id;
         this.userId = userId;
         this.orderID = orderID;
@@ -45,11 +45,11 @@ public class OrderDetailAdmin {
         return "OrderDetailAdmin{" + "id=" + id + ", userId=" + userId + ", orderID=" + orderID + ", customerName=" + customerName + ", productID=" + productID + ", productName=" + productName + ", imageLink=" + imageLink + ", productPrice=" + productPrice + ", shipAddress=" + shipAddress + ", phoneNumber=" + phoneNumber + ", status=" + status + '}';
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

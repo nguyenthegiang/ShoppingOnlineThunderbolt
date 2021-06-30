@@ -91,7 +91,7 @@ public class NotificationDAO extends BaseDAO<Notification> {
         }
     }
     
-    public void userBuyNoti(int userId, int orderId, List<Integer> adminSellerId)
+    public void userBuyNoti(int userId, int orderId, List<Integer> sellerId)
             throws Exception {
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
@@ -108,7 +108,7 @@ public class NotificationDAO extends BaseDAO<Notification> {
             ps = connection.prepareStatement(query);
 
             // now loop through nearly 1,500 nodes in the list
-            for (Integer n : adminSellerId) {
+            for (Integer n : sellerId) {
                 ps.setInt(1, n);
                 ps.setInt(2, orderId);
                 ps.setString(3, "The customer with ID " + userId + " has placed an order"
@@ -122,6 +122,39 @@ public class NotificationDAO extends BaseDAO<Notification> {
         } catch (Exception se) {
         }
     }
+    
+    
+    public void userBuyNotiAdmin(int userId, int orderId)
+            throws Exception {
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm");
+
+        LocalDateTime now = LocalDateTime.now();
+        // my SQL INSERT statement
+        String query = " INSERT INTO Notifications "
+                + " VALUES (?, ?, ?, ?, ?)";
+
+        // declare the preparedstatement reference
+        try {
+            // create the preparedstatement before the loop
+            ps = connection.prepareStatement(query);
+
+            // now loop through nearly 1,500 nodes in the list
+                ps.setInt(1, 1);
+                ps.setInt(2, orderId);
+                ps.setString(3, "The customer with ID " + userId + " has placed an order"
+                        + " with OrderID: "+ orderId
+                        + ". Check it out! ");
+                ps.setString(4, "unread");
+                ps.setString(5, dtf.format(now) + " at " + dtf1.format(now));
+
+                ps.execute();           // the INSERT happens here
+            
+        } catch (Exception se) {
+        }
+    }
+    
 
     /**
      * Adding a notification to admin by user that their order has been shipped

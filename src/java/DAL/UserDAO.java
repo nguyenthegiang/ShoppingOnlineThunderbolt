@@ -20,16 +20,16 @@ import java.util.List;
  */
 public class UserDAO extends BaseDAO<Account> {
 
-    
     PreparedStatement ps = null; //...
     ResultSet rs = null; //Get the results returned
 
     /**
      * For login an account to the website
+     *
      * @param user: username
      * @param pass: password
-     * @return the account information of the account logging in,
-     * null if username or password does not exist
+     * @return the account information of the account logging in, null if
+     * username or password does not exist
      */
     public Account login(String user, String pass) {
         String query = "SELECT * FROM Users WHERE Username = ? AND Password = ?";
@@ -51,6 +51,7 @@ public class UserDAO extends BaseDAO<Account> {
 
     /**
      * Use for signup an account to the website
+     *
      * @param user: username of the new account
      * @param pass: password of the new account
      * @param email: email of the new account
@@ -68,10 +69,11 @@ public class UserDAO extends BaseDAO<Account> {
         } catch (Exception e) {
         }
     }
-    
+
     /**
-     * Used when user try to login via FB, the password will be set automatically
-     * and the user will be added to database
+     * Used when user try to login via FB, the password will be set
+     * automatically and the user will be added to database
+     *
      * @param user: name of the facebook account
      * @param email: email of the facebook account
      */
@@ -90,6 +92,7 @@ public class UserDAO extends BaseDAO<Account> {
 
     /**
      * Get all account from database
+     *
      * @return the list of account from the database
      */
     public List<Account> getAllAccounts() {
@@ -109,16 +112,23 @@ public class UserDAO extends BaseDAO<Account> {
         }
         return list;
     }
-    
-    
-    public List<Integer> getAllAdminAndSeller() {
+
+    public List<Integer> getSellerIdOfAnOrder(int orderId) {
         List<Integer> list = new ArrayList<>();
-        String query = "SELECT userId FROM Users WHERE isSeller = 1";
+        String query = "SELECT u.userid from Users u INNER JOIN Product p\n"
+                + "ON u.UserID = p.SellerID\n"
+                + "INNER JOIN Order_Detail od\n"
+                + "ON od.ProductID = p.ProductID\n"
+                + "INNER JOIN Orders o\n"
+                + "ON o.ID = od.Order_ID\n"
+                + "WHERE o.ID =?";
         try {
             ps = connection.prepareStatement(query);
+            ps.setInt(1, orderId);
+
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(rs.getInt("userId"));
+                list.add(rs.getInt("UserId"));
             }
         } catch (Exception e) {
         }
@@ -127,6 +137,7 @@ public class UserDAO extends BaseDAO<Account> {
 
     /**
      * Delete an account from the database
+     *
      * @param id: id of account to delete
      */
     public void deleteAccount(String id) {
@@ -148,6 +159,7 @@ public class UserDAO extends BaseDAO<Account> {
 
     /**
      * Update the information of an account
+     *
      * @param id: id of account to update
      * @param user: the updated username
      * @param pass: the updated password
@@ -178,6 +190,7 @@ public class UserDAO extends BaseDAO<Account> {
 
     /**
      * Update the password of a user
+     *
      * @param id: of user
      * @param newPassword: new password of that user
      * @return true if update successfully
@@ -190,7 +203,7 @@ public class UserDAO extends BaseDAO<Account> {
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, newPassword);
-            ps.setString(2, id);           
+            ps.setString(2, id);
             ps.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -201,6 +214,7 @@ public class UserDAO extends BaseDAO<Account> {
 
     /**
      * Find an account by id
+     *
      * @param id: id of account to find
      * @return the found account, null if the account does not exist in the
      * database
@@ -224,6 +238,7 @@ public class UserDAO extends BaseDAO<Account> {
 
     /**
      * Find an account by email
+     *
      * @param id: email of account to find
      * @return the found account, null if the account does not exist in the
      * database
@@ -244,9 +259,10 @@ public class UserDAO extends BaseDAO<Account> {
         }
         return null;
     }
-    
+
     /**
      * Find an account by username
+     *
      * @param userName username of account to find
      * @return the found account, null if the account does not exist in the
      * database
@@ -271,6 +287,7 @@ public class UserDAO extends BaseDAO<Account> {
 
     /**
      * Update status of an account
+     *
      * @param id: id of account to update status
      * @param status: the status to update to account
      * @return true if update successful
@@ -292,9 +309,9 @@ public class UserDAO extends BaseDAO<Account> {
         }
         return check > 0;
     }
-        
+
     /**
-     * @return the number of account in the database 
+     * @return the number of account in the database
      */
     public int countAllAccount() {
         String query = "select count(*) from Users";
@@ -308,7 +325,7 @@ public class UserDAO extends BaseDAO<Account> {
         }
         return 0;
     }
-    
+
     public int checkForgetPassword(String username, String email) {
         String query = "select UserID from Users where Username = ? AND email = ?";
         try {
@@ -324,17 +341,18 @@ public class UserDAO extends BaseDAO<Account> {
         }
         return 0;
     }
+
     public List<Account> searchAccountInManager(String name) {
         List<Account> list = new ArrayList<>();
-        String query = "select * from Users \n" +
-                        "Where Username like ?";
+        String query = "select * from Users \n"
+                + "Where Username like ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, "%" + name + "%");
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Account(rs.getInt("UserID"),rs.getString("UserName"),rs.getString("Password"),rs.getString("email"),rs.getString("ActiveCode"),rs.getInt("isSeller"),rs.getInt("isAdmin"),rs.getInt("StatusID")));
-         //Product(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink")));
+                list.add(new Account(rs.getInt("UserID"), rs.getString("UserName"), rs.getString("Password"), rs.getString("email"), rs.getString("ActiveCode"), rs.getInt("isSeller"), rs.getInt("isAdmin"), rs.getInt("StatusID")));
+                //Product(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink")));
             }
         } catch (Exception e) {
         }
@@ -343,13 +361,11 @@ public class UserDAO extends BaseDAO<Account> {
 
     public static void main(String[] args) {
         UserDAO UserDAO = new UserDAO();
-        
+
         /*---------Test Case for getAllCategory() method---------*/
 //        Account acc = UserDAO.login("nguyenthegiang", "nguyenthegiang");
 //        System.out.println(acc);
-        
         //UserDAO.signUp("dinhthanhhoang", "dinhthanhhoang");
-
 //        List<Account> list = UserDAO.getAllAccounts();
 //        for (Account account : list) {
 //            System.out.println(account);
@@ -360,16 +376,13 @@ public class UserDAO extends BaseDAO<Account> {
 //        Account x = UserDAO.getAccountByID("1");
 //        System.out.println(x);
 //        UserDAO.editAccount("9", "alo", "loa", "1", "1")
-
 //        Account a = UserDAO.getAccountByEmail("a");
 //        System.out.println(a);
 //        System.out.println(UserDAO.countAllAccount());
-   // List<Account> list = UserDAO.searchAccountInManager("buingochuyen");
-      //  for (Account account : list) {
+        // List<Account> list = UserDAO.searchAccountInManager("buingochuyen");
+        //  for (Account account : list) {
         //   System.out.println(account);
         //}
-       
-
         System.out.println(UserDAO.checkForgetPassword("nguyenthegiang", "nguyenthe.giang.775@gmail.com"));
     }
 }
