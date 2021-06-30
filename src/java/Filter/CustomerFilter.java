@@ -126,7 +126,7 @@ public class CustomerFilter implements Filter {
 
         if (a == null || a.getIsSell() == 0) {
             ////If it's not the seller -> Redirect to the home page => can't go through doFilter
-            httpResponse.sendRedirect("home");
+            httpResponse.sendRedirect("productList");
         }
         
         try {

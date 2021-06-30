@@ -1,3 +1,9 @@
+<%-- 
+    Document   : Home
+    Created on : Jun 30, 2021, 9:50:26 AM
+    Author     : ADMIN
+--%>
+
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -20,14 +26,7 @@
 
     </head>
     <body style="background-color: #D9DDDC">
-        <!--Split Home page to many JSP pages for easier managing-->
-
-        <!--Thanh menu phía trên cùng-->
-        <!--hello-->
         <jsp:include page="Menu.jsp"></jsp:include>
-
-            <!--Slideshow-->
-            <!--<section class="jumbotron text-center" style="background-color: white;">-->
             <div class="container-fluid" style="background-color: #ebebf2">
                 <div class="row"></div>
                 <div class="col-md-12">
@@ -35,8 +34,6 @@
                     <img class="mySlides" src="image/SlideShow/Intro2.jpg" style="height: 80%; width: 80%; object-fit: contain; margin: auto">
                     <img class="mySlides" src="image/SlideShow/Intro3.jpg" style="height: 80%; width: 80%; object-fit: contain; margin: auto">
                     <div class="w3-center w3-display-bottommiddle" style="width:100%">
-                        <!--                        <div class="w3-left" onclick="plusDivs(-1)">&#10094;</div>
-                                                <div class="w3-right" onclick="plusDivs(1)">&#10095;</div>-->
                         <span class="w3-badge demo w3-border" onclick="currentDiv(1)"></span>
                         <span class="w3-badge demo w3-border" onclick="currentDiv(2)"></span>
                         <span class="w3-badge demo w3-border" onclick="currentDiv(3)"></span>
@@ -62,10 +59,9 @@
                     setTimeout(carousel, 2000); // Change image every 2 seconds
                 }
             </script>
-        <!--</section>-->
 
         <!--Danh mục sản phẩm-->
-        <!--<div class="container" style="margin: 10px; background-color: #ffffff; margin: auto">
+        <div class="container" style="margin: 10px; background-color: #ffffff; margin: auto">
             <h2 style="font-family: Brush Script Std; text-align: center">Shop by category</h2>
             <div class="row">
                 <div class="col-md-2">
@@ -90,14 +86,14 @@
                     <img src="image/CATEGORY/headphonee.jpg" id="category">
                 </div>
             </div>
-        </div>-->
+        </div>
 
 
         <!--Giới thiệu website-->
-        <!--<div class="container" style="background-color: #ffffff; margin: auto; padding: 20px">
+        <div class="container" style="background-color: #ffffff; margin: auto; padding: 20px">
             <img src="image/SlideShow/Intro.jpg" alt="" style="height: 100%; width: 100%; object-fit: contain"/>
             <br><br><br>
-        </div>-->
+        </div>
 
         <br>
         <!--Phần sản phẩm-->

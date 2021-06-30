@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "HomeControl", urlPatterns = {"/productList"})
+@WebServlet(name = "ProductListControl", urlPatterns = {"/productList"})
 public class ProductListControl extends HttpServlet {
 
     /**
