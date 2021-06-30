@@ -54,7 +54,7 @@ public class SignupControl extends HttpServlet {
                 dao.signUpFB(username, email);
                 Account a = dao.getAccountByEmail(email);
                 session.setAttribute("acc", a);
-                response.sendRedirect("home");
+                response.sendRedirect("productList");
             } else {
                 // Normal account signup
                 // Get new user information

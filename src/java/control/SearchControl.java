@@ -39,7 +39,7 @@ public class SearchControl extends HttpServlet {
         try {
             String txtSearch = request.getParameter("txt");
             if (txtSearch.equals("")) {
-                response.sendRedirect("home");
+                response.sendRedirect("productList");
             } else {
                 //Call to DAOs
                 ProductDAO ProductDAO = new ProductDAO();
