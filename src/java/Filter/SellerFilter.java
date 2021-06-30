@@ -126,7 +126,7 @@ public class SellerFilter implements Filter {
 
         if (a == null || a.getIsAdmin() == 0) {
             //If it's not the seller -> Redirect to the home page => can't go through doFilter
-            httpResponse.sendRedirect("home");
+            httpResponse.sendRedirect("productList");
         }
         
         try {

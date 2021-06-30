@@ -118,7 +118,7 @@ public class LoginFilter implements Filter {
         Account a = (Account) session.getAttribute("acc");
 
         if (a != null) { //If a is not null -> login then -> Redirect to home
-            httpResponse.sendRedirect("home");
+            httpResponse.sendRedirect("productList");
         }
 
         try {
