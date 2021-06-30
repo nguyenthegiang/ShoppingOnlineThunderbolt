@@ -36,11 +36,14 @@ public class ProductListControl extends HttpServlet {
                 ProductDAO ProductDAO = new ProductDAO();
                 InforDAO InforDAO = new InforDAO();
                 CategoryDAO CategoryDAO = new CategoryDAO();
+                BlogDAO BlogDAO = new BlogDAO();
 
                 List<Category> listC = CategoryDAO.getAllCategory(); //Get List Category
                 Product hot = ProductDAO.getHotProduct(); //Get First Product
                 Product favor = ProductDAO.getFavoriteProduct(); //Get Last Product
                 Information infor = InforDAO.getInfor(); //Get Information
+                Blog news = BlogDAO.getHotBlog();//getHotBlog
+
 
                 //Paging By CategoryID
                 String CategoryID = request.getParameter("CategoryID");
@@ -91,6 +94,7 @@ public class ProductListControl extends HttpServlet {
                 InforDAO InforDAO = new InforDAO();
                 CategoryDAO CategoryDAO = new CategoryDAO();
                 NotificationDAO notiDAO = new NotificationDAO();
+                BlogDAO BlogDAO = new BlogDAO();
                 Account user = (Account) session.getAttribute("acc");
 
                 int userId = user.getId();
@@ -101,6 +105,7 @@ public class ProductListControl extends HttpServlet {
                 Information infor = InforDAO.getInfor(); //Get Information
                 List<Notification> notis = notiDAO.getTop5NotificationsByUserID(userId);
                 int notiss = notiDAO.countNotifications(userId);
+                Blog news = BlogDAO.getHotBlog();//getHotBlog
 
                 //Paging By CategoryID
                 String CategoryID = request.getParameter("CategoryID");
