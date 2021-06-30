@@ -174,7 +174,7 @@
                         <div class="col-5">
                             <canvas id="myChart3" style="width:100%;max-width:700px"></canvas>
 
-                            <!--                            <script>
+<!--                                                        <script>
                                                             var xValues = [""];
                                                             var yValues = [0];
                                                             let a = 0;
