@@ -133,12 +133,8 @@ public class FinishControl extends HttpServlet {
             userOrder.setStatus("Waiting for Confirmation");
             userOrder.setDate(dtf.format(now));
             int newOrderId = orderDao.addOrder(userOrder, 1);
-            
-            
-            //get all ID of seller and admin
-            List<Integer> idAdminSeller = accountDAO.getAllAdminAndSeller();
-            notiDAO.userBuyNoti(a.getId(), newOrderId, idAdminSeller);
 
+            //get all ID of seller and admin
             // add list of product of the order to the database
             for (Cart cart : listCart) {
                 OrderDetail od = new OrderDetail();
@@ -150,8 +146,15 @@ public class FinishControl extends HttpServlet {
                 lsProductInOrder.add(od);
             }
             odDao.addManyOrderDetails(newOrderId, lsProductInOrder);
+            
+            
+            //Add notifications to sellers and admin when user finish ordering
+            List<Integer> idSeller = accountDAO.getSellerIdOfAnOrder(newOrderId);
+            notiDAO.userBuyNoti(a.getId(), newOrderId, idSeller);
+            notiDAO.userBuyNotiAdmin(a.getId(), newOrderId);
+            
 
-            // add ship info to the database
+// add ship info to the database
             shipInfo.setOrderId(newOrderId);
             shipInfoDAO.addShipInfo(shipInfo);
 
