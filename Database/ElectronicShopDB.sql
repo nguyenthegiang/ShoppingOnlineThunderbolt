@@ -427,7 +427,6 @@ CREATE TABLE Notifications(
 	constraint OrderID_in_Orders FOREIGN KEY(OrderID) REFERENCES Orders(ID)
 
 );
-
 GO
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -483,4 +482,3 @@ imageLink nvarchar(1000),
 GO
 INSERT INTO Blog VALUES ( N'Tại sao ngồi ghế lại đỡ hơn ngồi đất', N'Vì ở ghế có đệm',N'Ghengoi.png');
 INSERT INTO Blog VALUES (N'Cách để làm cho máy tính bạn mát hơn', N'Hãy thay keo tản nhiệt hoặc sử dụng tản nhiệt nước',N'LapHot.jpg');
-select * from Orders
