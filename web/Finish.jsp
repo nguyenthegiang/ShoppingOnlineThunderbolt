@@ -27,7 +27,7 @@
     <body>
         <div class="container">
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-            <a href="home">Continue purchase</a>
+            <a href="productList">Continue purchase</a>
         </div>
     </body>
 

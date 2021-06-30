@@ -71,7 +71,7 @@
                 <div class="row">
                     <div class="col-md-8">
                         <br><br><br><br><br>
-                        <p><a href="home" id="back"><i class="fa fa-angle-left"></i>Continue shopping</a></p>
+                        <p><a href="productList" id="back"><i class="fa fa-angle-left"></i>Continue shopping</a></p>
                     </div>
                     <div class="col-md-4">
                         <h5 id="sub">Subtotal:</h5>  

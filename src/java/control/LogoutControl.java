@@ -41,7 +41,7 @@ public class LogoutControl extends HttpServlet {
             HttpSession session = request.getSession();
             session.invalidate();
             //Redirect back home
-            response.sendRedirect("home");
+            response.sendRedirect("productList");
         } catch (Exception e) {
             response.sendRedirect("Error.jsp");
         }

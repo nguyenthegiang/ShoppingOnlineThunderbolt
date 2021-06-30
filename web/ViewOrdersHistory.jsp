@@ -35,14 +35,14 @@
         <div class="row">
             <div class="col-3">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light flex-column">
-                    <a class="navbar-brand" href="home"><img src="image/MenuLogo.png" width="200px"></a>
+                    <a class="navbar-brand" href="productList"><img src="image/MenuLogo.png" width="200px"></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="home">Home</a>
+                            <a class="nav-link" href="productList">Product List</a>
                         </li>
                         <c:if test="${sessionScope.acc == null}">
                             <li class="nav-item">

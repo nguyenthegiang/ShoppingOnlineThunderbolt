@@ -82,7 +82,7 @@
                     <br><br>
 
                     <%-- Link to return to home page --%>
-                    <a href="home" id="back">Back to home page</a>
+                    <a href="productList" id="back">Back to Product List page</a>
                     <br><br>
                 </div>
                 <div class="col-md-3" id="image">
