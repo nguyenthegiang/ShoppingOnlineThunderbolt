@@ -63,7 +63,7 @@ public class ViewInvoiceDetailAdmin extends HttpServlet {
 
                 request.getRequestDispatcher("ViewInvoiceDetail.jsp").forward(request, response);
             } else if(a.getIsAdmin()!= 1){
-                String status = request.getParameter("status");
+                String status = request.getParameter("status"); 
                 int sellerId = Integer.parseInt(request.getParameter("sellerId"));
                 int orderId = Integer.parseInt(request.getParameter("orderId"));
                 InvoicesDAO invoicesDAO = new InvoicesDAO();
