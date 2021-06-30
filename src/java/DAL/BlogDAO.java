@@ -65,6 +65,7 @@ public class BlogDAO extends BaseDAO<BlogDAO> {
         return null;
     }
    
+   
     public static void main(String[] args) {
         BlogDAO dao = new BlogDAO();
       //  System.out.println(dao.getHotBlog());
