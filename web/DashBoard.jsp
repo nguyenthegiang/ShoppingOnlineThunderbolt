@@ -270,7 +270,7 @@
 
 
                     <div class="row">
-                        <div class="col-6">
+<!--                        <div class="col-6">
                             <canvas id="myChart3" style="width:100%;max-width:700px"></canvas>
 
                             <script>
@@ -328,7 +328,7 @@
                                     }
                                 });
                             </script>
-                        </div>
+                        </div>-->
 
                         <div class="col-6">
                             <div id="piechart" style="width: 900px; height: 500px;"></div>
