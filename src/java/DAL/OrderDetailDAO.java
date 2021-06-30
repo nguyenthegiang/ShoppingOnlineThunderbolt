@@ -32,8 +32,8 @@ public class OrderDetailDAO extends BaseDAO<OrderDetail> {
 
         // my SQL INSERT statement
         String query = " INSERT INTO Order_Detail (Order_id, ProductID,"
-                + " ProductName, ProductPrice)"
-                + " values (?, ?, ?, ?)";
+                + " ProductName, ProductPrice, Status)"
+                + " values (?, ?, ?, ?, ?)";
 
         // declare the preparedstatement reference
         try {
@@ -46,6 +46,7 @@ public class OrderDetailDAO extends BaseDAO<OrderDetail> {
                 ps.setInt(2, n.getProductID());
                 ps.setString(3, n.getProductName());
                 ps.setInt(4, n.getProductPrice());
+                ps.setString(5, String.valueOf("1"));
 
                 ps.execute();           // the INSERT happens here
             }
@@ -61,8 +62,11 @@ public class OrderDetailDAO extends BaseDAO<OrderDetail> {
      */
     public List<OrderDetail> getOrderDetailByOrderID(int id) {
         List<OrderDetail> list = new ArrayList<>();
-        String query = "SELECT * FROM Order_Detail"
-                + " WHERE Order_ID = ?";
+        String query = "SELECT od.ID,od.Order_ID, od.ProductID, "
+                + "od.ProductName, od.ProductPrice, os.Name FROM Order_Detail od\n"
+                + "INNER JOIN Order_Status os\n"
+                + "ON od.Status = os.ID\n"
+                + "                 WHERE Order_ID = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, id);
@@ -73,15 +77,13 @@ public class OrderDetailDAO extends BaseDAO<OrderDetail> {
                         rs.getInt("Order_ID"),
                         rs.getInt("ProductID"),
                         rs.getString("ProductName"),
-                        rs.getInt("ProductPrice")
+                        rs.getInt("ProductPrice"),
+                        rs.getString("name")
                 ));
             }
         } catch (Exception e) {
         }
         return list;
     }
-    
-    
-    
-     
+
 }

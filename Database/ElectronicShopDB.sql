@@ -278,7 +278,7 @@ INSERT [dbo].[Order_Status] ([Name]) VALUES (N'Waiting for Confirmation')
 INSERT [dbo].[Order_Status] ([Name]) VALUES (N'Packaging')
 INSERT [dbo].[Order_Status] ([Name]) VALUES (N'Delivering')
 INSERT [dbo].[Order_Status] ([Name]) VALUES (N'Canceled')
-
+INSERT [dbo].[Order_Status] ([Name]) VALUES (N'Completed')
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE [dbo].[Orders](
@@ -352,8 +352,10 @@ CREATE TABLE [dbo].[Order_Detail](
 	[ProductID] [int] NOT NULL,
 	[ProductName] [nvarchar](1000) NOT NULL,
 	[ProductPrice] [int] NOT NULL,	
+	[Status] [int] NOT NULL,	
 	constraint orderID_in_order FOREIGN KEY(Order_ID) REFERENCES Orders(ID),
-	constraint productID_in_order_detail FOREIGN KEY(ProductID) REFERENCES Product(ProductID)
+	constraint productID_in_order_detail FOREIGN KEY(ProductID) REFERENCES Product(ProductID),
+	constraint order_Detail_Status FOREIGN KEY(Status) REFERENCES Order_Status(ID)
 ) ON [PRIMARY]
 GO
 
@@ -425,7 +427,6 @@ CREATE TABLE Notifications(
 	constraint OrderID_in_Orders FOREIGN KEY(OrderID) REFERENCES Orders(ID)
 
 );
-
 GO
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -472,5 +473,12 @@ GO
 INSERT INTO Feedback_Replies VALUES (1, 5, N'Xin Cám Ơn!');
 INSERT INTO Feedback_Replies VALUES (2, 4, N'Xin Cám Ơn!');
 INSERT INTO Feedback_Replies VALUES (3, 6, N'Xin Cám Ơn!');
-
-select * from Orders
+Create TABLE Blog(
+ID int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
+Title nvarchar(200),
+Content nvarchar(2500),
+imageLink nvarchar(1000),
+)ON [PRIMARY]
+GO
+INSERT INTO Blog VALUES ( N'Tại sao ngồi ghế lại đỡ hơn ngồi đất', N'Vì ở ghế có đệm',N'Ghengoi.png');
+INSERT INTO Blog VALUES (N'Cách để làm cho máy tính bạn mát hơn', N'Hãy thay keo tản nhiệt hoặc sử dụng tản nhiệt nước',N'LapHot.jpg');
