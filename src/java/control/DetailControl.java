@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -37,6 +38,9 @@ public class DetailControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         try {
+            HttpSession session = request.getSession();
+            Account currentAccount = (Account) session.getAttribute("acc");
+
             //Get ID back
             String id = request.getParameter("ProductID");
 
@@ -55,7 +59,7 @@ public class DetailControl extends HttpServlet {
             FeedbackRepliesDAO feedbackRepliesDao = new FeedbackRepliesDAO();
             CategoryDAO CategoryDAO = new CategoryDAO();
             ProductDAO ProductDAO = new ProductDAO();
-            
+
             // create list of categories, feedback, account that made feedback and account that replies
             List<Category> listC = CategoryDAO.getAllCategory();
             List<Feedback> lsFeedback
@@ -68,15 +72,15 @@ public class DetailControl extends HttpServlet {
             for (Feedback feedback : lsFeedback) {
                 // get all replies of feedback
                 lsFeedbackReplies = feedbackRepliesDao.
-                        getFeedbacksByFeedbackId(feedback.getId());               
+                        getFeedbacksByFeedbackId(feedback.getId());
                 feedback.setListReplies(lsFeedbackReplies);
-                
+
                 //get all account that made replies
                 for (FeedbackReplies lsFeedbackReply : lsFeedbackReplies) {
                     Account a = userDao.getAccountByID(
-                        String.valueOf(
-                                lsFeedbackReply.getUserId()
-                        ));
+                            String.valueOf(
+                                    lsFeedbackReply.getUserId()
+                            ));
                     lsAccountReplies.add(a);
                 }
 
@@ -88,6 +92,16 @@ public class DetailControl extends HttpServlet {
                 lsAccount.add(a);
             }
 
+            /**
+             * Check if current login account can give feedback or not Change
+             * Feedback to have order id of that feedback Check if order has
+             * been deliverd and received or not If it has been deliverd, allow
+             * feedback Write order date also
+             */
+            if(currentAccount!=null) {
+                
+            }
+            
             // get hot and favourite product
             Product hot = ProductDAO.getHotProduct();
             Product favor = ProductDAO.getFavoriteProduct();
