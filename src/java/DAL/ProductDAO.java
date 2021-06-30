@@ -295,7 +295,6 @@ public class ProductDAO extends BaseDAO<Product> {
 //        }
 //        return list;
 //    }
-    
     //count total product
     public int countProductByCategory(int CategoryID) {
         if (CategoryID == 0) {
@@ -478,8 +477,37 @@ public class ProductDAO extends BaseDAO<Product> {
         return list;
     }
 
+    public List<Product> countProductByCategory() {
+        List<Product> list = new ArrayList<>();
+        String query = "select Count(*) as amount, Category.CategoryName\n"
+                + "from Product \n"
+                + "INNER JOIN Category\n"
+                + "on Product.CategoryID = Category.CategoryID\n"
+                + "group by Product.CategoryID, Category.CategoryName";
+        try {
+            ps = connection.prepareStatement(query);//Throw the query to the SQL server 
+            rs = ps.executeQuery();//Run the query, get the results returned
+
+            //Now, the command has been run, rs is the Result version -> Now have to get the data from the rs table and put it in the List
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt("amount"));
+                p.setName(rs.getString("CategoryName"));
+                list.add(p);
+            }
+        } catch (Exception e) {
+        }
+
+        return list;
+    }
+
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
+        List<Product> list = dao.countProductByCategory();
+        for (Product o : list) {
+            System.out.println(o);
+        }
+        
         /*---------Test Case for getAllProduct() method---------*/
 //        List<Product> list = dao.getAllProduct();
 //        for (Product o : list) {
@@ -488,10 +516,8 @@ public class ProductDAO extends BaseDAO<Product> {
 
         /*---------Test Case for getHotProduct() method---------*/
 //        System.out.println(dao.getHotProduct());
-        
         /*---------Test Case for getFavoriteProduct() method---------*/
 //        System.out.println(dao.getFavoriteProduct());
-        
         /*---------Test Case for getProductBySellID() method---------*/
 //        List<Product> list = dao.getProductBySellID(1);
 //        for (Product product : list) {
@@ -500,14 +526,11 @@ public class ProductDAO extends BaseDAO<Product> {
 
         /*---------Test Case for edit() method---------*/
         //Waiting...
-        
         /*---------Test Case for add() method---------*/
         //Waiting...
-        
         /*---------Test Case for delete() method---------*/
         //Waiting...
 //        dao.delete("1");
-        
         /*---------Test Case for countProduct() method---------*/
 //        System.out.println(dao.countProduct());
 
@@ -534,13 +557,11 @@ public class ProductDAO extends BaseDAO<Product> {
 
         /*---------Test Case for countProductBySeller() method---------*/
 //        System.out.println(dao.countProductBySeller(1));
-        
         /*---------Test Case for getProductDetailByID() method---------*/
 //        System.out.println(dao.getProductByID("1"));   
 
         /*---------Test Case for getProductDetailByID() method---------*/
 //        System.out.println(dao.getProductDetailByID("1"));
- 
         /*---------Test Case for getProductForManager() method---------*/
 //        ProductInManager p = dao.getProductForManager("1");
 //        System.out.println(p);
@@ -550,13 +571,11 @@ public class ProductDAO extends BaseDAO<Product> {
 //        for (Product o : list) {
 //            System.out.println(o);
 //        }
-        
         /*---------Test Case for searchProductInManager() method---------*/
 //        List<Product> list = dao.searchProductInManager("asus", 1);
 //        for (Product product : list) {
 //            System.out.println(product);
 //        }
-        
         /*---------Test Case for top3MostSell() method---------*/
 //        List<ProductInManager> list = dao.top3MostSell();
 //        for (ProductInManager productInManager : list) {
