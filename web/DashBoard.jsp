@@ -24,6 +24,7 @@
         <link href="css/Dashboard.css" rel="stylesheet" type="text/css"/>
         <title>Computer ERA</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+        
     </head>
     <body>
 
@@ -153,6 +154,7 @@
 
 
 
+                                            
 
                     <!--                    <div class="row">
                                             <canvas id="myChart" style="width:100%;max-width:1000px"></canvas>
@@ -247,66 +249,10 @@
 
 
 
-                    <div class="row">
-                        <canvas id="myChart3" style="width:100%;max-width:700px"></canvas>
-
-                        <script>
-                            var xValues = [""];
-                            var yValues = [0];
-                            let a = 0;
-
-                            while (a < 32) {
-                            <c:forEach var="o" items="${recentOrder}">
-                                xValues[a] = "${o.date}";
-                                a++;
-                            </c:forEach>
-                            }
-                            
-                            xValues[32] = "";
-                            yValues[32] = 0;
-                            
-                            let b = 0;
-                            while (b < 32) {
-                            <c:forEach var="o" items="${recentOrder}">
-                                yValues[b] = "${o.id}";
-                                b++;
-                            </c:forEach>
-                            }
-                            var barColors = [];
-                            var tempColors = ["#85deb4", "#cb97e6", "#97b5e6"];
-                            for (let c = 0; c < 32; c++) {
-                                if(c%3 == 1){
-                                    barColors[c] = tempColors[0];
-                                }
-                                else if(c%3 == 2){
-                                    barColors[c] = tempColors[1];
-                                }
-                                else if(c%3 == 0){
-                                    barColors[c] = tempColors[2];
-                                }
-                            }
-
-                            barColors[32] = "white";
-                            
-                            new Chart("myChart3", {
-                                type: "bar",
-                                data: {
-                                    labels: xValues,
-                                    datasets: [{
-                                            backgroundColor: barColors,
-                                            data: yValues
-                                        }]
-                                },
-                                options: {
-                                    legend: {display: false},
-                                    title: {
-                                        display: true,
-                                        text: "Recent Order"
-                                    }
-                                }
-                            });
-                        </script>
-                    </div>
+<!--                    <div class="row">
+-->
+<!--
+                    </div>-->
                     <div class="row">
                         <div class="col-5">
                             <h3>Most Selling Product</h3>

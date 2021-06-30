@@ -20,8 +20,9 @@ public class OrderDetailWithImage extends OrderDetail {
     public OrderDetailWithImage() {
     }
 
-    public OrderDetailWithImage(String imageLink, int id, int orderID, int productID, String productName, int productPrice) {
-        super(id, orderID, productID, productName, productPrice);
+    public OrderDetailWithImage(String imageLink, int id, int orderID, 
+            int productID, String productName, int productPrice, String status) {
+        super(id, orderID, productID, productName, productPrice, status);
         this.imageLink = imageLink;
     }
 
@@ -87,5 +88,20 @@ public class OrderDetailWithImage extends OrderDetail {
     public void setImageLink(String imageLink) {
         this.imageLink = imageLink;
     }
+
+    @Override
+    public void setStatus(String status) {
+        super.setStatus(status); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getStatus() {
+        return super.getStatus(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+    
+    
+    
 
 }

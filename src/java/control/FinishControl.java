@@ -63,7 +63,7 @@ public class FinishControl extends HttpServlet {
             UserDAO accountDAO = new UserDAO();
 
             // get DateTime to format order date
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
             DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm");
             LocalDateTime now = LocalDateTime.now();
 
@@ -131,7 +131,7 @@ public class FinishControl extends HttpServlet {
             userOrder.setTotalPrice(total);
             userOrder.setNote(request.getParameter("note"));
             userOrder.setStatus("Waiting for Confirmation");
-            userOrder.setDate(dtf.format(now)+" at "+dtf1.format(now));
+            userOrder.setDate(dtf.format(now));
             int newOrderId = orderDao.addOrder(userOrder, 1);
             
             
@@ -146,6 +146,7 @@ public class FinishControl extends HttpServlet {
                 od.setProductID(cart.getP().getId());
                 od.setProductName(cart.getP().getName());
                 od.setProductPrice(cart.getP().getPrice());
+//                od.setStatus("Waiting for Confirmation");
                 lsProductInOrder.add(od);
             }
             odDao.addManyOrderDetails(newOrderId, lsProductInOrder);

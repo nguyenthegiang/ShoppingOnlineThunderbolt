@@ -21,8 +21,12 @@ public class OrderDetailAdmin {
     private int productPrice;
     private String shipAddress;
     private String phoneNumber;
+    private int status;
 
-    public OrderDetailAdmin(int id, int userId, int orderID, String customerName, int productID, String productName, String imageLink, int productPrice, String shipAddress, String phoneNumber) {
+    public OrderDetailAdmin(int id, int userId, int orderID, 
+            String customerName, int productID, String productName,
+            String imageLink, int productPrice, String shipAddress,
+            String phoneNumber, int status) {
         this.id = id;
         this.userId = userId;
         this.orderID = orderID;
@@ -33,11 +37,20 @@ public class OrderDetailAdmin {
         this.productPrice = productPrice;
         this.shipAddress = shipAddress;
         this.phoneNumber = phoneNumber;
+        this.status = status;
     }
 
     @Override
     public String toString() {
-        return "OrderDetailAdmin{" + "id=" + id + ", userId=" + userId + ", orderID=" + orderID + ", customerName=" + customerName + ", productID=" + productID + ", productName=" + productName + ", imageLink=" + imageLink + ", productPrice=" + productPrice + ", shipAddress=" + shipAddress + ", phoneNumber=" + phoneNumber + '}';
+        return "OrderDetailAdmin{" + "id=" + id + ", userId=" + userId + ", orderID=" + orderID + ", customerName=" + customerName + ", productID=" + productID + ", productName=" + productName + ", imageLink=" + imageLink + ", productPrice=" + productPrice + ", shipAddress=" + shipAddress + ", phoneNumber=" + phoneNumber + ", status=" + status + '}';
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public OrderDetailAdmin() {
