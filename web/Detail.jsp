@@ -112,7 +112,7 @@
                                         <button onclick="buy(${detail.id})" class="btn btn-lg btn-info text-uppercase"> Buy now </button>
                                         <button onclick="addCart2(${detail.id})" class="btn btn-lg btn-outline-info text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </button>
 
-                                    </article> <!-- card-body.// -->                                   
+                                    </article> <!-- card-bodyylaskdhjlaskdj.// -->                                   
                                 </aside> <!-- col.// -->
                             </div> <!-- row.// -->
                         </div> <!-- card.// -->
