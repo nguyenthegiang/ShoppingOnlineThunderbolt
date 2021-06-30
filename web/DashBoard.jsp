@@ -22,7 +22,7 @@
         <!-- Bootstrap CSS -->
         <!-- Bootstrap CSS -->
         <!-- Bootstrap CSS -->
-
+        <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
         <link href="css/Dashboard.css" rel="stylesheet" type="text/css"/>
         <title>Computer ERA</title>
@@ -174,61 +174,61 @@
                         <div class="col-5">
                             <canvas id="myChart3" style="width:100%;max-width:700px"></canvas>
 
-<!--                            <script>
-                                var xValues = [""];
-                                var yValues = [0];
-                                let a = 0;
+                            <!--                            <script>
+                                                            var xValues = [""];
+                                                            var yValues = [0];
+                                                            let a = 0;
+                            
+                                                            while (a < 32) {
+                            <c:forEach var="o" items="${recentOrder}">
+                                xValues[a] = "${o.date}";
+                                a++;
+                            </c:forEach>
+                            }
 
-                                while (a < 32) {
-                                <c:forEach var="o" items="${recentOrder}">
-                                    xValues[a] = "${o.date}";
-                                    a++;
-                                </c:forEach>
+                            xValues[32] = "";
+                            yValues[32] = 0;
+
+                            let b = 0;
+                            while (b < 32) {
+                            <c:forEach var="o" items="${recentOrder}">
+                                yValues[b] = "${o.id}";
+                                b++;
+                            </c:forEach>
+                            }
+                            var barColors = [];
+                            var tempColors = ["#85deb4", "#cb97e6", "#97b5e6"];
+
+                            for (let c = 0; c < 32; c++) {
+                                if (c % 3 == 1) {
+                                    barColors[c] = tempColors[0];
+                                } else if (c % 3 == 2) {
+                                    barColors[c] = tempColors[1];
+                                } else if (c % 3 == 0) {
+                                    barColors[c] = tempColors[2];
                                 }
+                            }
 
-                                xValues[32] = "";
-                                yValues[32] = 0;
+                            barColors[32] = "white";
 
-                                let b = 0;
-                                while (b < 32) {
-                                <c:forEach var="o" items="${recentOrder}">
-                                    yValues[b] = "${o.id}";
-                                    b++;
-                                </c:forEach>
-                                }
-                                var barColors = [];
-                                var tempColors = ["#85deb4", "#cb97e6", "#97b5e6"];
-
-                                for (let c = 0; c < 32; c++) {
-                                    if (c % 3 == 1) {
-                                        barColors[c] = tempColors[0];
-                                    } else if (c % 3 == 2) {
-                                        barColors[c] = tempColors[1];
-                                    } else if (c % 3 == 0) {
-                                        barColors[c] = tempColors[2];
+                            new Chart("myChart3", {
+                                type: "bar",
+                                data: {
+                                    labels: xValues,
+                                    datasets: [{
+                                            backgroundColor: barColors,
+                                            data: yValues
+                                        }]
+                                },
+                                options: {
+                                    legend: {display: false},
+                                    title: {
+                                        display: true,
+                                        text: "Recent Orders"
                                     }
                                 }
-
-                                barColors[32] = "white";
-
-                                new Chart("myChart3", {
-                                    type: "bar",
-                                    data: {
-                                        labels: xValues,
-                                        datasets: [{
-                                                backgroundColor: barColors,
-                                                data: yValues
-                                            }]
-                                    },
-                                    options: {
-                                        legend: {display: false},
-                                        title: {
-                                            display: true,
-                                            text: "Recent Orders"
-                                        }
-                                    }
-                                });
-                            </script>-->
+                            });
+                        </script>-->
                         </div>
 
                         <div class="col-7">
