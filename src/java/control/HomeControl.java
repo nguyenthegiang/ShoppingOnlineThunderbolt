@@ -85,7 +85,7 @@ public class HomeControl extends HttpServlet {
                 request.setAttribute("CateID", CID);
                 request.setAttribute("CateName", CategoryDAO.getCateNameByID(CID));
 
-                request.getRequestDispatcher("Home.jsp").forward(request, response);
+                request.getRequestDispatcher("ProductList.jsp").forward(request, response);
             } else {
                 ProductDAO ProductDAO = new ProductDAO();
                 InforDAO InforDAO = new InforDAO();
@@ -149,7 +149,7 @@ public class HomeControl extends HttpServlet {
                 request.setAttribute("acc",user);
                 request.setAttribute("CateName", CategoryDAO.getCateNameByID(CID));
 
-                request.getRequestDispatcher("Home.jsp").forward(request, response);
+                request.getRequestDispatcher("ProductList.jsp").forward(request, response);
             }
         } catch (Exception e) {
             response.sendRedirect("Error.jsp");
