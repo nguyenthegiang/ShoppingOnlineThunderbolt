@@ -328,6 +328,22 @@ INSERT INTO Orders VALUES (1, 7020000, null, 3, '2021/06/26 13:49');
 INSERT INTO Orders VALUES (2, 7020000, null, 3, '2021/06/23 21:23');
 INSERT INTO Orders VALUES (7, 7020000, null, 3, '2021/06/06 04:17');
 
+
+
+INSERT INTO Orders VALUES (2, 7020000, null, 3, '2021/06/10 13:49');
+INSERT INTO Orders VALUES (3, 7020000, null, 3, '2021/06/11 21:23');
+INSERT INTO Orders VALUES (4, 7020000, null, 3, '2021/06/12 04:17');
+INSERT INTO Orders VALUES (5, 7020000, null, 3, '2021/06/13 12:36');
+INSERT INTO Orders VALUES (5, 7020000, null, 3, '2021/06/15 10:18');
+INSERT INTO Orders VALUES (10, 2000000, 'black', 3, '2021/05/17 21:23');
+INSERT INTO Orders VALUES (8, 250000, 'free shipping', 3, '2021/06/20 04:17');
+INSERT INTO Orders VALUES (7, 8020000, null, 3, '2021/06/18 12:36');
+INSERT INTO Orders VALUES (7, 1020000, null, 3, '2021/06/18 10:18');
+INSERT INTO Orders VALUES (11, 2370000, 'hello', 3, '2021/06/19 21:23');
+INSERT INTO Orders VALUES (12, 8390000, 'black', 3, '2021/06/15 04:17');
+INSERT INTO Orders VALUES (7, 17020000, 'hi', 3, '2021/06/30 10:18');
+INSERT INTO Orders VALUES (1, 7020000, null, 3, '2021/06/27 13:49');
+
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE [dbo].[Order_Detail](
