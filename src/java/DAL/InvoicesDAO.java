@@ -25,19 +25,16 @@ public class InvoicesDAO extends BaseDAO<OrderDetailAdmin> {
     public List<OrderDetailAdmin> getInvoiceDetailByOrderID(int orderId) {
         List<OrderDetailAdmin> list = new ArrayList<>();
         String query = "SELECT od.id,u.UserId, od.Order_ID, u.username,od.productId,\n"
-                + "                p.productName,p.imageLink,p.SellPrice, si.shippingAddress, \n"
-                + "                si.phoneNum, os.Name \n"
-                + "                FROM Order_Detail od INNER JOIN Orders o\n"
-                + "                ON od.Order_ID = o.ID\n"
-                + "                INNER JOIN Users u\n"
-                + "                ON o.UserID = u.UserID\n"
-                + "                INNER JOIN Product p\n"
-                + "                ON od.ProductID = p.ProductID\n"
-                + "                INNER JOIN ShipInfo si\n"
-                + "                ON o.ID = si.Order_ID\n"
-                + "                INNER JOIN Order_Status os\n"
-                + "                ON  os.ID = od.Status\n"
-                + "                WHERE   od.Order_ID = ?";
+                + "p.productName,p.imageLink,p.SellPrice, si.shippingAddress, si.phoneNum\n"
+                + "FROM Order_Detail od INNER JOIN Orders o\n"
+                + "ON od.Order_ID = o.ID\n"
+                + "INNER JOIN Users u\n"
+                + "ON o.UserID = u.UserID\n"
+                + "INNER JOIN Product p\n"
+                + "ON od.ProductID = p.ProductID\n"
+                + "INNER JOIN ShipInfo si\n"
+                + "ON o.ID = si.Order_ID\n"
+                + "WHERE   od.Order_ID = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, orderId);
@@ -54,8 +51,7 @@ public class InvoicesDAO extends BaseDAO<OrderDetailAdmin> {
                         rs.getString("imageLink"),
                         rs.getInt("SellPrice"),
                         rs.getString("ShippingAddress"),
-                        rs.getString("PhoneNum"),
-                        rs.getString("Name")
+                        rs.getString("PhoneNum")
                 ));
             }
         } catch (Exception e) {
@@ -66,9 +62,8 @@ public class InvoicesDAO extends BaseDAO<OrderDetailAdmin> {
 
     public List<OrderDetailAdmin> getInvoiceDetailBySellerID(int sellerId) {
         List<OrderDetailAdmin> list = new ArrayList<>();
-        String query = "SELECT od.id,u.UserId, od.Order_ID, u.username,od.productId,\n"
-                + "                p.productName,p.imageLink,p.SellPrice, si.shippingAddress, \n"
-                + "                si.phoneNum, os.Name \n"
+        String query = "SELECT od.id,u.userId, od.Order_ID, u.username,od.productId,\n"
+                + "                p.productName,p.imageLink,p.SellPrice, si.shippingAddress, si.phoneNum\n"
                 + "                FROM Order_Detail od INNER JOIN Orders o\n"
                 + "                ON od.Order_ID = o.ID\n"
                 + "                INNER JOIN Users u\n"
@@ -77,8 +72,6 @@ public class InvoicesDAO extends BaseDAO<OrderDetailAdmin> {
                 + "                ON od.ProductID = p.ProductID\n"
                 + "                INNER JOIN ShipInfo si\n"
                 + "                ON o.ID = si.Order_ID\n"
-                + "                INNER JOIN Order_Status os\n"
-                + "                ON  os.ID = od.Status\n"
                 + "                WHERE   p.SellerID = ?";
         try {
             ps = connection.prepareStatement(query);
@@ -96,8 +89,7 @@ public class InvoicesDAO extends BaseDAO<OrderDetailAdmin> {
                         rs.getString("imageLink"),
                         rs.getInt("SellPrice"),
                         rs.getString("ShippingAddress"),
-                        rs.getString("PhoneNum"),
-                        rs.getString("Name")
+                        rs.getString("PhoneNum")
                 ));
             }
         } catch (Exception e) {

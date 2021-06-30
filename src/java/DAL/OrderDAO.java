@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -138,6 +138,19 @@ public class OrderDAO extends BaseDAO<Order> {
     public void canceled(int id) {
         String query = "UPDATE Orders\n"
                 + "SET Status = 4\n"
+                + "WHERE ID = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            //Set data to the ?
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+    
+    public void finished(int id) {
+        String query = "UPDATE Orders\n"
+                + "SET Status = 5\n"
                 + "WHERE ID = ?";
         try {
             ps = connection.prepareStatement(query);
