@@ -66,44 +66,8 @@
                     setTimeout(carousel, 2000); // Change image every 2 seconds
                 }
             </script>
-            <!--</section>-->
-
-            <!--Danh mục sản phẩm-->
-            <!--<div class="container" style="margin: 10px; background-color: #ffffff; margin: auto">
-                <h2 style="font-family: Brush Script Std; text-align: center">Shop by category</h2>
-                <div class="row">
-                    <div class="col-md-2">
-                        <img src="image/CATEGORY/laptopp.jpg"  id="category">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="image/CATEGORY/pc.jpg"  id="category">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="image/CATEGORY/printerr.jpg" id="category">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="image/CATEGORY/linhkien.jpg" id="category">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="image/CATEGORY/phone.jpg" id="category">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="image/CATEGORY/tablet.jpg" id="category">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="image/CATEGORY/headphonee.jpg" id="category">
-                    </div>
-                </div>
-            </div>-->
-
-
-            <!--Giới thiệu website-->
-            <!--<div class="container" style="background-color: #ffffff; margin: auto; padding: 20px">
-                <img src="image/SlideShow/Intro.jpg" alt="" style="height: 100%; width: 100%; object-fit: contain"/>
-                <br><br><br>
-            </div>-->
             <br>
-            <!--Phần sản phẩm-->
+            <!--Phần tin tức-->
             <div class="container">
                 <div class="row">
                     <div class="col">
@@ -123,27 +87,22 @@
 
                 <div class="col-md-9 col-sm-9">
                     <div class="row" id="content">
-                        <!--List Product-->
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Content</th>
-                                    <th scope="col">Image</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <c:forEach var="o" items="${listP}">
-                                <tr>
-                                    <td>${o.id}</td>
-                                    <td>${o.title}</td>
-                                    <td>${o.content}</td>
-                                    <td>${o.imageLink}</td>
-                                </tr>
-                            </c:forEach>                               
-                            </tbody>
-                        </table>
+                        <!--List Blog-->
+                         <c:forEach items="${listP}" var="o">
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <div class="card" id="product"> <!--class="card"-->
+                                <!--Blog's image-->
+                                <a href="detailBlog?ID=${o.id}" title="View Blog"><img class="card-img-top" src="image/${o.imageLink}" alt="Card image cap"></a>
+                                <div class="card-body">
+                                    <!--Blog's title. Onlick: Blog's Detail-->
+                                    <h4 class="card-title show_txt"><a href="detail?ProductID=${o.id}" title="View Product">${o.title}</a></h4>
+                                    <div class="row">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
                     </div>
                 </div>
             </div>
