@@ -58,6 +58,7 @@ public class DashBoardControl extends HttpServlet {
             List<ProductInManager> top3MostSell = ProductDAO.top3MostSell();
             List<DashBoardProduct> top3MostSellD = amountToProportionMost3(top3MostSell);
             List<Order> recentOrder = orderDAO.getRecentOrder();
+            List<Product> countProductByCategory = ProductDAO.countProductByCategory();
             
             request.setAttribute("totalProduct", totalProduct);
             request.setAttribute("totalAccount", totalAccount);
@@ -68,6 +69,7 @@ public class DashBoardControl extends HttpServlet {
             request.setAttribute("top3LeastSellD", top3LeastSellD);
             
             request.setAttribute("recentOrder", recentOrder);
+            request.setAttribute("countProductByCategory", countProductByCategory);
 
             request.getRequestDispatcher("DashBoard.jsp").forward(request, response);
         } catch (Exception e) {
