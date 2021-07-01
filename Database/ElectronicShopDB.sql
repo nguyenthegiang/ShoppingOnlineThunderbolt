@@ -435,15 +435,21 @@ CREATE TABLE Feedback (
 	ID int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	UserID int,
 	ProductID int,
-	OrderID int,
+	
 	Star int, --1-5
 	FeedbackDetail nvarchar(2000),
 	constraint userID_in_user_3 FOREIGN KEY(UserID) REFERENCES Users(UserID),
-	constraint orderID_in_orders_2 FOREIGN KEY(OrderID) REFERENCES Orders(ID),
+	--constraint orderID_in_orders_6 FOREIGN KEY(OrderID) REFERENCES Orders(ID),
 	constraint productID_in_feedback FOREIGN KEY(ProductID) REFERENCES Product(ProductID),
 	constraint valid_star CHECK (Star < 6 AND Star > 0)
 ) ON [PRIMARY]
 GO
+
+--Order 8,9,13,16 of user 7
+--Order 10 of user 11
+--Order 18 of user 9
+--Order 21 of user 6
+
 
 INSERT INTO Feedback VALUES (7, 1, 5, N'Very good');
 INSERT INTO Feedback VALUES (8, 3, 4, N'Good');
