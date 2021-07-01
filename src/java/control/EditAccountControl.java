@@ -52,23 +52,27 @@ public class EditAccountControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         try {
+            //Get ID from jsp
+            String id = request.getParameter("UserID");
+            UserDAO dao = new UserDAO();
+            UserAddressDAO UserAddressDAO = new UserAddressDAO();
+            
+            
+            Account x = dao.getAccountByID(id);
+            
+            //Push
+            request.setAttribute("id", x.getId());
+            request.setAttribute("user", x.getUser());
+            request.setAttribute("pass", x.getPass());
+            request.setAttribute("email", x.getEmail());
+            request.setAttribute("Seller", x.getIsSell());
+            request.setAttribute("Admin", x.getIsAdmin());
+           
 
+            request.getRequestDispatcher("EditAccount.jsp").forward(request, response);
         } catch (Exception e) {
             response.sendRedirect("Error.jsp");
         }
-        //Get ID from jsp
-        String id = request.getParameter("UserID");
-        UserDAO dao = new UserDAO();
-        Account x = dao.getAccountByID(id);
-        //Push
-        request.setAttribute("id", x.getId());
-        request.setAttribute("user", x.getUser());
-        request.setAttribute("pass", x.getPass());
-        request.setAttribute("email", x.getEmail());
-        request.setAttribute("Seller", x.getIsSell());
-        request.setAttribute("Admin", x.getIsAdmin());
-
-        request.getRequestDispatcher("EditAccount.jsp").forward(request, response);
     }
 
     /**

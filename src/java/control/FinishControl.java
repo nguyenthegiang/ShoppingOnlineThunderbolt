@@ -142,7 +142,6 @@ public class FinishControl extends HttpServlet {
                 od.setProductID(cart.getP().getId());
                 od.setProductName(cart.getP().getName());
                 od.setProductPrice(cart.getP().getPrice());
-//                od.setStatus("Waiting for Confirmation");
                 lsProductInOrder.add(od);
             }
             odDao.addManyOrderDetails(newOrderId, lsProductInOrder);

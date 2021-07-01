@@ -264,7 +264,7 @@
                         <form action="editAccount" method="POST">
                             <div class="modal-header">						
                                 <h4 class="modal-title">Edit Account</h4>
-                                <a type="button" class="close" href="accountManager" aria-hidden="true">&times;</a>
+                                <a type="button" class="close" href="accountManager" aria-hidden="true">&times;</a>                                                         
                             </div>
                             <div class="modal-body">	
                                 <div class="form-group">
@@ -278,6 +278,10 @@
                             <div class="form-group">
                                 <label>Password</label>
                                 <input type="text" class="form-control" required name="pass" value="${pass}">
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="text" class="form-control" required name="email" value="${email}">
                             </div>
                             <div class="form-group">
                                 <label>Seller</label>

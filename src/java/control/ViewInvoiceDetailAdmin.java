@@ -47,14 +47,20 @@ public class ViewInvoiceDetailAdmin extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             Account a = (Account) session.getAttribute("acc");
-            if (a.getIsAdmin() == 1) {
-                String status = request.getParameter("status");
-                int id = Integer.parseInt(request.getParameter("id"));
 
+            if (a.getIsAdmin() == 1) {
                 InvoicesDAO invoicesDAO = new InvoicesDAO();
                 OrderDAO orderDAO = new OrderDAO();
-                List<OrderDetailAdmin> invoiceDetail = invoicesDAO.getInvoiceDetailByOrderID(id);
+
                 int totalCart = orderDAO.countOrders();
+                int id = Integer.parseInt(request.getParameter("id"));
+                List<OrderDetailAdmin> invoiceDetail = invoicesDAO.getInvoiceDetailByOrderID(id);
+                String status = request.getParameter("status");
+                if (status.equals("unread") || status.equals("Waiting for Confirmation")) {
+                    status = "Waiting for Confirmation";
+                } else {
+                    status = orderDAO.getOrderByOrderID(id).getStatus();
+                }
 
                 request.setAttribute("invoiceDetail", invoiceDetail);
                 request.setAttribute("totalCart", totalCart);
@@ -62,20 +68,20 @@ public class ViewInvoiceDetailAdmin extends HttpServlet {
                 request.setAttribute("sta", status);
 
                 request.getRequestDispatcher("ViewInvoiceDetail.jsp").forward(request, response);
-            } else if(a.getIsAdmin()!= 1){
+            } else if (a.getIsAdmin() != 1) {
+                InvoicesDAO invoicesDAO = new InvoicesDAO();
+                OrderDAO orderDAO = new OrderDAO();
                 String status = request.getParameter("status");
                 int sellerId = Integer.parseInt(request.getParameter("sellerId"));
                 int orderId = Integer.parseInt(request.getParameter("orderId"));
-                InvoicesDAO invoicesDAO = new InvoicesDAO();
                 CartDAO CartDAO = new CartDAO();
                 NotificationDAO notiDAO = new NotificationDAO();
-                OrderDAO orderDAO = new OrderDAO();
-                List<OrderDetailAdmin> invoiceDetail = invoicesDAO.getInvoiceDetailBySellerID(sellerId);
-                int totalCart = orderDAO.countOrders();  
+                List<OrderDetailAdmin> invoiceDetail1 = invoicesDAO.getInvoiceDetailBySellerID(sellerId);
+                int totalCart1 = orderDAO.countOrders();
                 notiDAO.readOneNoti(sellerId, orderId);
 
-                request.setAttribute("invoiceDetail", invoiceDetail);
-                request.setAttribute("totalCart", totalCart);
+                request.setAttribute("invoiceDetail", invoiceDetail1);
+                request.setAttribute("totalCart", totalCart1);
                 request.setAttribute("sellerId", sellerId);
                 request.setAttribute("sta", status);
 

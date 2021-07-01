@@ -72,7 +72,7 @@ public class BlogListControl extends HttpServlet {
                 request.setAttribute("favor", favor);
                 request.setAttribute("infor", infor);
 
-                request.setAttribute("listP", list); //List Product                
+                request.setAttribute("listP", list); //List Blog                
                 request.getRequestDispatcher("BlogList.jsp").forward(request, response);
             } else {
                 ProductDAO ProductDAO = new ProductDAO();
@@ -102,7 +102,7 @@ public class BlogListControl extends HttpServlet {
                 request.setAttribute("favor", favor);
                 request.setAttribute("infor", infor);
 
-                request.setAttribute("listP", list); //List Product
+                request.setAttribute("listP", list); //List Blog
                 
                 request.setAttribute("unread", unreadNotifications);
                 request.setAttribute("notis", notis);

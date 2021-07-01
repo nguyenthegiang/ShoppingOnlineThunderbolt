@@ -28,75 +28,38 @@
 
             <!--Slideshow-->
             <!--<section class="jumbotron text-center" style="background-color: white;">-->
-            <div class="container" style="background-color: #ffffff">
+            <div class="container-fluid" style="background-color: #ebebf2">
+                <div class="row"></div>
                 <div class="col-md-12">
-                    <img class="mySlides" src="image/SlideShow/Intro.jpg" style="height: 100%; width: 100%; object-fit: contain; margin: auto">
-                    <img class="mySlides" src="image/SlideShow/image3.jpg" style="height: 100%; width: 100%; object-fit: contain; margin: auto">
-                    <img class="mySlides" src="image/SlideShow/image2.jpg" style="height: 100%; width: 100%; object-fit: contain; margin: auto">
+                    <img class="mySlides" src="image/SlideShow/Intro1.jpg" style="height: 80%; width: 80%; object-fit: contain; margin: auto">
+                    <img class="mySlides" src="image/SlideShow/Intro2.jpg" style="height: 80%; width: 80%; object-fit: contain; margin: auto">
+                    <img class="mySlides" src="image/SlideShow/Intro3.jpg" style="height: 80%; width: 80%; object-fit: contain; margin: auto">
                     <div class="w3-center w3-display-bottommiddle" style="width:100%">
-                        <div class="w3-left" onclick="plusDivs(-1)">&#10094;</div>
-                        <div class="w3-right" onclick="plusDivs(1)">&#10095;</div>
                         <span class="w3-badge demo w3-border" onclick="currentDiv(1)"></span>
                         <span class="w3-badge demo w3-border" onclick="currentDiv(2)"></span>
                         <span class="w3-badge demo w3-border" onclick="currentDiv(3)"></span>
                     </div>
                 </div>
-
-                <script>
-                    var myIndex = 0;
-                    carousel();
-
-                    function carousel() {
-                        var i;
-                        var x = document.getElementsByClassName("mySlides");
-                        for (i = 0; i < x.length; i++) {
-                            x[i].style.display = "none";
-                        }
-                        myIndex++;
-                        if (myIndex > x.length) {
-                            myIndex = 1
-                        }
-                        x[myIndex - 1].style.display = "block";
-                        setTimeout(carousel, 2000); // Change image every 2 seconds
-                    }
-                </script>
             </div>
-            <!--</section>-->
 
-            <!--Danh mục sản phẩm-->
-            <!--<div class="container" style="margin: 10px; background-color: #ffffff; margin: auto">
-                <h2 style="font-family: Brush Script Std; text-align: center">Shop by category</h2>
-                <div class="row">
-                    <div class="col-md-2">
-                        <img src="image/CATEGORY/laptopp.jpg"  id="category">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="image/CATEGORY/pc.jpg"  id="category">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="image/CATEGORY/printerr.jpg" id="category">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="image/CATEGORY/linhkien.jpg" id="category">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="image/CATEGORY/phone.jpg" id="category">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="image/CATEGORY/tablet.jpg" id="category">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="image/CATEGORY/headphonee.jpg" id="category">
-                    </div>
-                </div>
-            </div>-->
+            <script>
+                var myIndex = 0;
+                carousel();
 
-
-            <!--Giới thiệu website-->
-            <!--<div class="container" style="background-color: #ffffff; margin: auto; padding: 20px">
-                <img src="image/SlideShow/Intro.jpg" alt="" style="height: 100%; width: 100%; object-fit: contain"/>
-                <br><br><br>
-            </div>-->
+                function carousel() {
+                    var i;
+                    var x = document.getElementsByClassName("mySlides");
+                    for (i = 0; i < x.length; i++) {
+                        x[i].style.display = "none";
+                    }
+                    myIndex++;
+                    if (myIndex > x.length) {
+                        myIndex = 1
+                    }
+                    x[myIndex - 1].style.display = "block";
+                    setTimeout(carousel, 2000); // Change image every 2 seconds
+                }
+            </script>
 
             <br>
             <!--Phần sản phẩm-->

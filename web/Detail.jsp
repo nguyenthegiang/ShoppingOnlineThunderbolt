@@ -77,14 +77,7 @@
                                             <span class="price h3 text-warning"> 
                                                 <span class="currency">VND </span><span class="num">${detail.priceWithDot}</span>
                                             </span> 
-                                        </p> <!-- price-detail-wrap .// -->
-                                        <!--                                        <dl class="item-property">
-                                                                                    <dt>Description</dt>
-                                                                                    <dd><p>
-                                        ${detail.description}
-                                    </p></dd>
-                            </dl>
-                                        -->
+                                        </p> 
                                         <hr>
                                         <dl class="item-property">
                                             <dt>Manufacturer</dt>
@@ -116,37 +109,119 @@
                                 </aside> <!-- col.// -->
                             </div> <!-- row.// -->
                         </div> <!-- card.// -->
+                        <br><br>
 
-                        <div class="title">
-                            <h3 class="text-success">Feedbacks</h3>
-                        </div>
-                        <div class="feedback">
-                            <ul class="comments" style="display: block">
-                                <c:forEach items="${requestScope.lsFeedback}" var="f" varStatus="loop">
-                                    <li>
-                                        <p>${requestScope.lsAccount[loop.index].user}&nbsp;&nbsp;&nbsp;
-                                            <c:forEach begin="1" end="${f.star}">
-                                                <span class="fa fa-star checked"></span>
-                                            </c:forEach>
-                                            <br>${f.feedbackDetail}</p>
-                                            <c:if test="${f.listReplies.size() != 0}">
-                                            <h5>Replies:</h5>
-                                            <ul>
-                                                <c:forEach items="${f.listReplies}" var="fr" varStatus="loopReplies">
-                                                    <li>
-                                                        <p>${requestScope.lsAccountReplies[loopReplies.index].user}
-                                                            <br>
-                                                            ${fr.repliesText}
-                                                        </p>
-                                                    </li>
-                                                </c:forEach>
-                                            </ul>
-                                        </c:if>
-                                    </li>
-                                </c:forEach>
-                            </ul>
-                        </div>
 
+
+                        <!--Feedbacks start here-->
+                        <div class="card">
+                            <div class="title">
+                                <h3 class="text-success">Feedbacks</h3>
+                            </div>
+
+                            <!--                            <div class="imagebg"></div>
+                                                        <div class="row " style="margin-top: 50px">
+                                                            <div class="col-md-6 col-md-offset-3 form-container">
+                                                                <p>
+                                                                    Please provide your feedback below:
+                                                                </p>
+                                                                <form role="form" method="post" id="reused_form">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-12 form-group">
+                                                                            <label>How do you rate your overall experience?</label>
+                                                                            <p>
+                                                                                <label class="radio-inline">
+                                                                                    <input type="radio" name="experience" id="radio_experience" value="bad" >
+                                                                                    Bad
+                                                                                </label>
+                            
+                                                                                <label class="radio-inline">
+                                                                                    <input type="radio" name="experience" id="radio_experience" value="average" >
+                                                                                    Average
+                                                                                </label>
+                            
+                                                                                <label class="radio-inline">
+                                                                                    <input type="radio" name="experience" id="radio_experience" value="good" >
+                                                                                    Good
+                                                                                </label>
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-sm-12 form-group">
+                                                                            <label for="comments">
+                                                                                Comments:</label>
+                                                                            <textarea class="form-control" type="textarea" name="comments" id="comments" placeholder="Your Comments" maxlength="6000" rows="7"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-sm-6 form-group">
+                                                                            <label for="name">
+                                                                                Your Name:</label>
+                                                                            <input type="text" class="form-control" id="name" name="name" required>
+                                                                        </div>
+                                                                        <div class="col-sm-6 form-group">
+                                                                            <label for="email">
+                                                                                Email:</label>
+                                                                            <input type="email" class="form-control" id="email" name="email" required>
+                                                                        </div>
+                                                                    </div>
+                            
+                                                                    <div class="row">
+                                                                        <div class="col-sm-12 form-group">
+                                                                            <button type="submit" class="btn btn-lg btn-warning btn-block" >Post </button>
+                                                                        </div>
+                                                                    </div>
+                            
+                                                                </form>
+                                                                <div id="success_message" style="width:100%; height:100%; display:none; ">
+                                                                    <h3>Posted your feedback successfully!</h3>
+                                                                </div>
+                                                                <div id="error_message"
+                                                                     style="width:100%; height:100%; display:none; ">
+                                                                    <h3>Error</h3>
+                                                                    Sorry there was an error sending your form.
+                            
+                                                                </div>
+                                                            </div>
+                                                        </div>-->
+
+
+
+                            <div class="feedback">
+                                <ul class="comments" style="display: block; list-style-type: none; margin-right: 10px">
+                                    <c:forEach items="${requestScope.lsFeedback}" var="f" varStatus="loop">
+                                        <div class="card" style=" padding: 10px;">
+                                            <li>
+                                                <p><b>${requestScope.lsAccount[loop.index].user}&nbsp;&nbsp;&nbsp;</b>
+                                                    <c:forEach begin="1" end="${f.star}">
+                                                        <span class="fa fa-star checked"></span>
+                                                    </c:forEach>
+                                                    <br>${f.feedbackDetail}</p>
+                                                    <c:if test="${f.listReplies.size() != 0}">
+                                                    <h5>Replies:</h5>
+                                                    <div class="container">
+                                                        <ul style="background-color: #e9e9e9; list-style-type: none;">
+                                                            <c:forEach items="${f.listReplies}" var="fr" varStatus="loopReplies">
+                                                                <li>
+                                                                    <p><b>${requestScope.lsAccountReplies[loopReplies.index].user}</b>
+                                                                        <br>
+                                                                        ${fr.repliesText}
+                                                                    </p>
+                                                                </li>
+                                                            </c:forEach>
+                                                        </ul>
+                                                    </div>
+                                                </c:if>
+                                            </li>
+                                        </div>
+                                    </c:forEach>
+                                    <c:if test = "${!requestScope.lsFeedback}">
+                                        <p>Chua co feedback</p>
+                                    </c:if>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

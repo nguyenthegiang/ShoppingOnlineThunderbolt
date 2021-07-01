@@ -21,7 +21,7 @@
                     <c:forEach items="${allCategory}" var="o">
                         <!--Category nao dang dc chon thi se noi bat-->
                         <li class="list-group-item text-white ${CateID == o.id ? "active" : ""}">
-                            <a href="home?CategoryID=${o.id}">${o.icon} ${o.name}</a>
+                            <a href="productList?CategoryID=${o.id}">${o.icon} ${o.name}</a>
                         </li>
                     </c:forEach>
                 </ul>

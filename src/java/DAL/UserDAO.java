@@ -344,14 +344,14 @@ public class UserDAO extends BaseDAO<Account> {
 
     public List<Account> searchAccountInManager(String name) {
         List<Account> list = new ArrayList<>();
-        String query = "select * from Users \n"
-                + "Where Username like ?";
+        String query = "SELECT * FROM Users\n"
+                + "WHERE Username = ? AND UserID =?";
         try {
             ps = connection.prepareStatement(query);
-            ps.setString(1, "%" + name + "%");
+            ps.setString(1, "%" + name + "%");            
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Account(rs.getInt("UserID"), rs.getString("UserName"), rs.getString("Password"), rs.getString("email"), rs.getString("ActiveCode"), rs.getInt("isSeller"), rs.getInt("isAdmin"), rs.getInt("StatusID")));
+                list.add(new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getInt(8)));
                 //Product(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink")));
             }
         } catch (Exception e) {

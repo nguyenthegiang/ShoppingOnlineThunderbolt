@@ -159,7 +159,7 @@
                                 <td>${item.date}</td>
                                 <td><a  style="cursor: pointer " onclick="formAutoSubmit('${item.id}');">View</a></td>
                         <form style="display:none;" id="${item.id}" action="viewOrderDetail">
-                            <input type="hidden" value="Packaging" name="status">
+                            <input type="hidden" value="${item.status}" name="status">
                             <input type="hidden" value="${item.id}" name="id">
                         </form>
 
