@@ -216,6 +216,9 @@
                                             </li>
                                         </div>
                                     </c:forEach>
+                                    <c:if test = "${!requestScope.lsFeedback}">
+                                        <p>Chua co feedback</p>
+                                    </c:if>
                                 </ul>
                             </div>
                         </div>
