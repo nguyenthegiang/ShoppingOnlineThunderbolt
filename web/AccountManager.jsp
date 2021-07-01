@@ -32,7 +32,7 @@
             function search() {
             var searchText = document.getElementById("search_Account").value;
                     location.href = "searchInAccount?text=" + searchText;
-                    return false;
+                    return false;}
         </script>
     </head>
     <body>
