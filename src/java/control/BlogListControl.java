@@ -1,7 +1,21 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package control;
 
-import entity.*;
-import DAL.*;
+import DAL.BlogDAO;
+import DAL.CategoryDAO;
+import DAL.InforDAO;
+import DAL.NotificationDAO;
+import DAL.ProductDAO;
+import entity.Account;
+import entity.Blog;
+import entity.Category;
+import entity.Information;
+import entity.Notification;
+import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -12,8 +26,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "ProductListControl", urlPatterns = {"/productList"})
-public class ProductListControl extends HttpServlet {
+/**
+ *
+ * @author thong
+ */
+@WebServlet(name = "BlogListControl", urlPatterns = {"/blogList"})
+public class BlogListControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -27,7 +45,6 @@ public class ProductListControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
         try {
             //Call to DAOs
 
@@ -45,35 +62,9 @@ public class ProductListControl extends HttpServlet {
                 Blog news = BlogDAO.getHotBlog();//getHotBlog
 
 
-                //Paging By CategoryID
-                String CategoryID = request.getParameter("CategoryID");
-                if (CategoryID == null) { //On Load: User hasn't choosen Category
-                    CategoryID = "0";
-                }
-                //Set Category ID back on JSP
-                request.setAttribute("CategoryID", CategoryID);
-
-                int CID = Integer.parseInt(CategoryID);
-
-                //Get Page number from JSP
-                String indexPage = request.getParameter("index");
-                if (indexPage == null) {
-                    //On load: Page 1
-                    indexPage = "1";
-                }
-
-                int index = Integer.parseInt(indexPage);
-
-                //Count number of Product According to the Category -> Number of Pages
-                int count = ProductDAO.countProductByCategory(CID);
-                int endPage = count / 6;
-                if (count % 6 != 0) {
-                    //If the number of Product isn't divided by 3 -> Need 1 more Page
-                    endPage++;
-                }
-
-                //List of Product to Display after Paging by Category ID
-                List<Product> list = ProductDAO.pagingByCategory(index, CID);
+                
+                //List<Product> list = ProductDAO.pagingByCategory(index, CID);
+                List<Blog> list = BlogDAO.getAllBlog();
 
                 //Set Data to JSP
                 request.setAttribute("allCategory", listC);
@@ -81,14 +72,8 @@ public class ProductListControl extends HttpServlet {
                 request.setAttribute("favor", favor);
                 request.setAttribute("infor", infor);
 
-                request.setAttribute("listP", list); //List Product
-                request.setAttribute("end", endPage);
-                request.setAttribute("tag", index); //Page number
-                request.setAttribute("count", count);
-                request.setAttribute("CateID", CID);
-                request.setAttribute("CateName", CategoryDAO.getCateNameByID(CID));
-
-                request.getRequestDispatcher("ProductList.jsp").forward(request, response);
+                request.setAttribute("listP", list); //List Product                
+                request.getRequestDispatcher("BlogList.jsp").forward(request, response);
             } else {
                 ProductDAO ProductDAO = new ProductDAO();
                 InforDAO InforDAO = new InforDAO();
@@ -107,35 +92,9 @@ public class ProductListControl extends HttpServlet {
                 int notiss = notiDAO.countNotifications(userId);
                 Blog news = BlogDAO.getHotBlog();//getHotBlog
 
-                //Paging By CategoryID
-                String CategoryID = request.getParameter("CategoryID");
-                if (CategoryID == null) { //On Load: User hasn't choosen Category
-                    CategoryID = "0";
-                }
-                //Set Category ID back on JSP
-                request.setAttribute("CategoryID", CategoryID);
-
-                int CID = Integer.parseInt(CategoryID);
-
-                //Get Page number from JSP
-                String indexPage = request.getParameter("index");
-                if (indexPage == null) {
-                    //On load: Page 1
-                    indexPage = "1";
-                }
-
-                int index = Integer.parseInt(indexPage);
-
-                //Count number of Product According to the Category -> Number of Pages
-                int count = ProductDAO.countProductByCategory(CID);
-                int endPage = count / 6;
-                if (count % 6 != 0) {
-                    //If the number of Product isn't divided by 3 -> Need 1 more Page
-                    endPage++;
-                }
-
+              
                 //List of Product to Display after Paging by Category ID
-                List<Product> list = ProductDAO.pagingByCategory(index, CID);
+                List<Blog> list = BlogDAO.getAllBlog();
 
                 //Set Data to JSP
                 request.setAttribute("allCategory", listC);
@@ -144,25 +103,21 @@ public class ProductListControl extends HttpServlet {
                 request.setAttribute("infor", infor);
 
                 request.setAttribute("listP", list); //List Product
-                request.setAttribute("end", endPage);
+                
                 request.setAttribute("unread", unreadNotifications);
                 request.setAttribute("notis", notis);
-                request.setAttribute("numberOfNotifications", notiss);
-                request.setAttribute("tag", index); //Page number
-                request.setAttribute("count", count);
-                request.setAttribute("CateID", CID);
+                request.setAttribute("numberOfNotifications", notiss);                
                 request.setAttribute("acc",user);
-                request.setAttribute("CateName", CategoryDAO.getCateNameByID(CID));
+                
 
-                request.getRequestDispatcher("ProductList.jsp").forward(request, response);
+                request.getRequestDispatcher("BlogList.jsp").forward(request, response);
             }
         } catch (Exception e) {
             response.sendRedirect("Error.jsp");
         }
-
     }
 
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

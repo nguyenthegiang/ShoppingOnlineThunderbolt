@@ -5,6 +5,7 @@
  */
 package DAL;
 
+import entity.Order;
 import entity.OrderDetailWithImage;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,13 +23,10 @@ public class OrderDetailWithImageDAO extends BaseDAO<OrderDetailWithImage> {
 
     public List<OrderDetailWithImage> getOrderDetail(int orderId) {
         List<OrderDetailWithImage> list = new ArrayList<>();
-        String query = " SELECT od.id, od.order_id, od.productId,\n"
-                + "                od.productName, od.productPrice, p.imageLink,os.Name\n"
-                + "                FROM Order_Detail od INNER JOIN Product p\n"
-                + "                ON od.ProductID = p.ProductID\n"
-                + "                INNER JOIN Order_Status os \n"
-                + "                ON od.Status = os.ID\n"
-                + "                WHERE od.Order_ID = ?";
+        String query = "SELECT od.id, od.order_id, od.productId, od.productName, od.productPrice, p.imageLink\n"
+                + "FROM Order_Detail od INNER JOIN Product p\n"
+                + "ON od.ProductID = p.ProductID\n"
+                + "WHERE od.Order_ID = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, orderId);
@@ -41,8 +39,7 @@ public class OrderDetailWithImageDAO extends BaseDAO<OrderDetailWithImage> {
                         rs.getInt("order_Id"),
                         rs.getInt("ProductId"),
                         rs.getString("productName"),
-                        rs.getInt("productPrice"),
-                        rs.getString("name")
+                        rs.getInt("productPrice")
                 ));
             }
         } catch (Exception e) {
@@ -50,5 +47,7 @@ public class OrderDetailWithImageDAO extends BaseDAO<OrderDetailWithImage> {
 
         return list;
     }
+
+    
 
 }

@@ -10,46 +10,37 @@ package entity;
  * @author Thuan
  */
 public class OrderDetail {
-
     private int id;
     private int orderID;
     private int productID;
     private String productName;
     private int productPrice;
-    private String status;
 
     @Override
     public String toString() {
-        return "OrderDetail{" + "id=" + id + ", "
-                + "orderID=" + orderID + ", "
-                + "productID=" + productID + ", "
-                + "productName=" + productName + ", "
-                + "productPrice=" + productPrice + ", "
-                + "status=" + status + '}';
+        return "OrderDetail{" + "id=" 
+                + id + ", "+ "orderID=" 
+                + orderID + ", productID=" 
+                + productID + ", productName=" 
+                + productName + ", productPrice=" 
+                + productPrice + '}';
     }
-
-    public OrderDetail() {
-
+    
+    public OrderDetail(){
+        
     }
-
-    public OrderDetail(int id, int orderID, int productID, 
-            String productName, int productPrice, String status) {
+    
+    public OrderDetail(int id, int orderID, int productID, String productName, int productPrice) {
         this.id = id;
         this.orderID = orderID;
         this.productID = productID;
         this.productName = productName;
         this.productPrice = productPrice;
-        this.status = status;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
+    
+    
+    
     public int getId() {
         return id;
     }
@@ -89,5 +80,8 @@ public class OrderDetail {
     public void setProductPrice(int productPrice) {
         this.productPrice = productPrice;
     }
-
+    
+    
+    
 }
+

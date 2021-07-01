@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * test push 2
  * @author thong
  */
 public class BlogDAO extends BaseDAO<BlogDAO> {
@@ -64,6 +64,7 @@ public class BlogDAO extends BaseDAO<BlogDAO> {
         }
         return null;
     }
+   
    
     public static void main(String[] args) {
         BlogDAO dao = new BlogDAO();

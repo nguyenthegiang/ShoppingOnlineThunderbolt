@@ -38,7 +38,7 @@
 
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="productList">Product List</a>
+                                <a class="nav-link" href="home">Home</a>
                             </li>
                             <c:if test="${sessionScope.acc == null}">
                                 <li class="nav-item">
@@ -149,7 +149,6 @@
                                 <td>Product Image</td>                               
                                 <td>Shipping Address</td>                               
                                 <td>Customer's Phone Number</td>                               
-                                <td>Status</td>                               
                             </tr>
                         </thead>
                         <tbody>
@@ -165,7 +164,6 @@
                                     </td>
                                     <td>${item.shipAddress}</td>                      
                                     <td>${item.phoneNumber}</td>
-                                    <td>${item.status}</td>
                                     <c:set var="userId" value="${item.userId}"/>
                                     <c:set var="total" value="${total + item.productPrice}" />
                                 </tr>
