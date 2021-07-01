@@ -21,6 +21,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <link href="css/Dashboard.css" rel="stylesheet" type="text/css"/>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <style>
@@ -232,9 +233,9 @@
                 $('[data-toggle="tooltip"]').tooltip();
             });
             function search() {
-                var searchText = document.getElementById("search_Account").value;
-                location.href = "searchInAccount?text=" + searchText;
-                return false;
+            var searchText = document.getElementById("search_Account").value;
+                    location.href = "searchInAccount?text=" + searchText;
+                    return false;
         </script>
     </head>
     <body>
@@ -250,108 +251,117 @@
                 overflow: hidden;
             }           
         </style>
-            
-        </form>
-        <div class="container h-100">
-            <div class="d-flex justify-content-center h-100">
-                <div class="searchbar">
-                    <input class="search_input" type="text" id="search_Account" placeholder="Search...">
-                    <button onclick="search();" class="search_icon"><i class="fas fa-search"></i></button>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-2" style="background-color: #ebebf2;">
+                    <nav class="navbar navbar-expand-lg navbar-light flex-column" style="background-color: #ebebf2;">
+                        <a class="navbar-brand" href="dashBoard"><img src="image/Other/Logo.jpg" width="200px"></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="productList"><i class="fas fa-home"></i>Home</a>
+                                <hr class="line">
+                            </li>
+                            <c:if test="${sessionScope.acc == null}">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="login">Login</a>
+                                </li>
+                            </c:if>
+                            <c:if test = "${sessionScope.acc != null}">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="profile"><i class="fas fa-user-circle"></i>Hello ${sessionScope.acc.user}</a>
+                                    <hr class="line">
+                                </li>
+
+                                <c:if test="${sessionScope.acc.isSell == 1}">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="manager"><i class="fas fa-tasks"></i>Manager Product</a>
+                                        <hr class="line">
+                                    </li> 
+                                </c:if>
+
+                                <c:if test="${sessionScope.acc.isAdmin == 1}">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="accountManager"><i class="fas fa-tasks"></i>Manager Account</a>
+                                        <hr class="line">
+                                    </li> 
+                                </c:if>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="viewAllNotifications"><i class="fas fa-bell"></i>Notifications (${numberNoti})</a>
+                                </li> 
+                            </c:if>
+
+                            <li class="nav-item">&nbsp;
+                            </li> 
+                        </ul>
+                        <a class="nav-link" href="logout" style="position: fixed; right: 10px;">LogOut</a>
+                    </nav>
                 </div>
-            </div>
-        </div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light flex-column" style="position: fixed; left: 20px;">
-            <br>
-            <a class="navbar-brand" href="dashBoard"><img src="image/Other/Logo.jpg" width="200px"></a>
-            <br>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link" href="productList"><i class="fas fa-home"></i>Product List</a>
-                </li>
-                <c:if test="${sessionScope.acc == null}">
-                    <li class="nav-item">
-                        <a class="nav-link" href="login">Login</a>
-                    </li>
-                </c:if>
-                <c:if test = "${sessionScope.acc != null}">
-                    <li class="nav-item">
-                        <a class="nav-link" href="profile"><i class="fas fa-user-circle"></i>Hello ${sessionScope.acc.user}</a>
-                    </li>
-
-                    <c:if test="${sessionScope.acc.isSell == 1}">
-                        <li class="nav-item">
-                            <a class="nav-link" href="manager"><i class="fas fa-tasks"></i>Manager Product</a>
-                        </li> 
-                    </c:if>
-
-                    <c:if test="${sessionScope.acc.isAdmin == 1}">
-                        <li class="nav-item">
-                            <a class="nav-link" href="accountManager"><i class="fas fa-tasks"></i>Manager Account</a>
-                        </li> 
-                    </c:if>
-                </c:if>
-                <li>
-                    <a class="nav-link" href="logout" style="position: fixed; right: 10px;">LogOut</a>
-                </li>
-                <li class="nav-item">&nbsp;
-                </li> 
-            </ul>
-        </nav>
-
-        <div class="container-xl" style="position: fixed; right: 100px;">
-            <div class="table-responsive">
-                <div class="table-wrapper">
-                    <div class="table-title">
-                        <div class="row">
-                            <div class="col-sm-5">
-                                <h2>Account <b>Manager</b></h2>
-                            </div>
-                            <div class="col-sm-7">
+                <div class="col-10">
+                    <div class="row">
+                        <div class="d-flex justify-content-center h-100">
+                            <div class="searchbar">
+                                <input class="search_input" type="text" id="search_Account" placeholder="Search...">
+                                <button onclick="search();" class="search_icon"><i class="fas fa-search"></i></button>
                             </div>
                         </div>
                     </div>
-                    <table class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>UserName</th>						
-                                <th>Role</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach items="${list}" var="o">
-                                <tr>
-                                    <td>${o.id}</td>
-                                    <td><a href="#">${o.user}</a></td>
-                                    <td style="width: 200px;">
-                                        <c:if test="${o.isSell==1}">
-                                            <a href="#" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Seller</a>
-                                        </c:if>
-                                        <c:if test="${o.isAdmin==1}">
-                                            <a href="#" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Admin</a>
-                                        </c:if>
-                                    </td>
-                                    <td>
-                                        <a target="blank" href="editAccount?UserID=${o.id}"><button type="button" class="btn btn-outline-info  btn-sm">Edit</button></a>
-                                        <form action="deleteAccount" method="POST" style="display:inline">
-                                            <a> <input type="submit" class="btn btn-outline-danger btn-sm" value="Delete" onclick="if (confirm('Are you sure you want to delete?'))
-                                                        form.action = 'deleteAccount?UserID=${o.id}';
-                                                    else
-                                                        return false;"/>  
-                                            </a>
-                                        </form>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
-                </div>
+                    <div class="row">
+                        <div class="table-responsive">
+                            <div class="table-wrapper">
+                                <div class="table-title">
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <h2>Account <b>Manager</b></h2>
+                                        </div>
+                                        <div class="col-sm-7">
+                                        </div>
+                                    </div>
+                                </div>
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>UserName</th>						
+                                            <th>Role</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach items="${list}" var="o">
+                                            <tr>
+                                                <td>${o.id}</td>
+                                                <td><a href="#">${o.user}</a></td>
+                                                <td style="width: 200px;">
+                                                    <c:if test="${o.isSell==1}">
+                                                        <a href="#" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Seller</a>
+                                                    </c:if>
+                                                    <c:if test="${o.isAdmin==1}">
+                                                        <a href="#" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Admin</a>
+                                                    </c:if>
+                                                </td>
+                                                <td>
+                                                    <a target="blank" href="editAccount?UserID=${o.id}"><button type="button" class="btn btn-outline-info  btn-sm">Edit</button></a>
+                                                    <form action="deleteAccount" method="POST" style="display:inline">
+                                                        <a> <input type="submit" class="btn btn-outline-danger btn-sm" value="Delete" onclick="if (confirm('Are you sure you want to delete?'))
+                                                                            form.action = 'deleteAccount?UserID=${o.id}';
+                                                                            else
+                                                                            return false;"/>  
+                                                        </a>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>     
+                </div>  
             </div>
-        </div>     
+        </div>
     </body>
 </html>
