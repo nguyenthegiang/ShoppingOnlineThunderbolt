@@ -276,6 +276,7 @@
                                     <c:if test="${sta eq 'read'}">
                                     <form action="viewInvoiceDetailAdmin" id="${o.orderId}1" style="display:none;">
                                         <input type="hidden" value="${o.orderId}" name="id"/>
+                                        <input type="hidden" value="${sta}" name="status"/>
                                     </form>
                                     <tr onClick="formAutoSubmit('${o.orderId}1')" style="cursor:pointer">
                                         <td colspan="5">${o.content}</td>
@@ -286,7 +287,7 @@
                                 <c:if test="${sta eq 'unread'}">
                                     <form action="viewInvoiceDetailAdmin" id="${o.orderId}2" style="display:none;">
                                         <input type="hidden" value="${o.orderId}" name="id"/>
-                                        <input type="hidden" value="Waiting for Confirmation" name="status"/>
+                                        <input type="hidden" value="${sta}" name="status"/>
                                     </form>
                                     <tr onClick="formAutoSubmit('${o.orderId}2')" style="cursor:pointer">
                                         <td colspan="5">${o.content}</td>

@@ -133,7 +133,8 @@
                         }
                     </style>
                     <c:if test="${sessionScope.acc.isAdmin == 1}">
-                    <h2>Order ID: ${OrderId}</h2>
+                    <h2>Order ID: ${OrderId}
+                        (${sta})</h2>
                     </c:if>
                     <c:if test="${sessionScope.acc.isAdmin != 1}">
                     <h2>Seller ID: ${sellerId}</h2>
@@ -163,7 +164,7 @@
                                         <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${item.productPrice}"/>VNĐ
                                     </td>
                                     <td>${item.shipAddress}</td>                      
-                                    <td>${item.phoneNumber}</td>
+                                    <td>${sta}</td>
                                     <c:set var="userId" value="${item.userId}"/>
                                     <c:set var="total" value="${total + item.productPrice}" />
                                 </tr>
@@ -176,8 +177,8 @@
                         <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${total}"/> 
                         VNĐ</h1>
 
-
-                    <c:if test="${sta eq 'Waiting for Confirmation'}">
+                        <c:set var="n" value="Waiting for Confirmation"></c:set>
+                    <c:if test="${sta eq n}">
                         <form action="approveOrder" id="form1">
                             <input type="hidden" value="${OrderId}" name="orderId"/>
                             <input type="hidden" value="${userId}" name="userId"/>
