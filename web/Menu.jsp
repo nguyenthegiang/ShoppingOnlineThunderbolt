@@ -24,6 +24,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
@@ -127,8 +128,11 @@
                             <!--Sửa: khi ấn logout: dẫn -> servlet-->
                             <a class="nav-link" href="logout" id="linkHover">LogOut</a>
                         </li>
-                    </c:if>                   
-                </ul>                    
+                    </c:if>  
+                    <li class="nav-item">
+                        <a class="nav-link" href="blogList" id="linkHover">Blog</a>
+                    </li>
+                </ul>
                 <form class="form-inline my-2 my-lg-0" action="search" method="post">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search..." oninput="searchByName(this)" value="${txtS}" name="txt" id="searchText">
                     <button class="btn my-2 my-sm-0" type="submit" id="search"><i class="fa fa-search"></i></button>
