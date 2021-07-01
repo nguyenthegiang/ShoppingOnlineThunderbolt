@@ -40,7 +40,6 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-2" style="background-color: #ebebf2;">
-                    <nav class="navbar navbar-expand-lg navbar-light flex-column" style="background-color: #ebebf2;">
                         <a class="navbar-brand" href="dashBoard"><img src="image/Other/Logo.jpg" width="200px"></a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
@@ -92,7 +91,6 @@
                             </li> 
                         </ul>
 
-                    </nav>
                 </div>
                 <div class="col-10">
                     <div class="container">
