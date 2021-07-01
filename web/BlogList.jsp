@@ -95,7 +95,7 @@
                                 <a href="detailBlog?ID=${o.id}" title="View Blog"><img class="card-img-top" src="image/${o.imageLink}" alt="Card image cap"></a>
                                 <div class="card-body">
                                     <!--Blog's title. Onlick: Blog's Detail-->
-                                    <h4 class="card-title show_txt"><a href="detail?ID=${o.id}" title="View Blog">${o.title}</a></h4>
+                                    <h4 class="card-title show_txt"><a href="detailBlog?ID=${o.id}" title="View Blog">${o.title}</a></h4>
                                     <div class="row">
                                         
                                     </div>
