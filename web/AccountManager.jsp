@@ -36,18 +36,7 @@
         </script>
     </head>
     <body>
-        <style>
-            table {
-                table-layout: fixed;
-                width: 200px;
-            }
 
-            th,
-            td {
-                width: 200px;
-                overflow: hidden;
-            }           
-        </style>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-2" style="background-color: #ebebf2;">
@@ -72,8 +61,12 @@
                                 </li>
                             </c:if>
                             <c:if test = "${sessionScope.acc != null}">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="profile"><i class="fas fa-user-circle"></i>Hello ${sessionScope.acc.user}</a>
+                                <li id="drop">
+                                    <a class="nav-link" href="profile" id="profileOption"><i class="fas fa-user-circle"></i>Hello ${sessionScope.acc.user}</a>
+                                    <div class="dropdownContent">
+                                        <a href="profile">View my profile</a>
+                                        <a href="logout">LogOut</a>
+                                    </div>
                                     <hr class="line">
                                 </li>
 
@@ -98,7 +91,7 @@
                             <li class="nav-item">&nbsp;
                             </li> 
                         </ul>
-                        <a class="nav-link" href="logout" style="position: fixed; right: 10px;">LogOut</a>
+
                     </nav>
                 </div>
                 <div class="col-10">
@@ -112,15 +105,8 @@
                         <div class="row">
                             <div class="table-responsive">
                                 <div class="table-wrapper">
-                                    <div class="table-title">
-                                        <div class="row">
-                                            <div class="col-sm-5">
-                                                <h2>Account <b>Manager</b></h2>
-                                            </div>
-                                            <div class="col-sm-7">
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <h2 style="font-family: Brush Script MT; text-align: center; font-size: 60px">Account manager</h2>
+                                    <br>
                                     <table class="table table-striped table-hover">
                                         <thead>
                                             <tr>
