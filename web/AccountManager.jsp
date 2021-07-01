@@ -21,213 +21,10 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <link href="css/Dashboard.css" rel="stylesheet" type="text/css"/>
+        <link href="css/AccountManager.css" rel="stylesheet" type="text/css"/>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-        <style>
-            body {
-                color: #566787;
-                background: #f5f5f5;
-                font-family: 'Varela Round', sans-serif;
-                font-size: 13px;
-            }
-            .table-responsive {
-                margin: 30px 0;
-            }
-            .table-wrapper {
-                min-width: 1000px;
-                background: #fff;
-                padding: 20px 25px;
-                border-radius: 3px;
-                box-shadow: 0 1px 1px rgba(0,0,0,.05);
-            }
-            .table-title {
-                padding-bottom: 15px;
-                background: #299be4;
-                color: #fff;
-                padding: 16px 30px;
-                margin: -20px -25px 10px;
-                border-radius: 3px 3px 0 0;
-            }
-            .table-title h2 {
-                margin: 5px 0 0;
-                font-size: 24px;
-            }
-            .table-title .btn {
-                color: #566787;
-                float: right;
-                font-size: 13px;
-                background: #fff;
-                border: none;
-                min-width: 50px;
-                border-radius: 2px;
-                border: none;
-                outline: none !important;
-                margin-left: 10px;
-            }
-            .table-title .btn:hover, .table-title .btn:focus {
-                color: #566787;
-                background: #f2f2f2;
-            }
-            .table-title .btn i {
-                float: left;
-                font-size: 21px;
-                margin-right: 5px;
-            }
-            .table-title .btn span {
-                float: left;
-                margin-top: 2px;
-            }
-            table.table tr th, table.table tr td {
-                border-color: #e9e9e9;
-                padding: 12px 15px;
-                vertical-align: middle;
-            }
-            table.table tr th:first-child {
-                width: 60px;
-            }
-            table.table tr th:last-child {
-                width: 100px;
-            }
-            table.table-striped tbody tr:nth-of-type(odd) {
-                background-color: #fcfcfc;
-            }
-            table.table-striped.table-hover tbody tr:hover {
-                background: #f5f5f5;
-            }
-            table.table th i {
-                font-size: 13px;
-                margin: 0 5px;
-                cursor: pointer;
-            }	
-            table.table td:last-child i {
-                opacity: 0.9;
-                font-size: 22px;
-                margin: 0 5px;
-            }
-            table.table td a {
-                font-weight: bold;
-                color: #566787;
-                display: inline-block;
-                text-decoration: none;
-            }
-            table.table td a:hover {
-                color: #2196F3;
-            }
-            table.table td a.settings {
-                color: #2196F3;
-            }
-            table.table td a.delete {
-                color: #F44336;
-            }
-            table.table td i {
-                font-size: 19px;
-            }
-            table.table .avatar {
-                border-radius: 50%;
-                vertical-align: middle;
-                margin-right: 10px;
-            }
-            .status {
-                font-size: 30px;
-                margin: 2px 2px 0 0;
-                display: inline-block;
-                vertical-align: middle;
-                line-height: 10px;
-            }
-            .text-success {
-                color: #10c469;
-            }
-            .text-info {
-                color: #62c9e8;
-            }
-            .text-warning {
-                color: #FFC107;
-            }
-            .text-danger {
-                color: #ff5b5b;
-            }
-            .pagination {
-                float: right;
-                margin: 0 0 5px;
-            }
-            .pagination li a {
-                border: none;
-                font-size: 13px;
-                min-width: 30px;
-                min-height: 30px;
-                color: #999;
-                margin: 0 2px;
-                line-height: 30px;
-                border-radius: 2px !important;
-                text-align: center;
-                padding: 0 6px;
-            }
-            .pagination li a:hover {
-                color: #666;
-            }	
-            .pagination li.active a, .pagination li.active a.page-link {
-                background: #03A9F4;
-            }
-            .pagination li.active a:hover {        
-                background: #0397d6;
-            }
-            .pagination li.disabled i {
-                color: #ccc;
-            }
-            .pagination li i {
-                font-size: 16px;
-                padding-top: 6px
-            }
-            .hint-text {
-                float: left;
-                margin-top: 10px;
-                font-size: 13px;
-            }
-            .searchbar {
-                margin-bottom: auto;
-                margin-top: auto;
-                height: 60px;
-                background-color: #353b48;
-                border-radius: 30px;
-                padding: 10px;
-            }
-            .search_input {
-                color: white;
-                border: 0;
-                outline: 0;
-                background: none;
-                width: 0;
-                caret-color: transparent;
-                line-height: 40px;
-                transition: width 0.4s linear;
-            }
 
-            .searchbar:hover>.search_input {
-                padding: 0 10px;
-                width: 450px;
-                caret-color: red;
-                transition: width 0.4s linear;
-            }
-
-            .searchbar:hover>.search_icon {
-                background: white;
-                color: #e74c3c;
-            }
-
-            .search_icon {
-                height: 40px;
-                width: 40px;
-                float: right;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                border-radius: 50%;
-                color: white;
-                text-decoration: none;
-                background-color: #353b48;
-            }
-        </style>
         <script>
             $(document).ready(function () {
                 $('[data-toggle="tooltip"]').tooltip();
@@ -239,18 +36,7 @@
         </script>
     </head>
     <body>
-        <style>
-            table {
-                table-layout: fixed;
-                width: 200px;
-            }
 
-            th,
-            td {
-                width: 200px;
-                overflow: hidden;
-            }           
-        </style>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-2" style="background-color: #ebebf2;">
@@ -265,14 +51,22 @@
                                 <a class="nav-link" href="productList"><i class="fas fa-home"></i>Home</a>
                                 <hr class="line">
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="dashBoard"><i class="far fa-chart-bar"></i>Dashboard overview</a>
+                                <hr class="line">
+                            </li>
                             <c:if test="${sessionScope.acc == null}">
                                 <li class="nav-item">
                                     <a class="nav-link" href="login">Login</a>
                                 </li>
                             </c:if>
                             <c:if test = "${sessionScope.acc != null}">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="profile"><i class="fas fa-user-circle"></i>Hello ${sessionScope.acc.user}</a>
+                                <li id="drop">
+                                    <a class="nav-link" href="profile" id="profileOption"><i class="fas fa-user-circle"></i>Hello ${sessionScope.acc.user}</a>
+                                    <div class="dropdownContent">
+                                        <a href="profile">View my profile</a>
+                                        <a href="logout">LogOut</a>
+                                    </div>
                                     <hr class="line">
                                 </li>
 
@@ -297,69 +91,63 @@
                             <li class="nav-item">&nbsp;
                             </li> 
                         </ul>
-                        <a class="nav-link" href="logout" style="position: fixed; right: 10px;">LogOut</a>
+
                     </nav>
                 </div>
                 <div class="col-10">
-                    <div class="row">
+                    <div class="container">
                         <div class="d-flex justify-content-center h-100">
                             <div class="searchbar">
                                 <input class="search_input" type="text" id="search_Account" placeholder="Search...">
                                 <button onclick="search();" class="search_icon"><i class="fas fa-search"></i></button>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="table-responsive">
-                            <div class="table-wrapper">
-                                <div class="table-title">
-                                    <div class="row">
-                                        <div class="col-sm-5">
-                                            <h2>Account <b>Manager</b></h2>
-                                        </div>
-                                        <div class="col-sm-7">
-                                        </div>
-                                    </div>
-                                </div>
-                                <table class="table table-striped table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>UserName</th>						
-                                            <th>Role</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach items="${list}" var="o">
+                        <div class="row">
+                            <div class="table-responsive">
+                                <div class="table-wrapper">
+                                    <h2 style="font-family: Brush Script MT; text-align: center; font-size: 60px">Account manager</h2>
+                                    <br>
+                                    <table class="table table-striped table-hover">
+                                        <thead>
                                             <tr>
-                                                <td>${o.id}</td>
-                                                <td><a href="#">${o.user}</a></td>
-                                                <td style="width: 200px;">
-                                                    <c:if test="${o.isSell==1}">
-                                                        <a href="#" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Seller</a>
-                                                    </c:if>
-                                                    <c:if test="${o.isAdmin==1}">
-                                                        <a href="#" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Admin</a>
-                                                    </c:if>
-                                                </td>
-                                                <td>
-                                                    <a target="blank" href="editAccount?UserID=${o.id}"><button type="button" class="btn btn-outline-info  btn-sm">Edit</button></a>
-                                                    <form action="deleteAccount" method="POST" style="display:inline">
-                                                        <a> <input type="submit" class="btn btn-outline-danger btn-sm" value="Delete" onclick="if (confirm('Are you sure you want to delete?'))
-                                                                            form.action = 'deleteAccount?UserID=${o.id}';
-                                                                            else
-                                                                            return false;"/>  
-                                                        </a>
-                                                    </form>
-                                                </td>
+                                                <th>ID</th>
+                                                <th>UserName</th>						
+                                                <th>Role</th>
+                                                <th>Action</th>
                                             </tr>
-                                        </c:forEach>
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach items="${list}" var="o">
+                                                <tr>
+                                                    <td>${o.id}</td>
+                                                    <td><a href="#">${o.user}</a></td>
+                                                    <td style="width: 200px;">
+                                                        <c:if test="${o.isSell==1}">
+                                                            <a href="#" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Seller</a>
+                                                        </c:if>
+                                                        <c:if test="${o.isAdmin==1}">
+                                                            <a href="#" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Admin</a>
+                                                        </c:if>
+                                                    </td>
+                                                    <td>
+                                                        <a target="blank" href="editAccount?UserID=${o.id}"><button type="button" class="btn btn-outline-info  btn-sm">Edit</button></a>
+                                                        <form action="deleteAccount" method="POST" style="display:inline">
+                                                            <a> <input type="submit" class="btn btn-outline-danger btn-sm" value="Delete" onclick="if (confirm('Are you sure you want to delete?'))
+                                                                                form.action = 'deleteAccount?UserID=${o.id}';
+                                                                                else
+                                                                                return false;"/>  
+                                                            </a>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                    </div>     
+                    </div>
+
                 </div>  
             </div>
         </div>

@@ -41,7 +41,7 @@ public class ViewAllInvoicesAdmin extends HttpServlet {
         try {
 
             OrderDAO orderDAO = new OrderDAO();
-
+            
             List<Order> orders = orderDAO.getAllOrder();
             int totalCart = orderDAO.countOrders();
 
