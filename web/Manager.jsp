@@ -308,178 +308,378 @@
         </script>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light flex-column" style="position: fixed; left: 20px;">
-            <a class="navbar-brand" href="dashBoard"><img src="image/MenuLogo.png" width="200px"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-2" style="background-color: #ebebf2;">
+                    <nav class="navbar navbar-expand-lg navbar-light flex-column" style="background-color: #ebebf2;">
+                        <a class="navbar-brand" href="dashBoard"><img src="image/Other/Logo.jpg" width="200px"></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
 
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link" href="productList">Product List</a>
-                </li>
-                <c:if test="${sessionScope.acc == null}">
-                    <li class="nav-item">
-                        <a class="nav-link" href="login">Login</a>
-                    </li>
-                </c:if>
-                <c:if test = "${sessionScope.acc != null}">
-                    <li class="nav-item">
-                        <a class="nav-link text-info" href="login">Hello ${sessionScope.acc.user}</a>
-                    </li>
-                    <c:if test="${sessionScope.acc.isSell == 1}">
-                        <li class="nav-item">
-                            <a class="nav-link" href="manager">Manager Product</a>
-                        </li> 
-                    </c:if>
-                    <c:if test="${sessionScope.acc.isAdmin == 1}">
-                        <li class="nav-item">
-                            <a class="nav-link" href="accountManager">Manager Account</a>
-                        </li> 
-                    </c:if>
-                </c:if>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="productList"><i class="fas fa-home"></i>Home</a>
+                                <hr class="line">
+                            </li>
+                            <c:if test="${sessionScope.acc == null}">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="login">Login</a>
+                                </li>
+                            </c:if>
+                            <c:if test = "${sessionScope.acc != null}">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="profile"><i class="fas fa-user-circle"></i>Hello ${sessionScope.acc.user}</a>
+                                    <hr class="line">
+                                </li>
 
-                <li class="nav-item">&nbsp;
-                </li> 
-            </ul>
-        </nav>
-        <div class="container h-100">
-            <div class="d-flex justify-content-center h-100">
-                <div class="searchbar">
-                    <input class="search_input" type="text" id="search_Manager" placeholder="Search...">
-                    <button onclick="search();" class="search_icon"><i class="fas fa-search"></i></button>
-                </div>
-            </div>
-        </div>
-        <div class="container-xl" style="margin-left: 270px;">
-            <div class="table-responsive">
-                <div class="table-wrapper">
-                    <div class="table-title">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <h2>Manager <b>Product</b></h2>
-                            </div>
-                            <div class="col-sm-6">
-                                <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <table class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Image</th>
-                                <th>Price</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                                <c:if test="${sessionScope.acc.isSell == 1}">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="manager"><i class="fas fa-tasks"></i>Manager Product</a>
+                                        <hr class="line">
+                                    </li> 
+                                </c:if>
 
-                            <c:forEach items="${list}" var="o">
-                                <tr>
-                                    <td>${o.id}</td>
-                                    <td>${o.name}</td>
-                                    <td><img src="image/${o.imageLink}" style="height: 100px"></td>
-                                    <td>${o.priceWithDot} VND</td>
-                                    <td>
-                                        <!--Link to GET in EditControl-->
-                                        <a href="edit?ProductID=${o.id}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                        <a href="#deleteEmployeeModal" onclick="ProductID2(${o.id})" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                                    </td>
-                                </tr>
-                            </c:forEach>
+                                <c:if test="${sessionScope.acc.isAdmin == 1}">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="accountManager"><i class="fas fa-tasks"></i>Manager Account</a>
+                                        <hr class="line">
+                                    </li> 
+                                </c:if>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="viewAllNotifications"><i class="fas fa-bell"></i>Notifications (${numberNoti})</a>
+                                </li> 
+                            </c:if>
 
-                        </tbody>
-                    </table>
-                    <div class="clearfix">
-                        <div class="hint-text">Showing <b>6</b> out of <b>${count}</b> entries</div>
-                        <ul class="pagination">
-                            <c:forEach begin="1" end="${end}" var="i">
-                                <li class="page-item ${tag == i?"active":""}"><a href="manager?index=${i}" class="page-link">${i}</a></li>
-                                </c:forEach>
+                            <li class="nav-item">&nbsp;
+                            </li> 
                         </ul>
-                    </div>
+                        <a class="nav-link" href="logout" style="position: fixed; right: 10px;">LogOut</a>
+                    </nav>
                 </div>
-            </div>        
-        </div>
-        <!-- Add Product -->
-        <div id="addEmployeeModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form action="add" method="post">
-                        <div class="modal-header">						
-                            <h4 class="modal-title">Add Product</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <div class="modal-body">					
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" class="form-control" required name="name">
-                            </div>
-                            <div class="form-group">
-                                <label>Description</label>
-                                <input type="text" class="form-control" required name="description">
-                            </div>
-                            <div class="form-group">
-                                <label>Price</label>
-                                <input type="text" class="form-control" required name="price">
-                            </div>
-                            <div class="form-group">
-                                <label>Image Link</label>
-                                <input type="text" class="form-control" required name="imageLink">
-                            </div>
-                            <div class="form-group">
-                                <label>Category</label>
-                                <select name="CategoryID" class="form-control" required>
-                                    <c:forEach var="o" items="${listC}">
-                                        <option value="${o.id}">${o.name}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Seller</label>
-                                <select name="SellerID" class="form-control" required>
-                                    <c:forEach var="o" items="${listS}">
-                                        <option value="${o.id}">${o.user}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Amount</label>
-                                <input type="text" class="form-control" required name="amount">
+                <div class="col-10">
+                    <div class="row">
+                        <div class="d-flex justify-content-center h-100">
+                            <div class="searchbar">
+                                <input class="search_input" type="text" id="search_Manager" placeholder="Search...">
+                                <button onclick="search();" class="search_icon"><i class="fas fa-search"></i></button>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-success" value="Add">
+                    </div>
+                    <div class="row">
+                        <div class="table-responsive">
+                            <div class="table-wrapper">
+                                <div class="table-title">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <h2>Manager <b>Product</b></h2>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Image</th>
+                                            <th>Price</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <c:forEach items="${list}" var="o">
+                                            <tr>
+                                                <td>${o.id}</td>
+                                                <td>${o.name}</td>
+                                                <td><img src="image/${o.imageLink}" style="height: 100px"></td>
+                                                <td>${o.priceWithDot} VND</td>
+                                                <td>
+                                                    <!--Link to GET in EditControl-->
+                                                    <a href="edit?ProductID=${o.id}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                                    <a href="#deleteEmployeeModal" onclick="ProductID2(${o.id})" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+
+                                    </tbody>
+                                </table>
+                                <div class="clearfix">
+                                    <div class="hint-text">Showing <b>6</b> out of <b>${count}</b> entries</div>
+                                    <ul class="pagination">
+                                        <c:forEach begin="1" end="${end}" var="i">
+                                            <li class="page-item ${tag == i?"active":""}"><a href="manager?index=${i}" class="page-link">${i}</a></li>
+                                            </c:forEach>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>        
+                    </div>
+                    <!-- Add Product -->
+                    <div id="addEmployeeModal" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form action="add" method="post">
+                                    <div class="modal-header">						
+                                        <h4 class="modal-title">Add Product</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body">					
+                                        <div class="form-group">
+                                            <label>Name</label>
+                                            <input type="text" class="form-control" required name="name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <input type="text" class="form-control" required name="description">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Price</label>
+                                            <input type="text" class="form-control" required name="price">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Image Link</label>
+                                            <input type="text" class="form-control" required name="imageLink">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Category</label>
+                                            <select name="CategoryID" class="form-control" required>
+                                                <c:forEach var="o" items="${listC}">
+                                                    <option value="${o.id}">${o.name}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Seller</label>
+                                            <select name="SellerID" class="form-control" required>
+                                                <c:forEach var="o" items="${listS}">
+                                                    <option value="${o.id}">${o.user}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Amount</label>
+                                            <input type="text" class="form-control" required name="amount">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                        <input type="submit" class="btn btn-success" value="Add">
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                    </form>
+                    </div>
+
+                    <!-- Delete Product -->
+                    <div id="deleteEmployeeModal" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form action="delete" method="post">
+                                    <div class="modal-header">						
+                                        <h4 class="modal-title">Delete Product</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body">					
+                                        <p>Are you sure you want to delete this Product?</p>
+                                        <p class="text-warning"><small>This action cannot be undone.</small></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="text" id="pid2" name="ProductID" visibility: hidden>
+                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                        <input type="submit" class="btn btn-danger" value="Delete">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Delete Product -->
-        <div id="deleteEmployeeModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form action="delete" method="post">
-                        <div class="modal-header">						
-                            <h4 class="modal-title">Delete Product</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+
+
+
+
+
+
+
+        <!--        <nav class="navbar navbar-expand-lg navbar-light bg-light flex-column" style="position: fixed; left: 20px;">
+                    <a class="navbar-brand" href="dashBoard"><img src="image/MenuLogo.png" width="200px"></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+        
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="productList">Product List</a>
+                        </li>
+        <c:if test="${sessionScope.acc == null}">
+            <li class="nav-item">
+                <a class="nav-link" href="login">Login</a>
+            </li>
+        </c:if>
+        <c:if test = "${sessionScope.acc != null}">
+            <li class="nav-item">
+                <a class="nav-link text-info" href="login">Hello ${sessionScope.acc.user}</a>
+            </li>
+            <c:if test="${sessionScope.acc.isSell == 1}">
+                <li class="nav-item">
+                    <a class="nav-link" href="manager">Manager Product</a>
+                </li> 
+            </c:if>
+            <c:if test="${sessionScope.acc.isAdmin == 1}">
+                <li class="nav-item">
+                    <a class="nav-link" href="accountManager">Manager Account</a>
+                </li> 
+            </c:if>
+        </c:if>
+
+        <li class="nav-item">&nbsp;
+        </li> 
+    </ul>
+</nav>-->
+        <!--        <div class="container h-100">
+                    <div class="d-flex justify-content-center h-100">
+                        <div class="searchbar">
+                            <input class="search_input" type="text" id="search_Manager" placeholder="Search...">
+                            <button onclick="search();" class="search_icon"><i class="fas fa-search"></i></button>
                         </div>
-                        <div class="modal-body">					
-                            <p>Are you sure you want to delete this Product?</p>
-                            <p class="text-warning"><small>This action cannot be undone.</small></p>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="text" id="pid2" name="ProductID" visibility: hidden>
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-danger" value="Delete">
-                        </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
-        </div>
+                <div class="container-xl" style="margin-left: 270px;">
+                    <div class="table-responsive">
+                        <div class="table-wrapper">
+                            <div class="table-title">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h2>Manager <b>Product</b></h2>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Image</th>
+                                        <th>Price</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+        
+        <c:forEach items="${list}" var="o">
+            <tr>
+                <td>${o.id}</td>
+                <td>${o.name}</td>
+                <td><img src="image/${o.imageLink}" style="height: 100px"></td>
+                <td>${o.priceWithDot} VND</td>
+                <td>
+                    Link to GET in EditControl
+                    <a href="edit?ProductID=${o.id}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                    <a href="#deleteEmployeeModal" onclick="ProductID2(${o.id})" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                </td>
+            </tr>
+        </c:forEach>
+
+    </tbody>
+</table>
+<div class="clearfix">
+    <div class="hint-text">Showing <b>6</b> out of <b>${count}</b> entries</div>
+    <ul class="pagination">
+        <c:forEach begin="1" end="${end}" var="i">
+            <li class="page-item ${tag == i?"active":""}"><a href="manager?index=${i}" class="page-link">${i}</a></li>
+        </c:forEach>
+</ul>
+</div>
+</div>
+</div>        
+</div>
+Add Product 
+<div id="addEmployeeModal" class="modal fade">
+<div class="modal-dialog">
+<div class="modal-content">
+<form action="add" method="post">
+<div class="modal-header">						
+    <h4 class="modal-title">Add Product</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+</div>
+<div class="modal-body">					
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" required name="name">
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <input type="text" class="form-control" required name="description">
+    </div>
+    <div class="form-group">
+        <label>Price</label>
+        <input type="text" class="form-control" required name="price">
+    </div>
+    <div class="form-group">
+        <label>Image Link</label>
+        <input type="text" class="form-control" required name="imageLink">
+    </div>
+    <div class="form-group">
+        <label>Category</label>
+        <select name="CategoryID" class="form-control" required>
+        <c:forEach var="o" items="${listC}">
+            <option value="${o.id}">${o.name}</option>
+        </c:forEach>
+    </select>
+</div>
+<div class="form-group">
+    <label>Seller</label>
+    <select name="SellerID" class="form-control" required>
+        <c:forEach var="o" items="${listS}">
+            <option value="${o.id}">${o.user}</option>
+        </c:forEach>
+    </select>
+</div>
+<div class="form-group">
+    <label>Amount</label>
+    <input type="text" class="form-control" required name="amount">
+</div>
+</div>
+<div class="modal-footer">
+<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+<input type="submit" class="btn btn-success" value="Add">
+</div>
+</form>
+</div>
+</div>
+</div>
+
+Delete Product 
+<div id="deleteEmployeeModal" class="modal fade">
+<div class="modal-dialog">
+<div class="modal-content">
+<form action="delete" method="post">
+<div class="modal-header">						
+<h4 class="modal-title">Delete Product</h4>
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+</div>
+<div class="modal-body">					
+<p>Are you sure you want to delete this Product?</p>
+<p class="text-warning"><small>This action cannot be undone.</small></p>
+</div>
+<div class="modal-footer">
+<input type="text" id="pid2" name="ProductID" visibility: hidden>
+<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+<input type="submit" class="btn btn-danger" value="Delete">
+</div>
+</form>
+</div>
+</div>
+</div>-->
     </body>
 </html>

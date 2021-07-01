@@ -352,10 +352,8 @@ CREATE TABLE [dbo].[Order_Detail](
 	[ProductID] [int] NOT NULL,
 	[ProductName] [nvarchar](1000) NOT NULL,
 	[ProductPrice] [int] NOT NULL,	
-	[Status] [int] NOT NULL,	
 	constraint orderID_in_order FOREIGN KEY(Order_ID) REFERENCES Orders(ID),
-	constraint productID_in_order_detail FOREIGN KEY(ProductID) REFERENCES Product(ProductID),
-	constraint order_Detail_Status FOREIGN KEY(Status) REFERENCES Order_Status(ID)
+	constraint productID_in_order_detail FOREIGN KEY(ProductID) REFERENCES Product(ProductID)	
 ) ON [PRIMARY]
 GO
 
