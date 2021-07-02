@@ -33,13 +33,14 @@ public class OrderDetailWithImageDAO extends BaseDAO<OrderDetailWithImage> {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                list.add(new OrderDetailWithImage(
-                        rs.getString("imageLink"),
+                list.add(new OrderDetailWithImage(                      
                         rs.getInt("id"),
                         rs.getInt("order_Id"),
                         rs.getInt("ProductId"),
                         rs.getString("productName"),
-                        rs.getInt("productPrice")
+                        rs.getInt("productPrice"),
+                        rs.getInt("Quantity"),
+                        rs.getString("imageLink")
                 ));
             }
         } catch (Exception e) {

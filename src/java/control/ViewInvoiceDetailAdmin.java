@@ -70,20 +70,19 @@ public class ViewInvoiceDetailAdmin extends HttpServlet {
                 request.getRequestDispatcher("ViewInvoiceDetail.jsp").forward(request, response);
             } else if (a.getIsAdmin() != 1) {
                 InvoicesDAO invoicesDAO = new InvoicesDAO();
-                OrderDAO orderDAO = new OrderDAO();
-                String status = request.getParameter("status");
+//                String status = request.getParameter("status");
                 int sellerId = Integer.parseInt(request.getParameter("sellerId"));
                 int orderId = Integer.parseInt(request.getParameter("orderId"));
-                CartDAO CartDAO = new CartDAO();
+//                CartDAO CartDAO = new CartDAO();
                 NotificationDAO notiDAO = new NotificationDAO();
-                List<OrderDetailAdmin> invoiceDetail1 = invoicesDAO.getInvoiceDetailBySellerID(sellerId);
-                int totalCart1 = orderDAO.countOrders();
-                notiDAO.readOneNoti(sellerId, orderId);
+                List<OrderDetailAdmin> invoiceDetail = invoicesDAO.getInvoiceDetailBySellerID(sellerId);
+                int totalProductSold = invoicesDAO.countProductSoldOfSeller(sellerId);
 
-                request.setAttribute("invoiceDetail", invoiceDetail1);
-                request.setAttribute("totalCart", totalCart1);
+                notiDAO.readOneNoti(sellerId, orderId);
+                request.setAttribute("invoiceDetail", invoiceDetail);
+                request.setAttribute("totalCart", totalProductSold);
                 request.setAttribute("sellerId", sellerId);
-                request.setAttribute("sta", status);
+//                request.setAttribute("sta", status);
 
                 request.getRequestDispatcher("ViewInvoiceDetail.jsp").forward(request, response);
             }

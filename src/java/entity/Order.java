@@ -5,6 +5,8 @@
  */
 package entity;
 
+import java.sql.Date;
+
 /**
  *
  * @author Thuan
@@ -16,6 +18,8 @@ public class Order {
     private String note;
     private String status;
     private String date;
+    
+    private Date orderDate;
 
     @Override
     public String toString() {
@@ -37,6 +41,18 @@ public class Order {
         this.status = status;
         this.date = date;
     }
+
+    public Order(int id, int userId, double totalPrice, String note, String status, String date, Date orderDate) {
+        this.id = id;
+        this.userId = userId;
+        this.totalPrice = totalPrice;
+        this.note = note;
+        this.status = status;
+        this.date = date;
+        this.orderDate = orderDate;
+    }
+    
+    
 
     
     
@@ -88,6 +104,16 @@ public class Order {
     public void setDate(String date) {
         this.date = date;
     }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+    
+    
           
     
 }

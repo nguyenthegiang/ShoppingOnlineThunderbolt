@@ -8,7 +8,10 @@ package control;
 import entity.*;
 import DAL.*;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -57,8 +60,13 @@ public class DetailControl extends HttpServlet {
             FeedbackDAO feedbackDao = new FeedbackDAO();
             UserDAO userDao = new UserDAO();
             FeedbackRepliesDAO feedbackRepliesDao = new FeedbackRepliesDAO();
+            OrderDAO orderDAO = new OrderDAO();
             CategoryDAO CategoryDAO = new CategoryDAO();
             ProductDAO ProductDAO = new ProductDAO();
+
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat(
+                    "dd/MM/yyyy");
 
             // create list of categories, feedback, account that made feedback and account that replies
             List<Category> listC = CategoryDAO.getAllCategory();
@@ -70,6 +78,15 @@ public class DetailControl extends HttpServlet {
 
             // give data for list replies, list account made feedback and list of account that replies
             for (Feedback feedback : lsFeedback) {
+                //get order of the feedback
+                feedback.setOrder(
+                        orderDAO.getOrderByOrderID(feedback.getOrderId())
+                );
+                
+                // get order date of feedback
+                Date orderDate = feedback.getOrder().getOrderDate();
+                feedback.getOrder().setDate(sdf.format(orderDate));
+
                 // get all replies of feedback
                 lsFeedbackReplies = feedbackRepliesDao.
                         getFeedbacksByFeedbackId(feedback.getId());
@@ -98,10 +115,21 @@ public class DetailControl extends HttpServlet {
              * been deliverd and received or not If it has been deliverd, allow
              * feedback Write order date also
              */
-            if(currentAccount!=null) {
-                
+            boolean addFeedbackFlag = false;
+            if (currentAccount != null) {
+                if (feedbackDao.getFeedbacksByUserIdAndProductId(
+                        currentAccount.getId(),
+                        Integer.parseInt(id)).size() != 0) {
+                    addFeedbackFlag = true;
+                }
+
+                /*
+                later: count number of times the customer order this product 
+                if number of times the customer leave feedback is < number of
+                times customer order this product, allow feedback
+                 */
             }
-            
+
             // get hot and favourite product
             Product hot = ProductDAO.getHotProduct();
             Product favor = ProductDAO.getFavoriteProduct();
@@ -110,13 +138,16 @@ public class DetailControl extends HttpServlet {
             request.setAttribute("allCategory", listC);
             request.setAttribute("lsFeedback", lsFeedback);
             request.setAttribute("lsAccount", lsAccount);
+
             request.setAttribute("lsAccountReplies", lsAccountReplies);
+            request.setAttribute("addFeedbackFlag", addFeedbackFlag);
             request.setAttribute("hot", hot);
             request.setAttribute("favor", favor);
 
             request.setAttribute("detail", p);
             request.getRequestDispatcher("Detail.jsp").forward(request, response);
         } catch (Exception e) {
+            e.printStackTrace();
             response.sendRedirect("Error.jsp");
         }
 

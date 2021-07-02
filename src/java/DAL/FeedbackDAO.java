@@ -35,8 +35,9 @@ public class FeedbackDAO extends BaseDAO<Feedback> {
             while (rs.next()) {
                 Feedback f = new Feedback(
                         rs.getInt("ID"),
-                        rs.getInt("UserId"),
-                        rs.getInt("ProductId"),
+                        rs.getInt("UserID"),
+                        rs.getInt("ProductID"),
+                        rs.getInt("OrderID"),
                         rs.getInt("Star"),
                         rs.getString("FeedbackDetail")
                 );
@@ -64,8 +65,40 @@ public class FeedbackDAO extends BaseDAO<Feedback> {
             while (rs.next()) {
                 Feedback f = new Feedback(
                         rs.getInt("ID"),
-                        rs.getInt("UserId"),
-                        rs.getInt("ProductId"),
+                        rs.getInt("UserID"),
+                        rs.getInt("ProductID"),
+                        rs.getInt("OrderID"),
+                        rs.getInt("Star"),
+                        rs.getString("FeedbackDetail")
+                );
+                lsFeedback.add(f);                
+            }
+            return lsFeedback;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    /**
+     * Get a list of feedback by user id
+     * @param userId the id of the user
+     * @return a list of feedback
+     */
+    public List<Feedback> getFeedbacksByUserIdAndProductId(int userId, int productId) {
+        String query = "SELECT * FROM Feedback WHERE UserID = ? AND ProductID = ?";
+        try {
+            List<Feedback> lsFeedback = new ArrayList<>();
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, userId);
+            ps.setInt(2, productId);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Feedback f = new Feedback(
+                        rs.getInt("ID"),
+                        rs.getInt("UserID"),
+                        rs.getInt("ProductID"),
+                        rs.getInt("OrderID"),
                         rs.getInt("Star"),
                         rs.getString("FeedbackDetail")
                 );

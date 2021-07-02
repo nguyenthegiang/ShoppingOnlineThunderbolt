@@ -16,29 +16,33 @@ public class Feedback {
     private int id;
     private int userId;
     private int productId;
+    private int orderId;
     private int star;
     private String feedbackDetail;
+    private Order order;
     private List<FeedbackReplies> listReplies;
 
     public Feedback() {
     }
 
-    public Feedback(int id, int userId, int productId, int star, String feedbackDetail) {
+    public Feedback(int id, int userId, int productId, int orderId, int star, String feedbackDetail) {
         this.id = id;
         this.userId = userId;
         this.productId = productId;
+        this.orderId = orderId;
         this.star = star;
         this.feedbackDetail = feedbackDetail;
     }
-     
-    public Feedback(int id, int userId, int productId, int star, String feedbackDetail, List<FeedbackReplies> lsReplies) {
+
+    public Feedback(int id, int userId, int productId, int orderId, int star, String feedbackDetail, List<FeedbackReplies> listReplies) {
         this.id = id;
         this.userId = userId;
         this.productId = productId;
+        this.orderId = orderId;
         this.star = star;
         this.feedbackDetail = feedbackDetail;
-        this.listReplies = lsReplies;
-    }
+        this.listReplies = listReplies;
+    }    
 
     public int getId() {
         return id;
@@ -64,6 +68,14 @@ public class Feedback {
         this.productId = productId;
     }
 
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }        
+
     public int getStar() {
         return star;
     }
@@ -80,6 +92,14 @@ public class Feedback {
         this.feedbackDetail = feedbackDetail;
     }
 
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+       
     public List<FeedbackReplies> getListReplies() {
         return this.listReplies;
     }

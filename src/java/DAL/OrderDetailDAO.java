@@ -29,6 +29,7 @@ public class OrderDetailDAO extends BaseDAO<OrderDetail> {
      */
     public void addManyOrderDetails(int Order_ID, List<OrderDetail> oderDetail)
             throws Exception {
+        OrderDetailDAO oddDao = new OrderDetailDAO();
 
         // my SQL INSERT statement
         String query = " INSERT INTO Order_Detail (Order_id, ProductID,"
@@ -46,10 +47,14 @@ public class OrderDetailDAO extends BaseDAO<OrderDetail> {
                 ps.setInt(2, n.getProductID());
                 ps.setString(3, n.getProductName());
                 ps.setInt(4, n.getProductPrice());
+                ps.setInt(5, n.getQuantity());
 
                 ps.execute();           // the INSERT happens here
+                
+                oddDao.deleteAmount(n.getProductID(), n.getQuantity());
             }
-        } catch (Exception se) {
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -73,7 +78,8 @@ public class OrderDetailDAO extends BaseDAO<OrderDetail> {
                         rs.getInt("Order_ID"),
                         rs.getInt("ProductID"),
                         rs.getString("ProductName"),
-                        rs.getInt("ProductPrice")
+                        rs.getInt("ProductPrice"),
+                        rs.getInt("Quantity")
                 ));
             }
         } catch (Exception e) {
@@ -81,7 +87,18 @@ public class OrderDetailDAO extends BaseDAO<OrderDetail> {
         return list;
     }
     
-    
-    
-     
+    public void deleteAmount(int productId, int quantity) {
+        String query = "UPDATE Product\n"
+                + "SET Amount = Amount - ?\n"
+                + "WHERE ProductID = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, quantity);
+            ps.setInt(2, productId);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+         
 }

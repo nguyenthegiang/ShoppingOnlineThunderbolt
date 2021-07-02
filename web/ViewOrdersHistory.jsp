@@ -16,6 +16,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <link rel="stylesheet" href="css/OrderTableStyle.css" type="text/css"/>
+
         <!--Favicon-->
         <link rel="icon" type="image/png" href="image/faviconLogo.png" />
 
@@ -136,15 +138,15 @@
                         padding:10px; border: 1px solid;
                     }
                 </style>
-                <table style="margin-left:3em; border: 1px solid;">
+                <table id="customers" style="margin-left:3em; border: 1px solid;">
                     <thead >
                         <tr >
-                            <td>Order ID</td>
-                            <td>Total Price</td>
-                            <td>Note</td>
-                            <td>Status  </td>
-                            <td>Day Buy</td>
-                            <td></td>
+                            <th>Order ID</th>
+                            <th>Total Price</th>
+                            <th>Note</th>
+                            <th>Status  </th>
+                            <th>Day Buy</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>

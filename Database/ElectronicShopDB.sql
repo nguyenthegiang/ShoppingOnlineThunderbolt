@@ -351,6 +351,7 @@ CREATE TABLE [dbo].[Order_Detail](
 	[ProductID] [int] NOT NULL,
 	[ProductName] [nvarchar](1000) NOT NULL,
 	[ProductPrice] [int] NOT NULL,	
+	[Quantity] [int] NOT NULL,
 	constraint orderID_in_order FOREIGN KEY(Order_ID) REFERENCES Orders(ID),
 	constraint productID_in_order_detail FOREIGN KEY(ProductID) REFERENCES Product(ProductID)	
 ) ON [PRIMARY]
@@ -432,28 +433,38 @@ CREATE TABLE Feedback (
 	ID int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	UserID int,
 	ProductID int,
+	OrderID int,
 	Star int, --1-5
 	FeedbackDetail nvarchar(2000),
 	constraint userID_in_user_3 FOREIGN KEY(UserID) REFERENCES Users(UserID),
+	constraint orderID_in_orders_6 FOREIGN KEY(OrderID) REFERENCES Orders(ID),
 	constraint productID_in_feedback FOREIGN KEY(ProductID) REFERENCES Product(ProductID),
 	constraint valid_star CHECK (Star < 6 AND Star > 0)
 ) ON [PRIMARY]
 GO
 
-INSERT INTO Feedback VALUES (7, 1, 5, N'Very good');
-INSERT INTO Feedback VALUES (8, 3, 4, N'Good');
-INSERT INTO Feedback VALUES (9, 30, 3, N'Not Bad');
-INSERT INTO Feedback VALUES (10, 24, 5, N'Sản phẩm rất tốt');
-INSERT INTO Feedback VALUES (11, 1, 1, N'Gửi sai sản phẩm');
-INSERT INTO Feedback VALUES (12, 50, 5, N'Very good');
-INSERT INTO Feedback VALUES (7, 60, 5, N'It good');
-INSERT INTO Feedback VALUES (12, 70, 5, N'Very good');
-INSERT INTO Feedback VALUES (11, 69, 5, N'Very good');
-INSERT INTO Feedback VALUES (9, 22, 5, N'Good');
-INSERT INTO Feedback VALUES (7, 56, 5, N'Rất tốt');
-INSERT INTO Feedback VALUES (8, 70, 3, N'Đóng gói chưa tốt');
-INSERT INTO Feedback VALUES (7, 68, 2, N'Sai màu sản phẩm');
-INSERT INTO Feedback VALUES (8, 71, 2, N'Gửi thiếu linh kiện');
+--Order 8,9,13,16 of user 7
+--Order 10 of user 11
+--Order 18 of user 9
+--Order 21 of user 6
+
+INSERT INTO Feedback VALUES (7, 2, 48, 5, N'Very good');
+INSERT INTO Feedback VALUES (7, 4, 48, 4, N'Good');
+INSERT INTO Feedback VALUES (7, 6, 48, 3, N'Hộp bị móp nhưng sp vẫn hoạt động tốt!');
+--INSERT INTO Feedback VALUES (7, 1, 5, N'Very good');
+--INSERT INTO Feedback VALUES (8, 3, 4, N'Good');
+--INSERT INTO Feedback VALUES (9, 30, 3, N'Not Bad');
+--INSERT INTO Feedback VALUES (10, 24, 5, N'Sản phẩm rất tốt');
+--INSERT INTO Feedback VALUES (11, 1, 1, N'Gửi sai sản phẩm');
+--INSERT INTO Feedback VALUES (12, 50, 5, N'Very good');
+--INSERT INTO Feedback VALUES (7, 60, 5, N'It good');
+--INSERT INTO Feedback VALUES (12, 70, 5, N'Very good');
+--INSERT INTO Feedback VALUES (11, 69, 5, N'Very good');
+--INSERT INTO Feedback VALUES (9, 22, 5, N'Good');
+--INSERT INTO Feedback VALUES (7, 56, 5, N'Rất tốt');
+--INSERT INTO Feedback VALUES (8, 70, 3, N'Đóng gói chưa tốt');
+--INSERT INTO Feedback VALUES (7, 68, 2, N'Sai màu sản phẩm');
+--INSERT INTO Feedback VALUES (8, 71, 2, N'Gửi thiếu linh kiện');
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -470,6 +481,9 @@ GO
 INSERT INTO Feedback_Replies VALUES (1, 5, N'Xin Cám Ơn!');
 INSERT INTO Feedback_Replies VALUES (2, 4, N'Xin Cám Ơn!');
 INSERT INTO Feedback_Replies VALUES (3, 6, N'Xin Cám Ơn!');
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 Create TABLE Blog(
 ID int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 Title nvarchar(200),

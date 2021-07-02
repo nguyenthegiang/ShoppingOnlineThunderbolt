@@ -16,6 +16,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <!--Table Styling-->
+        <link rel="stylesheet" href="css/OrderTableStyle.css" type="text/css"/>
+
         <!--Favicon-->
         <link rel="icon" type="image/png" href="image/faviconLogo.png" />
 
@@ -105,14 +108,14 @@
                                     padding:10px; border: 1px solid;
                                 }
                             </style>
-                            <table style="margin-left:3em; border: 1px solid;">
+                            <table id ="customers" style="margin-left:3em; border: 1px solid;">
                                 <thead >
                                     <tr >
-                                        <td>No.</td>
-                                        <td>Product ID</td>
-                                        <td>Product Name</td>
-                                        <td>Product Picture</td>
-                                        <td>Product Price  </td>
+                                        <th>No.</th>
+                                        <th>Product ID</th>
+                                        <th>Product Name</th>
+                                        <th>Product Picture</th>
+                                        <th>Product Price  </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -120,18 +123,18 @@
                                     <form action="detail" id="viewDetail${item.id}">
                                         <input type="hidden" value="${item.productID}" name="ProductID"/>
                                     </form>
-                                        <tr  onclick="formAutoSubmit('viewDetail${item.id}')" style="border: 1px solid; cursor: pointer;">
-                                            <td>${item.id}</td>
-                                            <td>${item.productID}</td>
-                                            <td>${item.productName}</td>
-                                            <td><img height="130px" width="100px" src="image/${item.imageLink}"/></td>
-                                            <td>
-                                                <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${item.productPrice}"/>VNĐ
-                                            </td>
+                                    <tr  onclick="formAutoSubmit('viewDetail${item.id}')" style="border: 1px solid; cursor: pointer;">
+                                        <td>${item.id}</td>
+                                        <td>${item.productID}</td>
+                                        <td>${item.productName}</td>
+                                        <td><img height="130px" width="100px" src="image/${item.imageLink}"/></td>
+                                        <td>
+                                            <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${item.productPrice}"/>VNĐ
+                                        </td>
 
-                                            <c:set var="total" value="${total + item.productPrice}" />
-                                        </tr>
-                                    </c:forEach>
+                                        <c:set var="total" value="${total + item.productPrice}" />
+                                    </tr>
+                                </c:forEach>
                                 </tbody>
                             </table>
 
