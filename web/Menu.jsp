@@ -64,41 +64,39 @@
                                                 </div>
                                         </li>
 
-                                        <c:if test="${acc != null}">
-                                            <c:forEach items="${notis}" var="item">
-                                                <c:set var="condition" >${item.status}</c:set>
-                                                    <form action="viewInvoiceDetailAdmin" id="${item.orderId}1" style="display:none;">
-                                                        <input type="text" value="${item.orderId}" name="id"/>
-    <!--                                                    <input type="hidden" value="${item.status}" name="status"/>-->
-                                                        <input type="text" value="${condition}" name="status"/>
-                                                    </form>
-                                                    <form action="viewOrderDetail" id="${item.orderId}2" style="display:none;">
-                                                        <input type="hidden" value="${item.orderId}" name="id"/>
-                                                    </form>
-                                                    <a 
-                                                        <c:if test="${acc.isAdmin == 1}">
-                                                            onclick="formAutoSubmit('${item.orderId}1')"
-                                                        </c:if>
-                                                        <c:if test="${acc.isAdmin != 1}">
-                                                            onclick="formAutoSubmit('${item.orderId}2')"
-                                                        </c:if>
-                                                        style="text-decoration: none;cursor: pointer">
-                                                        <li class="notification-box" style="cursor: pointer;" >
-                                                            <div class="row" id="noticeContent">
-                                                                <div class="col-lg-3 col-sm-3 col-3 text-center">
-                                                                    <img src="image/47734_tai_nghe_corsair_hs35_stereo_blue_0005_1.jpg" class="w-50 rounded-circle">
-                                                                </div>    
-                                                                <div class="col-lg-8 col-sm-8 col-8" >
-                                                                    <div>
-                                                                        ${item.content}
-                                                                    </div>
-                                                                    <small class="text-warning">${item.time}</small>
-                                                                </div>    
+                                        <c:forEach items="${notis}" var="item">
+                                            <c:set var="condition" >${item.status}</c:set>
+                                            <form action="viewInvoiceDetailAdmin" id="${item.orderId}1" style="display:none;">
+                                                <input type="text" value="${item.orderId}" name="id"/>
+<!--                                                    <input type="hidden" value="${item.status}" name="status"/>-->
+                                                <input type="text" value="${condition}" name="status"/>
+                                            </form>
+                                            <form action="viewOrderDetail" id="${item.orderId}2" style="display:none;">
+                                                <input type="hidden" value="${item.orderId}" name="id"/>
+                                            </form>
+                                            <a 
+                                                <c:if test="${acc.isAdmin == 1}">
+                                                    onclick="formAutoSubmit('${item.orderId}1')"
+                                                </c:if>
+                                                <c:if test="${acc.isAdmin != 1}">
+                                                    onclick="formAutoSubmit('${item.orderId}2')"
+                                                </c:if>
+                                                style="text-decoration: none;cursor: pointer">
+                                                <li class="notification-box" style="cursor: pointer;" >
+                                                    <div class="row" id="noticeContent">
+                                                        <div class="col-lg-3 col-sm-3 col-3 text-center">
+                                                            <img src="image/47734_tai_nghe_corsair_hs35_stereo_blue_0005_1.jpg" class="w-50 rounded-circle">
+                                                        </div>    
+                                                        <div class="col-lg-8 col-sm-8 col-8" >
+                                                            <div>
+                                                                ${item.content}
                                                             </div>
-                                                        </li>
-                                                    </a>
-                                            </c:forEach>
-                                        </c:if>
+                                                            <small class="text-warning">${item.time}</small>
+                                                        </div>    
+                                                    </div>
+                                                </li>
+                                            </a>
+                                        </c:forEach>
 
 
                                         <li class="footer bg-dark text-center">
@@ -150,30 +148,30 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
         <script>
-                                                                function notiRead(userId) {
-                                                                    //Sử dụng Ajax
-                                                                    $.ajax({
-                                                                        url: "/Assignment_ElectronicShop_Pro/notiRead",
-                                                                        type: "get", //send it through get method
-                                                                        data: {
-                                                                            userId: userId
-                                                                        },
-                                                                        success: function () {
-                                                                            //Change number of Product in cart
-                                                                            document.getElementById("unread").innerHTML = 0;
-                                                                        },
-                                                                        error: function () {
-                                                                        }
-                                                                    });
-                                                                }
+                                                            function notiRead(userId) {
+                                                                //Sử dụng Ajax
+                                                                $.ajax({
+                                                                    url: "/Assignment_ElectronicShop_Pro/notiRead",
+                                                                    type: "get", //send it through get method
+                                                                    data: {
+                                                                        userId: userId
+                                                                    },
+                                                                    success: function () {
+                                                                        //Change number of Product in cart
+                                                                        document.getElementById("unread").innerHTML = 0;
+                                                                    },
+                                                                    error: function () {
+                                                                    }
+                                                                });
+                                                            }
 
-                                                                function formAutoSubmit(name) {
+                                                            function formAutoSubmit(name) {
 
-                                                                    var frm = document.getElementById(name);
+                                                                var frm = document.getElementById(name);
 
-                                                                    frm.submit();
+                                                                frm.submit();
 
-                                                                }
+                                                            }
         </script>
 
     </body>
