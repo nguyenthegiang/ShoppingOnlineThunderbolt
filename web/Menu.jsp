@@ -9,12 +9,13 @@
         <!--Favicon-->
         <link rel="icon" type="image/png" href="image/faviconLogo.png" />
         <!--The Menu nav bar of Home Page-->
-        <link href="css/Menu.css" rel="stylesheet" type="text/css"/>
+        
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
+        <link href="css/Menu.css" rel="stylesheet" type="text/css"/>
+        
         <jsp:useBean id="c" class="DAL.CartDAO"></jsp:useBean>
         </head>
         <body>
@@ -138,7 +139,7 @@
 
                 <c:if test = "${acc != null}">
                     <!--Link to user profile-->
-                    <a class="nav-link" href="profile" id="linkHover"><i class="far fa-user"></i></a>
+                    <a class="nav-link" href="profile" id="bell" style="font-size: 2em;"><i class="fas fa-user"></i></i></a>
                 </c:if>
             </div>
         </nav>

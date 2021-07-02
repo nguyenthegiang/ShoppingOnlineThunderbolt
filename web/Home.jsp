@@ -27,7 +27,6 @@
         <script src="https://kit.fontawesome.com/6c7ad27b5d.js" crossorigin="anonymous"></script>
 
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
     </head>
     <body style="background-color: #D9DDDC">
         <jsp:include page="Menu.jsp"></jsp:include>
