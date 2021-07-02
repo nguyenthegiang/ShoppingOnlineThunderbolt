@@ -365,15 +365,73 @@ CREATE TABLE Ship (
 	ShipPrice int
 ) ON [PRIMARY]
 GO
+INSERT INTO Ship VALUES (N'An Giang', 50000);
+INSERT INTO Ship VALUES (N'Bà Rịa-Vũng Tàu', 50000);
+INSERT INTO Ship VALUES (N'Bạc Liêu', 50000);
+INSERT INTO Ship VALUES (N'Bắc Kạn', 50000);
+INSERT INTO Ship VALUES (N'Bắc Giang', 50000);
+INSERT INTO Ship VALUES (N'Bắc Ninh', 50000);
+INSERT INTO Ship VALUES (N'Bến Tre', 50000);
+INSERT INTO Ship VALUES (N'Bình Dương', 50000);
+INSERT INTO Ship VALUES (N'Bình Định', 50000);
+INSERT INTO Ship VALUES (N'Bình Phước', 50000);
+INSERT INTO Ship VALUES (N'Bình Thuận', 50000);
+INSERT INTO Ship VALUES (N'Cà Mau', 50000);
+INSERT INTO Ship VALUES (N'Cao Bằng', 50000);
+INSERT INTO Ship VALUES (N'Cần Thơ (TP)', 50000);
+INSERT INTO Ship VALUES (N'Đà Nẵng (TP)', 50000);
+INSERT INTO Ship VALUES (N'Đắk Lắk', 50000);
+INSERT INTO Ship VALUES (N'Đắk Nông', 50000);
+INSERT INTO Ship VALUES (N'Điện Biên', 50000);
+INSERT INTO Ship VALUES (N'Đồng Nai', 50000);
+INSERT INTO Ship VALUES (N'Đồng Tháp', 50000);
+INSERT INTO Ship VALUES (N'Gia Lai', 50000);
+INSERT INTO Ship VALUES (N'Hà Giang', 50000);
+INSERT INTO Ship VALUES (N'Hà Nam', 50000);
+INSERT INTO Ship VALUES (N'Hà Nội(TP)', 20000);
+INSERT INTO Ship VALUES (N'Hà Tây', 20000);
+INSERT INTO Ship VALUES (N'Hà Tĩnh', 50000);
+INSERT INTO Ship VALUES (N'Hải Dương', 50000);
+INSERT INTO Ship VALUES (N'Hải Phòng(TP)', 50000);
+INSERT INTO Ship VALUES (N'Hòa Bình', 50000);
+INSERT INTO Ship VALUES (N'Hồ Chí Minh(TP)', 50000);
+INSERT INTO Ship VALUES (N'Hậu Giang', 50000);
+INSERT INTO Ship VALUES (N'Hưng Yên', 50000);
+INSERT INTO Ship VALUES (N'Khánh Hòa', 50000);
+INSERT INTO Ship VALUES (N'Kiên Giang', 50000);
+INSERT INTO Ship VALUES (N'Kon Tum', 50000);
+INSERT INTO Ship VALUES (N'Lai Châu', 50000);
+INSERT INTO Ship VALUES (N'Lào Cai', 50000);
+INSERT INTO Ship VALUES (N'Lạng Sơn', 50000);
+INSERT INTO Ship VALUES (N'Lâm Đồng', 50000);
+INSERT INTO Ship VALUES (N'Long An', 50000);
+INSERT INTO Ship VALUES (N'Nam Định', 50000);
+INSERT INTO Ship VALUES (N'Nghệ An', 50000);
+INSERT INTO Ship VALUES (N'Ninh Bình', 50000);
+INSERT INTO Ship VALUES (N'Ninh Thuận', 50000);
+INSERT INTO Ship VALUES (N'Phú Thọ', 50000);
+INSERT INTO Ship VALUES (N'Phú Yên', 0000);
+INSERT INTO Ship VALUES (N'Quảng Bình', 50000);
+INSERT INTO Ship VALUES (N'Quảng Nam', 50000);
+INSERT INTO Ship VALUES (N'Quảng Ngãi', 50000);
+INSERT INTO Ship VALUES (N'Quảng Ninh', 50000);
+INSERT INTO Ship VALUES (N'Quảng Trị', 50000);
+INSERT INTO Ship VALUES (N'Sóc Trăng', 50000);
+INSERT INTO Ship VALUES (N'Sơn La', 50000);
+INSERT INTO Ship VALUES (N'Tây Ninh', 50000);
+INSERT INTO Ship VALUES (N'Thái Bình', 50000);
+INSERT INTO Ship VALUES (N'Thái Nguyên', 50000);
+INSERT INTO Ship VALUES (N'Thanh Hóa', 50000);
+INSERT INTO Ship VALUES (N'Thừa Thiên - Huế', 50000);
+INSERT INTO Ship VALUES (N'Tiền Giang', 50000);
+INSERT INTO Ship VALUES (N'Trà Vinh', 50000);
+INSERT INTO Ship VALUES (N'Tuyên Quang', 50000);
+INSERT INTO Ship VALUES (N'Vĩnh Long', 50000);
+INSERT INTO Ship VALUES (N'Vĩnh Phúc', 50000);
+INSERT INTO Ship VALUES (N'Yên Bái', 50000);
 
-INSERT INTO Ship VALUES (N'Hà Nội', 20000);
-INSERT INTO Ship VALUES (N'TP Hồ Chí Minh', 100000);
-INSERT INTO Ship VALUES (N'Đà Nẵng', 70000);
-INSERT INTO Ship VALUES (N'Cần Thơ', 80000);
-INSERT INTO Ship VALUES (N'Hải Phòng', 40000);
-INSERT INTO Ship VALUES (N'Việt Trì', 10000);
-INSERT INTO Ship VALUES (N'Biên Hòa', 120000);
-INSERT INTO Ship VALUES (N'Nha Trang', 90000);
+
+
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
