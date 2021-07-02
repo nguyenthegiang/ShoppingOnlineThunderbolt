@@ -273,73 +273,88 @@
                             <tbody>
                                 <c:forEach items="${notis}" var="o">
                                     <c:set var="sta">${o.status}</c:set>
-                                    <c:if test="${sta eq 'read'}">
-                                    <form action="viewInvoiceDetailAdmin" id="${o.orderId}1" style="display:none;">
-                                        <input type="hidden" value="${o.orderId}" name="id"/>
-                                        <input type="hidden" value="${sta}" name="status"/>
-                                    </form>
-                                    <tr onClick="formAutoSubmit('${o.orderId}1')" style="cursor:pointer">
-                                        <td colspan="5">${o.content}</td>
-                                        <td>${o.status}</td>
-                                        <td>${o.time}</td>    
-                                    </tr>
-                                </c:if>
-                                <c:if test="${sta eq 'unread'}">
-                                    <form action="viewInvoiceDetailAdmin" id="${o.orderId}2" style="display:none;">
-                                        <input type="hidden" value="${o.orderId}" name="id"/>
-                                        <input type="hidden" value="${sta}" name="status"/>
-                                    </form>
-                                    <tr onClick="formAutoSubmit('${o.orderId}2')" style="cursor:pointer">
-                                        <td colspan="5">${o.content}</td>
-                                        <td>${o.status}</td>
-                                        <td>${o.time}</td>    
-                                    </tr>
-                                </c:if>
-
+                                <form action="viewInvoiceDetailAdmin" id="${o.orderId}1" style="display:none;">
+                                    <input type="hidden" value="${o.orderId}" name="id"/>
+                                    <input type="hidden" value="${sta}" name="status"/>
+                                </form>
+                                <tr onClick="formAutoSubmit('${o.orderId}1')" style="cursor:pointer">
+                                    <td colspan="5">${o.content}</td>
+                                    <td>${o.status}</td>
+                                    <td>${o.time}</td>    
+                                </tr>
                             </c:forEach>
                         </c:if>
 
 
                         <!--if user is seller-->
-                        <c:if test="${sessionScope.acc.isAdmin!=1}">
-                            <thead>
-                                <tr>
-                                    <th colspan="4">Content</th>	
-                                    <th></th>
-                                    <th>Time</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <c:forEach items="${notis}" var="o">
-                                    <form action="viewInvoiceDetailAdmin" id="${o.orderId}3" style="display:none;">
+                        <c:if test="${sessionScope.acc.isAdmin!=1 }">
+                            <!--if user is seller-->
+                            <c:if test="${sessionScope.acc.isSell==1}">
+                                <thead>
+                                    <tr>
+                                        <th colspan="4">Content</th>	
+                                        <th></th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach items="${notis}" var="o">
+                                    <form action="viewInvoiceDetailAdmin" id="${o.orderId}2" style="display:none;">
                                         <input type="hidden" value="${sessionScope.acc.id}" name="sellerId"/>
                                         <input type="hidden" value="${o.orderId}" name="orderId"/>
+                                    </form>
+                                    <tr onClick="formAutoSubmit('${o.orderId}2')" style="cursor:pointer">
+                                        <td colspan="5">${o.content}</td>
+                                        <td>${o.time}</td>    
+                                    </tr>
+
+                                </c:forEach>
+                            </c:if>
+                                    <!--if user is buyer-->
+                                     <c:if test="${sessionScope.acc.isSell!=1}">
+
+                                <thead>
+                                    <tr>
+                                        <th colspan="4">Content</th>	
+                                        <th></th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach items="${notis}" var="o">
+                                    <form action="viewOrderDetail" id="${o.orderId}3" style="display:none;">
+                                        <input type="hidden" value="${o.orderId}" name="id"/>
                                     </form>
                                     <tr onClick="formAutoSubmit('${o.orderId}3')" style="cursor:pointer">
                                         <td colspan="5">${o.content}</td>
                                         <td>${o.time}</td>    
                                     </tr>
 
-                            </c:forEach>
+                                </c:forEach>
+                            </c:if>
                         </c:if>
-                        </tbody>
-                    </table>
+
+
+
+                      
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-        </div>     
-        <script>
+            </div>     
+            <script>
 
-            function formAutoSubmit(name) {
+                function formAutoSubmit(name) {
 
-                var frm = document.getElementById(name);
+                    var frm = document.getElementById(name);
 
-                frm.submit();
+                    frm.submit();
 
-            }
-        </script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-    </body>
-</html>
+                }
+            </script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+        </body>
+    </html>
