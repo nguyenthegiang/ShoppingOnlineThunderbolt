@@ -24,7 +24,6 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
@@ -41,10 +40,6 @@
 
                     <!--Nếu acc khác null -> login rồi -> hiển thị cả 3 menu dưới-->
                     <c:if test = "${acc != null}">
-                        <li class="nav-item">
-                            <!--Link to user profile-->
-                            <a class="nav-link" href="profile" id="linkHover">Hello ${acc.user}</a>
-                        </li>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="display: unset !important;">
                             <ul class="nav nav-pills mr-auto justify-content-end">           
                                 <li class="nav-item dropdown " id="sup">
@@ -140,6 +135,11 @@
                         <span class="badge badge-light" id="CartNum">${c.countNumCart(sessionScope.acc.id)}</span>
                     </a>
                 </form>
+
+                <c:if test = "${acc != null}">
+                    <!--Link to user profile-->
+                    <a class="nav-link" href="profile" id="linkHover"><i class="far fa-user"></i></a>
+                </c:if>
             </div>
         </nav>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -148,30 +148,30 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
         <script>
-                                                            function notiRead(userId) {
-                                                                //Sử dụng Ajax
-                                                                $.ajax({
-                                                                    url: "/Assignment_ElectronicShop_Pro/notiRead",
-                                                                    type: "get", //send it through get method
-                                                                    data: {
-                                                                        userId: userId
-                                                                    },
-                                                                    success: function () {
-                                                                        //Change number of Product in cart
-                                                                        document.getElementById("unread").innerHTML = 0;
-                                                                    },
-                                                                    error: function () {
-                                                                    }
-                                                                });
-                                                            }
+                                                        function notiRead(userId) {
+                                                            //Sử dụng Ajax
+                                                            $.ajax({
+                                                                url: "/Assignment_ElectronicShop_Pro/notiRead",
+                                                                type: "get", //send it through get method
+                                                                data: {
+                                                                    userId: userId
+                                                                },
+                                                                success: function () {
+                                                                    //Change number of Product in cart
+                                                                    document.getElementById("unread").innerHTML = 0;
+                                                                },
+                                                                error: function () {
+                                                                }
+                                                            });
+                                                        }
 
-                                                            function formAutoSubmit(name) {
+                                                        function formAutoSubmit(name) {
 
-                                                                var frm = document.getElementById(name);
+                                                            var frm = document.getElementById(name);
 
-                                                                frm.submit();
+                                                            frm.submit();
 
-                                                            }
+                                                        }
         </script>
 
     </body>
