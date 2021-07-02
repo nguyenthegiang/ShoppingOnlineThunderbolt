@@ -36,7 +36,6 @@ GO
 INSERT INTO Users VALUES (N'nguyenthegiang', N'nguyenthegiang', N'nguyenthe.giang.775@gmail.com', N'aaaaa', 1, 1, 1);
 INSERT INTO Users VALUES (N'buingochuyen', N'buingochuyen', N'HuyenBNHE150346@fpt.edu.vn',N'bbbbb', 1, 1,1);
 INSERT INTO Users VALUES (N'lehoangchi', N'lehoangchi', N'b', N'bbbbb', 1, 0, 1);
-INSERT INTO Users VALUES (N'nguyenthuan', N'nguyenthuan', N'c', N'bbbbb', 1, 0, 1);
 INSERT INTO Users VALUES (N'nguyenminhhanh', N'nguyenminhhanh', N'd', N'bbbbb', 1, 0, 1);
 INSERT INTO Users VALUES (N'nguyenthithanhmai', N'nguyenthithanhmai', N'e', N'bbbbb', 1, 0, 1);
 INSERT INTO Users VALUES (N'nguyentranhoang', N'nguyentranhoang', N'f', N'bbbbb', 0, 0, 1);
