@@ -20,10 +20,11 @@ public class OrderDetailWithImage extends OrderDetail {
     public OrderDetailWithImage() {
     }
 
-    public OrderDetailWithImage(String imageLink, int id, int orderID, int productID, String productName, int productPrice) {
-        super(id, orderID, productID, productName, productPrice);
+    public OrderDetailWithImage(int id, int orderID, int productID, String productName, int productPrice, int quantity, String imageLink) {
+        super(id, orderID, productID, productName, productPrice, quantity);
         this.imageLink = imageLink;
     }
+
 
     @Override
     public void setProductPrice(int productPrice) {
