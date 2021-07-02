@@ -1,7 +1,7 @@
 <%-- 
-    Document   : DashBoard
-    Created on : Mar 31, 2021, 7:54:26 PM
-    Author     : ADMIN
+   Document   : DashBoard
+   Created on : Mar 31, 2021, 7:54:26 PM
+   Author     : ADMIN
 --%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -14,6 +14,8 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/OrderTableStyle.css" type="text/css"/>
 
         <!--Favicon-->
         <link rel="icon" type="image/png" href="image/faviconLogo.png" />
@@ -114,13 +116,25 @@
                             <div class="col-md-4">
                                 <img src="image/InvoiceIcon.png" alt="..." width="70%;" style="margin-top: 10px;">
                             </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">Total Invoices</h5>
-                                    <h5 class="card-title">${totalCart}</h5>
-                                    <p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p>
+                            <c:if test="${sessionScope.acc.isAdmin == 1}">
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Total Invoices</h5>
+                                        <h5 class="card-title">${totalCart}</h5>
+                                        <p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p>
+                                    </div>
                                 </div>
-                            </div>
+                            </c:if>
+
+                            <c:if test="${sessionScope.acc.isAdmin != 1}">
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Total Products Sold</h5>
+                                        <h5 class="card-title">${totalCart}</h5>
+                                        <p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p>
+                                    </div>
+                                </div>
+                            </c:if>
                         </div>
                     </div>
                 </div>
@@ -133,23 +147,24 @@
                         }
                     </style>
                     <c:if test="${sessionScope.acc.isAdmin == 1}">
-                    <h2>Order ID: ${OrderId}
-                        (${sta})</h2>
+                        <h2>Order ID: ${OrderId}
+                            (${sta})</h2>
+                        </c:if>
+                        <c:if test="${sessionScope.acc.isAdmin != 1}">
+                        <h2>Seller ID: ${sellerId} (Sold Product List)</h2>
                     </c:if>
-                    <c:if test="${sessionScope.acc.isAdmin != 1}">
-                    <h2>Seller ID: ${sellerId}</h2>
-                    </c:if>
-                    <table style="margin-left:3em; border: 1px solid;">
+                    <br/><br/>
+                    <table id="customers" style="margin-left:3em; border: 1px solid;">
                         <thead >
                             <tr >
-                                <td>No.</td>
-                                <td>User Name</td>
-                                <td>Product ID</td>
-                                <td>Product Name</td>                               
-                                <td>Product Price</td>                               
-                                <td>Product Image</td>                               
-                                <td>Shipping Address</td>                               
-                                <td>Customer's Phone Number</td>                               
+                                <th>No.</th>
+                                <th>User Name</th>
+                                <th>Product ID</th>
+                                <th>Product Name</th>                               
+                                <th>Product Price</th>                               
+                                <th>Product Image</th>                               
+                                <th>Shipping Address</th>                               
+                                <th>Customer's Phone Number</th>                               
                             </tr>
                         </thead>
                         <tbody>
@@ -164,7 +179,7 @@
                                         <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${item.productPrice}"/>VNĐ
                                     </td>
                                     <td>${item.shipAddress}</td>                      
-                                    <td>${sta}</td>
+                                    <td>${item.phoneNumber}</td>
                                     <c:set var="userId" value="${item.userId}"/>
                                     <c:set var="total" value="${total + item.productPrice}" />
                                 </tr>
@@ -177,7 +192,7 @@
                         <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${total}"/> 
                         VNĐ</h1>
 
-                        <c:set var="n" value="Waiting for Confirmation"></c:set>
+                    <c:set var="n" value="Waiting for Confirmation"></c:set>
                     <c:if test="${sta eq n}">
                         <form action="approveOrder" id="form1">
                             <input type="hidden" value="${OrderId}" name="orderId"/>
@@ -220,16 +235,16 @@
                 </div>
             </div>
 
-                        <script type="text/javascript">
+            <script type="text/javascript">
 
-            function formAutoSubmit(name) {
+                function formAutoSubmit(name) {
 
-                var frm = document.getElementById(name);
+                    var frm = document.getElementById(name);
 
-                frm.submit();
+                    frm.submit();
 
-            }
-        </script>
+                }
+            </script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     </body>
 </html>
