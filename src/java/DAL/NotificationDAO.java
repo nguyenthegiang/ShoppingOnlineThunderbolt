@@ -113,7 +113,7 @@ public class NotificationDAO extends BaseDAO<Notification> {
                 ps.setInt(2, orderId);
                 ps.setString(3, "The customer with ID " + userId + " has placed an order"
                         + " with OrderID: "+ orderId
-                        + ". Check it out! ");
+                        + ". Waiting for admin to approve! ");
                 ps.setString(4, "unread");
                 ps.setString(5, dtf.format(now) + " at " + dtf1.format(now));
 
@@ -347,6 +347,40 @@ public class NotificationDAO extends BaseDAO<Notification> {
         } catch (Exception e) {
         }
         return 0;
+    }
+    
+    
+    public void adminApproveNotiSeller(int userId, int orderId, List<Integer> sellerId)
+            throws Exception {
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm");
+
+        LocalDateTime now = LocalDateTime.now();
+        // my SQL INSERT statement
+        String query = " INSERT INTO Notifications "
+                + " VALUES (?, ?, ?, ?, ?)";
+
+        // declare the preparedstatement reference
+        try {
+            // create the preparedstatement before the loop
+            ps = connection.prepareStatement(query);
+
+            // now loop through nearly 1,500 nodes in the list
+            for (Integer n : sellerId) {
+                ps.setInt(1, n);
+                ps.setInt(2, orderId);
+                ps.setString(3, "Admin has approved your product(s) from buyer with ID  " 
+                        + userId 
+                        + ", and the OrderID: "+ orderId
+                        + ". Check it out! ");
+                ps.setString(4, "unread");
+                ps.setString(5, dtf.format(now) + " at " + dtf1.format(now));
+
+                ps.execute();           // the INSERT happens here
+            }
+        } catch (Exception se) {
+        }
     }
 }
 

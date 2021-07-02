@@ -176,28 +176,6 @@
                     <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${total}"/> 
                     VNĐ</h1>
             </div>
-            <div class="row">
-                <div class="col-6">
-                    <h3>Most Selling Product</h3>
-                    <c:forEach var="o" items="${top3MostSellD}">
-                        <h6>${o.name}</h6>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: ${o.proportion}%" aria-valuenow="${o.proportion}" aria-valuemin="0" aria-valuemax="100">${o.amount}</div>
-                        </div>
-                        <br>
-                    </c:forEach>
-                </div>
-                <div class="col-6">
-                    <h3>Least Selling Product</h3>
-                    <c:forEach var="o" items="${top3LeastSellD}">
-                        <h6>${o.name}</h6>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: ${o.proportion}%" aria-valuenow="${o.proportion}" aria-valuemin="0" aria-valuemax="100">${o.amount}</div>
-                        </div>
-                        <br>
-                    </c:forEach>
-                </div>
-            </div>
         </div>
 
 

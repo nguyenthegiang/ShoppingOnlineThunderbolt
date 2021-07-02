@@ -170,7 +170,7 @@
 
                     <div class="row">
                         <div class="col-5">
-                            <canvas id="myChart3" style="width:100%;max-width:900px"></canvas>
+<!--                            <canvas id="myChart3" style="width:100%;max-width:900px"></canvas>
 
                                                         <script>
                                                             var xValues = [""];
@@ -226,7 +226,7 @@
                                     }
                                 }
                             });
-                        </script>
+                        </script>-->
                         </div>
 
                         <div class="col-7">

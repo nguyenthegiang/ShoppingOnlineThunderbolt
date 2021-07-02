@@ -9,6 +9,7 @@ import DAL.CartDAO;
 import DAL.InvoicesDAO;
 import DAL.NotificationDAO;
 import DAL.OrderDAO;
+import DAL.UserDAO;
 import entity.Account;
 import entity.Order;
 import entity.OrderDetailAdmin;
@@ -49,10 +50,14 @@ public class ApproveOrder extends HttpServlet {
         try {
             OrderDAO orderDAO = new OrderDAO();
             NotificationDAO notiDAO = new NotificationDAO();
+            UserDAO accDAO = new UserDAO();
+            
+            
             
             orderDAO.packaging(orderId);
             notiDAO.approveOrderAdminNoti(userId, orderId);
             notiDAO.readOneNoti(a.getId(), orderId);
+            notiDAO.adminApproveNotiSeller(userId, orderId, accDAO.getSellerIdOfAnOrder(orderId));
             List<Order> orders = orderDAO.getAllOrder();
             
             

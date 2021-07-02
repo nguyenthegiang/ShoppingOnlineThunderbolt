@@ -102,7 +102,7 @@
 
 
                                         <li class="footer bg-dark text-center">
-                                            <a href="" class="text-light">View All (${numberOfNotifications})</a>
+                                            <a href="viewAllNotifications" class="text-light">View All (${numberOfNotifications})</a>
                                         </li>
                                     </ul>
                                 </li>
