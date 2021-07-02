@@ -115,7 +115,7 @@ address
                                 <div class="form-field col-lg-1"></div>
                                 <div class="form-field col-lg-1"></div>
                                 <div class="form-field col-lg-7">
-                                    <input id="phone" class="input-text js-input" type="text" required>
+                                    <input id="phone" name="phone" class="input-text js-input" type="text" required>
                                     <label class="label" for="phone">Contact Number</label>
                                 </div>
                                 <div class="form-field col-lg-4"></div>

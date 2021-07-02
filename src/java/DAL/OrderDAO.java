@@ -201,7 +201,8 @@ public class OrderDAO extends BaseDAO<Order> {
                         rs.getFloat("TotalPrice"),
                         rs.getString("Note"),
                         rs.getString("Name"),
-                        rs.getString("DayBuy")
+                        rs.getString("DayBuy"),
+                        rs.getDate("DayBuy")
                 ));
             }
         } catch (Exception e) {

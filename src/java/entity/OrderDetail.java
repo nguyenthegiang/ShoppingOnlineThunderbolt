@@ -15,31 +15,25 @@ public class OrderDetail {
     private int productID;
     private String productName;
     private int productPrice;
+    private int quantity;
 
     @Override
     public String toString() {
-        return "OrderDetail{" + "id=" 
-                + id + ", "+ "orderID=" 
-                + orderID + ", productID=" 
-                + productID + ", productName=" 
-                + productName + ", productPrice=" 
-                + productPrice + '}';
+        return "OrderDetail{" + "id=" + id + ", orderID=" + orderID + ", productID=" + productID + ", productName=" + productName + ", productPrice=" + productPrice + ", quantity=" + quantity + '}';
     }
-    
+       
     public OrderDetail(){
         
     }
-    
-    public OrderDetail(int id, int orderID, int productID, String productName, int productPrice) {
+
+    public OrderDetail(int id, int orderID, int productID, String productName, int productPrice, int quantity) {
         this.id = id;
         this.orderID = orderID;
         this.productID = productID;
         this.productName = productName;
         this.productPrice = productPrice;
+        this.quantity = quantity;
     }
-
-    
-    
     
     public int getId() {
         return id;
@@ -80,8 +74,14 @@ public class OrderDetail {
     public void setProductPrice(int productPrice) {
         this.productPrice = productPrice;
     }
-    
-    
-    
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+         
 }
 

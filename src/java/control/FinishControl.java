@@ -142,6 +142,7 @@ public class FinishControl extends HttpServlet {
                 od.setProductID(cart.getP().getId());
                 od.setProductName(cart.getP().getName());
                 od.setProductPrice(cart.getP().getPrice());
+                od.setQuantity(cart.getAmount());
                 lsProductInOrder.add(od);
             }
             odDao.addManyOrderDetails(newOrderId, lsProductInOrder);
