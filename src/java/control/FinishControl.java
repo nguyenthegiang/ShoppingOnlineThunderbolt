@@ -146,15 +146,13 @@ public class FinishControl extends HttpServlet {
                 lsProductInOrder.add(od);
             }
             odDao.addManyOrderDetails(newOrderId, lsProductInOrder);
-            
-            
+
             //Add notifications to sellers and admin when user finish ordering
             List<Integer> idSeller = accountDAO.getSellerIdOfAnOrder(newOrderId);
             notiDAO.userBuyNoti(a.getId(), newOrderId, idSeller);
             notiDAO.userBuyNotiAdmin(a.getId(), newOrderId);
-            
 
-// add ship info to the database
+            // add ship info to the database
             shipInfo.setOrderId(newOrderId);
             shipInfoDAO.addShipInfo(shipInfo);
 
