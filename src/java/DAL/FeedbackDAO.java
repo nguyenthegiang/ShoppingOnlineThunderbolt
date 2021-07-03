@@ -21,7 +21,7 @@ public class FeedbackDAO extends BaseDAO<Feedback> {
     ResultSet rs = null; //Nhận kết quả trả về
 
     /**
-     * Get a list of feedback by product id
+     * Get a list of feedback by product id 
      * @param productId the id of the product
      * @return a list of feedback
      */
@@ -41,7 +41,7 @@ public class FeedbackDAO extends BaseDAO<Feedback> {
                         rs.getInt("Star"),
                         rs.getString("FeedbackDetail")
                 );
-                lsFeedback.add(f);                
+                lsFeedback.add(f);
             }
             return lsFeedback;
         } catch (Exception e) {
@@ -49,9 +49,10 @@ public class FeedbackDAO extends BaseDAO<Feedback> {
         }
         return null;
     }
-    
+
     /**
      * Get a list of feedback by user id
+     *
      * @param userId the id of the user
      * @return a list of feedback
      */
@@ -71,7 +72,7 @@ public class FeedbackDAO extends BaseDAO<Feedback> {
                         rs.getInt("Star"),
                         rs.getString("FeedbackDetail")
                 );
-                lsFeedback.add(f);                
+                lsFeedback.add(f);
             }
             return lsFeedback;
         } catch (Exception e) {
@@ -79,14 +80,17 @@ public class FeedbackDAO extends BaseDAO<Feedback> {
         }
         return null;
     }
-    
+
     /**
-     * Get a list of feedback by user id
+     * Get a list of feedback by the user id and the product id
+     *
      * @param userId the id of the user
+     * @param productId the id of the product
      * @return a list of feedback
      */
     public List<Feedback> getFeedbacksByUserIdAndProductId(int userId, int productId) {
-        String query = "SELECT * FROM Feedback WHERE UserID = ? AND ProductID = ?";
+        String query = "SELECT * FROM Feedback WHERE UserID = ? "
+                + "AND ProductID = ?";
         try {
             List<Feedback> lsFeedback = new ArrayList<>();
             ps = connection.prepareStatement(query);
@@ -102,7 +106,7 @@ public class FeedbackDAO extends BaseDAO<Feedback> {
                         rs.getInt("Star"),
                         rs.getString("FeedbackDetail")
                 );
-                lsFeedback.add(f);                
+                lsFeedback.add(f);
             }
             return lsFeedback;
         } catch (Exception e) {
