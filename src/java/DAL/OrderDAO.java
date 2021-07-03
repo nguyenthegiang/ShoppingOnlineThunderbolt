@@ -1,4 +1,4 @@
- /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -147,7 +147,7 @@ public class OrderDAO extends BaseDAO<Order> {
         } catch (Exception e) {
         }
     }
-    
+
     public void finished(int id) {
         String query = "UPDATE Orders\n"
                 + "SET Status = 5\n"
@@ -210,6 +210,10 @@ public class OrderDAO extends BaseDAO<Order> {
         return null;
     }
 
+    /**
+     * get the newest order id
+     * @return the newest order id
+     */
     public int getNewestOrderID() {
         String query = "SELECT TOP(1) o.id,o.userId,o.totalPrice, o.note, os.name, o.daybuy \n"
                 + "FROM Orders o INNER JOIN Order_Status os\n"
