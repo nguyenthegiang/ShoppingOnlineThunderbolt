@@ -49,7 +49,7 @@ public class OrderDetailDAO extends BaseDAO<OrderDetail> {
                 ps.setInt(4, n.getProductPrice());
                 ps.setInt(5, n.getQuantity());
                 ps.execute();           // the INSERT happens here
-                
+
                 oddDao.deleteAmount(n.getProductID(), n.getQuantity());
             }
         } catch (Exception e) {
@@ -85,7 +85,39 @@ public class OrderDetailDAO extends BaseDAO<OrderDetail> {
         }
         return list;
     }
-    
+
+    /**
+     * Getting an order details object by the order id and product id
+     * @param orderId the order id
+     * @param productId the product id
+     * @return the order details object
+     */
+    public OrderDetail getOrderDetailByOrderIDAndProductId(int orderId, int productId) {
+        OrderDetail od = new OrderDetail();
+        String query = "SELECT * FROM Order_Detail"
+                + " WHERE Order_ID = ? AND ProductID = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, orderId);
+            ps.setInt(2, productId);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                od = new OrderDetail(
+                        rs.getInt("ID"),
+                        rs.getInt("Order_ID"),
+                        rs.getInt("ProductID"),
+                        rs.getString("ProductName"),
+                        rs.getInt("ProductPrice"),
+                        rs.getInt("Quantity")
+                );
+                return od;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public void deleteAmount(int productId, int quantity) {
         String query = "UPDATE Product\n"
                 + "SET Amount = Amount - ?\n"
@@ -99,5 +131,5 @@ public class OrderDetailDAO extends BaseDAO<OrderDetail> {
             e.printStackTrace();
         }
     }
-         
+
 }
