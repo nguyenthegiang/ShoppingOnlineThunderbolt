@@ -302,7 +302,7 @@ INSERT INTO Orders VALUES (8, 250000, 'free shipping', 3, '2021/06/12 04:17');
 INSERT INTO Orders VALUES (7, 8020000, null, 3, '2021/06/26 12:36');
 INSERT INTO Orders VALUES (7, 1020000, null, 3, '2021/06/22 10:18');
 INSERT INTO Orders VALUES (11, 2370000, 'hello', 3, '2021/06/23 21:23');
-INSERT INTO Orders VALUES (12, 8390000, 'black', 3, '2021/06/06 04:17');
+INSERT INTO Orders VALUES (10, 8390000, 'black', 3, '2021/06/06 04:17');
 INSERT INTO Orders VALUES (3, 6720000, null, 3, '2021/06/14 12:36');
 INSERT INTO Orders VALUES (7, 17020000, 'hi', 3, '2021/06/12 10:18');
 INSERT INTO Orders VALUES (1, 7020000, null, 3, '2021/06/26 13:49');
@@ -320,14 +320,12 @@ INSERT INTO Orders VALUES (3, 6720000, null, 3, '2021/06/14 04:17');
 INSERT INTO Orders VALUES (7, 17020000, 'hi', 3, '2021/06/12 04:17');
 INSERT INTO Orders VALUES (7, 1020000, null, 3, '2021/06/22 10:18');
 INSERT INTO Orders VALUES (11, 2370000, 'hello', 3, '2021/06/23 21:23');
-INSERT INTO Orders VALUES (12, 8390000, 'black', 3, '2021/06/06 04:17');
+INSERT INTO Orders VALUES (9, 8390000, 'black', 3, '2021/06/06 04:17');
 INSERT INTO Orders VALUES (3, 6720000, null, 3, '2021/06/14 12:36');
 INSERT INTO Orders VALUES (7, 17020000, 'hi', 3, '2021/06/12 10:18');
 INSERT INTO Orders VALUES (1, 7020000, null, 3, '2021/06/26 13:49');
 INSERT INTO Orders VALUES (2, 7020000, null, 3, '2021/06/23 21:23');
 INSERT INTO Orders VALUES (7, 7020000, null, 3, '2021/06/06 04:17');
-
-
 
 INSERT INTO Orders VALUES (2, 7020000, null, 3, '2021/06/10 13:49');
 INSERT INTO Orders VALUES (3, 7020000, null, 3, '2021/06/11 21:23');
@@ -339,9 +337,10 @@ INSERT INTO Orders VALUES (8, 250000, 'free shipping', 3, '2021/06/20 04:17');
 INSERT INTO Orders VALUES (7, 8020000, null, 3, '2021/06/18 12:36');
 INSERT INTO Orders VALUES (7, 1020000, null, 3, '2021/06/18 10:18');
 INSERT INTO Orders VALUES (11, 2370000, 'hello', 3, '2021/06/19 21:23');
-INSERT INTO Orders VALUES (12, 8390000, 'black', 3, '2021/06/15 04:17');
+INSERT INTO Orders VALUES (11, 8390000, 'black', 3, '2021/06/15 04:17');
 INSERT INTO Orders VALUES (7, 17020000, 'hi', 3, '2021/06/30 10:18');
 INSERT INTO Orders VALUES (1, 7020000, null, 3, '2021/06/27 13:49');
+INSERT INTO Orders VALUES (7, 36120000, N'Ship sớm giúp mình!', 5, '2021/06/30 04:17');
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -356,6 +355,11 @@ CREATE TABLE [dbo].[Order_Detail](
 	constraint productID_in_order_detail FOREIGN KEY(ProductID) REFERENCES Product(ProductID)	
 ) ON [PRIMARY]
 GO
+
+INSERT INTO Order_Detail VALUES (48, 4, N'Card màn hình MSI GTX 1650 Super GAMING X (4GB GDDR6, 128-bit, HDMI+DP, 1x6-pin)', 5800000, 1)
+INSERT INTO Order_Detail VALUES (48, 2, N'Laptop Asus Gaming ROG Strix G512-IHN281T (i7 10870H/8GB RAM/512GB SSD/15.6 FHD 144hz/GTX 1650Ti 4GB/Win10/Đen)', 29000000, 1)
+INSERT INTO Order_Detail VALUES (48, 6, N'Camera EZVIZ Outdoor CS-C3N-A0-3H2WFRL ( C3N )', 1300000, 1)
+
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -447,12 +451,12 @@ CREATE TABLE UserAddress (
 ) ON [PRIMARY]
 GO
 
-INSERT INTO UserAddress VALUES (7, N'Nguyen Tran Hoang', N'160 Hoang Quoc Viet, Ha Noi', 1, '0956236487');
-INSERT INTO UserAddress VALUES (8, N'Tran Tat Dat', N'25 Ham Nghi, Quan Hai Ba Trung, Ha Noi', 1, '0958134965');
-INSERT INTO UserAddress VALUES (9, N'Phung Quang Thong', N'16 Pho Hoang Hoa Than, Long Bien, Ha Noi', 1, '0983516472');
-INSERT INTO UserAddress VALUES (10, N'Dinh The Thuan', N'1 Dai lo Thang Long, Ha Noi', 1, '0935164825');
-INSERT INTO UserAddress VALUES (11, N'Can Hoang Duc', N'Vinhomes Smart City, Ha Noi', 1, '0936323531');
-INSERT INTO UserAddress VALUES (12, N'Dinh Thanh Hoang', N'Vinhomes Ocean Park, Ha Noi', 1, '0933441221');
+INSERT INTO UserAddress VALUES (6, N'Nguyen Tran Hoang', N'160 Hoang Quoc Viet, Ha Noi', 24, '0956236487');
+INSERT INTO UserAddress VALUES (7, N'Tran Tat Dat', N'25 Ham Nghi, Quan Hai Ba Trung, Ha Noi', 24, '0958134965');
+INSERT INTO UserAddress VALUES (8, N'Phung Quang Thong', N'16 Pho Hoang Hoa Than, Long Bien, Ha Noi', 24, '0983516472');
+INSERT INTO UserAddress VALUES (9, N'Dinh The Thuan', N'1 Dai lo Thang Long, Ha Noi', 24, '0935164825');
+INSERT INTO UserAddress VALUES (10, N'Can Hoang Duc', N'Vinhomes Smart City, Ha Noi', 24, '0936323531');
+INSERT INTO UserAddress VALUES (11, N'Dinh Thanh Hoang', N'Vinhomes Ocean Park, Ha Noi', 24, '0933441221');
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -501,14 +505,12 @@ CREATE TABLE Feedback (
 ) ON [PRIMARY]
 GO
 
---Order 8,9,13,16 of user 7
---Order 10 of user 11
---Order 18 of user 9
---Order 21 of user 6
+
 
 INSERT INTO Feedback VALUES (7, 2, 48, 5, N'Very good');
 INSERT INTO Feedback VALUES (7, 4, 48, 4, N'Good');
 INSERT INTO Feedback VALUES (7, 6, 48, 3, N'Hộp bị móp nhưng sp vẫn hoạt động tốt!');
+
 --INSERT INTO Feedback VALUES (7, 1, 5, N'Very good');
 --INSERT INTO Feedback VALUES (8, 3, 4, N'Good');
 --INSERT INTO Feedback VALUES (9, 30, 3, N'Not Bad');
