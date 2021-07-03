@@ -20,7 +20,7 @@ public class Order {
     private String date;
     
     private Date orderDate;
-
+    
     @Override
     public String toString() {
         return "Order{" + "id=" + id + ", userId=" + userId + ", totalPrice=" + totalPrice + ", note=" + note + ", status=" + status + ", date=" + date + '}';
@@ -50,10 +50,10 @@ public class Order {
         this.status = status;
         this.date = date;
         this.orderDate = orderDate;
-    }
+    }    
     
     
-
+    
     
     
     
@@ -112,8 +112,8 @@ public class Order {
     public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
     }
+
     
-    
-          
+            
     
 }
