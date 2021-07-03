@@ -61,6 +61,7 @@ public class DetailControl extends HttpServlet {
             UserDAO userDao = new UserDAO();
             FeedbackRepliesDAO feedbackRepliesDao = new FeedbackRepliesDAO();
             OrderDAO orderDAO = new OrderDAO();
+            OrderDetailDAO orderDetailDao = new OrderDetailDAO();
             CategoryDAO CategoryDAO = new CategoryDAO();
             ProductDAO ProductDAO = new ProductDAO();
 
@@ -82,13 +83,13 @@ public class DetailControl extends HttpServlet {
                 feedback.setOrder(
                         orderDAO.getOrderByOrderID(feedback.getOrderId())
                 );
-                
+
                 // remove all feedback of order that is not completed
-                if(!feedback.getOrder().getStatus().equals("Completed")) {
+                if (!feedback.getOrder().getStatus().equals("Completed")) {
                     lsFeedback.remove(feedback);
                     continue;
                 }
-                
+
                 // get order date of feedback
                 Date orderDate = feedback.getOrder().getOrderDate();
                 feedback.getOrder().setDate(sdf.format(orderDate));
@@ -123,17 +124,38 @@ public class DetailControl extends HttpServlet {
              */
             boolean addFeedbackFlag = false;
             if (currentAccount != null) {
-                if (feedbackDao.getFeedbacksByUserIdAndProductId(
-                        currentAccount.getId(),
-                        Integer.parseInt(id)).size() != 0) {
-                    addFeedbackFlag = true;
+                // get all feedback of this account on this product
+                List<Feedback> currentAccountFeedbacks
+                        = feedbackDao.getFeedbacksByUserIdAndProductId(
+                                currentAccount.getId(), Integer.parseInt(id)
+                        );
+
+                // get all orders of this user
+                List<Order> ordersOfCurrentUser
+                        = orderDAO.getOrderByUserID(currentAccount.getId());
+
+                // get all order details of the list orders 
+                // that has this product
+                List<OrderDetail> ordersDetailsOfOrders
+                        = new ArrayList<OrderDetail>();
+                for (Order order : ordersOfCurrentUser) {
+                    OrderDetail od
+                            = orderDetailDao.getOrderDetailByOrderIDAndProductId(
+                                    order.getId(), Integer.parseInt(id)
+                            );
+
+                    if (od != null) {
+                        ordersDetailsOfOrders.add(od);
+                    }
                 }
 
-                /*
-                later: count number of times the customer order this product 
-                if number of times the customer leave feedback is < number of
-                times customer order this product, allow feedback
-                 */
+                // number of feedback of the user on this product < 
+                // number of times the user bought this product
+                // => allow the user to add feedback               
+                if (currentAccountFeedbacks.size()
+                        < ordersDetailsOfOrders.size()) {
+                    addFeedbackFlag = true;
+                }
             }
 
             // get hot and favourite product
