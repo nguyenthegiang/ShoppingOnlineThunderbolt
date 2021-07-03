@@ -78,10 +78,16 @@ public class DetailControl extends HttpServlet {
 
             // give data for list replies, list account made feedback and list of account that replies
             for (Feedback feedback : lsFeedback) {
-                //get order of the feedback
+                // get order of the feedback
                 feedback.setOrder(
                         orderDAO.getOrderByOrderID(feedback.getOrderId())
                 );
+                
+                // remove all feedback of order that is not completed
+                if(!feedback.getOrder().getStatus().equals("Completed")) {
+                    lsFeedback.remove(feedback);
+                    continue;
+                }
                 
                 // get order date of feedback
                 Date orderDate = feedback.getOrder().getOrderDate();
