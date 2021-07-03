@@ -33,8 +33,8 @@ public class OrderDetailDAO extends BaseDAO<OrderDetail> {
 
         // my SQL INSERT statement
         String query = " INSERT INTO Order_Detail (Order_id, ProductID,"
-                + " ProductName, ProductPrice)"
-                + " values (?, ?, ?, ?)";
+                + " ProductName, ProductPrice, Quantity)"
+                + " values (?, ?, ?, ?, ?)";
 
         // declare the preparedstatement reference
         try {
@@ -48,7 +48,6 @@ public class OrderDetailDAO extends BaseDAO<OrderDetail> {
                 ps.setString(3, n.getProductName());
                 ps.setInt(4, n.getProductPrice());
                 ps.setInt(5, n.getQuantity());
-
                 ps.execute();           // the INSERT happens here
                 
                 oddDao.deleteAmount(n.getProductID(), n.getQuantity());
