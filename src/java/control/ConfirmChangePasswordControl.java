@@ -36,20 +36,24 @@ public class ConfirmChangePasswordControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            // Get the account need to change password
-            HttpSession session = request.getSession();
-            Account accountChangePass = (Account) session.getAttribute("acc");
+//Remove Send Code function when Change Password
+            
+//            // Get the account need to change password
+//            HttpSession session = request.getSession();
+//            Account accountChangePass = (Account) session.getAttribute("acc");
+//
+//            //Send email with confirmation code to change password
+//            String confirmCode = util.GenerateRandomString.generateString(10);
+//            String subject = "Confirmation code for account at Computer ERA";
+//            String message = "Your confirmation code at Computer ERA is: "
+//                    + confirmCode;
+//            new SendEmail(accountChangePass.getEmail(), subject, message);
+//
+//            session.setAttribute("code", confirmCode);
+//            request.getRequestDispatcher("ChangePassword.jsp")
+//                    .forward(request, response);
 
-            //Send email with confirmation code to change password
-            String confirmCode = util.GenerateRandomString.generateString(10);
-            String subject = "Confirmation code for account at Computer ERA";
-            String message = "Your confirmation code at Computer ERA is: "
-                    + confirmCode;
-            new SendEmail(accountChangePass.getEmail(), subject, message);
-
-            session.setAttribute("code", confirmCode);
-            request.getRequestDispatcher("ChangePassword.jsp")
-                    .forward(request, response);
+            response.sendRedirect("ChangePassword.jsp");
         } catch (Exception e) {
             response.sendRedirect("Error.jsp");
         }
@@ -82,29 +86,32 @@ public class ConfirmChangePasswordControl extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
-            // Get the confirm code from session
-            HttpSession session = request.getSession();
-            String accountConfirmCode = (String) session.getAttribute("code");
+        
+//Remove Send Code function when Change Password
 
-            // Get the confirm code from user
-            String userEnteredCode = request.getParameter("code");
-
-            // Compare the 2 code
-            boolean compare = accountConfirmCode.equals(userEnteredCode);
-
-            if (compare) {
-                // The 2 codes are identical, forward to change password
-                request.setAttribute("compare", compare);
-            } else {
-                // The 2 codes are not identical, notify wrong code, user re-enter
-                request.setAttribute("message", "Wrong Code!");
-            }
-            request.getRequestDispatcher("ChangePassword.jsp").forward(request, response);
-        } catch (Exception e) {
-            // Redirect to error page if exception happend
-            response.sendRedirect("Error.jsp");
-        }
+//        try {
+//            // Get the confirm code from session
+//            HttpSession session = request.getSession();
+//            String accountConfirmCode = (String) session.getAttribute("code");
+//
+//            // Get the confirm code from user
+//            String userEnteredCode = request.getParameter("code");
+//
+//            // Compare the 2 code
+//            boolean compare = accountConfirmCode.equals(userEnteredCode);
+//
+//            if (compare) {
+//                // The 2 codes are identical, forward to change password
+//                request.setAttribute("compare", compare);
+//            } else {
+//                // The 2 codes are not identical, notify wrong code, user re-enter
+//                request.setAttribute("message", "Wrong Code!");
+//            }
+//            request.getRequestDispatcher("ChangePassword.jsp").forward(request, response);
+//        } catch (Exception e) {
+//            // Redirect to error page if exception happend
+//            response.sendRedirect("Error.jsp");
+//        }
     }
 
     /**
