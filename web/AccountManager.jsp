@@ -30,9 +30,10 @@
                 $('[data-toggle="tooltip"]').tooltip();
             });
             function search() {
-            var searchText = document.getElementById("search_Account").value;
-                    location.href = "searchInAccount?text=" + searchText;
-                    return false;}
+                var searchText = document.getElementById("search_Account").value;
+                location.href = "searchInAccount?text=" + searchText;
+                return false;
+            }
         </script>
     </head>
     <body>
@@ -40,56 +41,56 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-2" style="background-color: #ebebf2;">
-                        <a class="navbar-brand" href="dashBoard"><img src="image/Other/Logo.jpg" width="200px"></a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
+                    <a class="navbar-brand" href="dashBoard"><img src="image/Other/Logo.jpg" width="200px"></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-                        <ul class="nav flex-column">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="productList"><i class="fas fa-home"></i>Home</a>
+                            <hr class="line">
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashBoard"><i class="far fa-chart-bar"></i>Dashboard overview</a>
+                            <hr class="line">
+                        </li>
+                        <c:if test="${sessionScope.acc == null}">
                             <li class="nav-item">
-                                <a class="nav-link" href="productList"><i class="fas fa-home"></i>Home</a>
+                                <a class="nav-link" href="login">Login</a>
+                            </li>
+                        </c:if>
+                        <c:if test = "${sessionScope.acc != null}">
+                            <li id="drop">
+                                <a class="nav-link" href="profile" id="profileOption"><i class="fas fa-user-circle"></i>Hello ${sessionScope.acc.user}</a>
+                                <div class="dropdownContent">
+                                    <a href="profile">View my profile</a>
+                                    <a href="logout">LogOut</a>
+                                </div>
                                 <hr class="line">
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="dashBoard"><i class="far fa-chart-bar"></i>Dashboard overview</a>
-                                <hr class="line">
-                            </li>
-                            <c:if test="${sessionScope.acc == null}">
+
+                            <c:if test="${sessionScope.acc.isSell == 1}">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="login">Login</a>
-                                </li>
-                            </c:if>
-                            <c:if test = "${sessionScope.acc != null}">
-                                <li id="drop">
-                                    <a class="nav-link" href="profile" id="profileOption"><i class="fas fa-user-circle"></i>Hello ${sessionScope.acc.user}</a>
-                                    <div class="dropdownContent">
-                                        <a href="profile">View my profile</a>
-                                        <a href="logout">LogOut</a>
-                                    </div>
+                                    <a class="nav-link" href="manager"><i class="fas fa-tasks"></i>Manager Product</a>
                                     <hr class="line">
-                                </li>
-
-                                <c:if test="${sessionScope.acc.isSell == 1}">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="manager"><i class="fas fa-tasks"></i>Manager Product</a>
-                                        <hr class="line">
-                                    </li> 
-                                </c:if>
-
-                                <c:if test="${sessionScope.acc.isAdmin == 1}">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="accountManager"><i class="fas fa-tasks"></i>Manager Account</a>
-                                        <hr class="line">
-                                    </li> 
-                                </c:if>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="viewAllNotifications"><i class="fas fa-bell"></i>Notifications (${numberNoti})</a>
                                 </li> 
                             </c:if>
 
-                            <li class="nav-item">&nbsp;
+                            <c:if test="${sessionScope.acc.isAdmin == 1}">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="accountManager"><i class="fas fa-tasks"></i>Manager Account</a>
+                                    <hr class="line">
+                                </li> 
+                            </c:if>
+                            <li class="nav-item">
+                                <a class="nav-link" href="viewAllNotifications"><i class="fas fa-bell"></i>Notifications (${numberNoti})</a>
                             </li> 
-                        </ul>
+                        </c:if>
+
+                        <li class="nav-item">&nbsp;
+                        </li> 
+                    </ul>
 
                 </div>
                 <div class="col-10">
@@ -131,9 +132,9 @@
                                                         <a target="blank" href="editAccount?UserID=${o.id}"><button type="button" class="btn btn-outline-info  btn-sm">Edit</button></a>
                                                         <form action="deleteAccount" method="POST" style="display:inline">
                                                             <a> <input type="submit" class="btn btn-outline-danger btn-sm" value="Delete" onclick="if (confirm('Are you sure you want to delete?'))
-                                                                                form.action = 'deleteAccount?UserID=${o.id}';
-                                                                                else
-                                                                                return false;"/>  
+                                                                        form.action = 'deleteAccount?UserID=${o.id}';
+                                                                    else
+                                                                        return false;"/>  
                                                             </a>
                                                         </form>
                                                     </td>

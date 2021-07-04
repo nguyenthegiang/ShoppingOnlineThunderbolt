@@ -344,15 +344,17 @@ public class UserDAO extends BaseDAO<Account> {
 
     public List<Account> searchAccountInManager(String name) {
         List<Account> list = new ArrayList<>();
-        String query = "SELECT * FROM Users\n"
-                + "WHERE Username = ? AND UserID =?";
+        String query = "SELECT * FROM Users \n"
+                + "WHERE Username LIKE ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, "%" + name + "%");            
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getInt(8)));
-                //Product(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink")));
+                list.add(new Account(rs.getInt(1), rs.getString(2),
+                        rs.getString(3), rs.getString(4),
+                        rs.getString(5), rs.getInt(6),
+                        rs.getInt(7), rs.getInt(8)));
             }
         } catch (Exception e) {
         }
@@ -383,6 +385,12 @@ public class UserDAO extends BaseDAO<Account> {
         //  for (Account account : list) {
         //   System.out.println(account);
         //}
-        System.out.println(UserDAO.checkForgetPassword("nguyenthegiang", "nguyenthe.giang.775@gmail.com"));
+        //System.out.println(UserDAO.checkForgetPassword("nguyenthegiang", "nguyenthe.giang.775@gmail.com"));
+        
+        /*---------Test Case for searchAccountInManager() method---------*/
+        List<Account> list = UserDAO.searchAccountInManager("giang");
+        for(Account a : list) {
+            System.out.println(a);
+        }
     }
 }

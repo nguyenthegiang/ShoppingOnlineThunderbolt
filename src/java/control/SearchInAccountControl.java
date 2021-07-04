@@ -40,17 +40,15 @@ public class SearchInAccountControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       
+
         try {
-            
             String searchText = request.getParameter("text");
-                 
-            UserDAO UserDAO = new UserDAO();           
-            List<Account> listA = UserDAO.searchAccountInManager(searchText);                     
+
+            UserDAO UserDAO = new UserDAO();
+            List<Account> listA = UserDAO.searchAccountInManager(searchText);
             request.setAttribute("list", listA);
             request.getRequestDispatcher("AccountManager.jsp").forward(request, response);
 
-            
         } catch (Exception e) {
             response.sendRedirect("Error.jsp");
         }
