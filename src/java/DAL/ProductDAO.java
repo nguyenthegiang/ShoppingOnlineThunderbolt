@@ -401,9 +401,9 @@ public class ProductDAO extends BaseDAO<Product> {
      * @param name
      * @return a product
      */
-    public List<Product> searchProductByName(String name) { //Must be int type because when saving to Session, it is still int
+    public List<Product> searchProductByName(String name) {
         List<Product> list = new ArrayList<>();
-        String query = "select * from Product where ProductName like ?";
+        String query = "SELECT * FROM Product WHERE ProductName LIKE ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, "%" + name + "%");
@@ -425,7 +425,7 @@ public class ProductDAO extends BaseDAO<Product> {
      */
     public List<Product> searchProductInManager(String name, int SellerID) {
         List<Product> list = new ArrayList<>();
-        String query = "select * from Product where ProductName like ? and SellerID = ?";
+        String query = "SELECT * FROM Product WHERE ProductName LIKE ? AND SellerID = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, "%" + name + "%");
@@ -446,7 +446,7 @@ public class ProductDAO extends BaseDAO<Product> {
      */
     public List<ProductInManager> top3MostSell() {
         List<ProductInManager> list = new ArrayList<>();
-        String query = "select top 3 * from Product order by Amount asc";
+        String query = "SELECT TOP 3 * FROM Product ORDER BY Amount ASC";
         try {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
@@ -465,7 +465,7 @@ public class ProductDAO extends BaseDAO<Product> {
      */
     public List<ProductInManager> top3LeastSell() {
         List<ProductInManager> list = new ArrayList<>();
-        String query = "select top 3 * from Product order by Amount desc";
+        String query = "SELECT TOP 3 * FROM Product ORDER BY Amount DESC";
         try {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
@@ -479,11 +479,11 @@ public class ProductDAO extends BaseDAO<Product> {
 
     public List<Product> countProductByCategory() {
         List<Product> list = new ArrayList<>();
-        String query = "select Count(*) as amount, Category.CategoryName\n"
-                + "from Product \n"
+        String query = "SELECT COUNT(*) AS Amount, Category.CategoryName\n"
+                + "FROM Product \n"
                 + "INNER JOIN Category\n"
-                + "on Product.CategoryID = Category.CategoryID\n"
-                + "group by Product.CategoryID, Category.CategoryName";
+                + "ON Product.CategoryID = Category.CategoryID\n"
+                + "GROUP BY Product.CategoryID, Category.CategoryName";
         try {
             ps = connection.prepareStatement(query);//Throw the query to the SQL server 
             rs = ps.executeQuery();//Run the query, get the results returned
@@ -503,10 +503,6 @@ public class ProductDAO extends BaseDAO<Product> {
 
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
-        List<Product> list = dao.countProductByCategory();
-        for (Product o : list) {
-            System.out.println(o);
-        }
         
         /*---------Test Case for getAllProduct() method---------*/
 //        List<Product> list = dao.getAllProduct();
@@ -572,7 +568,7 @@ public class ProductDAO extends BaseDAO<Product> {
 //            System.out.println(o);
 //        }
         /*---------Test Case for searchProductInManager() method---------*/
-//        List<Product> list = dao.searchProductInManager("asus", 1);
+//        List<Product> list = dao.searchProductInManager("asus", 3);
 //        for (Product product : list) {
 //            System.out.println(product);
 //        }
@@ -586,6 +582,12 @@ public class ProductDAO extends BaseDAO<Product> {
 //        List<ProductInManager> list = dao.top3LeastSell();
 //        for (ProductInManager productInManager : list) {
 //            System.out.println(productInManager);
+//        }
+
+        /*---------Test Case for countProductByCategory() method---------*/
+//        List<Product> list = dao.countProductByCategory();
+//        for (Product product : list) {
+//            System.out.println(product);
 //        }
     }
 }
