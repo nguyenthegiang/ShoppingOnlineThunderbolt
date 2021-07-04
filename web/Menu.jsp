@@ -31,7 +31,11 @@
                             <a class="nav-link" href="productList"><i class="fa fa-home" id="home"></i><span class="sr-only">(current)</span></a>
                         </li>
 
-
+                        <!--Link to ProductList-->
+                        <li class="nav-item">
+                            <a class="nav-link" href="productList" id="linkHover">Shop</a>
+                        </li>
+                        
                         <!--Nếu acc khác null -> login rồi -> hiển thị cả 3 menu dưới-->
                     <c:if test = "${acc != null}">
                         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="display: unset !important;">
@@ -86,7 +90,6 @@
                                                 </li>
                                             </a>
                                         </c:forEach>
-
 
                                         <li class="footer bg-dark text-center">
                                             <a href="viewAllNotifications" class="text-light">View All (${numberOfNotifications})</a>
