@@ -117,6 +117,7 @@
                                         <th style="text-align: center;">Product Picture</th>
                                         <th style="text-align: center;">Product Price  </th>
                                         <th style="text-align: center;">Quantity  </th>
+                                        <th style="text-align: center;">Action  </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -133,6 +134,11 @@
                                             <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${item.productPrice}"/>VNĐ
                                         </td>
                                         <td>${item.quantity}</td>
+                                        <td>
+                                            <c:if test="${(requestScope.alreadyHaveFeedbackList.contains(item.id) ne true) && (requestScope.alreadyHaveFeedbackList != null) }">
+                                                <a class="btn btn-outline-success" href="submit-feedback?orderId=${item.orderID}&productId=${item.productID}">Add feedback</a>
+                                            </c:if>
+                                        </td>
 
                                         <c:set var="total" value="${total + item.productPrice}" />
                                     </tr>
