@@ -56,7 +56,7 @@ public class ReceivedOrder extends HttpServlet {
 
             request.setAttribute("orders", orders);
 
-            request.getRequestDispatcher("viewOrder").forward(request, response);
+            request.getRequestDispatcher("ViewOrdersHistory.jsp").forward(request, response);
         } catch (Exception ex) {
             response.sendRedirect("Error.jsp");
         }
