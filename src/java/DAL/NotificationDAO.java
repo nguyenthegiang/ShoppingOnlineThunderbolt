@@ -52,6 +52,28 @@ public class NotificationDAO extends BaseDAO<Notification> {
         } catch (Exception e) {
         }
     }
+    
+    public void deliverOrderAdminNoti(int userID, int orderId) {
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm");
+
+        LocalDateTime now = LocalDateTime.now();
+        String query = "INSERT INTO Notifications VALUES (?, ?, ?, ?, ?);";
+        try {
+
+            ps = connection.prepareStatement(query);
+            //Set data to the ?
+            ps.setInt(1, userID);
+            ps.setInt(2, orderId);
+            ps.setString(3, "Your order with ID " + orderId + " has been packaged, now being delivered"
+                    + " please wait..!");
+            ps.setString(4, "unread");
+            ps.setString(5, dtf.format(now) + " at " + dtf1.format(now));
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
 
     /**
      * Inform to the seller and admin that the order has been paid successfully!

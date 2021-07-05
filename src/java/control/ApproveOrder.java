@@ -67,7 +67,7 @@ public class ApproveOrder extends HttpServlet {
             
             request.getRequestDispatcher("ViewAllInvoices.jsp").forward(request, response);
         } catch (Exception ex) {
-
+            response.sendRedirect("Error.jsp");
         }
      
     }

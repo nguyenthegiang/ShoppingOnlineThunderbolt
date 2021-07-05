@@ -212,6 +212,18 @@
                             <a  onclick="formAutoSubmit('form2')"><button>Cancel</button></a>
                         </div>
                     </c:if>
+                    
+                     <c:set var="n" value="Packaging"></c:set>
+                    <c:if test="${sta eq n}">
+                        <form action="deliverOrder" id="form1">
+                            <input type="hidden" value="${OrderId}" name="orderId"/>
+                            <input type="hidden" value="${userId}" name="userId"/>
+                        </form>
+                        <div style="margin:10px; float:left">
+                            <a  onclick="formAutoSubmit('form1')"><button>Deliver</button></a>
+                            <!--<a  href ="approveOrder?id=${OrderId}"><button>Approve</button></a>-->
+                        </div>                       
+                    </c:if>
                 </div>
                 <div class="row">
                     <div class="col-6">
