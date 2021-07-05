@@ -39,7 +39,8 @@ public class ViewOrderDetail extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-               
+            
+        try{
             int id = Integer.parseInt(request.getParameter("id"));
             OrderDetailWithImageDAO orderDAO = new OrderDetailWithImageDAO();
             OrderDAO odDAO = new OrderDAO();
@@ -52,6 +53,11 @@ public class ViewOrderDetail extends HttpServlet {
 
             request.getRequestDispatcher("ViewOrderDetails.jsp").forward(request, response);
         
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            response.sendRedirect("Error.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

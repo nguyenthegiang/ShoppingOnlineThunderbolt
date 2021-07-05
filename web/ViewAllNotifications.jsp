@@ -259,7 +259,7 @@
                             </div>
                         </div>
                     </div>
-                    <table class="table table-striped table-hover">
+                    <table id="customers" class="table table-striped table-hover">
                         <!--if user is admin-->
                         <c:if test="${sessionScope.acc.isAdmin==1}">
                             <thead>
@@ -310,8 +310,8 @@
 
                                 </c:forEach>
                             </c:if>
-                                    <!--if user is buyer-->
-                                     <c:if test="${sessionScope.acc.isSell!=1}">
+                            <!--if user is buyer-->
+                            <c:if test="${sessionScope.acc.isSell!=1}">
 
                                 <thead>
                                     <tr>
@@ -336,25 +336,25 @@
 
 
 
-                      
-                            </tbody>
-                        </table>
-                    </div>
+
+                        </tbody>
+                    </table>
                 </div>
-            </div>     
-            <script>
+            </div>
+        </div>     
+        <script>
 
-                function formAutoSubmit(name) {
+            function formAutoSubmit(name) {
 
-                    var frm = document.getElementById(name);
+                var frm = document.getElementById(name);
 
-                    frm.submit();
+                frm.submit();
 
-                }
-            </script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-        </body>
-    </html>
+            }
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+    </body>
+</html>

@@ -178,6 +178,25 @@ public class OrderDAO extends BaseDAO<Order> {
         }
         return 0;
     }
+    
+    /**
+     * Get status of an order with its ID
+     * @param orderId
+     * @return int status
+     */
+    public int getStatusOfAnOrder(int orderId) {
+        String query = "SELECT status FROM Orders WHERE ID=?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, orderId);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+        }
+        return 0;
+    }
 
     /**
      * get a particular order by its id

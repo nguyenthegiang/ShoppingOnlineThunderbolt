@@ -157,9 +157,9 @@
                                     <c:if test="${sessionScope.acc.isAdmin != 1}">
                                         <div class="col-md-12">
                                             <div class="card-body">
-                                                <a style="text-decoration: none;" href ="viewInvoiceDetailAdmin?sellerId=${sessionScope.acc.id}"><h5 class="card-title">Total Invoices</h5></a>
-                                                <a style="text-decoration: none;" href ="viewInvoiceDetailAdmin?sellerId=${sessionScope.acc.id}"><h5 class="card-title">${totalCart}</h5></a>
-                                                <a style="text-decoration: none;" href ="viewInvoiceDetailAdmin?sellerId=${sessionScope.acc.id}"><p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p></a>
+                                                <a style="text-decoration: none;" href ="viewInvoiceDetailAdmin?sellerId=${sessionScope.acc.id}&orderId=1"><h5 class="card-title">Total Invoices</h5></a>
+                                                <a style="text-decoration: none;" href ="viewInvoiceDetailAdmin?sellerId=${sessionScope.acc.id}&orderId=1"><h5 class="card-title">${totalCart}</h5></a>
+                                                <a style="text-decoration: none;" href ="viewInvoiceDetailAdmin?sellerId=${sessionScope.acc.id}&orderId=1"><p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p></a>
                                             </div>
                                         </div>
                                     </c:if>

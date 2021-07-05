@@ -18,6 +18,9 @@
         <!--Favicon-->
         <link rel="icon" type="image/png" href="image/faviconLogo.png" />
 
+        <!--Table Styling-->
+        <link rel="stylesheet" href="css/OrderTableStyle.css" type="text/css"/>
+        
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
@@ -134,16 +137,16 @@
                             padding:10px; border: 1px solid;
                         }
                     </style>
-                    <table style="margin-left:3em; border: 1px solid;">
+                    <table id="customers" style="margin-left:3em; border: 1px solid;">
                         <thead >
                             <tr >
-                                <td>Order ID</td>
-                                <td>User Id</td>
-                                <td>Total Price</td>
-                                <td>Note</td>
-                                <td>Status  </td>
-                                <td>Day Buy</td>
-                                <td></td>
+                                <th style="text-align: center;">Order ID</th>
+                                <th style="text-align: center;">User Id</th>
+                                <th style="text-align: center;">Total Price</th>
+                                <th style="text-align: center;">Note</th>
+                                <th style="text-align: center;">Status  </th>
+                                <th style="text-align: center;">Day Buy</th>
+                                <th style="text-align: center;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -188,6 +191,15 @@
                                 <td><a style="cursor: pointer " onclick="formAutoSubmit('${item.id}');">Manage</a></td>
                                 <form style="display:none;" id="${item.id}" action="viewInvoiceDetailAdmin">
                                     <input type="hidden" value="Waiting for Confirmation" name="status">
+                                    <input type="hidden" value="${item.id}" name="id">
+                                </form>
+                            </c:if>
+                            <c:if test="${item.status eq 'Completed'}">
+                                <td>${item.status}</td>
+                                <td>${item.date}</td>
+                                <td><a  style="cursor: pointer "onclick="formAutoSubmit('${item.id}');">View</a></td>
+                                <form style="display:none;" id="${item.id}" action="viewInvoiceDetailAdmin">
+                                    <input type="hidden" value="Delivering" name="status">
                                     <input type="hidden" value="${item.id}" name="id">
                                 </form>
                             </c:if>

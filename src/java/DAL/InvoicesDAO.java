@@ -25,7 +25,8 @@ public class InvoicesDAO extends BaseDAO<OrderDetailAdmin> {
     public List<OrderDetailAdmin> getInvoiceDetailByOrderID(int orderId) {
         List<OrderDetailAdmin> list = new ArrayList<>();
         String query = "SELECT od.id,u.UserId, od.Order_ID, u.username,od.productId,\n"
-                + "p.productName,p.imageLink,p.SellPrice, si.shippingAddress, si.phoneNum\n"
+                + "p.productName,p.imageLink,p.SellPrice,od.quantity,"
+                + " si.shippingAddress, si.phoneNum\n"
                 + "FROM Order_Detail od INNER JOIN Orders o\n"
                 + "ON od.Order_ID = o.ID\n"
                 + "INNER JOIN Users u\n"
@@ -52,7 +53,8 @@ public class InvoicesDAO extends BaseDAO<OrderDetailAdmin> {
                         rs.getString("imageLink"),
                         rs.getInt("SellPrice"),
                         rs.getString("ShippingAddress"),
-                        rs.getString("PhoneNum")
+                        rs.getString("PhoneNum"),
+                        rs.getInt("quantity")
                 ));
             }
         } catch (Exception e) {
@@ -64,7 +66,9 @@ public class InvoicesDAO extends BaseDAO<OrderDetailAdmin> {
     public List<OrderDetailAdmin> getInvoiceDetailBySellerID(int sellerId) {
         List<OrderDetailAdmin> list = new ArrayList<>();
         String query = "SELECT od.id,u.userId, od.Order_ID, u.username,od.productId,\n"
-                + "                                p.productName,p.imageLink,p.SellPrice, si.shippingAddress, si.phoneNum\n"
+                + "                                p.productName,p.imageLink,"
+                + "                                p.SellPrice, si.shippingAddress,"
+                + "                                si.phoneNum, od.quantity\n"
                 + "                                FROM Order_Detail od INNER JOIN Orders o\n"
                 + "                                ON od.Order_ID = o.ID\n"
                 + "                                INNER JOIN Users u\n"
@@ -91,7 +95,8 @@ public class InvoicesDAO extends BaseDAO<OrderDetailAdmin> {
                         rs.getString("imageLink"),
                         rs.getInt("SellPrice"),
                         rs.getString("ShippingAddress"),
-                        rs.getString("PhoneNum")
+                        rs.getString("PhoneNum"),
+                        rs.getInt("quantity")
                 ));
             }
         } catch (Exception e) {

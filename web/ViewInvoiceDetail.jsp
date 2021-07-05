@@ -157,14 +157,15 @@
                     <table id="customers" style="margin-left:3em; border: 1px solid;">
                         <thead >
                             <tr >
-                                <th>No.</th>
-                                <th>User Name</th>
-                                <th>Product ID</th>
-                                <th>Product Name</th>                               
-                                <th>Product Price</th>                               
-                                <th>Product Image</th>                               
-                                <th>Shipping Address</th>                               
-                                <th>Customer's Phone Number</th>                               
+                                <th style="text-align: center;">No.</th>
+                                <th style="text-align: center;">User Name</th>
+                                <th style="text-align: center;">Product ID</th>
+                                <th style="text-align: center;">Product Name</th>                               
+                                <th style="text-align: center;">Product Price</th>                               
+                                <th style="text-align: center;">Product Image</th>                               
+                                <th style="text-align: center;">Quantity</th>                               
+                                <th style="text-align: center;">Shipping Address</th>                               
+                                <th style="text-align: center;">Customer's Phone Number</th>                               
                             </tr>
                         </thead>
                         <tbody>
@@ -174,10 +175,11 @@
                                     <td>${item.customerName}</td>
                                     <td>${item.productID}</td>
                                     <td>${item.productName}</td>
-                                    <td><img height="250px" width="200px" src="image/${item.imageLink}"/></td>
                                     <td>
                                         <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${item.productPrice}"/>VNĐ
                                     </td>
+                                    <td><img height="250px" width="200px" src="image/${item.imageLink}"/></td>
+                                    <td>${item.quantity}</td>
                                     <td>${item.shipAddress}</td>                      
                                     <td>${item.phoneNumber}</td>
                                     <c:set var="userId" value="${item.userId}"/>
@@ -210,6 +212,20 @@
                             <a  onclick="formAutoSubmit('form2')"><button>Cancel</button></a>
                         </div>
                     </c:if>
+                    
+                    <c:set var="k" value="Packaging"></c:set>
+                    <c:if test="${sta eq k}">
+                        <form action="deliverOrder" id="form1">
+                            <input type="hidden" value="${OrderId}" name="orderId"/>
+                            <input type="hidden" value="${userId}" name="userId"/>
+                        </form>
+                        <div style="margin:10px; float:left">
+                            <a  onclick="formAutoSubmit('form1')"><button>Deliver</button></a>
+                            <!--<a  href ="approveOrder?id=${OrderId}"><button>Approve</button></a>-->
+                        </div>                       
+                    </c:if>
+                    
+                   
                 </div>
                 <div class="row">
                     <div class="col-6">

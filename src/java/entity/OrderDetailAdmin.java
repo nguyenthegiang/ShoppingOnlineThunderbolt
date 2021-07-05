@@ -21,8 +21,12 @@ public class OrderDetailAdmin {
     private int productPrice;
     private String shipAddress;
     private String phoneNumber;
+    private int quantity;
 
-    public OrderDetailAdmin(int id, int userId, int orderID, String customerName, int productID, String productName, String imageLink, int productPrice, String shipAddress, String phoneNumber) {
+    public OrderDetailAdmin(int id, int userId, 
+            int orderID, String customerName, int productID,
+            String productName, String imageLink, int productPrice, 
+            String shipAddress, String phoneNumber, int quantity) {
         this.id = id;
         this.userId = userId;
         this.orderID = orderID;
@@ -33,12 +37,33 @@ public class OrderDetailAdmin {
         this.productPrice = productPrice;
         this.shipAddress = shipAddress;
         this.phoneNumber = phoneNumber;
+        this.quantity = quantity;
     }
 
     @Override
     public String toString() {
-        return "OrderDetailAdmin{" + "id=" + id + ", userId=" + userId + ", orderID=" + orderID + ", customerName=" + customerName + ", productID=" + productID + ", productName=" + productName + ", imageLink=" + imageLink + ", productPrice=" + productPrice + ", shipAddress=" + shipAddress + ", phoneNumber=" + phoneNumber + '}';
+        return "OrderDetailAdmin{" + "id=" + id + ","
+                + " userId=" + userId + ", "
+                + "orderID=" + orderID + ", "
+                + "customerName=" + customerName + ", "
+                + "productID=" + productID + ", "
+                + "productName=" + productName + ", "
+                + "imageLink=" + imageLink + ", "
+                + "productPrice=" + productPrice + ", "
+                + "shipAddress=" + shipAddress + ","
+                + " phoneNumber=" + phoneNumber + ", "
+                + "quantity=" + quantity + '}';
     }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    
 
     public OrderDetailAdmin() {
     }
