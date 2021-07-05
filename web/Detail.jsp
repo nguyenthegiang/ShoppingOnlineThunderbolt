@@ -120,14 +120,7 @@
 
 
         </style>
-
-        <script>
-            /* for star rating */
-            function starChange(value) {
-                console.log('New star rating: ' + value);
-            }
-        </script>
-
+       
     </head>
     <body>
         <jsp:include page="Menu.jsp"></jsp:include>
@@ -315,44 +308,9 @@
                             </div>
                             <c:if test="${requestScope.addFeedbackFlag eq true}">
                                 <div class="card mt-5">
-                                    <h3 class="text-success">Add feedback</h3>
-
-                                    <div class="add-feedback">
-                                        <div class="star-rating">
-                                            <form class="rating">
-                                                <label>
-                                                    <input type="radio" name="stars" value="1" onclick="starChange(this.value)" />
-                                                    <span class="icon">★</span>
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="stars" value="2" onclick="starChange(this.value)" />
-                                                    <span class="icon">★</span>
-                                                    <span class="icon">★</span>
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="stars" value="3" onclick="starChange(this.value)" />
-                                                    <span class="icon">★</span>
-                                                    <span class="icon">★</span>
-                                                    <span class="icon">★</span>   
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="stars" value="4" onclick="starChange(this.value)" />
-                                                    <span class="icon">★</span>
-                                                    <span class="icon">★</span>
-                                                    <span class="icon">★</span>
-                                                    <span class="icon">★</span>
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="stars" value="5" onclick="starChange(this.value)" />
-                                                    <span class="icon">★</span>
-                                                    <span class="icon">★</span>
-                                                    <span class="icon">★</span>
-                                                    <span class="icon">★</span>
-                                                    <span class="icon">★</span>
-                                                </label>
-                                            </form>
-                                        </div>
-                                    </div>
+                                    <h3 class="text-success mt-2 ml-2">Add feedback</h3>
+                                    <p>You have orders with this product that is not reviewed. Click the link to add feedbacks</p>
+                                    
                                 </div>
                             </c:if>
                         </div>
@@ -361,33 +319,35 @@
             </div>
         </div>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script>
-                                                        function addCart2(ProductID) {
+        <jsp:include page="Footer.jsp"></jsp:include>
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script>
+                                                function addCart2(ProductID) {
             <c:if test="${sessionScope.acc != null}">
-                                                            var select_value = document.getElementById("select_id").value;
-                                                            //Sử dụng Ajax
-                                                            $.ajax({
-                                                                url: "/Assignment_ElectronicShop_Pro/addMany",
-                                                                type: "get", //send it through get method
-                                                                data: {
-                                                                    ProductID: ProductID,
-                                                                    Quantity: select_value
-                                                                },
-                                                                success: function (message) {
-                                                                    alert(message);
-                                                                }
-                                                            });
+                                                    var select_value = document.getElementById("select_id").value;
+                                                    //Sử dụng Ajax
+                                                    $.ajax({
+                                                        url: "/Assignment_ElectronicShop_Pro/addMany",
+                                                        type: "get", //send it through get method
+                                                        data: {
+                                                            ProductID: ProductID,
+                                                            Quantity: select_value
+                                                        },
+                                                        success: function (message) {
+                                                            alert(message);
+                                                        }
+                                                    });
             </c:if>
             <c:if test="${sessionScope.acc == null}">
-                                                            location.href = "login";
+                                                    location.href = "login";
             </c:if>
-                                                        }
+                                                }
 
-                                                        function buy(ProductID) {
-                                                            var select_value = document.getElementById("select_id").value;
-                                                            location.href = "buyNow?ProductID=" + ProductID + "&Quantity=" + select_value;
-                                                        }
+                                                function buy(ProductID) {
+                                                    var select_value = document.getElementById("select_id").value;
+                                                    location.href = "buyNow?ProductID=" + ProductID + "&Quantity=" + select_value;
+                                                }
         </script>  
     </body>
 </html>
