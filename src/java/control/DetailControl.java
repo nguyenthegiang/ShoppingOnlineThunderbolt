@@ -64,8 +64,12 @@ public class DetailControl extends HttpServlet {
             OrderDetailDAO orderDetailDao = new OrderDetailDAO();
             CategoryDAO CategoryDAO = new CategoryDAO();
             ProductDAO ProductDAO = new ProductDAO();
+            InforDAO InforDAO = new InforDAO();
 
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            // get info for footer
+            Information infor = InforDAO.getInfor();
+            
+            // get simple date format to convert date
             SimpleDateFormat sdf = new SimpleDateFormat(
                     "dd/MM/yyyy");
 
@@ -153,7 +157,8 @@ public class DetailControl extends HttpServlet {
                 // number of times the user bought this product
                 // => allow the user to add feedback               
                 if (currentAccountFeedbacks.size()
-                        < ordersDetailsOfOrders.size()) {
+                        < ordersDetailsOfOrders.size()) {                                      
+                    // allow user to add feedback
                     addFeedbackFlag = true;
                 }
             }
@@ -166,7 +171,8 @@ public class DetailControl extends HttpServlet {
             request.setAttribute("allCategory", listC);
             request.setAttribute("lsFeedback", lsFeedback);
             request.setAttribute("lsAccount", lsAccount);
-
+            request.setAttribute("infor", infor);
+            request.setAttribute("productId", id);
             request.setAttribute("lsAccountReplies", lsAccountReplies);
             request.setAttribute("addFeedbackFlag", addFeedbackFlag);
             request.setAttribute("hot", hot);
