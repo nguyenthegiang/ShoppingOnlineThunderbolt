@@ -116,6 +116,7 @@
                                         <th>Product Name</th>
                                         <th>Product Picture</th>
                                         <th>Product Price  </th>
+                                        <th>Quantity  </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -131,6 +132,7 @@
                                         <td>
                                             <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${item.productPrice}"/>VNĐ
                                         </td>
+                                        <td>${item.quantity}</td>
 
                                         <c:set var="total" value="${total + item.productPrice}" />
                                     </tr>

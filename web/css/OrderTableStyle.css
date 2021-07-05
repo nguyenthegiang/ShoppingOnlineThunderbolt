@@ -11,6 +11,7 @@ and open the template in the editor.
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
+  text-align: center;
 }
 
 #customers td, #customers th {

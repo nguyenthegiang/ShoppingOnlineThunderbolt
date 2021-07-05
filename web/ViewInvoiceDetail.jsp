@@ -163,6 +163,7 @@
                                 <th>Product Name</th>                               
                                 <th>Product Price</th>                               
                                 <th>Product Image</th>                               
+                                <th>Quantity</th>                               
                                 <th>Shipping Address</th>                               
                                 <th>Customer's Phone Number</th>                               
                             </tr>
@@ -175,6 +176,7 @@
                                     <td>${item.productID}</td>
                                     <td>${item.productName}</td>
                                     <td><img height="250px" width="200px" src="image/${item.imageLink}"/></td>
+                                    <td>${item.quantity}</td>
                                     <td>
                                         <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${item.productPrice}"/>VNĐ
                                     </td>
