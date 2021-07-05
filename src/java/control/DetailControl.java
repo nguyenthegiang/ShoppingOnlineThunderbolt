@@ -128,9 +128,11 @@ public class DetailControl extends HttpServlet {
                                 currentAccount.getId(), Integer.parseInt(id)
                         );
 
-                // get all orders of this user
+                // get all completed orders of this user
                 List<Order> ordersOfCurrentUser
-                        = orderDAO.getOrderByUserID(currentAccount.getId());
+                        = orderDAO.getCompletedOrderByUserID(
+                                currentAccount.getId()
+                        );
 
                 // get all order details of the list orders 
                 // that has this product
@@ -148,7 +150,7 @@ public class DetailControl extends HttpServlet {
                 }
 
                 // number of feedback of the user on this product < 
-                // number of times the user bought this product
+                // number of times the user successfully bought this product
                 // => allow the user to add feedback               
                 if (currentAccountFeedbacks.size()
                         < ordersDetailsOfOrders.size()) {
