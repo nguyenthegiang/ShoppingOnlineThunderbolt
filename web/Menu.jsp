@@ -35,7 +35,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="productList" id="linkHover">Shop</a>
                         </li>
-                        
+
                         <!--Nếu acc khác null -> login rồi -> hiển thị cả 3 menu dưới-->
                     <c:if test = "${acc != null}">
                         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="display: unset !important;">
@@ -53,7 +53,9 @@
                                             <div class="row">
                                                 <div class="col-lg-12 col-sm-12 col-12">
                                                     <span>Notifications (most recently)</span>
-                                                    <a href="" class="float-right text-light">Mark all as read</a>
+                                                    <a onclick="notiRead(${acc.id})" class="float-right text-light" href="#">
+                                                            Mark all as read
+                                                    </a>
                                                 </div>
                                         </li>
 

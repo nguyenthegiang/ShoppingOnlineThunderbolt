@@ -50,7 +50,7 @@ public class ViewInvoiceDetailAdmin extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             Account a = (Account) session.getAttribute("acc");
-
+            NotificationDAO notiDAO = new NotificationDAO();
             if (a.getIsAdmin() == 1) {
                 InvoicesDAO invoicesDAO = new InvoicesDAO();
                 OrderDAO orderDAO = new OrderDAO();
@@ -76,6 +76,8 @@ public class ViewInvoiceDetailAdmin extends HttpServlet {
                 else {
                     status = orderDAO.getOrderByOrderID(id).getStatus();
                 }
+                
+                notiDAO.readOneNoti(a.getId(), id);
 
                 request.setAttribute("invoiceDetail", invoiceDetail);
                 request.setAttribute("totalCart", totalCart);
@@ -89,7 +91,6 @@ public class ViewInvoiceDetailAdmin extends HttpServlet {
                 int sellerId = Integer.parseInt(request.getParameter("sellerId"));
                 int orderId = Integer.parseInt(request.getParameter("orderId"));
 //                CartDAO CartDAO = new CartDAO();
-                NotificationDAO notiDAO = new NotificationDAO();
                 List<OrderDetailAdmin> invoiceDetail = invoicesDAO.getInvoiceDetailBySellerID(sellerId);
                 int totalProductSold = invoicesDAO.countProductSoldOfSeller(sellerId);
 

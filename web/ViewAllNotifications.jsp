@@ -17,8 +17,6 @@
         <link rel="icon" type="image/png" href="image/faviconLogo.png" />
         <title>Computer ERA</title>
         <link href="css/Dashboard.css" rel="stylesheet" type="text/css"/>
-        <!--Table Styling-->
-        <link rel="stylesheet" href="css/OrderTableStyle.css" type="text/css"/>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
