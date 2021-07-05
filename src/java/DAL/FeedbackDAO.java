@@ -21,7 +21,8 @@ public class FeedbackDAO extends BaseDAO<Feedback> {
     ResultSet rs = null; //Nhận kết quả trả về
 
     /**
-     * Get a list of feedback by product id 
+     * Get a list of feedback by product id
+     *
      * @param productId the id of the product
      * @return a list of feedback
      */
@@ -113,6 +114,25 @@ public class FeedbackDAO extends BaseDAO<Feedback> {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public boolean addFeedback(Feedback theFeedback) {
+        String query = "INSERT INTO Feedback VALUES (?, ?, ?, ?, ?);";
+        int check = 0;
+        try {
+            ps = connection.prepareStatement(query);
+            //Set data to the "?"
+            ps.setInt(1, theFeedback.getUserId());
+            ps.setInt(2, theFeedback.getProductId());
+            ps.setInt(3, theFeedback.getOrderId());
+            ps.setInt(4, theFeedback.getStar());
+            ps.setString(5, theFeedback.getFeedbackDetail());
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            check = -1;
+        }
+        return check > 0;
     }
 
 }
