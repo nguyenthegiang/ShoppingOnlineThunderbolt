@@ -178,9 +178,10 @@ public class OrderDAO extends BaseDAO<Order> {
         }
         return 0;
     }
-    
+
     /**
      * Get status of an order with its ID
+     *
      * @param orderId
      * @return int status
      */
@@ -231,6 +232,7 @@ public class OrderDAO extends BaseDAO<Order> {
 
     /**
      * get the newest order id
+     *
      * @return the newest order id
      */
     public int getNewestOrderID() {
@@ -291,6 +293,42 @@ public class OrderDAO extends BaseDAO<Order> {
         }
 
         return list;
+    }
+
+    /**
+     * get list of completed orders of a specific user
+     *
+     * @param userId: id of the user
+     * @return List Order
+     */
+    public List<Order> getCompletedOrderByUserID(int userId) {
+        List<Order> list = new ArrayList<>();
+        String query = "SELECT o.ID, o.UserID, "
+                + "o.TotalPrice, o.Note, os.Name, "
+                + "o.DayBuy "
+                + "FROM Orders o  INNER JOIN Order_Status os\n"
+                + " ON o.Status = os.ID\n"
+                + "WHERE o.UserId = ? AND o.Status = 5";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, userId);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(new Order(
+                        rs.getInt("ID"),
+                        rs.getInt("UserId"),
+                        rs.getFloat("TotalPrice"),
+                        rs.getString("Note"),
+                        rs.getString("Name"),
+                        rs.getString("Daybuy")
+                ));
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 //    public List<Order> getOrderBySellerID(int sellerId) {
