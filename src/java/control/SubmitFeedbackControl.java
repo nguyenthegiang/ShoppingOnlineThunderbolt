@@ -5,13 +5,12 @@
  */
 package control;
 
+import DAL.FeedbackDAO;
+import DAL.ProductDAO;
 import entity.Account;
 import entity.Feedback;
-import entity.OrderDetail;
+import entity.Product;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,51 +38,17 @@ public class SubmitFeedbackControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
+            ProductDAO productDao = new ProductDAO();
 
-            // get current user account
-            HttpSession session = request.getSession();
-            Account currentAccount = (Account) session.getAttribute("acc");
+            String orderId = request.getParameter("orderId");
+            String productId = request.getParameter("productId");
 
-            // get current product id
-            int productId = Integer.parseInt(request.getParameter("productId"));
+            Product p = productDao.getProductByID(productId);
 
-            // get input rating
-            String star = request.getParameter("star-value");
-            String feedback = request.getParameter("feedback-text");
+            request.setAttribute("product", p);
+            request.setAttribute("orderId", orderId);
+            request.getRequestDispatcher("FeedbackForm.jsp").forward(request, response);
 
-            // get order id
-            List<Feedback> listAllFeedback
-                    = (List<Feedback>) session.getAttribute(
-                            "listAllFeedback"
-                    );
-            List<OrderDetail> listAllTimeBoughtCurrentUser
-                    = (List<OrderDetail>) session.getAttribute(
-                            "listAllTimeBoughtCurrentUser"
-                    );
-
-            List<Integer> feedbackOrderId
-                    = listAllFeedback.stream()
-                            .map(Feedback::getOrderId)
-                            .collect(Collectors.toList());
-            List<Integer> allOrdersOrderId
-                    = listAllTimeBoughtCurrentUser.stream()
-                            .map(OrderDetail::getOrderID)
-                            .collect(Collectors.toList());
-            
-            List<Integer> differences = new ArrayList<Integer>(allOrdersOrderId);
-            differences.removeAll(feedbackOrderId);
-
-            // create feedback
-            Feedback userFeedback = new Feedback();
-            userFeedback.setProductId(productId);
-            userFeedback.setUserId(currentAccount.getId());
-            userFeedback.setStar(Integer.parseInt(star));
-            userFeedback.setOrderId(differences.get(0));
-            userFeedback.setFeedbackDetail(feedback);
-
-            System.out.println(star);
-            System.out.println(feedback);
-            request.getRequestDispatcher("productList").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect("Error.jsp");
@@ -116,7 +81,46 @@ public class SubmitFeedbackControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        try {
+
+            // get current user account
+            HttpSession session = request.getSession();
+            Account currentAccount = (Account) session.getAttribute("acc");
+
+            // get FeedbackDAO
+            FeedbackDAO feedbackDAO = new FeedbackDAO();
+
+            // get current product id
+            int productId = Integer.parseInt(request.getParameter("productId"));
+
+            // get input rating
+            String star = request.getParameter("star-value");
+            String feedback = request.getParameter("feedback-text");
+
+            //get order id
+            String orderId = request.getParameter("orderId");
+
+            // create feedback
+            Feedback userFeedback = new Feedback();
+            userFeedback.setProductId(productId);
+            userFeedback.setUserId(currentAccount.getId());
+            userFeedback.setStar(Integer.parseInt(star));
+            userFeedback.setOrderId(Integer.parseInt(orderId));
+            userFeedback.setFeedbackDetail(feedback);
+            System.out.println(userFeedback);
+
+            // add feedback to database
+            boolean addFeedback = feedbackDAO.addFeedback(userFeedback);
+            
+            // redirect to productlist
+            if(addFeedback) {
+                request.getRequestDispatcher("productList").forward(request, response);
+            }           
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect("Error.jsp");
+        }
     }
 
     /**
