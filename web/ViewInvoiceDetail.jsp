@@ -157,15 +157,15 @@
                     <table id="customers" style="margin-left:3em; border: 1px solid;">
                         <thead >
                             <tr >
-                                <th>No.</th>
-                                <th>User Name</th>
-                                <th>Product ID</th>
-                                <th>Product Name</th>                               
-                                <th>Product Price</th>                               
-                                <th>Product Image</th>                               
-                                <th>Quantity</th>                               
-                                <th>Shipping Address</th>                               
-                                <th>Customer's Phone Number</th>                               
+                                <th style="text-align: center;">No.</th>
+                                <th style="text-align: center;">User Name</th>
+                                <th style="text-align: center;">Product ID</th>
+                                <th style="text-align: center;">Product Name</th>                               
+                                <th style="text-align: center;">Product Price</th>                               
+                                <th style="text-align: center;">Product Image</th>                               
+                                <th style="text-align: center;">Quantity</th>                               
+                                <th style="text-align: center;">Shipping Address</th>                               
+                                <th style="text-align: center;">Customer's Phone Number</th>                               
                             </tr>
                         </thead>
                         <tbody>

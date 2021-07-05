@@ -111,12 +111,12 @@
                             <table id ="customers" style="margin-left:3em; border: 1px solid;">
                                 <thead >
                                     <tr >
-                                        <th>ID</th>
-                                        <th>Product ID</th>
-                                        <th>Product Name</th>
-                                        <th>Product Picture</th>
-                                        <th>Product Price  </th>
-                                        <th>Quantity  </th>
+                                        <th style="text-align: center;">ID</th>
+                                        <th style="text-align: center;">Product ID</th>
+                                        <th style="text-align: center;">Product Name</th>
+                                        <th style="text-align: center;">Product Picture</th>
+                                        <th style="text-align: center;">Product Price  </th>
+                                        <th style="text-align: center;">Quantity  </th>
                                     </tr>
                                 </thead>
                                 <tbody>
