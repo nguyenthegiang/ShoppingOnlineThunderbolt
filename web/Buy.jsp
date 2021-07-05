@@ -28,9 +28,14 @@
             <link href="css/buy.css" rel="stylesheet" type="text/css"/>
             <title>Checkout</title>
         </head>
-        <body>
+        <body onload="getTotalPriceNoShip()">
             <script>
                 const reg = /\D+/gi;
+                let totalNoShip = 0;
+                function getTotalPriceNoShip() {
+                    totalNoShip = parseInt(trimToNumber(document.getElementById("total").innerHTML))
+                            - parseInt(${requestScope.currentUserDefaultCity.shipPrice});
+                }
 
                 function cityChange(cityNameWithShipPrice) {
 
@@ -44,11 +49,12 @@
                             cityName: cityNameWithShipPrice
                         },
                         success: function (data) {
-                            var total = document.getElementById("total");
+                            
+                            var total = document.getElementById("total");                           
 
-                            var test = parseInt(trimToNumber(total.innerHTML))
+                            var test = totalNoShip 
                                     + parseInt(trimToNumber(shipPrice));
-
+                            
                             total.innerHTML = formatCurrency(test);
 
                         },
@@ -84,10 +90,10 @@
                     document.getElementById("demo").innerHTML = x;
                     var y = document.getElementById("myName").value;
                     document.getElementById("name").innerHTML = y;
-                    
+
                 }
-                
-            </script>
+
+        </script>
         <jsp:include page="Menu.jsp"></jsp:include>
 
 
@@ -268,7 +274,7 @@
                                                 <p id="name" style="color: silver; font-size: x-large"></p>
                                             </div>
                                             <br>
-                                            
+
                                         </div>
                                         <hr class="mb-4">
                                         <button class="btn btn-info btn-lg btn-block" type="submit">Checkout</button>
