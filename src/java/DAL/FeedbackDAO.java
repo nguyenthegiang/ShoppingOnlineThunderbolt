@@ -81,22 +81,53 @@ public class FeedbackDAO extends BaseDAO<Feedback> {
         }
         return null;
     }
-
+    
     /**
-     * Get a list of feedback by the user id and the product id
-     *
+     * Get a list of feedback by user id and product id
      * @param userId the id of the user
      * @param productId the id of the product
-     * @return a list of feedback
+     * @return  list of feedback with the user id and product id
      */
+   
     public List<Feedback> getFeedbacksByUserIdAndProductId(int userId, int productId) {
-        String query = "SELECT * FROM Feedback WHERE UserID = ? "
-                + "AND ProductID = ?";
+        String query = "SELECT * FROM Feedback WHERE UserID = ?"
+                + " AND ProductID = ?";
         try {
             List<Feedback> lsFeedback = new ArrayList<>();
             ps = connection.prepareStatement(query);
             ps.setInt(1, userId);
             ps.setInt(2, productId);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Feedback f = new Feedback(
+                        rs.getInt("ID"),
+                        rs.getInt("UserID"),
+                        rs.getInt("ProductID"),
+                        rs.getInt("OrderID"),
+                        rs.getInt("Star"),
+                        rs.getString("FeedbackDetail")
+                );
+                lsFeedback.add(f);
+            }
+            return lsFeedback;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * Get a feedback by order id
+     * @param orderId the id of the order
+     * @return a list of feedback with the order id
+     */
+    public List<Feedback> getFeedbacksByOrderId(int orderId) {
+        String query = "SELECT * FROM Feedback WHERE OrderID = ? ";              
+        try {
+            List<Feedback> lsFeedback = new ArrayList<>();
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, orderId);
+            
             rs = ps.executeQuery();
             while (rs.next()) {
                 Feedback f = new Feedback(
