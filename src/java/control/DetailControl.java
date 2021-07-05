@@ -68,7 +68,7 @@ public class DetailControl extends HttpServlet {
 
             // get info for footer
             Information infor = InforDAO.getInfor();
-            
+
             // get simple date format to convert date
             SimpleDateFormat sdf = new SimpleDateFormat(
                     "dd/MM/yyyy");
@@ -81,45 +81,39 @@ public class DetailControl extends HttpServlet {
             List<Account> lsAccountReplies = new ArrayList<>();
             List<FeedbackReplies> lsFeedbackReplies = new ArrayList<>();
 
-            // give data for list replies, list account made feedback and list of account that replies
-            for (Feedback feedback : lsFeedback) {
-                // get order of the feedback
-                feedback.setOrder(
-                        orderDAO.getOrderByOrderID(feedback.getOrderId())
-                );
+            // give data for list replies, list account made feedback and list of account that replies           
+                for (Feedback feedback : lsFeedback) {
+                    // get order of the feedback
+                    feedback.setOrder(
+                            orderDAO.getOrderByOrderID(feedback.getOrderId())
+                    );
+                    
+                    // get order date of feedback
+                    Date orderDate = feedback.getOrder().getOrderDate();
+                    feedback.getOrder().setDate(sdf.format(orderDate));
 
-                // remove all feedback of order that is not completed
-                if (!feedback.getOrder().getStatus().equals("Completed")) {
-                    lsFeedback.remove(feedback);
-                    continue;
-                }
+                    // get all replies of feedback
+                    lsFeedbackReplies = feedbackRepliesDao.
+                            getFeedbacksByFeedbackId(feedback.getId());
+                    feedback.setListReplies(lsFeedbackReplies);
 
-                // get order date of feedback
-                Date orderDate = feedback.getOrder().getOrderDate();
-                feedback.getOrder().setDate(sdf.format(orderDate));
+                    //get all account that made replies
+                    for (FeedbackReplies lsFeedbackReply : lsFeedbackReplies) {
+                        Account a = userDao.getAccountByID(
+                                String.valueOf(
+                                        lsFeedbackReply.getUserId()
+                                ));
+                        lsAccountReplies.add(a);
+                    }
 
-                // get all replies of feedback
-                lsFeedbackReplies = feedbackRepliesDao.
-                        getFeedbacksByFeedbackId(feedback.getId());
-                feedback.setListReplies(lsFeedbackReplies);
-
-                //get all account that made replies
-                for (FeedbackReplies lsFeedbackReply : lsFeedbackReplies) {
+                    // get all account that made feedback
                     Account a = userDao.getAccountByID(
                             String.valueOf(
-                                    lsFeedbackReply.getUserId()
+                                    feedback.getUserId()
                             ));
-                    lsAccountReplies.add(a);
+                    lsAccount.add(a);
                 }
-
-                // get all account that made feedback
-                Account a = userDao.getAccountByID(
-                        String.valueOf(
-                                feedback.getUserId()
-                        ));
-                lsAccount.add(a);
-            }
-
+                               
             /**
              * Check if current login account can give feedback or not Change
              * Feedback to have order id of that feedback Check if order has
@@ -157,7 +151,7 @@ public class DetailControl extends HttpServlet {
                 // number of times the user bought this product
                 // => allow the user to add feedback               
                 if (currentAccountFeedbacks.size()
-                        < ordersDetailsOfOrders.size()) {                                      
+                        < ordersDetailsOfOrders.size()) {
                     // allow user to add feedback
                     addFeedbackFlag = true;
                 }
