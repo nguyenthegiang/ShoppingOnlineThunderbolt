@@ -191,6 +191,15 @@
                                     <input type="hidden" value="${item.id}" name="id">
                                 </form>
                             </c:if>
+                            <c:if test="${item.status eq 'Completed'}">
+                                <td>${item.status}</td>
+                                <td>${item.date}</td>
+                                <td><a  style="cursor: pointer "onclick="formAutoSubmit('${item.id}');">View</a></td>
+                                <form style="display:none;" id="${item.id}" action="viewInvoiceDetailAdmin">
+                                    <input type="hidden" value="Delivering" name="status">
+                                    <input type="hidden" value="${item.id}" name="id">
+                                </form>
+                            </c:if>
 
                             <c:set var="total" value="${total + item.totalPrice}" />
                             </tr>

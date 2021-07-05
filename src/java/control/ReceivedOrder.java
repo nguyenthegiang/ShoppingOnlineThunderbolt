@@ -24,8 +24,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Thuan
  */
-@WebServlet(name = "DeliverOrder", urlPatterns = {"/deliverOrder"})
-public class DeliverOrder extends HttpServlet {
+@WebServlet(name = "ReceivedOrder", urlPatterns = {"/receivedOrder"})
+public class ReceivedOrder extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,26 +43,20 @@ public class DeliverOrder extends HttpServlet {
         int userId = Integer.parseInt(request.getParameter("userId"));
         HttpSession session = request.getSession();
         Account a = (Account)session.getAttribute("acc");
-        
         try {
             OrderDAO orderDAO = new OrderDAO();
             NotificationDAO notiDAO = new NotificationDAO();
             UserDAO accDAO = new UserDAO();
-            
-            
-            
-            orderDAO.delivering(orderId);
-            notiDAO.deliverOrderAdminNoti(userId, orderId);
+
+            orderDAO.finished(orderId);
+            notiDAO.finishOrderUserNoti(userId, orderId);
 //            notiDAO.readOneNoti(1, orderId);
-//            notiDAO.adminApproveNotiSeller(userId, orderId, accDAO.getSellerIdOfAnOrder(orderId));
+            notiDAO.userReceivedNotiSeller(userId, orderId, accDAO.getSellerIdOfAnOrder(orderId));
             List<Order> orders = orderDAO.getAllOrder();
-            
-            
+
             request.setAttribute("orders", orders);
 
-            
-            
-            request.getRequestDispatcher("ViewAllInvoices.jsp").forward(request, response);
+            request.getRequestDispatcher("viewOrder").forward(request, response);
         } catch (Exception ex) {
             response.sendRedirect("Error.jsp");
         }

@@ -111,7 +111,7 @@
                             <table id ="customers" style="margin-left:3em; border: 1px solid;">
                                 <thead >
                                     <tr >
-                                        <th>No.</th>
+                                        <th>ID</th>
                                         <th>Product ID</th>
                                         <th>Product Name</th>
                                         <th>Product Picture</th>
@@ -145,6 +145,17 @@
                             <h1 style="color:red;">Total:                                        
                                 <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${total}"/> 
                                 VNĐ</h1>
+                                <c:set var="n" value="Delivering"></c:set>
+                                <c:if test="${order.status eq n}">
+                                <form action="receivedOrder" id="form1">
+                                    <input type="hidden" value="${order.id}" name="orderId"/>
+                                    <input type="hidden" value="${sessionScope.acc.id}" name="userId"/>
+                                </form>
+                                <div style="margin:10px; float:left">
+                                    <a  onclick="formAutoSubmit('form1')"><button>I have received my orders</button></a>
+                                    <!--<a  href ="approveOrder?id=${OrderId}"><button>Approve</button></a>-->
+                                </div>                       
+                            </c:if>
                         </div>
                         <div class="row">
                             <div class="col-6">

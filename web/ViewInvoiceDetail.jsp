@@ -213,8 +213,8 @@
                         </div>
                     </c:if>
                     
-                     <c:set var="n" value="Packaging"></c:set>
-                    <c:if test="${sta eq n}">
+                    <c:set var="k" value="Packaging"></c:set>
+                    <c:if test="${sta eq k}">
                         <form action="deliverOrder" id="form1">
                             <input type="hidden" value="${OrderId}" name="orderId"/>
                             <input type="hidden" value="${userId}" name="userId"/>
@@ -224,6 +224,8 @@
                             <!--<a  href ="approveOrder?id=${OrderId}"><button>Approve</button></a>-->
                         </div>                       
                     </c:if>
+                    
+                   
                 </div>
                 <div class="row">
                     <div class="col-6">
