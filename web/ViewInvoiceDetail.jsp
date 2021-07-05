@@ -175,11 +175,11 @@
                                     <td>${item.customerName}</td>
                                     <td>${item.productID}</td>
                                     <td>${item.productName}</td>
-                                    <td><img height="250px" width="200px" src="image/${item.imageLink}"/></td>
-                                    <td>${item.quantity}</td>
                                     <td>
                                         <fmt:formatNumber type = "number" maxFractionDigits = "1" value = "${item.productPrice}"/>VNĐ
                                     </td>
+                                    <td><img height="250px" width="200px" src="image/${item.imageLink}"/></td>
+                                    <td>${item.quantity}</td>
                                     <td>${item.shipAddress}</td>                      
                                     <td>${item.phoneNumber}</td>
                                     <c:set var="userId" value="${item.userId}"/>
