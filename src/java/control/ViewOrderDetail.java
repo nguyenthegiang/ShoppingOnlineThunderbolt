@@ -5,15 +5,15 @@
  */
 package control;
 
+import DAL.FeedbackDAO;
 import DAL.OrderDAO;
-import DAL.OrderDetailDAO;
 import DAL.OrderDetailWithImageDAO;
+import entity.Feedback;
 import entity.Order;
-import entity.OrderDetail;
 import entity.OrderDetailWithImage;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,22 +39,39 @@ public class ViewOrderDetail extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-            
-        try{
+
+        try {
             int id = Integer.parseInt(request.getParameter("id"));
+
             OrderDetailWithImageDAO orderDAO = new OrderDetailWithImageDAO();
             OrderDAO odDAO = new OrderDAO();
-            
+            FeedbackDAO feedbackDAO = new FeedbackDAO();
+
             List<OrderDetailWithImage> orderDetails = orderDAO.getOrderDetail(id);
-            Order order = odDAO.getOrderByOrderID(id);
+            Order order = odDAO.getOrderByOrderID(id);           
+            
+            if (order.getStatus().equals("Completed")) {
+                List<Feedback> currentOrdersFeedback = feedbackDAO.getFeedbacksByOrderId(id);
+
+                // get all product in order details that had feedback
+                List<Integer> alreadyHaveFeedbackList = orderDetails.stream()
+                        .filter(orderDetail -> currentOrdersFeedback.stream()
+                        .anyMatch(feedback
+                                -> feedback.getOrderId() == orderDetail.getOrderID()
+                        && feedback.getProductId() == orderDetail.getProductID()
+                        ))
+                        .map(OrderDetailWithImage::getId)
+                        .collect(Collectors.toList());
+                request.setAttribute("alreadyHaveFeedbackList", alreadyHaveFeedbackList);
+            }
 
             request.setAttribute("orderDetails", orderDetails);
+
             request.setAttribute("order", order);
 
             request.getRequestDispatcher("ViewOrderDetails.jsp").forward(request, response);
-        
-        }
-        catch(Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect("Error.jsp");
         }
