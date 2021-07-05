@@ -23,7 +23,7 @@ public class OrderDetailWithImageDAO extends BaseDAO<OrderDetailWithImage> {
 
     public List<OrderDetailWithImage> getOrderDetail(int orderId) {
         List<OrderDetailWithImage> list = new ArrayList<>();
-        String query = "SELECT od.id, od.order_id, od.productId, od.productName, od.productPrice, p.imageLink\n"
+        String query = "SELECT od.id, od.order_id, od.productId, od.productName,od.quantity, od.productPrice, p.imageLink\n"
                 + "FROM Order_Detail od INNER JOIN Product p\n"
                 + "ON od.ProductID = p.ProductID\n"
                 + "WHERE od.Order_ID = ?";
