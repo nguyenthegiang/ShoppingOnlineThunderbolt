@@ -50,75 +50,7 @@
             .checked {
                 color: orange;
             }
-
-            /* for star rating */
-            .rating {
-                display: inline-block;
-                position: relative;
-                height: 50px;
-                line-height: 50px;
-                font-size: 50px;
-            }
-
-            .rating label {
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 100%;
-                cursor: pointer;
-            }
-
-            .rating label:last-child {
-                position: static;
-            }
-
-            .rating label:nth-child(1) {
-                z-index: 5;
-            }
-
-            .rating label:nth-child(2) {
-                z-index: 4;
-            }
-
-            .rating label:nth-child(3) {
-                z-index: 3;
-            }
-
-            .rating label:nth-child(4) {
-                z-index: 2;
-            }
-
-            .rating label:nth-child(5) {
-                z-index: 1;
-            }
-
-            .rating label input {
-                position: absolute;
-                top: 0;
-                left: 0;
-                opacity: 0;
-            }
-
-            .rating label .icon {
-                float: left;
-                color: transparent;
-            }
-
-            .rating label:last-child .icon {
-                color: #000;
-            }
-
-            .rating:not(:hover) label input:checked ~ .icon,
-            .rating:hover label:hover input ~ .icon {
-                color: #09f;
-            }
-
-            .rating label input:focus:not(:checked) ~ .icon:last-child {
-                color: #000;
-                text-shadow: 0 0 5px #09f;
-            }
-
-
+           
         </style>
        
     </head>
@@ -309,7 +241,7 @@
                             <c:if test="${requestScope.addFeedbackFlag eq true}">
                                 <div class="card mt-5">
                                     <h3 class="text-success mt-2 ml-2">Add feedback</h3>
-                                    <p>You have orders with this product that is not reviewed. Click the link to add feedbacks</p>
+                                    <p>You have orders with this product that is not reviewed. Click the <a href="viewOrder?id=${sessionScope.acc.id}">link</a> to go to all your orders and add feedbacks</p>
                                     
                                 </div>
                             </c:if>
