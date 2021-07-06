@@ -14,6 +14,7 @@ public class FeedbackReplies {
     private int feedbackId;
     private int userId;
     private String repliesText;
+    private Account user;
 
     public FeedbackReplies() {
     }
@@ -57,6 +58,14 @@ public class FeedbackReplies {
         this.repliesText = repliesText;
     }
 
+    public Account getUser() {
+        return user;
+    }
+
+    public void setUser(Account user) {
+        this.user = user;
+    }
+       
     @Override
     public String toString() {
         return "Feedback_Replies{" + "id=" + id + ", feedbackId=" + feedbackId + ", userId=" + userId + ", repliesText=" + repliesText + '}';
