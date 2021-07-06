@@ -22,6 +22,14 @@
         <script src="https://kit.fontawesome.com/6c7ad27b5d.js" crossorigin="anonymous"></script>
 
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <style>
+            .col-sm-8 p {
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+            }
+        </style>
     </head>
     <body style="background-color: #D9DDDC">
         <!--Split Home page to many JSP pages for easier managing-->
@@ -29,43 +37,6 @@
         <!--Thanh menu phía trên cùng-->
         <!--hello-->
         <jsp:include page="Menu.jsp"></jsp:include>
-
-            <!--Slideshow-->
-            <!--<section class="jumbotron text-center" style="background-color: white;">-->
-            <div class="container-fluid" style="background-color: #ebebf2">
-                <div class="row"></div>
-                <div class="col-md-12">
-                    <img class="mySlides" src="image/SlideShow/Intro1.jpg" style="height: 80%; width: 80%; object-fit: contain; margin: auto">
-                    <img class="mySlides" src="image/SlideShow/Intro2.jpg" style="height: 80%; width: 80%; object-fit: contain; margin: auto">
-                    <img class="mySlides" src="image/SlideShow/Intro3.jpg" style="height: 80%; width: 80%; object-fit: contain; margin: auto">
-                    <div class="w3-center w3-display-bottommiddle" style="width:100%">
-                        <!--                        <div class="w3-left" onclick="plusDivs(-1)">&#10094;</div>
-                                                <div class="w3-right" onclick="plusDivs(1)">&#10095;</div>-->
-                        <span class="w3-badge demo w3-border" onclick="currentDiv(1)"></span>
-                        <span class="w3-badge demo w3-border" onclick="currentDiv(2)"></span>
-                        <span class="w3-badge demo w3-border" onclick="currentDiv(3)"></span>
-                    </div>
-                </div>
-            </div>
-
-            <script>
-                var myIndex = 0;
-                carousel();
-
-                function carousel() {
-                    var i;
-                    var x = document.getElementsByClassName("mySlides");
-                    for (i = 0; i < x.length; i++) {
-                        x[i].style.display = "none";
-                    }
-                    myIndex++;
-                    if (myIndex > x.length) {
-                        myIndex = 1
-                    }
-                    x[myIndex - 1].style.display = "block";
-                    setTimeout(carousel, 2000); // Change image every 2 seconds
-                }
-            </script>
             <br>
             <!--Phần tin tức-->
             <div class="container">
@@ -83,29 +54,38 @@
         <br>
         <div class="container">
             <div class="row">
-                <jsp:include page="Left.jsp"></jsp:include>
-
                 <div class="col-md-9 col-sm-9">
                     <div class="row" id="content">
-                        <!--List Blog-->
-                         <c:forEach items="${listP}" var="o">
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <div class="card" id="product"> <!--class="card"-->
-                                <!--Blog's image-->
-                                <a href="detailBlog?ID=${o.id}" title="View Blog"><img class="card-img-top" src="image/${o.imageLink}" alt="Card image cap"></a>
-                                <div class="card-body">
-                                    <!--Blog's title. Onlick: Blog's Detail-->
-                                    <h4 class="card-title show_txt"><a href="detailBlog?ID=${o.id}" title="View Blog">${o.title}</a></h4>
-                                    <div class="row">
-                                        
-                                    </div>
+                        <c:forEach items="${listP}" var="o">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <a href="detailBlog?ID=${o.id}" class="">
+                                        <img class="col-sm-12" src="image/${o.imageLink}">
+                                    </a>
+                                </div>
+                                <div class="col-sm-8">
+                                    <h3 class="card-title show_txt"><a href="detailBlog?ID=${o.id}" title="View Blog">${o.title}</a></h3>                                   
+                                    <p>${o.content}</p>
+                                    <c:if test="${sessionScope.acc != null}">
+                                        <a href="like?aid=${o.id}" style="text-decoration: none; margin-right: 10px">
+                                            <span style="font-size:30px">&#128077;</span>
+                                        </a>
+                                    </c:if>
+                                    <c:if test="${sessionScope.acc == null}">
+                                        <a href="Login.jsp" style="text-decoration: none; margin-right: 10px">
+                                            <span style="font-size:30px">&#128077;</span>
+                                        </a>
+                                    </c:if>
+
                                 </div>
                             </div>
-                        </div>
-                    </c:forEach>
+                        </c:forEach>
+
                     </div>
                 </div>
             </div>
+
         </div>
+
     </body>
 </html>
