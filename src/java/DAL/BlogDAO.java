@@ -81,7 +81,25 @@ public class BlogDAO extends BaseDAO<BlogDAO> {
             ps.executeUpdate();
         } catch (Exception e) {
         }
+    }public void edit(String id,String title, String content, String imageLink, String SellerBlogID) {
+        String query = "Update Blog\n"
+                + "SET Title = ?,\n"
+                + "Content=?,\n"
+                + "imageLink=?,\n"
+                + "SellerBlogID=?\n"
+                + "WHERE ID=?";
+        try {
+             ps = connection.prepareStatement(query);
+             ps.setString(1, title);
+            ps.setString(2, content);
+            ps.setString(3, imageLink);
+            ps.setString(4, SellerBlogID);
+            ps.setString(5, id);
+            ps.executeUpdate(); 
+        } catch (Exception e) {
+        }
     }
+    
 
     
 
