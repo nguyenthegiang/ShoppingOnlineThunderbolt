@@ -25,7 +25,7 @@ public class FeedbackRepliesDAO extends BaseDAO<FeedbackReplies>{
      * @param feedbackId the id of the feedback
      * @return the list of feedback replies
      */
-    public List<FeedbackReplies> getFeedbacksByFeedbackId(int feedbackId) {
+    public List<FeedbackReplies> getFeedbacksRepliesByFeedbackId(int feedbackId) {
         String query = "SELECT * FROM Feedback_Replies WHERE FeedbackID = ?";
         try {
             List<FeedbackReplies> lsFeedbackReplies = new ArrayList<>();
@@ -53,7 +53,7 @@ public class FeedbackRepliesDAO extends BaseDAO<FeedbackReplies>{
      * @param userId the id of the user
      * @return the list of feedback replies
      */
-    public List<FeedbackReplies> getFeedbacksByUserId(int userId) {
+    public List<FeedbackReplies> getFeedbacksRepliesByUserId(int userId) {
         String query = "SELECT * FROM Feedback_Replies WHERE UserID = ?";
         try {
             List<FeedbackReplies> lsFeedbackReplies = new ArrayList<>();
@@ -74,6 +74,29 @@ public class FeedbackRepliesDAO extends BaseDAO<FeedbackReplies>{
             e.printStackTrace();
         }
         return null;
+    }
+    
+    /**
+     * Add a replies to the database
+     * @param theReplies the replies to add to database
+     * @return true if add successful, else false
+     */
+    public boolean addReplies(FeedbackReplies theReplies) {
+        String query = "INSERT INTO Feedback_Replies VALUES (?, ?, ?);";
+        int check = 0;
+        try {
+            ps = connection.prepareStatement(query);
+            //Set data to the "?"
+            ps.setInt(1, theReplies.getFeedbackId());
+            ps.setInt(2, theReplies.getUserId());
+            ps.setString(3, theReplies.getRepliesText());
+            
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            check = -1;
+        }
+        return check > 0;
     }
     
 }
