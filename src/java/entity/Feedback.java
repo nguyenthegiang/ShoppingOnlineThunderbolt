@@ -19,6 +19,7 @@ public class Feedback {
     private int orderId;
     private int star;
     private String feedbackDetail;
+    private Account user;
     private Order order;
     private List<FeedbackReplies> listReplies;
 
@@ -44,6 +45,18 @@ public class Feedback {
         this.listReplies = listReplies;
     }    
 
+    public Feedback(int id, int userId, int productId, int orderId, int star, String feedbackDetail, Account user, Order order, List<FeedbackReplies> listReplies) {
+        this.id = id;
+        this.userId = userId;
+        this.productId = productId;
+        this.orderId = orderId;
+        this.star = star;
+        this.feedbackDetail = feedbackDetail;
+        this.user = user;
+        this.order = order;
+        this.listReplies = listReplies;
+    }
+       
     public int getId() {
         return id;
     }
@@ -108,6 +121,14 @@ public class Feedback {
         this.listReplies = lsReplies;
     }
 
+    public Account getUser() {
+        return user;
+    }
+
+    public void setUser(Account user) {
+        this.user = user;
+    }
+       
     @Override
     public String toString() {
         return "Feedback{" + "id=" + id + ", userId=" + userId + ", productId=" + productId + ", star=" + star + ", feedbackDetail=" + feedbackDetail + ", lsReplies=" + listReplies + '}';
