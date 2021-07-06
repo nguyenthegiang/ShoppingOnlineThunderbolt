@@ -99,7 +99,18 @@ public class BlogDAO extends BaseDAO<BlogDAO> {
         } catch (Exception e) {
         }
     }
-    
+    public void delete(String id) { //Leave the String type because when you get it, it's of type String -> Saves having to cast it
+        String query = "Delete FROM Blog WHERE ID = ?";
+                
+        try {
+            ps = connection.prepareStatement(query);
+            //Put the id inside the first "?"
+            ps.setString(1, id);
+            //Execute: No Result table -> No RS, only executeUpdate execute
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
 
     
 
