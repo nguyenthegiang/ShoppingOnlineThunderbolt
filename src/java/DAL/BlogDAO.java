@@ -127,7 +127,26 @@ public class BlogDAO extends BaseDAO<BlogDAO> {
         }
         return list;
     }
-    
+    public List<Blog> pagingManagerBlog(int index, int SellerID) {
+        List<Blog> list = new ArrayList<>();
+        if (SellerID == 0) {
+            list = pagingBlog(index);
+        } else {
+            String query = "SELECT * FROM Blog WHERE SellerID = ? ORDER BY ID OFFSET ? ROWS FETCH NEXT 6 ROWS ONLY";
+            try {
+                ps = connection.prepareStatement(query);
+                ps.setInt(1, SellerID);
+                ps.setInt(2, (index - 1) * 6);
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    list.add(new Blog(rs.getInt("ID"), rs.getString("title"), rs.getString("content"), rs.getString("imageLink")));
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+        return list;
+    }
 //    public List<Product> pagingManagerProduct(int index, int SellerID) {
 //        List<Product> list = new ArrayList<>();
 //        if (SellerID == 0) {
