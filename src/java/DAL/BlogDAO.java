@@ -15,12 +15,14 @@ import java.util.List;
 
 /**
  * test push 2
+ *
  * @author thong
  */
 public class BlogDAO extends BaseDAO<BlogDAO> {
+
     PreparedStatement ps = null; //...
     ResultSet rs = null; //Get the results returned
-    
+
     public Blog getHotBlog() {
         //Product with most amount
         String query = "select top 1 * from Blog\n"
@@ -29,13 +31,14 @@ public class BlogDAO extends BaseDAO<BlogDAO> {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
-                return new Blog(rs.getInt("ID"),rs.getString("Title"),rs.getString("Content"),rs.getString("imageLink"));
+                return new Blog(rs.getInt("ID"), rs.getString("Title"), rs.getString("Content"), rs.getString("imageLink"));
             }
         } catch (Exception e) {
         }
         return null;
     }
-   public List<Blog> getAllBlog() {
+
+    public List<Blog> getAllBlog() {
         List<Blog> list = new ArrayList<>();
         String query = "SELECT * FROM Blog";
         try {
@@ -44,39 +47,54 @@ public class BlogDAO extends BaseDAO<BlogDAO> {
 
             //Now the command has been run, rs is the Result table -> Now have to get the data from the rs table and put it in the List
             while (rs.next()) {
-                list.add(new Blog(rs.getInt("ID"),rs.getString("Title"),rs.getString("Content"),rs.getString("imageLink")));
+                list.add(new Blog(rs.getInt("ID"), rs.getString("Title"), rs.getString("Content"), rs.getString("imageLink")));
             }
         } catch (Exception e) {
         }
 
         return list;
     }
-   public BlogDetail getBlogByID(String id) { //Must be int type because when saving to Session, it is still int
+
+    public BlogDetail getBlogByID(String id) { //Must be int type because when saving to Session, it is still int
         String query = "SELECT * FROM Blog WHERE ID = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                return new BlogDetail(rs.getInt("ID"),rs.getString("Title"),rs.getString("Content"),rs.getString("imageLink"));
+                return new BlogDetail(rs.getInt("ID"), rs.getString("Title"), rs.getString("Content"), rs.getString("imageLink"));
             }
         } catch (Exception e) {
         }
         return null;
     }
-   
-   
+
+    public void add(String title, String content, String imageLink, String SellerBlogID) {
+        String query = "INSERT INTO Blog VALUES (?,?,?,?);";
+        try {
+            ps = connection.prepareStatement(query);
+            //Set data to the "?"
+            ps.setString(1, title);
+            ps.setString(2, content);
+            ps.setString(3, imageLink);
+            ps.setString(4, SellerBlogID);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+
+    
+
+
     public static void main(String[] args) {
         BlogDAO dao = new BlogDAO();
-      //  System.out.println(dao.getHotBlog());
+        //  System.out.println(dao.getHotBlog());
         // List<Blog> list = dao.getAllBlog();
-       //for (Blog o : list) {
-         //   System.out.println(o);
+        //for (Blog o : list) {
+        //   System.out.println(o);
         //}
         System.out.println(dao.getBlogByID("1"));
-       
-       
-        
+
     }
-    
+
 }
