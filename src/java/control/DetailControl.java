@@ -54,6 +54,14 @@ public class DetailControl extends HttpServlet {
             } catch (Exception e) {
             }
 
+            // redirect from replies control
+            if (request.getAttribute("ProductID") != null) {
+                id = (String) request.getAttribute("ProductID");
+                String message = (String) request.getAttribute("messageAddReplies");
+               
+                request.setAttribute("messageAddReplies", message);
+            }
+
             //CAll DAO
             ProductDAO dao = new ProductDAO();
             ProductDetail p = dao.getProductDetailByID(id);
@@ -76,44 +84,42 @@ public class DetailControl extends HttpServlet {
             // create list of categories, feedback, account that made feedback and account that replies
             List<Category> listC = CategoryDAO.getAllCategory();
             List<Feedback> lsFeedback
-                    = feedbackDao.getFeedbacksByProductId(Integer.parseInt(id));
-            List<Account> lsAccount = new ArrayList<>();
-            List<Account> lsAccountReplies = new ArrayList<>();
+                    = feedbackDao.getFeedbacksByProductId(Integer.parseInt(id));           
             List<FeedbackReplies> lsFeedbackReplies = new ArrayList<>();
 
             // give data for list replies, list account made feedback and list of account that replies           
-                for (Feedback feedback : lsFeedback) {
-                    // get order of the feedback
-                    feedback.setOrder(
-                            orderDAO.getOrderByOrderID(feedback.getOrderId())
-                    );
-                    
-                    // get order date of feedback
-                    Date orderDate = feedback.getOrder().getOrderDate();
-                    feedback.getOrder().setDate(sdf.format(orderDate));
+            for (Feedback feedback : lsFeedback) {
+                // get order of the feedback
+                feedback.setOrder(
+                        orderDAO.getOrderByOrderID(feedback.getOrderId())
+                );
 
-                    // get all replies of feedback
-                    lsFeedbackReplies = feedbackRepliesDao.
-                            getFeedbacksByFeedbackId(feedback.getId());
-                    feedback.setListReplies(lsFeedbackReplies);
+                // get order date of feedback
+                Date orderDate = feedback.getOrder().getOrderDate();
+                feedback.getOrder().setDate(sdf.format(orderDate));
 
-                    //get all account that made replies
-                    for (FeedbackReplies lsFeedbackReply : lsFeedbackReplies) {
-                        Account a = userDao.getAccountByID(
-                                String.valueOf(
-                                        lsFeedbackReply.getUserId()
-                                ));
-                        lsAccountReplies.add(a);
-                    }
+                // get all replies of feedback
+                lsFeedbackReplies = feedbackRepliesDao.
+                        getFeedbacksRepliesByFeedbackId(feedback.getId());
+                feedback.setListReplies(lsFeedbackReplies);
 
-                    // get all account that made feedback
+                //get all account that made replies
+                for (FeedbackReplies lsFeedbackReply : lsFeedbackReplies) {
                     Account a = userDao.getAccountByID(
                             String.valueOf(
-                                    feedback.getUserId()
+                                    lsFeedbackReply.getUserId()
                             ));
-                    lsAccount.add(a);
+                    lsFeedbackReply.setUser(a);
                 }
-                               
+
+                // get all account that made feedback
+                Account a = userDao.getAccountByID(
+                        String.valueOf(
+                                feedback.getUserId()
+                        ));
+                feedback.setUser(a);
+            }
+
             /**
              * Check if current login account can give feedback or not Change
              * Feedback to have order id of that feedback Check if order has
@@ -165,11 +171,9 @@ public class DetailControl extends HttpServlet {
 
             //PUSH to JSP
             request.setAttribute("allCategory", listC);
-            request.setAttribute("lsFeedback", lsFeedback);
-            request.setAttribute("lsAccount", lsAccount);
+            request.setAttribute("lsFeedback", lsFeedback);          
             request.setAttribute("infor", infor);
-            request.setAttribute("productId", id);
-            request.setAttribute("lsAccountReplies", lsAccountReplies);
+            request.setAttribute("productId", id);          
             request.setAttribute("addFeedbackFlag", addFeedbackFlag);
             request.setAttribute("hot", hot);
             request.setAttribute("favor", favor);
