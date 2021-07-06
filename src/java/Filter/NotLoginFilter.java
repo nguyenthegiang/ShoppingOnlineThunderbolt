@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author ADMIN
  */
-@WebFilter(filterName = "NotLoginFilter", urlPatterns = {"/show", "/pagingManager", "/manager", "/logout", "/finish", "/edit", "/editAccount", "/deleteProductInCart", "/delete", "/deleteCart", "/deleteAccount", "/buyNow", "/buy", "/addToCart", "/addMany", "/add", "/accountManager"})
+@WebFilter(filterName = "NotLoginFilter", urlPatterns = {"/show", "/add-replies", "/pagingManager", "/manager", "/logout", "/finish", "/edit", "/editAccount", "/deleteProductInCart", "/delete", "/deleteCart", "/deleteAccount", "/buyNow", "/buy", "/addToCart", "/addMany", "/add", "/accountManager"})
 public class NotLoginFilter implements Filter {
 
     private static final boolean debug = true;
