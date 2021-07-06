@@ -147,6 +147,11 @@ public class FeedbackDAO extends BaseDAO<Feedback> {
         return null;
     }
 
+    /**
+     * Add a feedback to the database
+     * @param theFeedback to add to database
+     * @return true if add successful, else false
+     */
     public boolean addFeedback(Feedback theFeedback) {
         String query = "INSERT INTO Feedback VALUES (?, ?, ?, ?, ?);";
         int check = 0;
