@@ -50,9 +50,11 @@
             .checked {
                 color: orange;
             }
-           
+
         </style>
-       
+        <script>
+
+        </script>
     </head>
     <body>
         <jsp:include page="Menu.jsp"></jsp:include>
@@ -122,6 +124,7 @@
                             <div class="card">
                                 <div class="title mt-2 ml-2">
                                     <h3 class="text-success">Feedbacks</h3>
+                                    <p class="text-success">${requestScope.messageAddReplies}</p> 
                                 </div>
 
                                 <!--                            <div class="imagebg"></div>
@@ -197,20 +200,25 @@
                                     <ul class="comments" style="display: block; list-style-type: none; margin-right: 10px">
                                         <c:if test = "${requestScope.lsFeedback.size() ne 0}">
                                             <c:forEach items="${requestScope.lsFeedback}" var="f" varStatus="loop">
-                                                <div class="card" style=" padding: 10px;">
+                                                <div class="card mb-3" style=" padding: 10px;">
                                                     <li>
-                                                        <p><b>${requestScope.lsAccount[loop.index].user}&nbsp;&nbsp;</b>
+                                                        <p>
+                                                            <b>${f.user.user}&nbsp;&nbsp;</b>
                                                             <c:forEach begin="1" end="${f.star}">
                                                                 <span class="fa fa-star checked"></span>
                                                             </c:forEach>
-                                                            <br>
-                                                            <c:if test="${f.order.status eq 'Completed'}">
-                                                                Already bought the product&nbsp;&nbsp;<i class="fas fa-check-square"></i>&nbsp;&nbsp;on ${f.order.date}
-                                                            </c:if>
-                                                            <br><br>
-                                                            ${f.feedbackDetail}
+                                                            <a class="pull-right reply" data-toggle="collapse" href="#collapseRepliesForm" role="button" aria-expanded="false" aria-controls="collapseExample" onclick="getFeedbackId(${f.id})">
+                                                                <span><i class="fa fa-reply"></i> reply</span>
+                                                            </a> 
                                                         </p>
-                                                        <br>
+
+                                                        <c:if test="${f.order.status eq 'Completed'}">
+                                                            <span>Already bought the product&nbsp;&nbsp;<i class="fas fa-check-square"></i>&nbsp;&nbsp;on ${f.order.date}</span>
+                                                        </c:if>
+                                                        <br><br>
+                                                        <span>${f.feedbackDetail}</span>
+
+                                                        <br><br>
                                                         <c:if test="${f.listReplies.size() ne 0}">
                                                             <h5>Replies:</h5>
                                                             <div class="container">
@@ -218,7 +226,7 @@
                                                                     <c:forEach items="${f.listReplies}" var="fr" varStatus="loopReplies">
                                                                         <li>
                                                                             <p>
-                                                                                <b>${requestScope.lsAccountReplies[loopReplies.index].user}</b>
+                                                                                <b>${fr.user.user}</b>
                                                                                 <br>
                                                                                 ${fr.repliesText}
                                                                             </p>
@@ -242,9 +250,22 @@
                                 <div class="card mt-5">
                                     <h3 class="text-success mt-2 ml-2">Add feedback</h3>
                                     <p>You have orders with this product that is not reviewed. Click the <a href="viewOrder?id=${sessionScope.acc.id}">link</a> to go to all your orders and add feedbacks</p>
-                                    
+
                                 </div>
                             </c:if>
+                            <div class="reply-form mt-5 mb-3">
+                                <div class="collapse" id="collapseRepliesForm">
+                                    <form action="add-replies" method="POST" id="replies-form" onsubmit="submitRepliesForm(${detail.id})">
+                                        <div class="form-group">
+                                            <label for="replies-text">Your replies</label>
+                                            <textarea class="form-control" name="replies-text" id="replies-text" rows="5"></textarea>
+                                        </div>
+                                        <input type="hidden" name="feedbackId" id="feedbackId">
+                                        <input type="hidden" name="productId" id="productId">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -255,31 +276,42 @@
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             <script>
-                                                function addCart2(ProductID) {
+                                        function addCart2(ProductID) {
             <c:if test="${sessionScope.acc != null}">
-                                                    var select_value = document.getElementById("select_id").value;
-                                                    //Sử dụng Ajax
-                                                    $.ajax({
-                                                        url: "/Assignment_ElectronicShop_Pro/addMany",
-                                                        type: "get", //send it through get method
-                                                        data: {
-                                                            ProductID: ProductID,
-                                                            Quantity: select_value
-                                                        },
-                                                        success: function (message) {
-                                                            alert(message);
-                                                        }
-                                                    });
+                                            var select_value = document.getElementById("select_id").value;
+                                            //Sử dụng Ajax
+                                            $.ajax({
+                                                url: "/Assignment_ElectronicShop_Pro/addMany",
+                                                type: "get", //send it through get method
+                                                data: {
+                                                    ProductID: ProductID,
+                                                    Quantity: select_value
+                                                },
+                                                success: function (message) {
+                                                    alert(message);
+                                                }
+                                            });
             </c:if>
             <c:if test="${sessionScope.acc == null}">
-                                                    location.href = "login";
+                                            location.href = "login";
             </c:if>
-                                                }
+                                        }
 
-                                                function buy(ProductID) {
-                                                    var select_value = document.getElementById("select_id").value;
-                                                    location.href = "buyNow?ProductID=" + ProductID + "&Quantity=" + select_value;
-                                                }
+                                        function buy(ProductID) {
+                                            var select_value = document.getElementById("select_id").value;
+                                            location.href = "buyNow?ProductID=" + ProductID + "&Quantity=" + select_value;
+                                        }
+
+                                        let feedbackId = 0;
+                                        function getFeedbackId(value) {
+                                            feedbackId = value;
+                                        }
+
+                                        function submitRepliesForm(productId) {
+                                            document.getElementById("productId").value = productId;
+                                            document.getElementById("feedbackId").value = feedbackId;
+                                            document.getElementById("replies-form").submit();
+                                        }
         </script>  
     </body>
 </html>
