@@ -83,6 +83,7 @@
                                 <c:if test="${sessionScope.acc.isSell == 1}">
                                     <li class="nav-item">
                                         <a class="nav-link" href="manager"><i class="fas fa-tasks"></i>Manager Product</a>
+                                        <a class="nav-link" href="blogManager"><i class="fas fa-tasks"></i>Manager Blog</a>
                                         <hr class="line">
                                     </li> 
                                 </c:if>
