@@ -7,8 +7,8 @@ package DAL;
 
 import entity.Blog;
 import entity.BlogDetail;
-import entity.Product;
-import entity.ProductDetail;
+import entity.BlogInManager;
+import entity.ProductInManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -147,26 +147,20 @@ public class BlogDAO extends BaseDAO<BlogDAO> {
         }
         return list;
     }
-//    public List<Product> pagingManagerProduct(int index, int SellerID) {
-//        List<Product> list = new ArrayList<>();
-//        if (SellerID == 0) {
-//            list = pagingProduct(index);
-//        } else {
-//            String query = "SELECT * FROM Product WHERE SellerID = ? ORDER BY ProductID OFFSET ? ROWS FETCH NEXT 6 ROWS ONLY";
-//            try {
-//                ps = connection.prepareStatement(query);
-//                ps.setInt(1, SellerID);
-//                ps.setInt(2, (index - 1) * 6);
-//                rs = ps.executeQuery();
-//                while (rs.next()) {
-//                    list.add(new Product(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink")));
-//                }
-//            } catch (SQLException e) {
-//                System.out.println(e);
-//            }
-//        }
-//        return list;
-//    }
+public BlogInManager getBlogForManager(String id) { //Must be int type because when saving to Session, it is still int
+        String query = "SELECT * FROM Blog WHERE ID = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return (new BlogInManager(rs.getInt("ID"),rs.getString("title"), rs.getString("content"), rs.getString("imageLink"), rs.getInt("SellerID")));
+//return (new ProductInManager(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink"), rs.getInt("CategoryID"), rs.getInt("SellerID"), rs.getInt("Amount")));
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
 
     
 
