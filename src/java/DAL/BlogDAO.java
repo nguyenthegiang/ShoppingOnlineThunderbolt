@@ -7,9 +7,11 @@ package DAL;
 
 import entity.Blog;
 import entity.BlogDetail;
+import entity.Product;
 import entity.ProductDetail;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -111,6 +113,60 @@ public class BlogDAO extends BaseDAO<BlogDAO> {
         } catch (Exception e) {
         }
     }
+    public List<Blog> pagingBlog(int index) {
+        List<Blog> list = new ArrayList<>();
+        String query = "SELECT * FROM Blog ORDER BY ID OFFSET ? ROWS FETCH NEXT 6 ROWS ONLY";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, (index - 1) * 6);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Blog(rs.getInt("ID"), rs.getString("title"), rs.getString("content"), rs.getString("imageLink")));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+    public List<Blog> pagingManagerBlog(int index, int SellerID) {
+        List<Blog> list = new ArrayList<>();
+        if (SellerID == 0) {
+            list = pagingBlog(index);
+        } else {
+            String query = "SELECT * FROM Blog WHERE SellerID = ? ORDER BY ID OFFSET ? ROWS FETCH NEXT 6 ROWS ONLY";
+            try {
+                ps = connection.prepareStatement(query);
+                ps.setInt(1, SellerID);
+                ps.setInt(2, (index - 1) * 6);
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    list.add(new Blog(rs.getInt("ID"), rs.getString("title"), rs.getString("content"), rs.getString("imageLink")));
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+        return list;
+    }
+//    public List<Product> pagingManagerProduct(int index, int SellerID) {
+//        List<Product> list = new ArrayList<>();
+//        if (SellerID == 0) {
+//            list = pagingProduct(index);
+//        } else {
+//            String query = "SELECT * FROM Product WHERE SellerID = ? ORDER BY ProductID OFFSET ? ROWS FETCH NEXT 6 ROWS ONLY";
+//            try {
+//                ps = connection.prepareStatement(query);
+//                ps.setInt(1, SellerID);
+//                ps.setInt(2, (index - 1) * 6);
+//                rs = ps.executeQuery();
+//                while (rs.next()) {
+//                    list.add(new Product(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink")));
+//                }
+//            } catch (SQLException e) {
+//                System.out.println(e);
+//            }
+//        }
+//        return list;
+//    }
 
     
 
