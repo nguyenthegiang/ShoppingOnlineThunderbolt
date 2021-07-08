@@ -546,10 +546,16 @@ INSERT INTO Feedback_Replies VALUES (3, 6, N'Xin Cám Ơn!');
 
 Create TABLE Blog(
 ID int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
-Title nvarchar(200),
+Title nvarchar(2500),
 Content nvarchar(2500),
 imageLink nvarchar(1000),
+SellerID int,
+constraint SellerID_in_User FOREIGN KEY(SellerID) REFERENCES Users(UserID),
 )ON [PRIMARY]
 GO
-INSERT INTO Blog VALUES ( N'Tại sao ngồi ghế lại đỡ hơn ngồi đất', N'Vì ở ghế có đệm',N'Ghengoi.png');
-INSERT INTO Blog VALUES (N'Cách để làm cho máy tính bạn mát hơn', N'Hãy thay keo tản nhiệt hoặc sử dụng tản nhiệt nước',N'LapHot.jpg');
+INSERT INTO Blog VALUES ( N'Laptop “giá sinh viên” mà vẫn chuẩn nét trong từng trải nghiệm', N'Với chất lượng hoàn thiện khá tốt, thiết kế mỏng nhẹ thuận tiện cho việc di chuyển, cấu hình và hiệu năng đủ cho trải nghiệm làm việc và giải trí, chiếc laptop HP 15s-fq1107TU sẽ là lựa chọn sáng giá trong phân khúc từ 10 triệu đồng mà các bạn học sinh, sinh viên có thể dễ dàng tiếp cận.',N'sinhvienlaptop.jpg',3);
+INSERT INTO Blog VALUES ( N'Tại sao ngồi ghế lại đỡ hơn ngồi đất', N'Vì ở ghế có đệm',N'Ghengoi.png',5);
+INSERT INTO Blog VALUES ( N'Cách để làm cho máy tính bạn mát hơn', N'Hãy thay keo tản nhiệt hoặc sử dụng tản nhiệt nước',N'LapHot.jpg',3);
+INSERT INTO Blog VALUES ( N'Những chiếc card màn hình 1050ti đang là xu hướng hiện nay?', N'Do bitcoin tăng cao, các coiner(người đào tiền ảo) thu mua lại các card màn hình có cấu hình cực mạnh vậy nên chiếc card 1050ti trong mùa giá vga tăng cao được cho là bán mức giá hợp lí',N'Card màn hình MSI GTX 1650 Super GAMING X.jpg',4);
+INSERT INTO Blog VALUES ( N'Chiếc máy in tốt nhất hiện nay', N'Máy in panasonic được sản xuất ở nhật bản được người dân rất ưa dùng và yêu thích bởi màu sắc in ra vô cùng chuẩn xác tới 99,99%',N'44245_chinh_dien_may_fax_brother_2840.jpg',5);
+INSERT INTO Blog VALUES ( N'Đâu là được đánh giá cho một máy chiếu tân tiến', N'Một máy chiếu tân tiến phải có đẩy đủ các hoạt động chức năng mới nhất như tương tác với người dùng ngay trên màn chiếu mà không cần phải qua máy tính',N'44931_may_chieu_da_nang_viewsonic_pa502sp__1_.jpg',5);
