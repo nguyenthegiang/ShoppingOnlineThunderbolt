@@ -1,4 +1,7 @@
 
+<%@page import="entity.Feedback"%>
+<%@page import="java.util.List"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -51,12 +54,67 @@
                 color: orange;
             }
 
-        </style>
-        <script>
+            .heading {
+                font-size: 25px;
+                margin-right: 25px;
+            }
 
-        </script>
+            /* Three column layout */
+            .side {
+                float: left;
+                width: 15%;
+                margin-top: 10px;
+            }
+
+            .middle {
+                float: left;
+                width: 70%;
+                margin-top: 10px;
+            }
+
+            /* Place text to the right */
+            .right {
+                text-align: right;
+            }
+
+            /* Clear floats after the columns */
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+
+            /* The bar container */
+            .bar-container {
+                width: 100%;
+                background-color: #f1f1f1;
+                text-align: center;
+                color: white;
+            }
+
+            /* Individual bars */
+            .bar-5 { height: 18px; background-color: #04AA6D;}
+            .bar-4 { height: 18px; background-color: #2196F3;}
+            .bar-3 { height: 18px; background-color: #00bcd4;}
+            .bar-2 { height: 18px; background-color: #ff9800;}
+            .bar-1 { height: 18px; background-color: #f44336;}
+
+            /* Responsive layout - make the columns stack on top of each other instead of next to each other */
+            @media (max-width: 400px) {
+                .side, .middle {
+                    width: 100%;
+                }
+                /* Hide the right column on small screens */
+                .right {
+                    display: none;
+                }
+            }
+
+        </style>
+
     </head>
-    <body>
+    <body >
+
         <jsp:include page="Menu.jsp"></jsp:include>
             <div class="container">
                 <div class="row">
@@ -117,7 +175,91 @@
                         </div> <!-- card.// -->
                         <br><br>
 
-
+                        <!--User rating start here-->
+                        <div class="user-rating">
+                            <div class="card mb-5">
+                                <div class="container mt-2 mb-2 ">
+                                    <h3 class="text-success">User Rating</h3>
+                                    <c:if test = "${requestScope.lsFeedback.size() ne 0}">
+                                        <c:forEach begin="1" end="${requestScope.roundedAverageStar}">
+                                            <span class="fa fa-star checked"></span>
+                                        </c:forEach>
+                                        <c:forEach begin="1" end="${5-(requestScope.roundedAverageStar)}">
+                                            <span class="fa fa-star"></span>
+                                        </c:forEach>
+                                        <p>
+                                            <fmt:formatNumber maxFractionDigits="2">${requestScope.averageStar}</fmt:formatNumber>  
+                                            average based on ${requestScope.lsFeedback.size()} reviews.
+                                        </p>
+                                        <hr style="border:3px solid #f1f1f1">
+                                        <div class="row" onload="fillBarLength()">
+                                            <div class="container">
+                                                <div class="side">
+                                                    <div>5 star</div>
+                                                </div>
+                                                <div class="middle">
+                                                    <div class="bar-container">
+                                                        <div class="bar-5" id="bar-5"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="side right">
+                                                    <div id="5-star-value">${requestScope.fiveStar}</div>
+                                                </div>
+                                                <div class="side">
+                                                    <div>4 star</div>
+                                                </div>
+                                                <div class="middle">
+                                                    <div class="bar-container">
+                                                        <div class="bar-4" id="bar-4"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="side right">
+                                                    <div id="4-star-value">${requestScope.fourStar}</div>
+                                                </div>
+                                                <div class="side">
+                                                    <div>3 star</div>
+                                                </div>
+                                                <div class="middle">
+                                                    <div class="bar-container">
+                                                        <div class="bar-3" id="bar-3"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="side right">
+                                                    <div id="3-star-value">${requestScope.threeStar}</div>
+                                                </div>
+                                                <div class="side">
+                                                    <div>2 star</div>
+                                                </div>
+                                                <div class="middle">
+                                                    <div class="bar-container">
+                                                        <div class="bar-2" id="bar-2"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="side right">
+                                                    <div id="2-star-value">${requestScope.twoStar}</div>
+                                                </div>
+                                                <div class="side">
+                                                    <div>1 star</div>
+                                                </div>
+                                                <div class="middle">
+                                                    <div class="bar-container">
+                                                        <div class="bar-1" id="bar-1"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="side right">
+                                                    <div id="1-star-value">${requestScope.oneStar}</div>
+                                                </div>
+                                            </div>                                        
+                                        </div>
+                                    </c:if>
+                                    <c:if test = "${requestScope.lsFeedback.size() eq 0}">
+                                        <c:forEach begin="1" end="5">
+                                            <span class="fa fa-star"></span>
+                                        </c:forEach>
+                                    </c:if>
+                                </div>
+                            </div>
+                        </div>
 
                         <!--Feedbacks start here-->
                         <div class="feedback">               
@@ -241,7 +383,7 @@
                                         </c:if>
 
                                         <c:if test = "${requestScope.lsFeedback.size() eq 0}">
-                                            <p>Chua co feedback</p>
+                                            <p>There are no feedback on this product yet. Please help us add a feedback to this product by purchasing it!</p>
                                         </c:if>
                                     </ul>
                                 </div>
@@ -312,6 +454,33 @@
                                             document.getElementById("feedbackId").value = feedbackId;
                                             document.getElementById("replies-form").submit();
                                         }
+            <% List<Feedback> list = (List<Feedback>) request.getAttribute("lsFeedback");
+                int listSize = list.size();
+                int fiveStar = (int) request.getAttribute("fiveStar");
+                int fourStar = (int) request.getAttribute("fourStar");
+                int threeStar = (int) request.getAttribute("threeStar");
+                int twoStar = (int) request.getAttribute("twoStar");
+                int oneStar = (int) request.getAttribute("oneStar");
+
+            %>
+                                        //calculate bar length
+                                        const listSize = <%= listSize%>;
+                                        if (listSize != 0) {
+                                            const fiveStarBarLength = <%= fiveStar%> / listSize * 100;
+                                            const fourStarBarLength = <%= fourStar%> / listSize * 100;
+                                            const threeStarBarLength = <%= threeStar%> / listSize * 100;
+                                            const twoStarBarLength = <%= twoStar%> / listSize * 100;
+                                            const oneStarBarLength = <%= oneStar%> / listSize * 100;
+
+
+                                            document.getElementById("bar-5").style.width = fiveStarBarLength + "%";
+                                            document.getElementById("bar-4").style.width = fourStarBarLength + "%";
+                                            document.getElementById("bar-3").style.width = threeStarBarLength + "%";
+                                            document.getElementById("bar-2").style.width = twoStarBarLength + "%";
+                                            document.getElementById("bar-1").style.width = oneStarBarLength + "%";
+                                        }
+
+
         </script>  
     </body>
 </html>

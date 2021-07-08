@@ -58,7 +58,7 @@ public class DetailControl extends HttpServlet {
             if (request.getAttribute("ProductID") != null) {
                 id = (String) request.getAttribute("ProductID");
                 String message = (String) request.getAttribute("messageAddReplies");
-               
+
                 request.setAttribute("messageAddReplies", message);
             }
 
@@ -81,43 +81,95 @@ public class DetailControl extends HttpServlet {
             SimpleDateFormat sdf = new SimpleDateFormat(
                     "dd/MM/yyyy");
 
+            // average star rating
+            double averageStar = 0;
+
+            // star number
+            int oneStar = 0;
+            int twoStar = 0;
+            int threeStar = 0;
+            int fourStar = 0;
+            int fiveStar = 0;
+
             // create list of categories, feedback, account that made feedback and account that replies
             List<Category> listC = CategoryDAO.getAllCategory();
             List<Feedback> lsFeedback
-                    = feedbackDao.getFeedbacksByProductId(Integer.parseInt(id));           
+                    = feedbackDao.getFeedbacksByProductId(Integer.parseInt(id));
             List<FeedbackReplies> lsFeedbackReplies = new ArrayList<>();
 
-            // give data for list replies, list account made feedback and list of account that replies           
-            for (Feedback feedback : lsFeedback) {
-                // get order of the feedback
-                feedback.setOrder(
-                        orderDAO.getOrderByOrderID(feedback.getOrderId())
-                );
+            // give data for list replies, list account made feedback and list of account that replies
+            if (lsFeedback.size() != 0) {
+                for (Feedback feedback : lsFeedback) {
+                    // get order of the feedback
+                    feedback.setOrder(
+                            orderDAO.getOrderByOrderID(feedback.getOrderId())
+                    );
 
-                // get order date of feedback
-                Date orderDate = feedback.getOrder().getOrderDate();
-                feedback.getOrder().setDate(sdf.format(orderDate));
+                    // get number of star rating
+                    switch (feedback.getStar()) {
+                        case 1: {
+                            oneStar++;
+                            break;
+                        }
+                        case 2: {
+                            twoStar++;
+                            break;
+                        }
+                        case 3: {
+                            threeStar++;
+                            break;
+                        }
+                        case 4: {
+                            fourStar++;
+                            break;
+                        }
+                        case 5: {
+                            fiveStar++;
+                            break;
+                        }
+                    }
 
-                // get all replies of feedback
-                lsFeedbackReplies = feedbackRepliesDao.
-                        getFeedbacksRepliesByFeedbackId(feedback.getId());
-                feedback.setListReplies(lsFeedbackReplies);
+                    // get order date of feedback
+                    Date orderDate = feedback.getOrder().getOrderDate();
+                    feedback.getOrder().setDate(sdf.format(orderDate));
 
-                //get all account that made replies
-                for (FeedbackReplies lsFeedbackReply : lsFeedbackReplies) {
+                    // get all replies of feedback
+                    lsFeedbackReplies = feedbackRepliesDao.
+                            getFeedbacksRepliesByFeedbackId(feedback.getId());
+                    feedback.setListReplies(lsFeedbackReplies);
+
+                    // get total number of star
+                    averageStar += feedback.getStar();
+
+                    //get all account that made replies
+                    for (FeedbackReplies lsFeedbackReply : lsFeedbackReplies) {
+                        Account a = userDao.getAccountByID(
+                                String.valueOf(
+                                        lsFeedbackReply.getUserId()
+                                ));
+                        lsFeedbackReply.setUser(a);
+                    }
+
+                    // get all account that made feedback
                     Account a = userDao.getAccountByID(
                             String.valueOf(
-                                    lsFeedbackReply.getUserId()
+                                    feedback.getUserId()
                             ));
-                    lsFeedbackReply.setUser(a);
+                    feedback.setUser(a);
                 }
 
-                // get all account that made feedback
-                Account a = userDao.getAccountByID(
-                        String.valueOf(
-                                feedback.getUserId()
-                        ));
-                feedback.setUser(a);
+                // calculate average star rating
+                averageStar /= lsFeedback.size();
+                double roundedAverageStar = Math.round(averageStar);
+
+                // set data to pass to jsp
+                request.setAttribute("oneStar", oneStar);
+                request.setAttribute("twoStar", twoStar);
+                request.setAttribute("threeStar", threeStar);
+                request.setAttribute("fourStar", fourStar);
+                request.setAttribute("fiveStar", fiveStar);
+                request.setAttribute("averageStar", averageStar);
+                request.setAttribute("roundedAverageStar", roundedAverageStar);
             }
 
             /**
@@ -171,13 +223,12 @@ public class DetailControl extends HttpServlet {
 
             //PUSH to JSP
             request.setAttribute("allCategory", listC);
-            request.setAttribute("lsFeedback", lsFeedback);          
+            request.setAttribute("lsFeedback", lsFeedback);
             request.setAttribute("infor", infor);
-            request.setAttribute("productId", id);          
+            request.setAttribute("productId", id);
             request.setAttribute("addFeedbackFlag", addFeedbackFlag);
             request.setAttribute("hot", hot);
             request.setAttribute("favor", favor);
-
             request.setAttribute("detail", p);
             request.getRequestDispatcher("Detail.jsp").forward(request, response);
         } catch (Exception e) {
@@ -187,7 +238,7 @@ public class DetailControl extends HttpServlet {
 
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
