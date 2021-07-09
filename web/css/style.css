@@ -218,9 +218,10 @@ a .active{
    height: 45%;
    width: 45%;
  }
- .bar-container{
+.bar-container{
      width: 300px; 
      float: right;
+     border-radius: 5px;
  }
  
  .rating-label{

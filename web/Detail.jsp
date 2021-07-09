@@ -90,6 +90,8 @@
                 background-color: #f1f1f1;
                 text-align: center;
                 color: white;
+                float: right;
+                border-radius: 5px;
             }
 
             /* Individual bars */
@@ -211,7 +213,7 @@
                                                         </div>
                                                         <div class="col-sm-4 col-md-7">
                                                             <div class="bar-container">
-                                                                <div class="bar-5" id="bar-5"></div>
+                                                                <div class="bar-5" id="bar-5" style="height: 10px; border-radius: 5px"></div>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-1 col-md-1">
@@ -226,7 +228,7 @@
                                                         </div>
                                                         <div class="col-sm-4 col-md-7">
                                                             <div class="bar-container">
-                                                                <div class="bar-4" id="bar-4"></div>
+                                                                <div class="bar-4" id="bar-4" style="height: 10px; border-radius: 5px"></div>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-1 col-md-1">
@@ -241,11 +243,11 @@
                                                         </div>
                                                         <div class="col-sm-4 col-md-7">
                                                             <div class="bar-container">
-                                                                <div class="bar-3" id="bar-3"></div>
+                                                                <div class="bar-3" id="bar-3" style="height: 10px; border-radius: 5px;"></div>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-1 col-md-1">
-                                                            <div id="3-star-value">${requestScope.threeStar}</div>
+                                                            <div class="rating-label" id="3-star-value">${requestScope.threeStar}</div>
                                                         </div>
                                                     </div>
 
@@ -256,7 +258,7 @@
                                                         </div>
                                                         <div class="col-sm-4 col-md-7">
                                                             <div class="bar-container">
-                                                                <div class="bar-2" id="bar-2"></div>
+                                                                <div class="bar-2" id="bar-2" style="height: 10px; border-bottom-left-radius: 5px; border-top-left-radius: 5px"></div>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-1 col-md-1">
@@ -271,7 +273,7 @@
                                                         </div>
                                                         <div class="col-sm-4 col-md-7">
                                                             <div class="bar-container">
-                                                                <div class="bar-1" id="bar-1"></div>
+                                                                <div class="bar-1" id="bar-1" style="height: 10px; border-bottom-left-radius: 5px; border-top-left-radius: 5px"></div>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-1 col-md-1">
@@ -562,3 +564,6 @@
         </script>  
     </body>
 </html>
+
+
+
