@@ -118,6 +118,7 @@
     <body >
 
         <jsp:include page="Menu.jsp"></jsp:include>
+            <br>
             <div class="container">
                 <div class="row">
                 <jsp:include page="Left.jsp"></jsp:include>
@@ -176,6 +177,27 @@
                             </div> <!-- row.// -->
                         </div> <!-- card.// -->
                         <br><br>
+
+                        <div class="row">
+                            <c:forEach items="${getRelatedProduct}" var="o">
+                                <div class="col-md-4 col-lg-4">
+                                    <div class="card">
+                                        <img class="card-img-top" src="image/${o.imageLink}" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h4 class="card-title show_txt"><a href="detail?pid=${o.id}" title="View Product">${o.name}</a></h4>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <p id="sell_price">${o.price}</p>
+                                                </div>
+                                                <div class="col">
+                                                    <a href="addcart?pid=${o.id}" class="btn btn-success btn-block">Add to cart</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
 
                         <!--User rating start here-->
                         <div class="user-rating">
