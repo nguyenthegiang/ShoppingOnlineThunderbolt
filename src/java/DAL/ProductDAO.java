@@ -100,9 +100,10 @@ public class ProductDAO extends BaseDAO<Product> {
         }
         return list;
     }
-    
+
     /**
      * Showing list of products with input category id
+     *
      * @param id
      * @return list of products with category Id
      */
@@ -376,8 +377,9 @@ public class ProductDAO extends BaseDAO<Product> {
 
     /**
      * Get the category id of a specific product by its id
+     *
      * @param productId
-     * @return  category id of the product
+     * @return category id of the product
      */
     public String getCateIdOfProductByID(String productId) {
 
@@ -394,8 +396,6 @@ public class ProductDAO extends BaseDAO<Product> {
         }
         return "";
     }
-    
-    
 
     //Get Product for Detail
     public ProductDetail getProductDetailByID(String id) { //Must be int type because when saving to Session, it is still int
@@ -460,8 +460,7 @@ public class ProductDAO extends BaseDAO<Product> {
         }
         return list;
     }
-    
-    
+
     public List<Product> searchProductByNameAndCateId(String name, String cateId) {
         List<Product> list = new ArrayList<>();
         String query = "SELECT * FROM Product WHERE ProductName LIKE ? AND CategoryId=?";
@@ -563,8 +562,31 @@ public class ProductDAO extends BaseDAO<Product> {
         return list;
     }
 
+
+    public List<Product> getRelatedProduct(int catID) { //Must be int type because when saving to Session, it is still int
+        List<Product> list = new ArrayList<>();
+        String query = "SELECT TOP 3 *\n"
+                + "FROM Product\n"
+                + "WHERE CategoryID = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, catID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Product(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink")));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
+        
+        List<Product> list = dao.getRelatedProduct(1);
+        for (Product o : list) {
+            System.out.println(o);
+        }
 
         /*---------Test Case for getAllProduct() method---------*/
 //        List<Product> list = dao.getAllProduct();
