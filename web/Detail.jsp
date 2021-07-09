@@ -112,6 +112,10 @@
                 }
             }
 
+            #relatedProduct:hover{
+                box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+            }
+
         </style>
 
     </head>
@@ -178,19 +182,26 @@
                         </div> <!-- card.// -->
                         <br><br>
 
-                        <div class="row">
+                        <!--Get related product-->
+                        <h3 class="text-success">Related products</h3>
+                        
+                        <div class="row" style="margin-bottom: 30px;">
                             <c:forEach items="${getRelatedProduct}" var="o">
                                 <div class="col-md-4 col-lg-4">
-                                    <div class="card">
-                                        <img class="card-img-top" src="image/${o.imageLink}" alt="Card image cap">
+                                    <div class="card" id="relatedProduct">
+                                        <img class="card-img-top" src="image/${o.imageLink}" style="max-height: 250px;">
                                         <div class="card-body">
-                                            <h4 class="card-title show_txt"><a href="detail?pid=${o.id}" title="View Product">${o.name}</a></h4>
+                                            <h5 class="card-title show_txt"><a href="detail?ProductID=${o.id}" title="View Product" style="color: #000; text-decoration: none;">${o.name}</a></h5>
                                             <div class="row">
                                                 <div class="col">
-                                                    <p id="sell_price">${o.price}</p>
+                                                    <p class="price-detail-wrap"> 
+                                                        <span class="price h5 text-warning" style="text-align: center"> 
+                                                            <span class="num">${o.priceWithDot}</span><span class="currency"> VND</span>
+                                                        </span> 
+                                                    </p>
                                                 </div>
                                                 <div class="col">
-                                                    <a href="addcart?pid=${o.id}" class="btn btn-success btn-block">Add to cart</a>
+                                                    <button onclick="addCart2(${detail.id})" class="btn btn-lg btn-outline-info text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </button>
                                                 </div>
                                             </div>
                                         </div>
