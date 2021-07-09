@@ -179,19 +179,21 @@
                         <div class="user-rating">
                             <div class="card mb-5">
                                 <div class="container mt-2 mb-2 ">
+
                                     <c:if test = "${requestScope.lsFeedback.size() ne 0}">
                                         <div class="row">
                                             <div class="col-4">
+
                                                 <h3 style="color: #6c757d; text-align: center; margin-bottom: 0">Overall rating</h3>
-                                                <h1 style="text-align: center; font-size: 100px; color: #000; margin-top: 5px;">
+                                                <h1 style="text-align: center; font-size: 100px; color: #000; margin-top: 5px; font-weight: lighter">
                                                     <fmt:formatNumber maxFractionDigits="2">${requestScope.averageStar}</fmt:formatNumber> 
                                                     </h1>
                                                     <div style="margin: auto; text-align: center">
                                                     <c:forEach begin="1" end="${requestScope.roundedAverageStar}">
                                                         <span><i class="fa fa-star checked" style="font-size: 40px"></i></span>
-                                                    </c:forEach>
-                                                    <c:forEach begin="1" end="${5-(requestScope.roundedAverageStar)}">
-                                                        <span><i class="fa fa-star" style="font-size: 40px"></i></span>
+                                                        </c:forEach>
+                                                        <c:forEach begin="1" end="${5-(requestScope.roundedAverageStar)}">
+                                                        <span><i class="fa fa-star" style="font-size: 40px; color: #ddd"></i></span>
                                                         </c:forEach>
                                                 </div>
                                                 <p style="text-align: center; color: #6c757d;">
@@ -200,11 +202,12 @@
                                             </div>
                                             <div class="col-8" onload="fillBarLength()">
                                                 <div class="container">
+                                                    <br><br><br>
 
                                                     <!--5 stars-->
                                                     <div class="row">
                                                         <div class="col-sm-7 col-md-4">
-                                                            <div>Excellent</div>
+                                                            <div class="rating-label">Excellent</div>
                                                         </div>
                                                         <div class="col-sm-4 col-md-7">
                                                             <div class="bar-container">
@@ -212,14 +215,14 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-1 col-md-1">
-                                                            <div id="5-star-value">${requestScope.fiveStar}</div>
+                                                            <div class="rating-label" id="5-star-value">${requestScope.fiveStar}</div>
                                                         </div>
                                                     </div>
 
                                                     <!--4 stars-->
                                                     <div class="row">
                                                         <div class="col-sm-7 col-md-4">
-                                                            <div>Good</div>
+                                                            <div class="rating-label">Good</div>
                                                         </div>
                                                         <div class="col-sm-4 col-md-7">
                                                             <div class="bar-container">
@@ -227,14 +230,14 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-1 col-md-1">
-                                                            <div id="4-star-value">${requestScope.fourStar}</div>
+                                                            <div class="rating-label" id="4-star-value">${requestScope.fourStar}</div>
                                                         </div>
                                                     </div>
 
                                                     <!--3 stars-->
                                                     <div class="row">
                                                         <div class="col-sm-7 col-md-4">
-                                                            <div>Average</div>
+                                                            <div class="rating-label">Average</div>
                                                         </div>
                                                         <div class="col-sm-4 col-md-7">
                                                             <div class="bar-container">
@@ -249,7 +252,7 @@
                                                     <!--2 stars-->
                                                     <div class="row">
                                                         <div class="col-sm-7 col-md-4">
-                                                            <div>Below average</div>
+                                                            <div class="rating-label">Below average</div>
                                                         </div>
                                                         <div class="col-sm-4 col-md-7">
                                                             <div class="bar-container">
@@ -257,14 +260,14 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-1 col-md-1">
-                                                            <div id="2-star-value">${requestScope.twoStar}</div>
+                                                            <div class="rating-label" id="2-star-value">${requestScope.twoStar}</div>
                                                         </div>
                                                     </div>
 
                                                     <!--1 star-->
                                                     <div class="row">
                                                         <div class="col-sm-7 col-md-4">
-                                                            <div>Poor</div>
+                                                            <div class="rating-label">Poor</div>
                                                         </div>
                                                         <div class="col-sm-4 col-md-7">
                                                             <div class="bar-container">
@@ -272,7 +275,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-1 col-md-1">
-                                                            <div id="1-star-value">${requestScope.oneStar}</div>
+                                                            <div class="rating-label" id="1-star-value">${requestScope.oneStar}</div>
                                                         </div> 
                                                     </div>
 
@@ -372,10 +375,33 @@
                                 <div class="feedback-list">
                                     <ul class="comments" style="display: block; list-style-type: none; margin-right: 10px">
                                         <c:if test = "${requestScope.lsFeedback.size() ne 0}">
+
+                                            <c:set var="count" value="0"></c:set>
+
+
                                             <c:forEach items="${requestScope.lsFeedback}" var="f" varStatus="loop">
                                                 <div class="card mb-3" style=" padding: 10px;">
                                                     <li>
                                                         <p>
+                                                            <c:if test="${count%6==0}">
+                                                                <img src="image/Other/ava1.jpg" style="border-radius: 50%; height: 50px"/>
+                                                            </c:if>
+                                                            <c:if test="${count%6==1}">
+                                                                <img src="image/Other/ava2.jpg" style="border-radius: 50%; height: 50px"/>
+                                                            </c:if>
+                                                            <c:if test="${count%6==2}">
+                                                                <img src="image/Other/ava3.jpg" style="border-radius: 50%; height: 50px"/>
+                                                            </c:if>
+                                                            <c:if test="${count%6==3}">
+                                                                <img src="image/Other/ava4.jpg" style="border-radius: 50%; height: 50px"/>
+                                                            </c:if>
+                                                            <c:if test="${count%6==4}">
+                                                                <img src="image/Other/ava5.jpg" style="border-radius: 50%; height: 50px"/>
+                                                            </c:if>
+                                                            <c:if test="${count%6==5}">
+                                                                <img src="image/Other/ava6.jpg" style="border-radius: 50%; height: 50px"/>
+                                                            </c:if>
+
                                                             <b>${f.user.user}&nbsp;&nbsp;</b>
                                                             <c:forEach begin="1" end="${f.star}">
                                                                 <span class="fa fa-star checked"></span>
@@ -399,6 +425,24 @@
                                                                     <c:forEach items="${f.listReplies}" var="fr" varStatus="loopReplies">
                                                                         <li>
                                                                             <p>
+                                                                                <c:if test="${count%6==5}">
+                                                                                    <img src="image/Other/ava1.jpg" style="border-radius: 50%; height: 50px"/>
+                                                                                </c:if>
+                                                                                <c:if test="${count%6==4}">
+                                                                                    <img src="image/Other/ava2.jpg" style="border-radius: 50%; height: 50px"/>
+                                                                                </c:if>
+                                                                                <c:if test="${count%6==3}">
+                                                                                    <img src="image/Other/ava3.jpg" style="border-radius: 50%; height: 50px"/>
+                                                                                </c:if>
+                                                                                <c:if test="${count%6==2}">
+                                                                                    <img src="image/Other/ava4.jpg" style="border-radius: 50%; height: 50px"/>
+                                                                                </c:if>
+                                                                                <c:if test="${count%6==1}">
+                                                                                    <img src="image/Other/ava5.jpg" style="border-radius: 50%; height: 50px"/>
+                                                                                </c:if>
+                                                                                <c:if test="${count%6==0}">
+                                                                                    <img src="image/Other/ava6.jpg" style="border-radius: 50%; height: 50px"/>
+                                                                                </c:if>
                                                                                 <b>${fr.user.user}</b>
                                                                                 <br>
                                                                                 ${fr.repliesText}
@@ -410,6 +454,7 @@
                                                         </c:if>
                                                     </li>
                                                 </div>
+                                                <c:set var="count" value="${count + 1}"/>
                                             </c:forEach>
                                         </c:if>
 
