@@ -510,6 +510,14 @@ GO
 INSERT INTO Feedback VALUES (7, 2, 48, 5, N'Very good');
 INSERT INTO Feedback VALUES (7, 4, 48, 4, N'Good');
 INSERT INTO Feedback VALUES (7, 6, 48, 3, N'Hộp bị móp nhưng sp vẫn hoạt động tốt!');
+INSERT INTO Feedback VALUES (3, 6, 23, 4, N'Máy dùng ổn ạ, shop tư vấn nhanh nhiệt tình và đóng gói rất kỹ mà giao cũng nhanh nữa, mong sẽ dùng được lâu');
+INSERT INTO Feedback VALUES (10, 6, 3, 5, N'Đã nhận máy. Test sơ các chức năng cần dùng đều ổn hết ạ. Máy nhìn khá mới, hình thức đẹp, khởi động nhanh. Hàng gói kỹ.');
+INSERT INTO Feedback VALUES (2, 10, 22, 4, N'Shop tư vấn rất nhanh và nhiệt tình, sản phẩm giá rẻ và thích hợp cho mấy bạn cài phim này nọ.');
+INSERT INTO Feedback VALUES (2, 11, 22, 3, N'Hàng ngon , đóng gói rất chắc chắn mỗi tội củ sạc tặng kèm hơi cùi may mình còn của sạc hp chính hãng, nói chung là shop rất uy tín.');
+INSERT INTO Feedback VALUES (10, 28, 14, 2, N'Đóng gói cẩn thận. Hiện tại dùng thì ngon lành. Xin cám ơn shop.');
+INSERT INTO Feedback VALUES (8, 26, 21, 3, N'Máy đúng với mô tả. Chỉ có điều bắt wifi hơi chậm.  Máy nặng tầm 2,5kg. Shop tư vấn nhiệt tình. ');
+INSERT INTO Feedback VALUES (9, 26, 31, 1, N'Cài win10pro. Không dùng crack đc. Bực cả mình. ');
+INSERT INTO Feedback VALUES (5, 13, 33, 4, N'Shop đóng gói hơi tệ nha. Bỏ vào hộp carton đi cho xong. Đóng gói cục cục. Thôi kệ hàng ok là được. Shiper giao có hẹn trước, rất ok.');
 
 --INSERT INTO Feedback VALUES (7, 1, 5, N'Very good');
 --INSERT INTO Feedback VALUES (8, 3, 4, N'Good');
