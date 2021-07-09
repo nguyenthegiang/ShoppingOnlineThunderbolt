@@ -181,76 +181,103 @@
                                 <div class="container mt-2 mb-2 ">
                                     <h3 class="text-success">User Rating</h3>
                                     <c:if test = "${requestScope.lsFeedback.size() ne 0}">
-                                        <c:forEach begin="1" end="${requestScope.roundedAverageStar}">
-                                            <span class="fa fa-star checked"></span>
-                                        </c:forEach>
-                                        <c:forEach begin="1" end="${5-(requestScope.roundedAverageStar)}">
-                                            <span class="fa fa-star"></span>
-                                        </c:forEach>
-                                        <p>
-                                            <fmt:formatNumber maxFractionDigits="2">${requestScope.averageStar}</fmt:formatNumber>  
-                                            average based on ${requestScope.lsFeedback.size()} reviews.
-                                        </p>
-                                        <hr style="border:3px solid #f1f1f1">
-                                        <div class="row" onload="fillBarLength()">
-                                            <div class="container">
-                                                <div class="side">
-                                                    <div>5 star</div>
-                                                </div>
-                                                <div class="middle">
-                                                    <div class="bar-container">
-                                                        <div class="bar-5" id="bar-5"></div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <c:forEach begin="1" end="${requestScope.roundedAverageStar}">
+                                                    <span class="fa fa-star checked"></span>
+                                                </c:forEach>
+                                                <c:forEach begin="1" end="${5-(requestScope.roundedAverageStar)}">
+                                                    <span class="fa fa-star"></span>
+                                                </c:forEach>
+                                                <p>
+                                                    <fmt:formatNumber maxFractionDigits="2">${requestScope.averageStar}</fmt:formatNumber>  
+                                                    average based on ${requestScope.lsFeedback.size()} reviews.
+                                                </p>
+                                            </div>
+                                            <div class="col-8" onload="fillBarLength()">
+                                                <div class="container">
+
+                                                    <!--5 stars-->
+                                                    <div class="row">
+                                                        <div class="col-sm-7 col-md-4">
+                                                            <div>Excellent</div>
+                                                        </div>
+                                                        <div class="col-sm-4 col-md-7">
+                                                            <div class="bar-container">
+                                                                <div class="bar-5" id="bar-5"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-1 col-md-1">
+                                                            <div id="5-star-value">${requestScope.fiveStar}</div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="side right">
-                                                    <div id="5-star-value">${requestScope.fiveStar}</div>
-                                                </div>
-                                                <div class="side">
-                                                    <div>4 star</div>
-                                                </div>
-                                                <div class="middle">
-                                                    <div class="bar-container">
-                                                        <div class="bar-4" id="bar-4"></div>
+
+                                                    <!--4 stars-->
+                                                    <div class="row">
+                                                        <div class="col-sm-7 col-md-4">
+                                                            <div>Good</div>
+                                                        </div>
+                                                        <div class="col-sm-4 col-md-7">
+                                                            <div class="bar-container">
+                                                                <div class="bar-4" id="bar-4"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-1 col-md-1">
+                                                            <div id="4-star-value">${requestScope.fourStar}</div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="side right">
-                                                    <div id="4-star-value">${requestScope.fourStar}</div>
-                                                </div>
-                                                <div class="side">
-                                                    <div>3 star</div>
-                                                </div>
-                                                <div class="middle">
-                                                    <div class="bar-container">
-                                                        <div class="bar-3" id="bar-3"></div>
+
+                                                    <!--3 stars-->
+                                                    <div class="row">
+                                                        <div class="col-sm-7 col-md-4">
+                                                            <div>Average</div>
+                                                        </div>
+                                                        <div class="col-sm-4 col-md-7">
+                                                            <div class="bar-container">
+                                                                <div class="bar-3" id="bar-3"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-1 col-md-1">
+                                                            <div id="3-star-value">${requestScope.threeStar}</div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="side right">
-                                                    <div id="3-star-value">${requestScope.threeStar}</div>
-                                                </div>
-                                                <div class="side">
-                                                    <div>2 star</div>
-                                                </div>
-                                                <div class="middle">
-                                                    <div class="bar-container">
-                                                        <div class="bar-2" id="bar-2"></div>
+
+                                                    <!--2 stars-->
+                                                    <div class="row">
+                                                        <div class="col-sm-7 col-md-4">
+                                                            <div>Below average</div>
+                                                        </div>
+                                                        <div class="col-sm-4 col-md-7">
+                                                            <div class="bar-container">
+                                                                <div class="bar-2" id="bar-2"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-1 col-md-1">
+                                                            <div id="2-star-value">${requestScope.twoStar}</div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="side right">
-                                                    <div id="2-star-value">${requestScope.twoStar}</div>
-                                                </div>
-                                                <div class="side">
-                                                    <div>1 star</div>
-                                                </div>
-                                                <div class="middle">
-                                                    <div class="bar-container">
-                                                        <div class="bar-1" id="bar-1"></div>
+
+                                                    <!--1 star-->
+                                                    <div class="row">
+                                                        <div class="col-sm-7 col-md-4">
+                                                            <div>Poor</div>
+                                                        </div>
+                                                        <div class="col-sm-4 col-md-7">
+                                                            <div class="bar-container">
+                                                                <div class="bar-1" id="bar-1"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-1 col-md-1">
+                                                            <div id="1-star-value">${requestScope.oneStar}</div>
+                                                        </div> 
                                                     </div>
+
                                                 </div>
-                                                <div class="side right">
-                                                    <div id="1-star-value">${requestScope.oneStar}</div>
-                                                </div>
-                                            </div>                                        
+                                            </div>
                                         </div>
+
+
+
                                     </c:if>
                                     <c:if test = "${requestScope.lsFeedback.size() eq 0}">
                                         <c:forEach begin="1" end="5">
