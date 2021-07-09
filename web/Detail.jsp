@@ -404,8 +404,10 @@
 
                                                             <b>${f.user.user}&nbsp;&nbsp;</b>
                                                             <c:forEach begin="1" end="${f.star}">
-                                                                <span class="fa fa-star checked"></span>
-                                                            </c:forEach>
+                                                                <span><i class="fa fa-star checked" style="font-size: 15px"></i></span>                                                            </c:forEach>
+                                                                <c:forEach begin="1" end="${5-f.star}">
+                                                                <span><i class="fa fa-star" style="font-size: 15px; color: #ddd"></i></span>
+                                                                </c:forEach>
                                                             <a class="pull-right reply" data-toggle="collapse" href="#collapseRepliesForm" role="button" aria-expanded="false" aria-controls="collapseExample" onclick="getFeedbackId(${f.id})">
                                                                 <span><i class="fa fa-reply"></i> reply</span>
                                                             </a> 
