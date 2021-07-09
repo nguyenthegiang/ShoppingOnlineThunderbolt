@@ -100,6 +100,22 @@ public class ProductDAO extends BaseDAO<Product> {
         }
         return list;
     }
+    
+    
+    public List<Product> getProductsByCateId(int id) { //Must be int type because when saving to Session, it is still int
+        List<Product> list = new ArrayList<>();
+        String query = "SELECT * FROM Product WHERE CategoryId = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Product(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink")));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
 
     /**
      * Edit the information of a particular product, select by product ID
@@ -345,12 +361,32 @@ public class ProductDAO extends BaseDAO<Product> {
             ps.setString(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                return (new Product(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink")));
+                return (new Product(rs.getInt("ProductID"),
+                        rs.getString("ProductName"), rs.getString("Description"),
+                        rs.getInt("SellPrice"), rs.getString("imageLink")));
             }
         } catch (Exception e) {
         }
         return null;
     }
+
+    public int getCateIdOfProductByID(String productId) {
+
+        String query = "SELECT * FROM Product WHERE ProductID = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, productId);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt("CategoryId");
+            }
+        } catch (Exception e) {
+
+        }
+        return 0;
+    }
+    
+    
 
     //Get Product for Detail
     public ProductDetail getProductDetailByID(String id) { //Must be int type because when saving to Session, it is still int
@@ -503,7 +539,7 @@ public class ProductDAO extends BaseDAO<Product> {
 
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
-        
+
         /*---------Test Case for getAllProduct() method---------*/
 //        List<Product> list = dao.getAllProduct();
 //        for (Product o : list) {

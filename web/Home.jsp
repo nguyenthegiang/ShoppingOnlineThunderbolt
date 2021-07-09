@@ -134,7 +134,7 @@
                                             <a onclick="addCart(${o.id})" class="btn btn-info btn-block" id="cart">Add to cart</a>
                                         </div>
                                         <div class="col">
-                                            <a onmouseover="this.style.textDecoration = 'none';" href="compare?id=${o.id}"><p class="btn btn-warning btn-block">Add to Compare</p></a>
+                                            <a onmouseover="this.style.textDecoration = 'none';" href="compare?id=${o.id}}"><p class="btn btn-warning btn-block">Add to Compare</p></a>
                                         </div>
                                     </div>
                                 </div>

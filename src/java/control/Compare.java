@@ -52,6 +52,7 @@ public class Compare extends HttpServlet {
             InforDAO InforDAO = new InforDAO();
 
             Product hot = ProductDAO.getHotProduct(); //Get First Product
+            int cateId = ProductDAO.getCateIdOfProductByID(id);
             Product favor = ProductDAO.getFavoriteProduct(); //Get Last Product
             Information infor = InforDAO.getInfor(); //Get Information
             Product product = ProductDAO.getProductByID(id); //Get the selected Product infor
