@@ -192,7 +192,8 @@
                     </table>
 
                     <form style="float:right; display:inline;" class="form-inline my-2 my-lg-0" action="" method="post">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search a product" aria-label="Search..." oninput="searchByName(this)" value="${txtS}" name="txt">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search a product" aria-label="Search..."
+                               oninput="searchByName(this,${cateId})" value="${txtS}" name="txt">
                     </form>
 
                     <div id="content" style="">
@@ -300,17 +301,21 @@
             </c:if>
                                             }
 
-                                            function searchByName(param) {
+                                            function searchByName(param, param1) {
                                                 var txtSearch = param.value;
+                                                var cate = param1;
                                                 $.ajax({
                                                     url: "/Assignment_ElectronicShop_Pro/compareByAjax",
                                                     type: "get", //send it through get method
                                                     data: {
-                                                        txt: txtSearch
+                                                        txt: txtSearch,
+                                                        cateId: cate
                                                     },
                                                     success: function (data) {
                                                         var row = document.getElementById("content");
                                                         row.innerHTML = data;
+                                                        console.log(cate);
+                                                        console.log(txtSearch);
                                                     },
                                                     error: function (xhr) {
                                                         //Do Something to handle error

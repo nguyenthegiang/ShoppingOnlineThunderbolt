@@ -40,8 +40,9 @@ public class CompareByAjax extends HttpServlet {
         try {
             //Getting data from jsp page (from the search bar)
             String txtSearch = request.getParameter("txt");
+            String cateId = request.getParameter("cateId");
             ProductDAO dao = new ProductDAO();
-            List<Product> list = dao.searchProductByName(txtSearch);
+            List<Product> list = dao.searchProductByNameAndCateId(txtSearch,cateId);
             PrintWriter out = response.getWriter();
 
             /*Showing out at most 4 products with same name 

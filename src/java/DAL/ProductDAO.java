@@ -101,7 +101,11 @@ public class ProductDAO extends BaseDAO<Product> {
         return list;
     }
     
-    
+    /**
+     * Showing list of products with input category id
+     * @param id
+     * @return list of products with category Id
+     */
     public List<Product> getProductsByCateId(int id) { //Must be int type because when saving to Session, it is still int
         List<Product> list = new ArrayList<>();
         String query = "SELECT * FROM Product WHERE CategoryId = ?";
@@ -370,20 +374,25 @@ public class ProductDAO extends BaseDAO<Product> {
         return null;
     }
 
-    public int getCateIdOfProductByID(String productId) {
+    /**
+     * Get the category id of a specific product by its id
+     * @param productId
+     * @return  category id of the product
+     */
+    public String getCateIdOfProductByID(String productId) {
 
-        String query = "SELECT * FROM Product WHERE ProductID = ?";
+        String query = "SELECT CategoryId FROM Product WHERE ProductID = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, productId);
             rs = ps.executeQuery();
             while (rs.next()) {
-                return rs.getInt("CategoryId");
+                return rs.getString("CategoryId");
             }
         } catch (Exception e) {
 
         }
-        return 0;
+        return "";
     }
     
     
@@ -443,6 +452,23 @@ public class ProductDAO extends BaseDAO<Product> {
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, "%" + name + "%");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Product(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink")));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+    
+    
+    public List<Product> searchProductByNameAndCateId(String name, String cateId) {
+        List<Product> list = new ArrayList<>();
+        String query = "SELECT * FROM Product WHERE ProductName LIKE ? AND CategoryId=?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, "%" + name + "%");
+            ps.setString(2, cateId);
             rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new Product(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink")));
