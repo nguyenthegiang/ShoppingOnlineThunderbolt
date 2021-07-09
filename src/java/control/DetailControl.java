@@ -73,6 +73,10 @@ public class DetailControl extends HttpServlet {
             CategoryDAO CategoryDAO = new CategoryDAO();
             ProductDAO ProductDAO = new ProductDAO();
             InforDAO InforDAO = new InforDAO();
+            
+            ProductInManager pim = dao.getProductForManager(id);
+            int catID = pim.getCategoryID();
+            List<Product> getRelatedProduct = dao.getRelatedProduct(catID);
 
             // get info for footer
             Information infor = InforDAO.getInfor();
@@ -223,6 +227,7 @@ public class DetailControl extends HttpServlet {
 
             //PUSH to JSP
             request.setAttribute("allCategory", listC);
+            request.setAttribute("getRelatedProduct", getRelatedProduct);
             request.setAttribute("lsFeedback", lsFeedback);
             request.setAttribute("infor", infor);
             request.setAttribute("productId", id);
