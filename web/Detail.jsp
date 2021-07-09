@@ -179,19 +179,23 @@
                         <div class="user-rating">
                             <div class="card mb-5">
                                 <div class="container mt-2 mb-2 ">
-                                    <h3 class="text-success">User Rating</h3>
                                     <c:if test = "${requestScope.lsFeedback.size() ne 0}">
                                         <div class="row">
                                             <div class="col-4">
-                                                <c:forEach begin="1" end="${requestScope.roundedAverageStar}">
-                                                    <span class="fa fa-star checked"></span>
-                                                </c:forEach>
-                                                <c:forEach begin="1" end="${5-(requestScope.roundedAverageStar)}">
-                                                    <span class="fa fa-star"></span>
-                                                </c:forEach>
-                                                <p>
-                                                    <fmt:formatNumber maxFractionDigits="2">${requestScope.averageStar}</fmt:formatNumber>  
-                                                    average based on ${requestScope.lsFeedback.size()} reviews.
+                                                <h3 style="color: #6c757d; text-align: center; margin-bottom: 0">Overall rating</h3>
+                                                <h1 style="text-align: center; font-size: 100px; color: #000; margin-top: 5px;">
+                                                    <fmt:formatNumber maxFractionDigits="2">${requestScope.averageStar}</fmt:formatNumber> 
+                                                    </h1>
+                                                    <div style="margin: auto; text-align: center">
+                                                    <c:forEach begin="1" end="${requestScope.roundedAverageStar}">
+                                                        <span><i class="fa fa-star checked" style="font-size: 40px"></i></span>
+                                                    </c:forEach>
+                                                    <c:forEach begin="1" end="${5-(requestScope.roundedAverageStar)}">
+                                                        <span><i class="fa fa-star" style="font-size: 40px"></i></span>
+                                                        </c:forEach>
+                                                </div>
+                                                <p style="text-align: center; color: #6c757d;">
+                                                    based on ${requestScope.lsFeedback.size()} reviews
                                                 </p>
                                             </div>
                                             <div class="col-8" onload="fillBarLength()">
