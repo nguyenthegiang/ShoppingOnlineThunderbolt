@@ -53,16 +53,12 @@
                     <!-- Password change form -->
                     <%--<c:if test="${requestScope.compare ne null}">--%>
                         <form action="change-password" method="POST">
-                            <label for="pass">Enter old password:</label>
                             <input type="password" id="pass" name="pass" placeholder="Old Password" class="form-control">
                             <br><br>
-                            <label for="pass">Enter new password:</label>
-                            <input type="password" id="new-pass" name="new-pass" placeholder="New Password">
-                            <br><br>
-                            <label for="pass">Re-enter password:</label>
-                            <input type="password" id="repeat-new-pass" name="repeat-new-pass" placeholder="New Password">
+                            <input type="password" id="new-pass" name="new-pass" placeholder="Enter new Password" class="form-control">
+                            <input type="password" id="repeat-new-pass" name="repeat-new-pass" placeholder="Re-enter new Password" class="form-control">
                             <hr>
-                            <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-check-circle"></i>Confirm</button>
+                            <button class="btn btn-primary btn-block" type="submit" style="width: 200px"><i class="fa fa-check-circle"></i>Confirm</button>
                         </form>
                     <%--</c:if>--%>
                 </div>
