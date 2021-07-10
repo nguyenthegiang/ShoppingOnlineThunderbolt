@@ -16,108 +16,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
-        <style>
-            .gallery-wrap .img-big-wrap img {
-                height: 450px;
-                width: auto;
-                display: inline-block;
-                cursor: zoom-in;
-            }
-
-
-            .gallery-wrap .img-small-wrap .item-gallery {
-                width: 60px;
-                height: 60px;
-                border: 1px solid #ddd;
-                margin: 7px 2px;
-                display: inline-block;
-                overflow: hidden;
-            }
-
-            .gallery-wrap .img-small-wrap {
-                text-align: center;
-            }
-            .gallery-wrap .img-small-wrap img {
-                max-width: 100%;
-                max-height: 100%;
-                object-fit: cover;
-                border-radius: 4px;
-                cursor: zoom-in;
-            }
-            .img-big-wrap img{
-                width: 100% !important;
-                height: auto !important;
-            }
-
-            /* display star rating */
-            .checked {
-                color: orange;
-            }
-
-            .heading {
-                font-size: 25px;
-                margin-right: 25px;
-            }
-
-            /* Three column layout */
-            .side {
-                float: left;
-                width: 15%;
-                margin-top: 10px;
-            }
-
-            .middle {
-                float: left;
-                width: 70%;
-                margin-top: 10px;
-            }
-
-            /* Place text to the right */
-            .right {
-                text-align: right;
-            }
-
-            /* Clear floats after the columns */
-            .row:after {
-                content: "";
-                display: table;
-                clear: both;
-            }
-
-            /* The bar container */
-            .bar-container {
-                width: 100%;
-                background-color: #f1f1f1;
-                text-align: center;
-                color: white;
-                float: right;
-                border-radius: 5px;
-            }
-
-            /* Individual bars */
-            .bar-5 { height: 18px; background-color: #04AA6D;}
-            .bar-4 { height: 18px; background-color: #2196F3;}
-            .bar-3 { height: 18px; background-color: #00bcd4;}
-            .bar-2 { height: 18px; background-color: #ff9800;}
-            .bar-1 { height: 18px; background-color: #f44336;}
-
-            /* Responsive layout - make the columns stack on top of each other instead of next to each other */
-            @media (max-width: 400px) {
-                .side, .middle {
-                    width: 100%;
-                }
-                /* Hide the right column on small screens */
-                .right {
-                    display: none;
-                }
-            }
-
-            #relatedProduct:hover{
-                box-shadow: 0 10px 15px rgba(0,0,0,0.3);
-            }
-
-        </style>
-
+        <link href="css/ProductDetail.css" rel="stylesheet" type="text/css"/>
     </head>
     <body >
 
@@ -184,7 +83,7 @@
 
                         <!--Get related product-->
                         <h3 class="text-success">Related products</h3>
-                        
+
                         <div class="row" style="margin-bottom: 30px;">
                             <c:forEach items="${getRelatedProduct}" var="o">
                                 <div class="col-md-4 col-lg-4">
@@ -323,9 +222,9 @@
                                     </c:if>
                                     <c:if test = "${requestScope.lsFeedback.size() eq 0}">
                                         <c:forEach begin="1" end="5">
-                                            <span class="fa fa-star"></span>
-                                        </c:forEach>
-                                    </c:if>
+                                            <span><i class="fa fa-star" style="font-size: 15px; color: #ddd"></i></span>
+                                            </c:forEach>
+                                        </c:if>
                                 </div>
                             </div>
                         </div>
