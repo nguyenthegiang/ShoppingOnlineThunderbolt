@@ -19,16 +19,10 @@
         <!--Using Bootstrap-->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/6c7ad27b5d.js" crossorigin="anonymous"></script>
+        <link href="css/BlogList.css" rel="stylesheet" type="text/css"/>
 
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <style>
-            .col-sm-8 p {
-                overflow: hidden;
-                display: -webkit-box;
-                -webkit-line-clamp: 3;
-                -webkit-box-orient: vertical;
-            }
-        </style>
+
     </head>
     <body style="background-color: #ebebf2;">
         <jsp:include page="Menu.jsp"></jsp:include>
@@ -38,11 +32,11 @@
             <br>
 
 
-            <div class="container" style="position: relative;">
-                <div class="row" style="">
-                    <img src="image/Blog/BlogBackground.jpg"  style="height: 500px"alt=""/>
-                    <h3 style="position: absolute;top: 15%;left: 55%;">Lợi ích của việc ngồi ghế</h3>
-                    <div style="position: absolute;top: 25%;left: 45%;right: 10%">
+            <div class="container">
+                <div class="row">
+                    <img src="image/Blog/BlogBackground.jpg" id="firstBackground" alt=""/>
+                    <h3 id="firstHeader">Lợi ích của việc ngồi ghế</h3>
+                    <div id="firstContent">
                         <p>
                             Bố trí phòng làm việc thế nào để có thể tạo ra được sự thoải mái và hứng khởi nhất cho người lao động là mối quan tâm hàng đầu của các chủ doanh nghiệp. 
                             Nhân viên văn phòng phải ngồi làm việc nhiều giờ sau bàn làm việc mỗi ngày nên cần có chỗ ngồi thoải mái, dễ chịu, chính vì vậy việc đầu tư vào nội thất
@@ -53,7 +47,7 @@
                             Tuy nhiên, nếu chúng ta sử dụng đúng cách, làm việc hợp lý thì có thể mang lại nhiều lợi ích.
                         </p>
                     </div>
-                    <a href="detailBlog?ID=2" class="" style=" position: absolute;bottom: 30px;;right: 300px; border: #04AA6D; background-color: #17A2B8">Learn more</a>
+                    <a href="detailBlog?ID=2" class="learnMoreButton">Learn more</a>
                 </div>
             </div>
 

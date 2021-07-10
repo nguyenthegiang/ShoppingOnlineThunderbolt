@@ -1,0 +1,44 @@
+.container{
+    position: relative;
+}
+
+#firstBackground{
+    height: 500px
+}
+
+#firstHeader{
+    position: absolute;
+    top: 15%;
+    left: 55%;
+}
+
+#firstContent{
+    position: absolute;
+    top: 25%;
+    left: 45%;
+    right: 10%
+}
+
+.learnMoreButton{
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: large;
+    position: absolute;
+    bottom: 50px;;
+    right: 300px; 
+    padding: 10px; 
+    width: 10rem;
+    margin: 0 1em 0 7em;
+    background-color: rgb(43, 189, 179);
+    border-color: #2bbd9d;
+    align-items: center;
+    border-radius: 30px;
+}
+
+.learnMoreButton:hover{
+    color: white;
+    text-decoration: none;
+    background-color: #2bbd9d;
+    -webkit-box-shadow: 0 10px 30px 0 rgba(86, 245, 216,0.2);
+}
