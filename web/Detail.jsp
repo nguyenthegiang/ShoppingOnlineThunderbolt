@@ -338,7 +338,8 @@
 
                                                             <b>${f.user.user}&nbsp;&nbsp;</b>
                                                             <c:forEach begin="1" end="${f.star}">
-                                                                <span><i class="fa fa-star checked" style="font-size: 15px"></i></span>                                                            </c:forEach>
+                                                                <span><i class="fa fa-star checked" style="font-size: 15px"></i></span>  
+                                                                </c:forEach>
                                                                 <c:forEach begin="1" end="${5-f.star}">
                                                                 <span><i class="fa fa-star" style="font-size: 15px; color: #ddd"></i></span>
                                                                 </c:forEach>
