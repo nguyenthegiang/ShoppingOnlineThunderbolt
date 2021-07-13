@@ -21,6 +21,7 @@ public class Feedback {
     private String feedbackDetail;
     private Account user;
     private Order order;
+    private Product product;
     private List<FeedbackReplies> listReplies;
 
     public Feedback() {
@@ -128,7 +129,15 @@ public class Feedback {
     public void setUser(Account user) {
         this.user = user;
     }
-       
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+              
     @Override
     public String toString() {
         return "Feedback{" + "id=" + id + ", userId=" + userId + ", productId=" + productId + ", star=" + star + ", feedbackDetail=" + feedbackDetail + ", lsReplies=" + listReplies + '}';
