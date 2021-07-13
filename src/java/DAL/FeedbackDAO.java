@@ -21,6 +21,34 @@ public class FeedbackDAO extends BaseDAO<Feedback> {
     ResultSet rs = null; //Nhận kết quả trả về
 
     /**
+     * Get a list of all feedback by product id
+     * @return a list of all feedback
+     */
+    public List<Feedback> getFeedbacks() {
+        String query = "SELECT * FROM Feedback";
+        try {
+            List<Feedback> lsFeedback = new ArrayList<>();
+            ps = connection.prepareStatement(query);           
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Feedback f = new Feedback(
+                        rs.getInt("ID"),
+                        rs.getInt("UserID"),
+                        rs.getInt("ProductID"),
+                        rs.getInt("OrderID"),
+                        rs.getInt("Star"),
+                        rs.getString("FeedbackDetail")
+                );
+                lsFeedback.add(f);
+            }
+            return lsFeedback;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    /**
      * Get a list of feedback by product id
      *
      * @param productId the id of the product
@@ -169,6 +197,14 @@ public class FeedbackDAO extends BaseDAO<Feedback> {
             check = -1;
         }
         return check > 0;
+    }
+    
+    /**
+     * Get total count of all feedback
+     * @return total count of all feedback
+     */
+    public int countTotalFeedback() {
+        return getFeedbacks().size();
     }
 
 }
