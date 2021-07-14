@@ -22,13 +22,14 @@ public class FeedbackDAO extends BaseDAO<Feedback> {
 
     /**
      * Get a list of all feedback by product id
+     *
      * @return a list of all feedback
      */
     public List<Feedback> getFeedbacks() {
         String query = "SELECT * FROM Feedback";
         try {
             List<Feedback> lsFeedback = new ArrayList<>();
-            ps = connection.prepareStatement(query);           
+            ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Feedback f = new Feedback(
@@ -47,7 +48,38 @@ public class FeedbackDAO extends BaseDAO<Feedback> {
         }
         return null;
     }
-    
+
+    /**
+     * Get a feedback by id
+     *
+     * @param id the id of the feedback
+     * @return a feedback with the specified id
+     */
+    public Feedback getFeedbacksById(int id) {
+        String query = "SELECT * FROM Feedback WHERE ID = ?";
+        try {
+            Feedback f;
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                f = new Feedback(
+                        rs.getInt("ID"),
+                        rs.getInt("UserID"),
+                        rs.getInt("ProductID"),
+                        rs.getInt("OrderID"),
+                        rs.getInt("Star"),
+                        rs.getString("FeedbackDetail")
+                );
+                return f;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     /**
      * Get a list of feedback by product id
      *
@@ -109,14 +141,14 @@ public class FeedbackDAO extends BaseDAO<Feedback> {
         }
         return null;
     }
-    
+
     /**
      * Get a list of feedback by user id and product id
+     *
      * @param userId the id of the user
      * @param productId the id of the product
-     * @return  list of feedback with the user id and product id
+     * @return list of feedback with the user id and product id
      */
-   
     public List<Feedback> getFeedbacksByUserIdAndProductId(int userId, int productId) {
         String query = "SELECT * FROM Feedback WHERE UserID = ?"
                 + " AND ProductID = ?";
@@ -146,16 +178,17 @@ public class FeedbackDAO extends BaseDAO<Feedback> {
 
     /**
      * Get a feedback by order id
+     *
      * @param orderId the id of the order
      * @return a list of feedback with the order id
      */
     public List<Feedback> getFeedbacksByOrderId(int orderId) {
-        String query = "SELECT * FROM Feedback WHERE OrderID = ? ";              
+        String query = "SELECT * FROM Feedback WHERE OrderID = ? ";
         try {
             List<Feedback> lsFeedback = new ArrayList<>();
             ps = connection.prepareStatement(query);
             ps.setInt(1, orderId);
-            
+
             rs = ps.executeQuery();
             while (rs.next()) {
                 Feedback f = new Feedback(
@@ -177,6 +210,7 @@ public class FeedbackDAO extends BaseDAO<Feedback> {
 
     /**
      * Add a feedback to the database
+     *
      * @param theFeedback to add to database
      * @return true if add successful, else false
      */
@@ -198,9 +232,10 @@ public class FeedbackDAO extends BaseDAO<Feedback> {
         }
         return check > 0;
     }
-    
+
     /**
      * Get total count of all feedback
+     *
      * @return total count of all feedback
      */
     public int countTotalFeedback() {
