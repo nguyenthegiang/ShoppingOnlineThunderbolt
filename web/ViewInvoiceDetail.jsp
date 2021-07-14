@@ -54,6 +54,8 @@
                                 <c:if test="${sessionScope.acc.isSell == 1}">
                                     <li class="nav-item">
                                         <a class="nav-link" href="manager">Manager Product</a>
+                                        <a class="nav-link" href="blogManager"><i class="fas fa-tasks"></i>Manager Blog</a>
+                                        <a class="nav-link" href="manage-feedback"><i class="fas fa-tasks"></i>Manage Feedback</a>
                                     </li> 
                                 </c:if>
                                 <c:if test="${sessionScope.acc.isAdmin == 1}">
@@ -212,7 +214,7 @@
                             <a  onclick="formAutoSubmit('form2')"><button>Cancel</button></a>
                         </div>
                     </c:if>
-                    
+
                     <c:set var="k" value="Packaging"></c:set>
                     <c:if test="${sta eq k}">
                         <form action="deliverOrder" id="form1">
@@ -224,8 +226,8 @@
                             <!--<a  href ="approveOrder?id=${OrderId}"><button>Approve</button></a>-->
                         </div>                       
                     </c:if>
-                    
-                   
+
+
                 </div>
                 <div class="row">
                     <div class="col-6">

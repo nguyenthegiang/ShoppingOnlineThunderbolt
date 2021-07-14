@@ -58,6 +58,8 @@
                             <c:if test="${sessionScope.acc.isSell == 1}">
                                 <li class="nav-item">
                                     <a class="nav-link" href="manager">Manager Product</a>
+                                    <a class="nav-link" href="blogManager"><i class="fas fa-tasks"></i>Manager Blog</a>
+                                    <a class="nav-link" href="manage-feedback"><i class="fas fa-tasks"></i>Manage Feedback</a>
                                 </li> 
                             </c:if>
                             <c:if test="${sessionScope.acc.isAdmin == 1}">

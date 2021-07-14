@@ -20,7 +20,7 @@
 
         <!--Table Styling-->
         <link rel="stylesheet" href="css/OrderTableStyle.css" type="text/css"/>
-        
+
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
@@ -57,6 +57,8 @@
                                 <c:if test="${sessionScope.acc.isSell == 1}">
                                     <li class="nav-item">
                                         <a class="nav-link" href="manager">Manager Product</a>
+                                        <a class="nav-link" href="blogManager"><i class="fas fa-tasks"></i>Manager Blog</a>
+                                        <a class="nav-link" href="manage-feedback"><i class="fas fa-tasks"></i>Manage Feedback</a>
                                     </li> 
                                 </c:if>
                                 <c:if test="${sessionScope.acc.isAdmin == 1}">
