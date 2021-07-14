@@ -71,7 +71,7 @@ public class BlogDAO extends BaseDAO<BlogDAO> {
         return null;
     }
 
-    public void add(String title, String content, String imageLink, String SellerBlogID) {
+    public void add(String title, String content, String imageLink, String SellerID) {
         String query = "INSERT INTO Blog VALUES (?,?,?,?);";
         try {
             ps = connection.prepareStatement(query);
@@ -79,31 +79,34 @@ public class BlogDAO extends BaseDAO<BlogDAO> {
             ps.setString(1, title);
             ps.setString(2, content);
             ps.setString(3, imageLink);
-            ps.setString(4, SellerBlogID);
+            ps.setString(4, SellerID);
             ps.executeUpdate();
         } catch (Exception e) {
         }
-    }public void edit(String id,String title, String content, String imageLink, String SellerBlogID) {
+    }
+
+    public void edit(String title, String content, String imageLink, String SellerID, String id) {
         String query = "Update Blog\n"
-                + "SET Title = ?,\n"
+                + "SET Title =?,\n"
                 + "Content=?,\n"
                 + "imageLink=?,\n"
-                + "SellerBlogID=?\n"
-                + "WHERE ID=?";
+                + "SellerID= ?\n"
+                + "Where ID =?";
         try {
-             ps = connection.prepareStatement(query);
-             ps.setString(1, title);
+            ps = connection.prepareStatement(query);
+            ps.setString(1, title);
             ps.setString(2, content);
             ps.setString(3, imageLink);
-            ps.setString(4, SellerBlogID);
+            ps.setString(4, SellerID);
             ps.setString(5, id);
-            ps.executeUpdate(); 
+            ps.executeUpdate();
         } catch (Exception e) {
         }
     }
+
     public void delete(String id) { //Leave the String type because when you get it, it's of type String -> Saves having to cast it
         String query = "Delete FROM Blog WHERE ID = ?";
-                
+
         try {
             ps = connection.prepareStatement(query);
             //Put the id inside the first "?"
@@ -113,6 +116,7 @@ public class BlogDAO extends BaseDAO<BlogDAO> {
         } catch (Exception e) {
         }
     }
+
     public List<Blog> pagingBlog(int index) {
         List<Blog> list = new ArrayList<>();
         String query = "SELECT * FROM Blog ORDER BY ID OFFSET ? ROWS FETCH NEXT 6 ROWS ONLY";
@@ -127,6 +131,7 @@ public class BlogDAO extends BaseDAO<BlogDAO> {
         }
         return list;
     }
+
     public List<Blog> pagingManagerBlog(int index, int SellerID) {
         List<Blog> list = new ArrayList<>();
         if (SellerID == 0) {
@@ -147,23 +152,21 @@ public class BlogDAO extends BaseDAO<BlogDAO> {
         }
         return list;
     }
-public BlogInManager getBlogForManager(String id) { //Must be int type because when saving to Session, it is still int
+
+    public BlogInManager getBlogForManager(String id) { //Must be int type because when saving to Session, it is still int
         String query = "SELECT * FROM Blog WHERE ID = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                return (new BlogInManager(rs.getInt("ID"),rs.getString("title"), rs.getString("content"), rs.getString("imageLink"), rs.getInt("SellerID")));
+                return (new BlogInManager(rs.getInt("ID"), rs.getString("title"), rs.getString("content"), rs.getString("imageLink"), rs.getInt("SellerID")));
 //return (new ProductInManager(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink"), rs.getInt("CategoryID"), rs.getInt("SellerID"), rs.getInt("Amount")));
             }
         } catch (Exception e) {
         }
         return null;
     }
-
-    
-
 
     public static void main(String[] args) {
         BlogDAO dao = new BlogDAO();
@@ -172,7 +175,10 @@ public BlogInManager getBlogForManager(String id) { //Must be int type because w
         //for (Blog o : list) {
         //   System.out.println(o);
         //}
+        dao.delete("2");
         System.out.println(dao.getBlogByID("1"));
+        //dao.edit("thongdz", "thongpro", "LapHot.jpg", "1","2");
+       
 
     }
 
