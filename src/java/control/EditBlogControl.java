@@ -97,16 +97,16 @@ public class EditBlogControl extends HttpServlet {
             throws ServletException, IOException {
         try {
             //Step 1: get data from jsp
-            String id = request.getParameter("id");
             String title = request.getParameter("title"); //Get by name
             String content = request.getParameter("content");           
             String imageLink = request.getParameter("imageLink");
             String SellerID = request.getParameter("SellerID");
+            String id = request.getParameter("id");
 
             //Step 2: set data to ProductDAO
             BlogDAO dao = new BlogDAO();
-            dao.edit(id, title, content, imageLink, SellerID);
-            response.sendRedirect("ManageBlog");
+            dao.edit(title, content, imageLink, SellerID, id);
+            response.sendRedirect("blogManager");
         } catch (Exception e) {
             response.sendRedirect("Error.jsp");
         }
