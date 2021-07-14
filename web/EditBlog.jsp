@@ -261,10 +261,10 @@
             <div id="editEmployeeModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form action="edit" method="post">
+                        <form action="editBlog" method="post">
                             <div class="modal-header">						
                                 <h4 class="modal-title">Edit Blog</h4>
-                                <a type="button" class="close" href="manager" aria-hidden="true">&times;</a>
+                                <a type="button" class="close" href="blogManager" aria-hidden="true">&times;</a>
                             </div>
                             <div class="modal-body">	
                                 <div class="form-group">
@@ -273,11 +273,11 @@
                             </div>
                             <div class="form-group">
                                 <label>Title</label>
-                                <input type="text" class="form-control" required name="name" value="${title}">
+                                <input type="text" class="form-control" required name="title" value="${title}">
                             </div>
                             <div class="form-group">
                                 <label>Content</label>
-                                <input type="text" class="form-control" required name="description" value="${content}">
+                                <input type="text" class="form-control" required name="content" value="${content}">
                             </div>
                             <div class="form-group">
                                 <label>Image Link</label>
@@ -293,7 +293,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <a type="button" class="btn btn-default" href="manager">Cancel</a>
+                            <a type="button" class="btn btn-default" href="blogManager">Cancel</a>
                             <input type="submit" class="btn btn-info" value="Save">
                         </div>
                     </form>
