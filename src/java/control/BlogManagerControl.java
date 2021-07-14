@@ -6,9 +6,11 @@
 package control;
 
 import DAL.BlogDAO;
+import DAL.CategoryDAO;
 import DAL.UserDAO;
 import entity.Account;
 import entity.Blog;
+import entity.Category;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -36,9 +38,15 @@ public class BlogManagerControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       try {
-           BlogDAO blogDAO = new BlogDAO();
-           List<Blog> listBlog = blogDAO.getAllBlog();
+        try {
+            CategoryDAO CategoryDAO = new CategoryDAO();
+            List<Category> listC = CategoryDAO.getAllCategory();
+            request.setAttribute("listC", listC);
+            BlogDAO blogDAO = new BlogDAO();
+            List<Blog> listBlog = blogDAO.getAllBlog();
+            UserDAO UserDAO = new UserDAO();
+            List<Account> listS = UserDAO.getAllAccounts();
+            request.setAttribute("listS", listS);
             //Set data to JSP
             request.setAttribute("list", listBlog);
             request.getRequestDispatcher("ManageBlog.jsp").forward(request, response);
