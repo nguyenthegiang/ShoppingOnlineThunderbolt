@@ -336,6 +336,8 @@
                                 <c:if test="${sessionScope.acc.isSell == 1}">
                                     <li class="nav-item">
                                         <a class="nav-link" href="manager"><i class="fas fa-tasks"></i>Manager Product</a>
+                                        <a class="nav-link" href="blogManager"><i class="fas fa-tasks"></i>Manager Blog</a>
+                                        <a class="nav-link" href="manage-feedback"><i class="fas fa-tasks"></i>Manage Feedback</a>
                                         <hr class="line">
                                     </li> 
                                 </c:if>
@@ -358,14 +360,6 @@
                     </nav>
                 </div>
                 <div class="col-10">
-                    <div class="row">
-                        <div class="d-flex justify-content-center h-100">
-                            <div class="searchbar">
-                                <input class="search_input" type="text" id="search_Manager" placeholder="Search...">
-                                <button onclick="search();" class="search_icon"><i class="fas fa-search"></i></button>
-                            </div>
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="table-responsive">
                             <div class="table-wrapper">
@@ -407,7 +401,7 @@
 
                                     </tbody>
                                 </table>
-                               
+
                             </div>
                         </div>        
                     </div>
@@ -415,7 +409,7 @@
                     <div id="addEmployeeModal" class="modal fade">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <form action="add" method="post">
+                                <form action="AddBlogControl" method="post">
                                     <div class="modal-header">						
                                         <h4 class="modal-title">Add Blog</h4>
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -455,7 +449,7 @@
                     <div id="deleteEmployeeModal" class="modal fade">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <form action="delete" method="post">
+                                <form action="deleteBlog" method="post">
                                     <div class="modal-header">						
                                         <h4 class="modal-title">Delete Blog</h4>
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
