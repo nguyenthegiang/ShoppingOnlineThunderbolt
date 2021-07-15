@@ -96,81 +96,91 @@
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th>                                     
-                                        <img style="max-height: 25em; max-width: 20em; padding:0;margin:0;border-radius: 50%" src="image/${product1.imageLink}" alt="Product picture"/>
+                                    <th>                         
+                                        <!--max-height: 25em; max-width: 20em; padding:0;margin:0;border-radius: 50%-->
+                                        <img style="" src="image/${product1.imageLink}" alt="Product picture"/>
                                     <h4>${product1.name}</h4>
                                 </th>
                                 <th>                                     
-                                    <img style="height: 25em; width: 20em; padding:0;margin:0;border-radius: 50%" src="image/${product2.imageLink}" alt="Product picture"/>
+                                    <img style="" src="image/${product2.imageLink}" alt="Product picture"/>
                                     <h4>${product2.name}</h4>
-
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>&nbsp;</td>
-                                <td>
-                                    <p class="">
-                                        ${product1.description}
-                                    </p>
-                                    <p><strong>
-                                            <fmt:formatNumber type = "number" 
-                                                              maxFractionDigits = "3" value = "${product1.price}"/> VND
-                                        </strong></p>
-                                    <br/>
-                                    <div class="">
-                                        <a onclick="addCart(${product1.id})" class=""><span class=" "></span> Add to cart</a> &emsp;&emsp;&emsp;&emsp;&emsp;
-
-                                        <a href="detail?ProductID=${product1.id}" class="">VIEW</a>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="">
-                                        ${product2.description}
-                                    </p>
-                                    <p><strong>
-                                            <fmt:formatNumber type = "number" 
-                                                              maxFractionDigits = "3" value = "${product2.price}"/> VND
-                                        </strong></p>
-                                    <br/>
-                                    <div class="">
-                                        <a onclick="addCart(${product2.id})" class=""><span class=" "></span> Add to cart</a> &emsp;&emsp;&emsp;&emsp;&emsp;
-
-                                        <a href="detail?ProductID=${product2.id}" class="">VIEW</a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><i class="fa fa-tags"></i>Price</td>
-                                <td><strong>
+                        <div class="action-container">
+                            <td>
+                                <p class="">
+                                    ${product1.description}
+                                </p>
+                                <p><strong>
                                         <fmt:formatNumber type = "number" 
                                                           maxFractionDigits = "3" value = "${product1.price}"/> VND
-                                    </strong></td>
-                                <td><strong>
+                                    </strong></p>
+                                <br/>
+                                <div class="action">
+                                    <div class="but">
+                                        <a onclick="addCart(${product1.id})" class=""><span class=" "></span> Add to cart</a>
+                                    </div>
+                                    <div class="but">
+                                        <a href="detail?ProductID=${product1.id}" class="">VIEW</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </div>
+                        <div class="action-container">
+                            <td>
+                                <p class="">
+                                    ${product2.description}
+                                </p>
+                                <p><strong>
                                         <fmt:formatNumber type = "number" 
                                                           maxFractionDigits = "3" value = "${product2.price}"/> VND
-                                    </strong></td>
-                            </tr>
-                            <tr>
-                                <td>Height</td>
-                                <td>${product1.height}"</td>
-                                <td>${product2.height}"</td>
-                            </tr>
-                            <tr>
-                                <td>Width</td>
-                                <td>${product1.width}"</td>
-                                <td>${product2.width}"</td>
-                            </tr>
-                            <tr>
-                                <td><i class="fa fa-balance-scale-left"></i>Weight</td>
-                                <td>${product1.weight} kg</td>
-                                <td>${product2.weight} kg</td>
-                            </tr>
-                            
-                            <tr>
+                                    </strong></p>
+                                <br/>
+                                <div class="action">
+                                    <div class="but">
+                                        <a onclick="addCart(${product2.id})" class=""><span class=" "></span> Add to cart</a>
+                                    </div>
+                                    <div class="but">
+                                        <a href="detail?ProductID=${product2.id}" class="">VIEW</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </div>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-tags"></i>Price</td>
+                            <td><strong>
+                                    <fmt:formatNumber type = "number" 
+                                                      maxFractionDigits = "3" value = "${product1.price}"/> VND
+                                </strong></td>
+                            <td><strong>
+                                    <fmt:formatNumber type = "number" 
+                                                      maxFractionDigits = "3" value = "${product2.price}"/> VND
+                                </strong></td>
+                        </tr>
+                        <tr>
+                            <td>Height</td>
+                            <td>${product1.height}"</td>
+                            <td>${product2.height}"</td>
+                        </tr>
+                        <tr>
+                            <td>Width</td>
+                            <td>${product1.width}"</td>
+                            <td>${product2.width}"</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-balance-scale-left"></i>Weight</td>
+                            <td>${product1.weight} kg</td>
+                            <td>${product2.weight} kg</td>
+                        </tr>
 
-                            </tr>
+                        <tr>
+
+                        </tr>
                         </tbody>
                     </table>
 

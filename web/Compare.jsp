@@ -117,19 +117,7 @@
                     <div class="col-md-9 col-sm-9" style="display:inline;">
                         <h3> Products Comparison <small class="">&nbsp;&nbsp;&nbsp;&nbsp;Search for another product to compare </small></h3>	
                         <hr class=""/>
-                        <style>
-                            table,
-                            th,
-                            td {
-                                padding: 5px;
-                                border: 1px solid black;
-                                border-collapse: collapse;
-                            }
-                            .productLink :hover{
-                                color:red;
-                                cursor:pointer;
-                            }
-                        </style>
+                        
                         <table id="" class="compare" style="width:50%; float:left;">
                             <thead>
                                 <tr>
@@ -141,19 +129,25 @@
                             <tr>
                                 <td>&nbsp;</td>
                                 <td>
+                                    <div class="compare-container"
                                     <p class="">
                                         ${product.description}
                                     </p>
-                                    <img style="height: 25em; width: 20em; padding:0;margin:0;" src="image/${product.imageLink}" alt="Product picture"/>
+                                    <a href="detail?ProductID=${product.id}">
+                                        <img  src="image/${product.imageLink}" alt="Product picture"/></a>
                                     <p><strong>
                                             <fmt:formatNumber type = "number" 
                                                               maxFractionDigits = "3" value = "${product.price}"/> VND
                                         </strong></p>
                                     <br/>
-                                    <div class="">
-                                        <a onclick="addCart(${product.id})" class=""><span class=" "></span> Add to cart</a> &emsp;&emsp;&emsp;&emsp;&emsp;
-
-                                        <a href="detail?ProductID=${product.id}" class="">VIEW</a>
+                                    <div class="action">
+                                        <div class="but">
+                                        <a  style=":hover{cursor: pointer}" onclick="addCart(${product.id})" >Add to cart</a>
+                                        </div>
+                                        <div class="but">
+                                        <a href="detail?ProductID=${product.id}" class="link">VIEW</a>
+                                        </div>
+                                    </div>
                                     </div>
                                 </td>
                             </tr>

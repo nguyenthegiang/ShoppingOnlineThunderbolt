@@ -3,81 +3,81 @@
 ** Created by T-PHP https://t-php.fr/43-theme-ecommerce-bootstrap-4.html
 */
 .notification {
-  background-color: #555;
-  color: white;
-  text-decoration: none;
-  padding: 15px 26px;
-  position: relative;
-  display: inline-block;
-  border-radius: 2px;
+    background-color: #555;
+    color: white;
+    text-decoration: none;
+    padding: 15px 26px;
+    position: relative;
+    display: inline-block;
+    border-radius: 2px;
 }
 
 .notification:hover {
-  background: red;
+    background: red;
 }
 
 .notification .badge {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  padding: 5px 10px;
-  border-radius: 50%;
-  background: red;
-  color: white;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    background: red;
+    color: white;
 }
 body{
-  margin-top: 50px;
-  background-color: #f1f1f1;
+    margin-top: 50px;
+    background-color: #f1f1f1;
 } 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link{
-  background-color: #17A2B8;
+    background-color: #17A2B8;
 }
 .dropdown-menu{
-  top: 60px;
-  right: 0px;
-  left: unset;
-  width: 460px;
-  box-shadow: 0px 5px 7px -1px #c1c1c1;
-  padding-bottom: 0px;
-  padding: 0px;
+    top: 60px;
+    right: 0px;
+    left: unset;
+    width: 460px;
+    box-shadow: 0px 5px 7px -1px #c1c1c1;
+    padding-bottom: 0px;
+    padding: 0px;
 }
 .dropdown-menu:before{
-  content: "";
-  position: absolute;
-  top: -20px;
-  right: 12px;
-  border:10px solid #343A40;
-  border-color: transparent transparent #343A40 transparent;
+    content: "";
+    position: absolute;
+    top: -20px;
+    right: 12px;
+    border:10px solid #343A40;
+    border-color: transparent transparent #343A40 transparent;
 }
 .head{
-  padding:5px 15px;
-  border-radius: 3px 3px 0px 0px;
+    padding:5px 15px;
+    border-radius: 3px 3px 0px 0px;
 }
 .footer{
-  padding:5px 15px;
-  border-radius: 0px 0px 3px 3px; 
+    padding:5px 15px;
+    border-radius: 0px 0px 3px 3px; 
 }
 .notification-box{
-  padding: 10px 0px; 
-  color:black;
+    padding: 10px 0px; 
+    color:black;
 }
 .bg-gray{
-  background-color: #eee;
+    background-color: #eee;
 }
 @media (max-width: 640px) {
     .dropdown-menu{
-      top: 50px;
-      left: -16px;  
-      width: 290px;
+        top: 50px;
+        left: -16px;  
+        width: 290px;
     } 
     .nav{
-      display: block;
+        display: block;
     }
     .nav .nav-item,.nav .nav-item a{
-      padding-left: 0px;
+        padding-left: 0px;
     }
     .message{
-      font-size: 13px;
+        font-size: 13px;
     }
 }
 .bloc_left_price {
@@ -156,10 +156,10 @@ a .active{
     100% {background-color:indigo; left:0px; top:0px;}
 }
 
-.container :nth-child(2) img{
+/*.container :nth-child(2) img{
     animation-name: example;
     animation-duration: 4s;
-}
+}*/
 
 
 #product{
@@ -196,35 +196,35 @@ a .active{
 }
 
 .slide-wrapper {
-  width: 2912px;
-  -webkit-animation: slide 14s ease infinite;
+    width: 2912px;
+    -webkit-animation: slide 14s ease infinite;
 }
 
 @-webkit-keyframes slide {
-   20% {margin-left: 0px;}
-   30% {margin-left: -728px;}
-   50% {margin-left: -728px;}
-   60% {margin-left: -1456px;}
-   80% {margin-left: -1456px;}
- }
- 
- #slideshow {
-   overflow: hidden;
-   height: 100%;
-   width: 100%;
-   margin: 0 auto;
- }
- .slide {
-   float: left;
-   height: 45%;
-   width: 45%;
- }
+    20% {margin-left: 0px;}
+    30% {margin-left: -728px;}
+    50% {margin-left: -728px;}
+    60% {margin-left: -1456px;}
+    80% {margin-left: -1456px;}
+}
+
+#slideshow {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+}
+.slide {
+    float: left;
+    height: 45%;
+    width: 45%;
+}
 .bar-container{
-     width: 300px; 
-     float: right;
-     border-radius: 5px;
- }
- 
- .rating-label{
-     color: #6c757d;
- }
+    width: 300px; 
+    float: right;
+    border-radius: 5px;
+}
+
+.rating-label{
+    color: #6c757d;
+}
