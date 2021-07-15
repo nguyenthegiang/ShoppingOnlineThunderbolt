@@ -31,7 +31,7 @@
         <link rel="icon" type="image/png" href="image/faviconLogo.png" />
     </head>
     <body>
-        <a class="nav-link" href="logout" style="position: fixed; right: 10px;">LogOut</a>
+
 
         <div class="container-fuild">
             <div class="row">
@@ -91,8 +91,8 @@
                     <hr>
                     <div class="row">
 
-                        <div class="col-md-6">
-                            <img src="image/${requestScope.feedback.product.imageLink}" style="width: 100px">
+                        
+                            <img src="image/${requestScope.feedback.product.imageLink}" style="width: 400px; border-radius: 50%; margin: auto; box-shadow: 10px 10px 5px #ddd; border-color: #000">
                             <div class="card-body p-5">
                                 <h3 class="title mb-3">${requestScope.feedback.product.name}</h3>
 
@@ -103,22 +103,24 @@
                                 </p> 
 
                             </div>
-                        </div>
-                        <div class="col-md-6">
+                        
+
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title">Feedback Detail:</h5>
                                 <table class="table table-borderless">
                                     <tr style="padding:2px; ">
-                                        <td>User:</td>
-                                        <td>${requestScope.feedback.user.user}</td>
+                                        <td class="col-md-3"><b>User:</b></td>
+                                        <td class="col-md-9">${requestScope.feedback.user.user}</td>
                                     </tr>
                                     <tr style="padding:2px; ">
-                                        <td>Order ID:</td>
-                                        <td>${requestScope.feedback.orderId}</td>
+                                        <td class="col-md-3"><b>Order ID:</b></td>
+                                        <td class="col-md-9">${requestScope.feedback.orderId}</td>
                                     </tr>
                                     <tr style="padding:2px; ">
-                                        <td>Star:</td>
-                                        <td>
+                                        <td class="col-md-3"><b>Star:</b></td>
+                                        <td class="col-md-9">
                                             <c:forEach begin="1" end="${requestScope.feedback.star}">
                                                 <span>
                                                     <i class="fa fa-star checked" style="font-size: 10px"></i>
@@ -127,12 +129,13 @@
                                         </td>
                                     </tr>
                                     <tr style="padding:2px; ">
-                                        <td>Feedback Detail:</td>
-                                        <td>${requestScope.feedback.feedbackDetail}</td>
+                                        <td class="col-md-3"><b>Feedback Detail:</b></td>
+                                        <td class="col-md-9">${requestScope.feedback.feedbackDetail}</td>
                                     </tr>                            
                                 </table>
                             </div>
                         </div>
+                        <div class="col-md-2"></div>
                     </div>
 
 
