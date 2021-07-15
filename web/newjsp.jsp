@@ -14,6 +14,6 @@
         <link rel="icon" type="image/png" href="image/faviconLogo.png" />
     </head>
     <body>
-        <p>${req}</p>
+        <p>${product}</p>
     </body>
 </html>

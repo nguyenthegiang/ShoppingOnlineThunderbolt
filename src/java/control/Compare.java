@@ -8,12 +8,14 @@ package control;
 import DAL.CartDAO;
 import DAL.CategoryDAO;
 import DAL.InforDAO;
+import DAL.ProductCompareDAO;
 import DAL.ProductDAO;
 import DAL.UserDAO;
 import entity.Account;
 import entity.Category;
 import entity.Information;
 import entity.Product;
+import entity.ProductCompare;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -49,13 +51,14 @@ public class Compare extends HttpServlet {
             String id = request.getParameter("id");
 
             ProductDAO ProductDAO = new ProductDAO();
+            ProductCompareDAO ProductCompareDAO = new ProductCompareDAO();
             InforDAO InforDAO = new InforDAO();
 
             Product hot = ProductDAO.getHotProduct(); //Get First Product
             String cateId = ProductDAO.getCateIdOfProductByID(id);
             Product favor = ProductDAO.getFavoriteProduct(); //Get Last Product
             Information infor = InforDAO.getInfor(); //Get Information
-            Product product = ProductDAO.getProductByID(id); //Get the selected Product infor
+            ProductCompare product = ProductCompareDAO.getProductByID(id); //Get the selected Product infor
             List products = ProductDAO.getAllProduct();
             CategoryDAO CategoryDAO = new CategoryDAO();
             List<Category> listC = CategoryDAO.getAllCategory(); //Get List Category
