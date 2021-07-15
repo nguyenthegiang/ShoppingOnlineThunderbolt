@@ -17,6 +17,7 @@
         <script src="https://kit.fontawesome.com/6c7ad27b5d.js" crossorigin="anonymous"></script>
 
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="css/OrderTableStyle.css">
 
     </head>
     <body style="background-color: #D9DDDC">

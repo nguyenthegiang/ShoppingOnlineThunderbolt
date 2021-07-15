@@ -32,3 +32,12 @@ and open the template in the editor.
     color: white;
 }
 
+.compare thead{
+    background-color: #eee;
+}
+.compare img{
+    width: 300px;
+    height: 100%;
+    border: 1px solid black;
+    object-fit: contain;
+}
