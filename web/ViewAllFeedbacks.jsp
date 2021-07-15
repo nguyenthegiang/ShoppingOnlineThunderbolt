@@ -17,6 +17,7 @@
 
         <!--Favicon-->
         <link rel="icon" type="image/png" href="image/faviconLogo.png" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
         <!--Table Styling-->
         <link rel="stylesheet" href="css/OrderTableStyle.css" type="text/css"/>
@@ -33,20 +34,20 @@
         <link rel="icon" type="image/png" href="image/faviconLogo.png" />
     </head>
     <body>
-        <a class="nav-link" href="logout" style="position: fixed; right: 10px;">LogOut</a>
 
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-3">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light flex-column">
-                        <a class="navbar-brand" href="dashBoard"><img src="image/MenuLogo.png" width="200px"></a>
+                <div class="col-md-2" style="background-color: #ebebf2">
+                    <nav class="navbar navbar-expand-lg navbar-light flex-column">
+                        <a class="navbar-brand" href="dashBoard"><img src="image/Other/Logo.jpg" width="200px"></a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
 
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="productList">Product List</a>
+                                <a class="nav-link" href="productList"><i class="fas fa-home"></i>Home</a>
+                                <hr class="line">
                             </li>
                             <c:if test="${sessionScope.acc == null}">
                                 <li class="nav-item">
@@ -55,93 +56,98 @@
                             </c:if>
                             <c:if test = "${sessionScope.acc != null}">
                                 <li class="nav-item">
-                                    <a class="nav-link text-info" href="login">Hello ${sessionScope.acc.user}</a>
+                                    <a class="nav-link" href="profile"><i class="fas fa-user-circle"></i>Hello ${sessionScope.acc.user}</a>
+                                    <hr class="line">
                                 </li>
+
                                 <c:if test="${sessionScope.acc.isSell == 1}">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="manager">Manager Product</a>
+                                        <a class="nav-link" href="manager"><i class="fas fa-tasks"></i>Manager Product</a>
+                                        <hr class="line">
                                         <a class="nav-link" href="blogManager"><i class="fas fa-tasks"></i>Manager Blog</a>
+                                        <hr class="line">
                                         <a class="nav-link" href="manage-feedback"><i class="fas fa-tasks"></i>Manage Feedback</a>
+                                        <hr class="line">
                                     </li> 
                                 </c:if>
+
                                 <c:if test="${sessionScope.acc.isAdmin == 1}">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="accountManager">Manager Account</a>
+                                        <a class="nav-link" href="accountManager"><i class="fas fa-tasks"></i>Manager Account</a>
+                                        <hr class="line">
                                     </li> 
                                 </c:if>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="viewAllNotifications"><i class="fas fa-bell"></i>Notifications (${numberNoti})</a>
+                                </li> 
                             </c:if>
 
                             <li class="nav-item">&nbsp;
                             </li> 
                         </ul>
+                        <a class="nav-link" href="logout" style="position: fixed; right: 10px;">LogOut</a>
                     </nav>
                 </div>
-                <div class="col-6">
-                    <section class="jumbotron text-center" style="background-color: white;">
-                        <div class="container">
-                            <h1 class="jumbotron-heading"><img src="image/MainLogo.png" alt="Main Logo" width="60%"/></h1>
-                            <p class="lead text-muted mb-0">Điện thoại, Tablet, Laptop, Phụ kiện chính hãng giá tốt...</p>
-                        </div>
-                    </section>
-                </div>
-            </div>
-
-            <hr>
-            <div class="row">
-                <div class="col-md-2">
-                    <p>Choose your sort options and order: </p>
-                    <form class="sort-form" action="manage-feedback" method="POST">
-                        <input type="hidden" name="sort-flag" value="true" />
-                        <input type="radio" id="sort-star" name="sort-order" value="1" checked="true">
-                        <label for="sort-star">Sort by star</label><br>
-                        <input type="radio" id="sort-name" name="sort-order" value="2">
-                        <label for="sort-name">Sort by user name</label><br>
-                        <input type="radio" id="sort-product" name="sort-order" value="3">
-                        <label for="sort-product">Sort by product</label>
-                        <br><br>
-                        <input type="radio" id="sort-order" name="sort-by-order" value="1" checked="true">
-                        <label for="sort-order">Ascending</label><br>
-                        <input type="radio" id="sort-order" name="sort-by-order" value="2">
-                        <label for="sort-order">Descending</label><br>
-                        <br>
-                        <input type="submit" value="Submit">
-                    </form>
-                </div>
                 <div class="col-md-10">
-                    <table id="feedback" style="margin-left:3em; border: 1px solid;">
-                        <thead >
-                            <tr >
-                                <th style="text-align: center;">FeedbackID</th>
-                                <th style="text-align: center;">User</th>
-                                <th style="text-align: center;">Star</th>
-                                <th style="text-align: center;">Product</th>
-                                <th style="text-align: center;">Detail</th>
+                    <hr>
+                    <div class="row">
+                        <p>Choose your sort options and order: </p>
+                        <form class="sort-form" action="manage-feedback" method="POST">
+                            <input type="hidden" name="sort-flag" value="true" />
+                            <input type="radio" id="sort-star" name="sort-order" value="1" checked="true">
+                            <label for="sort-star">Sort by star</label><br>
+                            <input type="radio" id="sort-name" name="sort-order" value="2">
+                            <label for="sort-name">Sort by user name</label><br>
+                            <input type="radio" id="sort-product" name="sort-order" value="3">
+                            <label for="sort-product">Sort by product</label>
+                            <br><br>
+                            <input type="radio" id="sort-order" name="sort-by-order" value="1" checked="true">
+                            <label for="sort-order">Ascending</label><br>
+                            <input type="radio" id="sort-order" name="sort-by-order" value="2">
+                            <label for="sort-order">Descending</label><br>
+                            <br>
+                            <input type="submit" value="Submit">
+                        </form>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="col-md-12">
+                            <table id="feedback" style="margin-left:3em; border: 1px solid;">
+                                <thead >
+                                    <tr>
+                                        <th style="text-align: center;">FeedbackID</th>
+                                        <th style="text-align: center;">User</th>
+                                        <th style="text-align: center;">Star</th>
+                                        <th style="text-align: center;">Product</th>
+                                        <th style="text-align: center;">Detail</th>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach var="item" items="${requestScope.lsFeedback}" varStatus="x">
-                                <tr style="padding:2px; border: 1px solid">
-                                    <td>${item.id}</td>
-                                    <td>${item.user.user}</td>
-                                    <td>
-                                        <c:forEach begin="1" end="${item.star}">
-                                            <span><i class="fa fa-star checked" style="font-size: 10px"></i></span>  
-                                            </c:forEach>
-                                    </td>
-                                    <td>
-                                        ${item.product.name}
-                                    </td>
-                                    <td><a href="view-detail-feedback?id=${item.id}">Detail</a></td>
-                                </tr>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach var="item" items="${requestScope.lsFeedback}" varStatus="x">
+                                        <tr style="padding:2px; border: 1px solid">
+                                            <td>${item.id}</td>
+                                            <td>${item.user.user}</td>
+                                            <td>
+                                                <c:forEach begin="1" end="${item.star}">
+                                                    <span><i class="fa fa-star checked" style="font-size: 10px"></i></span>  
+                                                    </c:forEach>
+                                            </td>
+                                            <td>
+                                                ${item.product.name}
+                                            </td>
+                                            <td><a href="view-detail-feedback?id=${item.id}">Detail</a></td>
+                                        </tr>
 
 
-                            </c:forEach>
-                        </tbody>
-                    </table>
-                </div>                              
-            </div>
-        </div>      
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>   
+                    </div>
+
+
+                </div>
+            </div>      
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     </body>
 </html>
