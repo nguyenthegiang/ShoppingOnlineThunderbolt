@@ -7,10 +7,12 @@ package control;
 
 import DAL.CategoryDAO;
 import DAL.InforDAO;
+import DAL.ProductCompareDAO;
 import DAL.ProductDAO;
 import entity.Category;
 import entity.Information;
 import entity.Product;
+import entity.ProductCompare;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -52,13 +54,14 @@ public class CompareFinal extends HttpServlet {
             List<Category> listC = CategoryDAO.getAllCategory(); //Get List Category
 
             ProductDAO ProductDAO = new ProductDAO();
+            ProductCompareDAO ProductCompareDAO = new ProductCompareDAO();
             InforDAO InforDAO = new InforDAO();
 
             Product hot = ProductDAO.getHotProduct(); //Get First Product
             Product favor = ProductDAO.getFavoriteProduct(); //Get Last Product
             Information infor = InforDAO.getInfor(); //Get Information
-            Product product1 = ProductDAO.getProductByID(id1); //Get the selected Product infor
-            Product product2 = ProductDAO.getProductByID(id2); //Get the selected Product infor
+            ProductCompare product1 = ProductCompareDAO.getProductByID(id1); //Get the selected Product infor
+            ProductCompare product2 = ProductCompareDAO.getProductByID(id2); //Get the selected Product infor
 
             //Seding data to jsp page
             request.setAttribute("product1", product1);

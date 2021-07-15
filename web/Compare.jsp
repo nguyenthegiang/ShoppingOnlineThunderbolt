@@ -129,7 +129,7 @@
                                 cursor:pointer;
                             }
                         </style>
-                        <table id="" class="" style="width:50%; float:left;">
+                        <table id="" class="compare" style="width:50%; float:left;">
                             <thead>
                                 <tr>
                                     <th></th>
@@ -162,29 +162,20 @@
                             -->                           
                             <tr>
                                 <td>Height</td>
-                                <td>5"</td>
+                                <td>${product.height}"</td>
                                 <!--                                <td>15"</td>-->
                             </tr>
                             <tr>
-                                <td>Deepth</td>
-                                <td>5"</td>
+                                <td>Width</td>
+                                <td>${product.width}"</td>
                                 <!--                                <td>5"</td>-->
                             </tr>
                             <tr>
-                                <td>Size</td>
-                                <td>XXL</td>
+                                <td> <i class="fa fa-balance-scale-left"></i>Weight</td>
+                                <td>${product.weight}"</td>
                                 <!--                                <td>XL</td>-->
                             </tr>
-                            <tr>
-                                <td>Width</td>
-                                <td>6.5"</td>
-                                <!--                                <td>6"</td>-->
-                            </tr>
-                            <tr>
-                                <td>Weight</td>
-                                <td>0.5kg</td>
-                                <!--                                <td>0.8kg</td>-->
-                            </tr>
+                           
                             <tr>
 
                             </tr>

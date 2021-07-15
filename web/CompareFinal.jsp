@@ -153,29 +153,20 @@
                             </tr>
                             <tr>
                                 <td>Height</td>
-                                <td>5"</td>
-                                <td>15"</td>
-                            </tr>
-                            <tr>
-                                <td>Deepth</td>
-                                <td>5"</td>
-                                <td>5"</td>
-                            </tr>
-                            <tr>
-                                <td>Size</td>
-                                <td>XXL</td>
-                                <td>XL</td>
+                                <td>${product1.height}"</td>
+                                <td>${product2.height}"</td>
                             </tr>
                             <tr>
                                 <td>Width</td>
-                                <td>6.5"</td>
-                                <td>6"</td>
+                                <td>${product1.width}"</td>
+                                <td>${product2.width}"</td>
                             </tr>
                             <tr>
                                 <td><i class="fa fa-balance-scale-left"></i>Weight</td>
-                                <td>0.5kg</td>
-                                <td>0.8kg</td>
+                                <td>${product1.weight} kg</td>
+                                <td>${product2.weight} kg</td>
                             </tr>
+                            
                             <tr>
 
                             </tr>
