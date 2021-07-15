@@ -14,6 +14,7 @@
 
         <!--Favicon-->
         <link rel="icon" type="image/png" href="image/faviconLogo.png" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
         <!--Table Styling-->
         <link rel="stylesheet" href="css/OrderTableStyle.css" type="text/css"/>
@@ -32,18 +33,19 @@
     <body>
         <a class="nav-link" href="logout" style="position: fixed; right: 10px;">LogOut</a>
 
-        <div class="container">
+        <div class="container-fuild">
             <div class="row">
-                <div class="col-3">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light flex-column">
-                        <a class="navbar-brand" href="dashBoard"><img src="image/MenuLogo.png" width="200px"></a>
+                <div class="col-md-2" style="background-color: #ebebf2">
+                    <nav class="navbar navbar-expand-lg navbar-light flex-column">
+                        <a class="navbar-brand" href="dashBoard"><img src="image/Other/Logo.jpg" width="200px"></a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
 
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="productList">Product List</a>
+                                <a class="nav-link" href="productList"><i class="fas fa-home"></i>Home</a>
+                                <hr class="line">
                             </li>
                             <c:if test="${sessionScope.acc == null}">
                                 <li class="nav-item">
@@ -52,81 +54,89 @@
                             </c:if>
                             <c:if test = "${sessionScope.acc != null}">
                                 <li class="nav-item">
-                                    <a class="nav-link text-info" href="login">Hello ${sessionScope.acc.user}</a>
+                                    <a class="nav-link" href="profile"><i class="fas fa-user-circle"></i>Hello ${sessionScope.acc.user}</a>
+                                    <hr class="line">
                                 </li>
+
                                 <c:if test="${sessionScope.acc.isSell == 1}">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="manager">Manager Product</a>
+                                        <a class="nav-link" href="manager"><i class="fas fa-tasks"></i>Manager Product</a>
+                                        <hr class="line">
+                                        <a class="nav-link" href="blogManager"><i class="fas fa-tasks"></i>Manager Blog</a>
+                                        <hr class="line">
+                                        <a class="nav-link" href="manage-feedback"><i class="fas fa-tasks"></i>Manage Feedback</a>
+                                        <hr class="line">
                                     </li> 
                                 </c:if>
+
                                 <c:if test="${sessionScope.acc.isAdmin == 1}">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="accountManager">Manager Account</a>
+                                        <a class="nav-link" href="accountManager"><i class="fas fa-tasks"></i>Manager Account</a>
+                                        <hr class="line">
                                     </li> 
                                 </c:if>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="viewAllNotifications"><i class="fas fa-bell"></i>Notifications (${numberNoti})</a>
+                                </li> 
                             </c:if>
 
                             <li class="nav-item">&nbsp;
                             </li> 
                         </ul>
+                        <a class="nav-link" href="logout" style="position: fixed; right: 10px;">LogOut</a>
                     </nav>
                 </div>
-                <div class="col-6">
-                    <section class="jumbotron text-center" style="background-color: white;">
-                        <div class="container">
-                            <h1 class="jumbotron-heading"><img src="image/MainLogo.png" alt="Main Logo" width="60%"/></h1>
-                            <p class="lead text-muted mb-0">Điện thoại, Tablet, Laptop, Phụ kiện chính hãng giá tốt...</p>
+
+                <div class="col-md-10">
+                    <hr>
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <img src="image/${requestScope.feedback.product.imageLink}" style="width: 100px">
+                            <div class="card-body p-5">
+                                <h3 class="title mb-3">${requestScope.feedback.product.name}</h3>
+
+                                <p class="price-detail-wrap"> 
+                                    <span class="price h3 text-warning"> 
+                                        <span class="currency">VND </span><span class="num">${requestScope.feedback.product.priceWithDot}</span>
+                                    </span> 
+                                </p> 
+
+                            </div>
                         </div>
-                    </section>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <h5 class="card-title">Feedback Detail:</h5>
+                                <table class="table table-borderless">
+                                    <tr style="padding:2px; ">
+                                        <td>User:</td>
+                                        <td>${requestScope.feedback.user.user}</td>
+                                    </tr>
+                                    <tr style="padding:2px; ">
+                                        <td>Order ID:</td>
+                                        <td>${requestScope.feedback.orderId}</td>
+                                    </tr>
+                                    <tr style="padding:2px; ">
+                                        <td>Star:</td>
+                                        <td>
+                                            <c:forEach begin="1" end="${requestScope.feedback.star}">
+                                                <span>
+                                                    <i class="fa fa-star checked" style="font-size: 10px"></i>
+                                                </span>  
+                                            </c:forEach>
+                                        </td>
+                                    </tr>
+                                    <tr style="padding:2px; ">
+                                        <td>Feedback Detail:</td>
+                                        <td>${requestScope.feedback.feedbackDetail}</td>
+                                    </tr>                            
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
-
-            <hr>
-            <div class="row">
-
-                <div class="col-md-6">
-                    <img src="image/${requestScope.feedback.product.imageLink}" style="width: 100px">
-                    <div class="card-body p-5">
-                        <h3 class="title mb-3">${requestScope.feedback.product.name}</h3>
-
-                        <p class="price-detail-wrap"> 
-                            <span class="price h3 text-warning"> 
-                                <span class="currency">VND </span><span class="num">${requestScope.feedback.product.priceWithDot}</span>
-                            </span> 
-                        </p> 
-                        
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card-body">
-                        <h5 class="card-title">Feedback Detail:</h5>
-                        <table class="table table-borderless">
-                            <tr style="padding:2px; ">
-                                <td>User:</td>
-                                <td>${requestScope.feedback.user.user}</td>
-                            </tr>
-                            <tr style="padding:2px; ">
-                                <td>Order ID:</td>
-                                <td>${requestScope.feedback.orderId}</td>
-                            </tr>
-                            <tr style="padding:2px; ">
-                                <td>Star:</td>
-                                <td>
-                                    <c:forEach begin="1" end="${requestScope.feedback.star}">
-                                        <span>
-                                            <i class="fa fa-star checked" style="font-size: 10px"></i>
-                                        </span>  
-                                    </c:forEach>
-                                </td>
-                            </tr>
-                            <tr style="padding:2px; ">
-                                <td>Feedback Detail:</td>
-                                <td>${requestScope.feedback.feedbackDetail}</td>
-                            </tr>                            
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
     </body>
 </html>
