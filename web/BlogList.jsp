@@ -26,12 +26,7 @@
     </head>
     <body style="background-color: #ebebf2;">
         <jsp:include page="Menu.jsp"></jsp:include>
-
-
-
             <br>
-
-
             <div class="container">
                 <div class="row">
                     <img src="image/Blog/BlogBackground.jpg" id="firstBackground" alt=""/>
@@ -50,11 +45,6 @@
                     <a href="detailBlog?ID=2" class="learnMoreButton">Learn more</a>
                 </div>
             </div>
-
-
-
-
-
 
             <!--Phần tin tức-->
             <div class="container">
