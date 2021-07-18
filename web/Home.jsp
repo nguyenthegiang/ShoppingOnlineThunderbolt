@@ -58,34 +58,32 @@
                 }
             </script>
 
-        <!--Danh mục sản phẩm-->
-        <div class="container" style="margin: 10px; background-color: #ffffff; margin: auto">
-            <h2 style="font-family: Brush Script Std; text-align: center">Shop by category</h2>
-            <div class="row">
-                <div class="col-md-2">
-                    <img src="image/CATEGORY/laptopp.jpg"  id="category">
+            <!--List Category-->
+            <div class="container" style="margin: 10px; background-color: #ffffff; margin: auto">
+                <br> <br>
+                <div class="row">
+                    <div class="col-10">
+                        <h2 style="font-family: sans-serif; display: inline-block;">SHOP BY CATEGORY</h2>
+                    </div>
+                    <div class="col-2">
+                        <!--Link to Product List-->
+                        <a href="productList" style="font-size: 150%;">View all</a>
+                    </div>
                 </div>
-                <div class="col-md-2">
-                    <img src="image/CATEGORY/pc.jpg"  id="category">
-                </div>
-                <div class="col-md-2">
-                    <img src="image/CATEGORY/printerr.jpg" id="category">
-                </div>
-                <div class="col-md-2">
-                    <img src="image/CATEGORY/linhkien.jpg" id="category">
-                </div>
-                <div class="col-md-2">
-                    <img src="image/CATEGORY/phone.jpg" id="category">
-                </div>
-                <div class="col-md-2">
-                    <img src="image/CATEGORY/tablet.jpg" id="category">
-                </div>
-                <div class="col-md-2">
-                    <img src="image/CATEGORY/headphonee.jpg" id="category">
-                </div>
+
+                <br>
+                <div class="row">
+                <c:forEach items="${allCategory}" var="o">
+                    <div class="col">
+                        <a href="productList?CategoryID=${o.id}" style="color: black;">
+                            <div style="font-size: 400%;">${o.icon}</div>
+                            <div>${o.name}</div>
+                        </a>
+                    </div>
+
+                </c:forEach>
             </div>
         </div>
-
 
         <!--Giới thiệu website-->
         <div class="container" style="background-color: #ffffff; margin: auto; padding: 20px">
@@ -95,26 +93,10 @@
 
         <br>
         <!--Phần sản phẩm-->
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="productList">Product List</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">${CateName}</li>
-                    </ol>                   
-                </nav>
-            </div>
-        </div>
-    </div>
-    <br>
-    <div class="container">
         <div class="row">
-            <jsp:include page="Left.jsp"></jsp:include>
-
-                <div class="col-md-9 col-sm-9">
-                    <div class="row" id="content">
-                        <!--List Product-->
+            <div class="col-md-9 col-sm-9">
+                <div class="row" id="content">
+                    <!--List Product-->
                     <c:forEach items="${listP}" var="o">
                         <div class="col-12 col-md-6 col-lg-4">
                             <div class="card" id="product"> <!--class="card"-->
