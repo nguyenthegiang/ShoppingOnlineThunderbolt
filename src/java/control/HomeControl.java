@@ -39,52 +39,12 @@ public class HomeControl extends HttpServlet {
                 List<Category> listC = CategoryDAO.getAllCategory(); //Get List Category
                 Information infor = InforDAO.getInfor(); //Get Information
                 Blog news = BlogDAO.getHotBlog();//getHotBlog
-                List<Product> list5ProductSale = ProductDAO.getTop5SalePercent();
+                List<Product> list4ProductSale = ProductDAO.getTop4SalePercent();
 
-//                Paging By CategoryID
-//                String CategoryID = request.getParameter("CategoryID");
-//                if (CategoryID == null) { //On Load: User hasn't choosen Category
-//                    CategoryID = "0";
-//                }
-                //Set Category ID back on JSP
-//                request.setAttribute("CategoryID", CategoryID);
-
-//                int CID = Integer.parseInt(CategoryID);
-
-                //Get Page number from JSP
-//                String indexPage = request.getParameter("index");
-//                if (indexPage == null) {
-//                    //On load: Page 1
-//                    indexPage = "1";
-//                }
-
-//                int index = Integer.parseInt(indexPage);
-
-                //Count number of Product According to the Category -> Number of Pages
-////                int count = ProductDAO.countProductByCategory(CID);
-//                int endPage = count / 6;
-//                if (count % 6 != 0) {
-//                    //If the number of Product isn't divided by 3 -> Need 1 more Page
-//                    endPage++;
-//                }
-
-                //List of Product to Display after Paging by Category ID
-//                List<Product> list = ProductDAO.pagingByCategory(index, CID);
-
-                //Set Data to JSP
-//                request.setAttribute("hot", hot);
                 request.setAttribute("allCategory", listC);
                 request.setAttribute("news", news);
-//                request.setAttribute("favor", favor);
                 request.setAttribute("infor", infor);
-                request.setAttribute("list5Sale", list5ProductSale);
-
-//                request.setAttribute("listP", list); //List Product
-//                request.setAttribute("end", endPage);
-//                request.setAttribute("tag", index); //Page number
-//                request.setAttribute("count", count);
-//                request.setAttribute("CateID", CID);
-//                request.setAttribute("CateName", CategoryDAO.getCateNameByID(CID));
+                request.setAttribute("list4Sale", list4ProductSale);
 
                 request.getRequestDispatcher("Home.jsp").forward(request, response);
             } else {
@@ -98,60 +58,21 @@ public class HomeControl extends HttpServlet {
                 int userId = user.getId();
                 int unreadNotifications = notiDAO.countUnreadNotifications(userId);
                 List<Category> listC = CategoryDAO.getAllCategory(); //Get List Category
-                Product hot = ProductDAO.getHotProduct(); //Get First Product
-                Product favor = ProductDAO.getFavoriteProduct(); //Get Last Product
                 Information infor = InforDAO.getInfor(); //Get Information
                 List<Notification> notis = notiDAO.getTop5NotificationsByUserID(userId);
                 int notiss = notiDAO.countNotifications(userId);
                 Blog news = BlogDAO.getHotBlog();//getHotBlog
+                List<Product> list4ProductSale = ProductDAO.getTop4SalePercent();
 
-                //Paging By CategoryID
-                String CategoryID = request.getParameter("CategoryID");
-                if (CategoryID == null) { //On Load: User hasn't choosen Category
-                    CategoryID = "0";
-                }
-                //Set Category ID back on JSP
-                request.setAttribute("CategoryID", CategoryID);
-
-                int CID = Integer.parseInt(CategoryID);
-
-                //Get Page number from JSP
-                String indexPage = request.getParameter("index");
-                if (indexPage == null) {
-                    //On load: Page 1
-                    indexPage = "1";
-                }
-
-                int index = Integer.parseInt(indexPage);
-
-                //Count number of Product According to the Category -> Number of Pages
-                int count = ProductDAO.countProductByCategory(CID);
-                int endPage = count / 6;
-                if (count % 6 != 0) {
-                    //If the number of Product isn't divided by 3 -> Need 1 more Page
-                    endPage++;
-                }
-
-                //List of Product to Display after Paging by Category ID
-                List<Product> list = ProductDAO.pagingByCategory(index, CID);
-
-                //Set Data to JSP
                 request.setAttribute("allCategory", listC);
-                request.setAttribute("hot", hot);
                 request.setAttribute("news", news);
-                request.setAttribute("favor", favor);
                 request.setAttribute("infor", infor);
+                request.setAttribute("list4Sale", list4ProductSale);
 
-                request.setAttribute("listP", list); //List Product
-                request.setAttribute("end", endPage);
                 request.setAttribute("unread", unreadNotifications);
                 request.setAttribute("notis", notis);
                 request.setAttribute("numberOfNotifications", notiss);
-                request.setAttribute("tag", index); //Page number
-                request.setAttribute("count", count);
-                request.setAttribute("CateID", CID);
                 request.setAttribute("acc",user);
-                request.setAttribute("CateName", CategoryDAO.getCateNameByID(CID));
 
                 request.getRequestDispatcher("Home.jsp").forward(request, response);
             }

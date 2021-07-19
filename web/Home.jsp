@@ -69,7 +69,7 @@
                 <br> <br>
                 <div class="row">
                     <div class="col-10">
-                        <h2 style="font-family: sans-serif; display: inline-block;">SHOP BY CATEGORY</h2>
+                        <h2 style="font-family: sans-serif; display: inline-block;"><i class="fas fa-clipboard-list"></i> SHOP BY CATEGORY</h2>
                     </div>
                     <div class="col-2">
                         <!--Link to Product List-->
@@ -92,7 +92,7 @@
             <br> <br>
             <div class="row">
                 <div class="col-10">
-                    <h2 style="font-family: sans-serif;">BLOG</h2>
+                    <h2 style="font-family: sans-serif;"><i class="fab fa-blogger-b"></i> BLOG</h2>
                 </div>
                 <div class="col-2">
                     <!--Link to Blog List-->
@@ -123,12 +123,21 @@
             <!--Hot Products-->
             <br> <br>
             <div class="row">
-                <div class="col-md-9 col-sm-9">
+                <div class="col-10">
+                    <h2 style="font-family: sans-serif;"><i class="fab fa-hotjar"></i> HOT PROMOTION</h2>
+                </div>
+                <div class="col-2">
+                    <!--Link to Blog List-->
+                    <a href="productList" style="font-size: 150%;">View more...</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
                     <div class="row" id="content">
                         <!--List Product-->
-                        <c:forEach items="${listP}" var="o">
-                            <div class="col-12 col-md-6 col-lg-4">
-                                <div class="card" id="product"> <!--class="card"-->
+                        <c:forEach items="${list4Sale}" var="o">
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <div class="card" id="product">
                                     <!--Product's image-->
                                     <a href="detail?ProductID=${o.id}" title="View Product"><img class="card-img-top" src="image/${o.imageLink}" alt="Card image cap"></a>
                                     <div class="card-body">
@@ -138,14 +147,9 @@
                                             <div class="col">
                                                 <!--Product's Price-->
                                                 <a onclick="addCart(${o.id})"><p class="btn btn-warning btn-block" id="price">${o.priceWithDot} VND</p></a>
-
-                                                <!--<p class="btn btn-warning btn-block" id="price">${o.priceWithDot} VND</p>-->
                                             </div>
                                             <div class="col">
                                                 <a onclick="addCart(${o.id})" class="btn btn-info btn-block" id="cart">Add to cart</a>
-                                            </div>
-                                            <div class="col">
-                                                <a onmouseover="this.style.textDecoration = 'none';" href="compare?id=${o.id}}"><p class="btn btn-warning btn-block">Add to Compare</p></a>
                                             </div>
                                         </div>
                                     </div>

@@ -580,9 +580,9 @@ public class ProductDAO extends BaseDAO<Product> {
         return list;
     }
     
-    public List<Product> getTop5SalePercent() {
+    public List<Product> getTop4SalePercent() {
         List<Product> list = new ArrayList<>();
-        String query = "SELECT TOP 5 * FROM Product ORDER BY SalePercent desc";
+        String query = "SELECT TOP 4 * FROM Product ORDER BY SalePercent desc";
         try {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
@@ -694,7 +694,7 @@ public class ProductDAO extends BaseDAO<Product> {
 //        }
 
         /*---------Test Case for countProductByCategory() method---------*/
-        List<Product> list = dao.getTop5SalePercent();
+        List<Product> list = dao.getTop4SalePercent();
         for (Product product : list) {
             System.out.println(product);
         }
