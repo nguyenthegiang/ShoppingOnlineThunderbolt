@@ -113,9 +113,9 @@ public class SubmitFeedbackControl extends HttpServlet {
             // add feedback to database
             boolean addFeedback = feedbackDAO.addFeedback(userFeedback);
             
-            // redirect to productlist
+            // redirect to Home
             if(addFeedback) {
-                request.getRequestDispatcher("productList").forward(request, response);
+                request.getRequestDispatcher("home").forward(request, response);
             }           
         } catch (Exception e) {
             e.printStackTrace();

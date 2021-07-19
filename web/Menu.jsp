@@ -20,15 +20,16 @@
         </head>
         <body>
             <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="productList"><img src="image/Other/Logo.jpg" width="200px"></a>
+                <a class="navbar-brand" href="home"><img src="image/Other/Logo.jpg" width="200px"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
+                        <!--Link to Home Page-->
                         <li class="nav-item active">
-                            <a class="nav-link" href="productList"><i class="fa fa-home" id="home"></i><span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="home"><i class="fa fa-home" id="home"></i><span class="sr-only">(current)</span></a>
                         </li>
 
                         <!--Link to ProductList-->

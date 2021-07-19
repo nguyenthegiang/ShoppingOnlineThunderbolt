@@ -136,7 +136,7 @@ public class LoginControl extends HttpServlet {
                         //If an Admin, go to the DashBoard page
                         response.sendRedirect("dashBoard");
                     } else {
-                        response.sendRedirect("productList");
+                        response.sendRedirect("home");
                     }
                 }
 
@@ -189,7 +189,7 @@ public class LoginControl extends HttpServlet {
                             //If an Admin, go to the DashBoard page
                             response.sendRedirect("dashBoard");
                         } else {
-                            response.sendRedirect("productList");
+                            response.sendRedirect("home");
                         }
                     }
                 }

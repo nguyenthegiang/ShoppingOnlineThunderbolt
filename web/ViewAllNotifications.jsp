@@ -215,7 +215,7 @@
 
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="productList"><i class="fas fa-home"></i>Product List</a>
+                    <a class="nav-link" href="home"><i class="fas fa-home"></i>Home</a>
                 </li>
                 <c:if test="${sessionScope.acc == null}">
                     <li class="nav-item">

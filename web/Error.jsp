@@ -21,7 +21,7 @@
     <body>
         <div class="container">
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-            <button class="btn btn-success btn-block" id="btnBack" type="button" ><a href="productList">Back to Product List page</a></button>
+            <button class="btn btn-success btn-block" id="btnBack" type="button" ><a href="home">Back to Home page</a></button>
         </div>
     </body>
 </html>
