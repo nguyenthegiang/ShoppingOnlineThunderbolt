@@ -582,7 +582,7 @@ public class ProductDAO extends BaseDAO<Product> {
     
     public List<Product> getTop4SalePercent() {
         List<Product> list = new ArrayList<>();
-        String query = "SELECT TOP 4 * FROM Product ORDER BY SalePercent desc";
+        String query = "SELECT TOP 4 * FROM Product ORDER BY SalePercent DESC";
         try {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
