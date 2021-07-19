@@ -37,10 +37,9 @@ public class HomeControl extends HttpServlet {
                 BlogDAO BlogDAO = new BlogDAO();
 
                 List<Category> listC = CategoryDAO.getAllCategory(); //Get List Category
-//                Product hot = ProductDAO.getHotProduct(); //Get First Product
-//                Product favor = ProductDAO.getFavoriteProduct(); //Get Last Product
                 Information infor = InforDAO.getInfor(); //Get Information
                 Blog news = BlogDAO.getHotBlog();//getHotBlog
+                List<Product> list5ProductSale = ProductDAO.getTop5SalePercent();
 
 //                Paging By CategoryID
 //                String CategoryID = request.getParameter("CategoryID");
@@ -78,6 +77,7 @@ public class HomeControl extends HttpServlet {
                 request.setAttribute("news", news);
 //                request.setAttribute("favor", favor);
                 request.setAttribute("infor", infor);
+                request.setAttribute("list5Sale", list5ProductSale);
 
 //                request.setAttribute("listP", list); //List Product
 //                request.setAttribute("end", endPage);
