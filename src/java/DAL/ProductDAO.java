@@ -579,14 +579,31 @@ public class ProductDAO extends BaseDAO<Product> {
         }
         return list;
     }
+    
+    public List<Product> getTop5SalePercent() {
+        List<Product> list = new ArrayList<>();
+        String query = "SELECT TOP 5 * FROM Product ORDER BY SalePercent desc";
+        try {
+            ps = connection.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(new Product(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Description"), rs.getInt("SellPrice"), rs.getString("imageLink")));
+            }
+        } catch (Exception e) {
+        }
+
+        return list;
+    }
 
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
         
-        List<Product> list = dao.getRelatedProduct(1);
-        for (Product o : list) {
-            System.out.println(o);
-        }
+        /*---------Test Case for getRelatedProduct() method---------*/
+//        List<Product> list = dao.getRelatedProduct(1);
+//        for (Product o : list) {
+//            System.out.println(o);
+//        }
 
         /*---------Test Case for getAllProduct() method---------*/
 //        List<Product> list = dao.getAllProduct();
@@ -596,8 +613,10 @@ public class ProductDAO extends BaseDAO<Product> {
 
         /*---------Test Case for getHotProduct() method---------*/
 //        System.out.println(dao.getHotProduct());
+
         /*---------Test Case for getFavoriteProduct() method---------*/
 //        System.out.println(dao.getFavoriteProduct());
+
         /*---------Test Case for getProductBySellID() method---------*/
 //        List<Product> list = dao.getProductBySellID(1);
 //        for (Product product : list) {
@@ -673,5 +692,11 @@ public class ProductDAO extends BaseDAO<Product> {
 //        for (Product product : list) {
 //            System.out.println(product);
 //        }
+
+        /*---------Test Case for countProductByCategory() method---------*/
+        List<Product> list = dao.getTop5SalePercent();
+        for (Product product : list) {
+            System.out.println(product);
+        }
     }
 }

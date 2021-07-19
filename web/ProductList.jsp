@@ -62,42 +62,6 @@
                     setTimeout(carousel, 2000); // Change image every 2 seconds
                 }
             </script>
-        <!--</section>-->
-
-        <!--Danh mục sản phẩm-->
-        <!--<div class="container" style="margin: 10px; background-color: #ffffff; margin: auto">
-            <h2 style="font-family: Brush Script Std; text-align: center">Shop by category</h2>
-            <div class="row">
-                <div class="col-md-2">
-                    <img src="image/CATEGORY/laptopp.jpg"  id="category">
-                </div>
-                <div class="col-md-2">
-                    <img src="image/CATEGORY/pc.jpg"  id="category">
-                </div>
-                <div class="col-md-2">
-                    <img src="image/CATEGORY/printerr.jpg" id="category">
-                </div>
-                <div class="col-md-2">
-                    <img src="image/CATEGORY/linhkien.jpg" id="category">
-                </div>
-                <div class="col-md-2">
-                    <img src="image/CATEGORY/phone.jpg" id="category">
-                </div>
-                <div class="col-md-2">
-                    <img src="image/CATEGORY/tablet.jpg" id="category">
-                </div>
-                <div class="col-md-2">
-                    <img src="image/CATEGORY/headphonee.jpg" id="category">
-                </div>
-            </div>
-        </div>-->
-
-
-        <!--Giới thiệu website-->
-        <!--<div class="container" style="background-color: #ffffff; margin: auto; padding: 20px">
-            <img src="image/SlideShow/Intro.jpg" alt="" style="height: 100%; width: 100%; object-fit: contain"/>
-            <br><br><br>
-        </div>-->
 
         <br>
         <!--Phần sản phẩm-->
