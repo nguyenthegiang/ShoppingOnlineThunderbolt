@@ -46,8 +46,8 @@ public class ProductDAO extends BaseDAO<Product> {
      */
     public Product getHotProduct() {
         //Product with most amount
-        String query = "select top 1 * from Product\n"
-                + "order by Amount desc";
+        String query = "SELECT TOP 1 * FROM Product\n" +
+"                ORDER BY Amount DESC";
         try {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
