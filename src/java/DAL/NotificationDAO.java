@@ -214,8 +214,7 @@ public class NotificationDAO extends BaseDAO<Notification> {
     
 
     /**
-     * Adding a notification to admin by user that their order has been shipped
-     * successfully
+     * Adding a notification to user by admin that their order has been canceled
      *
      * @param userID: the user's ID
      * @param orderId: the order which related to the notification
