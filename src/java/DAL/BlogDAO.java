@@ -27,8 +27,7 @@ public class BlogDAO extends BaseDAO<BlogDAO> {
 
     public Blog getHotBlog() {
         //Product with most amount
-        String query = "select top 1 * from Blog\n"
-                + "order by id desc";
+        String query = "SELECT TOP 1 * FROM Blog ORDER BY id DESC";
         try {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();

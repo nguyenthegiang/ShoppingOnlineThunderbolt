@@ -36,13 +36,11 @@ public class ProductListControl extends HttpServlet {
                 ProductDAO ProductDAO = new ProductDAO();
                 InforDAO InforDAO = new InforDAO();
                 CategoryDAO CategoryDAO = new CategoryDAO();
-                BlogDAO BlogDAO = new BlogDAO();
 
                 List<Category> listC = CategoryDAO.getAllCategory(); //Get List Category
                 Product hot = ProductDAO.getHotProduct(); //Get First Product
                 Product favor = ProductDAO.getFavoriteProduct(); //Get Last Product
                 Information infor = InforDAO.getInfor(); //Get Information
-                Blog news = BlogDAO.getHotBlog();//getHotBlog
 
 
                 //Paging By CategoryID

@@ -46,8 +46,8 @@ public class ProductDAO extends BaseDAO<Product> {
      */
     public Product getHotProduct() {
         //Product with most amount
-        String query = "SELECT TOP 1 * FROM Product\n" +
-"                ORDER BY Amount DESC";
+
+        String query = "SELECT TOP 1 * FROM Product ORDER BY Amount DESC";
         try {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
@@ -65,8 +65,7 @@ public class ProductDAO extends BaseDAO<Product> {
      */
     public Product getFavoriteProduct() {
         //Product with second most amount
-        String query = "SELECT TOP 2 * FROM Product\n"
-                + "ORDER BY Amount DESC";
+        String query = "SELECT TOP 2 * FROM Product ORDER BY Amount DESC";
         try {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
@@ -582,7 +581,7 @@ public class ProductDAO extends BaseDAO<Product> {
     
     public List<Product> getTop4SalePercent() {
         List<Product> list = new ArrayList<>();
-        String query = "SELECT TOP 4 * FROM Product ORDER BY SalePercent desc";
+        String query = "SELECT TOP 4 * FROM Product ORDER BY SalePercent DESC";
         try {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
