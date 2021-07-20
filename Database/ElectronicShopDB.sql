@@ -565,7 +565,7 @@ constraint SellerID_in_User FOREIGN KEY(SellerID) REFERENCES Users(UserID),
 )ON [PRIMARY]
 GO
 INSERT INTO Blog VALUES ( N'Laptop “giá sinh viên” mà vẫn chuẩn nét trong từng trải nghiệm', N'Với chất lượng hoàn thiện khá tốt, thiết kế mỏng nhẹ thuận tiện cho việc di chuyển, cấu hình và hiệu năng đủ cho trải nghiệm làm việc và giải trí, chiếc laptop HP 15s-fq1107TU sẽ là lựa chọn sáng giá trong phân khúc từ 10 triệu đồng mà các bạn học sinh, sinh viên có thể dễ dàng tiếp cận.',N'sinhvienlaptop.jpg',3);
-INSERT INTO Blog VALUES ( N'Tại sao ngồi ghế lại đỡ hơn ngồi đất', N'Vì ở ghế có đệm',N'Ghengoi.png',5);
+INSERT INTO Blog VALUES ( N'Lợi ích của việc ngồi ghế', N'Nhân viên văn phòng phải ngồi làm việc nhiều giờ sau bàn làm việc mỗi ngày nên cần có chỗ ngồi thoải mái, dễ chịu, chính vì vậy việc đầu tư vào nội thất văn phòng để phục vụ lợi ích con người cũng như lợi ích công việc là điều cần thiết.',N'Ghengoi.png',5);
 INSERT INTO Blog VALUES ( N'Cách để làm cho máy tính bạn mát hơn', N'Hãy thay keo tản nhiệt hoặc sử dụng tản nhiệt nước',N'LapHot.jpg',3);
 INSERT INTO Blog VALUES ( N'Những chiếc card màn hình 1050ti đang là xu hướng hiện nay?', N'Do bitcoin tăng cao, các coiner(người đào tiền ảo) thu mua lại các card màn hình có cấu hình cực mạnh vậy nên chiếc card 1050ti trong mùa giá vga tăng cao được cho là bán mức giá hợp lí',N'Card màn hình MSI GTX 1650 Super GAMING X.jpg',4);
 INSERT INTO Blog VALUES ( N'Chiếc máy in tốt nhất hiện nay', N'Máy in panasonic được sản xuất ở nhật bản được người dân rất ưa dùng và yêu thích bởi màu sắc in ra vô cùng chuẩn xác tới 99,99%',N'44245_chinh_dien_may_fax_brother_2840.jpg',5);
