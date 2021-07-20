@@ -97,7 +97,7 @@ public class UserDAO extends BaseDAO<Account> {
      */
     public List<Account> getAllAccounts() {
         List<Account> list = new ArrayList<>();
-        String query = "select * from Users";
+        String query = "SELECT * FROM Users";
         try {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
@@ -220,7 +220,7 @@ public class UserDAO extends BaseDAO<Account> {
      * database
      */
     public Account getAccountByID(String id) {
-        String query = "select * from Users where UserID = ?";
+        String query = "SELECT * FROM Users WHERE UserID = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, id);
@@ -244,7 +244,7 @@ public class UserDAO extends BaseDAO<Account> {
      * database
      */
     public Account getAccountByEmail(String userEmail) {
-        String query = "select * from Users where email = ?";
+        String query = "SELECT * FROM Users WHERE email = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, userEmail);
@@ -327,7 +327,7 @@ public class UserDAO extends BaseDAO<Account> {
     }
 
     public int checkForgetPassword(String username, String email) {
-        String query = "select UserID from Users where Username = ? AND email = ?";
+        String query = "SELECT UserID FROM Users WHERE Username = ? AND email = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, username);

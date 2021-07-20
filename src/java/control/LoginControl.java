@@ -35,31 +35,6 @@ public class LoginControl extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        response.setContentType("text/html;charset=UTF-8");
-//        //Lấy dữ liệu từ jsp
-//        String username = request.getParameter("user");
-//        String password = request.getParameter("pass");
-//
-//        //Kết nối vs DB
-//        UserDAO dao = new UserDAO();
-//        Account a = dao.login(username, password);
-//        //Kiểm tra
-//        if (a == null) {
-//            //login fail -> Đẩy về trang Login.jsp (nhập lại)
-//            //Message thông báo Login sai: thay đổi giá trị của biến mess
-//            request.setAttribute("mess", "Login fail");
-//            //ko thì quay trở lại trang login.jsp
-//            //Yêu cầu người dùng Login lại
-//            request.getRequestDispatcher("Login.jsp").forward(request, response);
-//        } else {
-//            //Đẩy a lên Session
-//            HttpSession session = request.getSession(); //Câu lệnh khởi tạo Session
-//            session.setAttribute("acc", a); //Đẩy a lên trên Session, có tên biến là "acc" -> acc chính là a
-//
-//            //login thành công -> Đẩy về trang HomeControl.java
-//            //Vì trang HomeControl lấy dữ liệu từ ProductDAO, và đẩy về trang jsp; nếu chuyển về trang jsp thì nó sẽ ko có dữ liệu
-//            response.sendRedirect("home"); //đg dẫn là home
-//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
